@@ -1,0 +1,637 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgsrj1drhnafo"]
+
+[ext_resource type="Script" uid="uid://c7d1tiyq1gj1e" path="res://Scripts/UI/mainmenuUI.gd" id="1_nelyp"]
+[ext_resource type="Script" uid="uid://cign7xud1xsnv" path="res://Scripts/UI/versionNumber.gd" id="5_mcpc0"]
+[ext_resource type="Texture2D" uid="uid://syd6cyagis07" path="res://Sprites/UI/Credits/DE Round Rect.png" id="5_wfx2n"]
+[ext_resource type="Texture2D" uid="uid://baciw3p5lc2ry" path="res://Sprites/UI/Credits/icon.svg" id="10_v5c52"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o7yd6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n37xh"]
+bg_color = Color(0.27451, 0.27451, 0.27451, 0.768627)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwn8o"]
+bg_color = Color(0.827451, 0.819608, 0.384314, 0.768627)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkdx6"]
+bg_color = Color(0.522705, 1, 0.46875, 0.768627)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy36"]
+bg_color = Color(0.27451, 0.776471, 0.858824, 0.768627)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rf1k"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="MainMenuUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_nelyp")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameLogo" type="TextureRect" parent="MainScreen"]
+layout_mode = 1
+offset_left = 112.0
+offset_top = 96.0
+offset_right = 638.0
+offset_bottom = 492.0
+texture = ExtResource("10_v5c52")
+
+[node name="VersionNo" type="Label" parent="MainScreen"]
+layout_mode = 1
+offset_left = 145.0
+offset_top = 506.0
+offset_right = 357.0
+offset_bottom = 548.0
+theme_override_font_sizes/font_size = 30
+text = "Version 1.0.0"
+script = ExtResource("5_mcpc0")
+
+[node name="PlayButton" type="Button" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = -467.0
+offset_right = 556.0
+offset_bottom = -349.0
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0.969971, 0.519531, 1)
+theme_override_colors/font_color = Color(1, 0.966553, 0.464844, 1)
+theme_override_colors/font_focus_color = Color(1, 0.964706, 0.466667, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.964706, 0.466667, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
+text = "PLAY"
+
+[node name="H2PButton" type="Button" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = -317.0
+offset_right = 556.0
+offset_bottom = -199.0
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0.969971, 0.519531, 1)
+theme_override_colors/font_color = Color(1, 0.966553, 0.464844, 1)
+theme_override_colors/font_focus_color = Color(1, 0.964706, 0.466667, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.964706, 0.466667, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
+text = "HOW TO PLAY"
+
+[node name="CreditsButton" type="Button" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = -167.0
+offset_right = 556.0
+offset_bottom = -49.0
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0.969971, 0.519531, 1)
+theme_override_colors/font_color = Color(1, 0.966553, 0.464844, 1)
+theme_override_colors/font_focus_color = Color(1, 0.964706, 0.466667, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.964706, 0.466667, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
+text = "CREDITS"
+
+[node name="HowToPlayScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelWrapper" type="Panel" parent="HowToPlayScreen"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 47.0
+offset_right = 885.0
+offset_bottom = 215.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
+
+[node name="HowToPlayText" type="Label" parent="HowToPlayScreen/LabelWrapper"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.5
+offset_top = -81.5
+offset_right = 367.5
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.886275, 0.14902, 1)
+theme_override_font_sizes/font_size = 91
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="HowToPlayScreen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 60.0
+offset_right = -50.0
+offset_bottom = 178.0
+grow_horizontal = 0
+theme_override_colors/font_hover_color = Color(1, 0.968627, 0.517647, 1)
+theme_override_colors/font_color = Color(1, 0.968627, 0.517647, 1)
+theme_override_colors/font_focus_color = Color(1, 0.968627, 0.517647, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.968627, 0.517647, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
+text = "BACK"
+
+[node name="TextWrapper1" type="Panel" parent="HowToPlayScreen"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 43.0
+offset_top = -309.0
+offset_right = 884.0
+offset_bottom = 491.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
+
+[node name="Text1" type="RichTextLabel" parent="HowToPlayScreen/TextWrapper1"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 21.0
+offset_right = -10.0
+offset_bottom = 791.0
+grow_horizontal = 2
+theme_override_constants/line_separation = 10
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[color=orange]> CONTROLS <[/color]
+[color=lime][A/D] or [Left/Right Arrow][/color]: Move
+[color=lime][W] or [SPACE][/color]: Jump"
+autowrap_mode = 2
+vertical_alignment = 1
+justification_flags = 160
+
+[node name="TextWrapper2" type="Panel" parent="HowToPlayScreen"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1010.0
+offset_top = -314.0
+offset_right = -40.0
+offset_bottom = 486.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
+
+[node name="Text2" type="RichTextLabel" parent="HowToPlayScreen/TextWrapper2"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 17.0
+offset_top = 41.0
+offset_right = -16.0
+offset_bottom = 772.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[color=orange]> GAMEPLAY <[/color]
+Blah Blah Blah [color=aqua]blah but in blue[/color] test"
+autowrap_mode = 2
+vertical_alignment = 1
+
+[node name="CreditsScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelWrapper2" type="Panel" parent="CreditsScreen"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 47.0
+offset_right = 887.0
+offset_bottom = 215.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
+
+[node name="CreditsText" type="Label" parent="CreditsScreen/LabelWrapper2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.5
+offset_top = -81.5
+offset_right = 367.5
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.886275, 0.14902, 1)
+theme_override_font_sizes/font_size = 91
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="CreditsScreen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 60.0
+offset_right = -50.0
+offset_bottom = 178.0
+grow_horizontal = 0
+theme_override_colors/font_hover_color = Color(1, 0.968627, 0.517647, 1)
+theme_override_colors/font_color = Color(1, 0.968627, 0.517647, 1)
+theme_override_colors/font_focus_color = Color(1, 0.968627, 0.517647, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.968627, 0.517647, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
+text = "BACK"
+
+[node name="TextWrapper1" type="Panel" parent="CreditsScreen"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 244.0
+offset_right = 696.0
+offset_bottom = -36.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
+
+[node name="DevLogo1" type="TextureRect" parent="CreditsScreen/TextWrapper1"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 26.0
+offset_right = 159.0
+offset_bottom = 156.0
+texture = ExtResource("5_wfx2n")
+expand_mode = 1
+
+[node name="Header" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo1"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 163.0
+offset_top = -59.5
+offset_right = 506.0
+offset_bottom = 19.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.960784, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "DragonEngineer"
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo1"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 185.0
+offset_top = -5.0
+offset_right = 508.0
+offset_bottom = 59.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Programming"
+vertical_alignment = 1
+
+[node name="DevLogo2" type="TextureRect" parent="CreditsScreen/TextWrapper1"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 176.0
+offset_right = 159.0
+offset_bottom = 306.0
+texture = ExtResource("5_wfx2n")
+expand_mode = 1
+
+[node name="Header" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 163.0
+offset_top = -59.5
+offset_right = 506.0
+offset_bottom = 19.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.960784, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Developer 2"
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 185.0
+offset_top = -5.0
+offset_right = 508.0
+offset_bottom = 59.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Programming"
+vertical_alignment = 1
+
+[node name="DevLogo3" type="TextureRect" parent="CreditsScreen/TextWrapper1"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 326.0
+offset_right = 159.0
+offset_bottom = 456.0
+texture = ExtResource("5_wfx2n")
+expand_mode = 1
+
+[node name="Header" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 163.0
+offset_top = -59.5
+offset_right = 506.0
+offset_bottom = 19.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.960784, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Developer 3"
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 185.0
+offset_top = -5.0
+offset_right = 508.0
+offset_bottom = 59.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Programming"
+vertical_alignment = 1
+
+[node name="DevLogo4" type="TextureRect" parent="CreditsScreen/TextWrapper1"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 491.0
+offset_right = 159.0
+offset_bottom = 621.0
+texture = ExtResource("5_wfx2n")
+expand_mode = 1
+
+[node name="Header" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo4"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 163.0
+offset_top = -59.5
+offset_right = 506.0
+offset_bottom = 19.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.960784, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Developer 4"
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo4"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 185.0
+offset_top = -5.0
+offset_right = 508.0
+offset_bottom = 59.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Programming"
+vertical_alignment = 1
+
+[node name="DevLogo5" type="TextureRect" parent="CreditsScreen/TextWrapper1"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 646.0
+offset_right = 159.0
+offset_bottom = 776.0
+texture = ExtResource("5_wfx2n")
+expand_mode = 1
+
+[node name="Header" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo5"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 163.0
+offset_top = -59.5
+offset_right = 506.0
+offset_bottom = 19.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.960784, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Developer 5"
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="CreditsScreen/TextWrapper1/DevLogo5"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 185.0
+offset_top = -5.0
+offset_right = 508.0
+offset_bottom = 59.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Programming"
+vertical_alignment = 1
+
+[node name="TextWrapper2" type="Panel" parent="CreditsScreen"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1199.0
+offset_top = 247.0
+offset_right = -43.0
+offset_bottom = -33.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
+
+[node name="GodotLogo" type="TextureRect" parent="CreditsScreen/TextWrapper2"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 29.0
+offset_right = 164.0
+offset_bottom = 159.0
+texture = ExtResource("10_v5c52")
+expand_mode = 1
+
+[node name="Header" type="Label" parent="CreditsScreen/TextWrapper2/GodotLogo"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 154.0
+offset_top = -64.0
+offset_right = 412.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.960784, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Made in"
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="CreditsScreen/TextWrapper2/GodotLogo"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 169.0
+offset_top = -9.0
+offset_right = 439.0
+offset_bottom = 55.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Godot Engine"
+vertical_alignment = 1
+
+[node name="Header" type="Label" parent="CreditsScreen/TextWrapper2"]
+layout_mode = 1
+offset_left = 37.0
+offset_top = 183.0
+offset_right = 399.0
+offset_bottom = 262.0
+theme_override_colors/font_color = Color(1, 0.960784, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Assets Credits"
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsScreen/TextWrapper2"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 282.0
+offset_right = 1115.0
+offset_bottom = 760.0
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[color=orange]> SOUND <[/color]
+- Button Click 1 by Mellau. 
+   https://freesound.org/s/506054/
+   License: Attribution NonCommercial 4.0
+
+[color=orange]> FONT <[/color]
+- ???"
+
+[connection signal="pressed" from="MainScreen/PlayButton" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="MainScreen/H2PButton" to="." method="OnHowToPlayButtonPressed"]
+[connection signal="pressed" from="MainScreen/CreditsButton" to="." method="OnCreditsButtonPressed"]
+[connection signal="pressed" from="HowToPlayScreen/BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="CreditsScreen/BackButton" to="." method="OnBackButtonPressed"]

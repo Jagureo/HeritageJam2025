@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0g5tqwvj7ti1"]
+
+[ext_resource type="Script" uid="uid://dexaoxlytuoh6" path="res://Scripts/Managers/AudioManager.gd" id="1_x8tha"]
+[ext_resource type="AudioStream" uid="uid://b837e6lfshgyc" path="res://Audio/Click.mp3" id="2_kpiw8"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_x8tha")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kpiw8")
+volume_db = -5.0

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd6c4jbawe4vi"]
+
+[ext_resource type="Script" uid="uid://bhq5p26e0egqy" path="res://Scripts/Managers/Events.gd" id="1_khl6h"]
+
+[node name="EventManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_khl6h")
