@@ -7,14 +7,6 @@ extends Control
 @export_file("*.tscn") var mGameScene : String
 
 
-class A:
-	var a : int
-	var b : float
-
-	func _init(_a, _b):
-		a = _a
-		b = _b
-
 func OnPlayButtonPressed():
 	AudioManager.sInstance.mClickSound.play()
 	get_tree().change_scene_to_file(mGameScene)
