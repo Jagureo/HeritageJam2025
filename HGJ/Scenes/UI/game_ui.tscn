@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://5ln5jieeyw4b"]
+
+[ext_resource type="Script" uid="uid://bj1d6mvillccq" path="res://Scripts/UI/gameUI.gd" id="1_vo2tu"]
+[ext_resource type="Script" uid="uid://cign7xud1xsnv" path="res://Scripts/UI/versionNumber.gd" id="2_5b8pf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vo2tu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5b8pf"]
+bg_color = Color(0.27451, 0.27451, 0.27451, 0.768627)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6w80a"]
+bg_color = Color(0.827451, 0.819608, 0.384314, 0.768627)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lolt2"]
+bg_color = Color(0.522705, 1, 0.46875, 0.768627)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tig4k"]
+bg_color = Color(0.27451, 0.776471, 0.858824, 0.768627)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="GameUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vo2tu")
+
+[node name="MainScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Station_Label" type="Label" parent="MainScreen"]
+layout_mode = 1
+offset_left = 145.0
+offset_top = 506.0
+offset_right = 357.0
+offset_bottom = 548.0
+theme_override_font_sizes/font_size = 30
+text = "Station Name"
+script = ExtResource("2_5b8pf")
+
+[node name="Passenger_Count_Label" type="Label" parent="MainScreen"]
+layout_mode = 1
+offset_left = 145.0
+offset_top = 549.0
+offset_right = 357.0
+offset_bottom = 591.0
+theme_override_font_sizes/font_size = 30
+text = "Passenger Count"
+script = ExtResource("2_5b8pf")
+
+[node name="PlayButton" type="Button" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = -467.0
+offset_right = 556.0
+offset_bottom = -349.0
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0.969971, 0.519531, 1)
+theme_override_colors/font_color = Color(1, 0.966553, 0.464844, 1)
+theme_override_colors/font_focus_color = Color(1, 0.964706, 0.466667, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.964706, 0.466667, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vo2tu")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5b8pf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6w80a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lolt2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
+text = "Next Station"
+
+[connection signal="pressed" from="MainScreen/PlayButton" to="." method="next_station"]
