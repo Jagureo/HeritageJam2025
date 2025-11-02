@@ -1,4 +1,5 @@
 extends Node
 class_name Event
 
-signal TestSignal(param1 : int, param2 : float)
+signal PassengerAddedToSeat(_seatIndex : int)
+signal PassengerRemovedFromSeat(_seatIndex : int)
