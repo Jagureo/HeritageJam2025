@@ -28,6 +28,10 @@ enum GenderType {
 	FEMALE,
 }
 
+# Passenger details
 var mPassengerType : PassengerType
 var mTraitType     : TraitTypes
 var mGenderType    : GenderType
+
+# Passenger in-game stuff
+var mHappinessLevel : float

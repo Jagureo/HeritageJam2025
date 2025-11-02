@@ -3,8 +3,8 @@ class_name SeatRow
 
 # A row of seats
 
+# References
 var mSeats : Array[Seat]
-
 
 func _ready():
 	mSeats = get_children() as Array[Seat]
