@@ -27,3 +27,10 @@ func RemovePassenger():
 	EventMgr.OnPassengerRemovedFromSeat.emit(mCurrentlySeatedBy, mSeatIndex)
 	mCurrentlySeatedBy = null
 
+
+func OnAreaEntered(_body : Area2D):
+	pass
+
+
+func OnAreaExited(_body : Area2D):
+	pass

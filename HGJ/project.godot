@@ -53,13 +53,9 @@ MoveRight={
 
 [layer_names]
 
-2d_physics/layer_1="Chronobots"
-2d_physics/layer_2="Platforms"
-2d_physics/layer_3="InteractionHitbox"
-2d_physics/layer_4="TriggersHitbox"
-2d_physics/layer_5="BoxHitbox"
-2d_physics/layer_6="BoxDestroyHitbox"
-2d_physics/layer_7="KeysAndDoors"
+2d_physics/layer_1="Passenger"
+2d_physics/layer_2="Seat"
+2d_physics/layer_3="StandingArea"
 
 [rendering]
 
