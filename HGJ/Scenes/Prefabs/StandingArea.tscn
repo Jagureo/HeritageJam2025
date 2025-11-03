@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bg5f3f6mb0nte" path="res://Scripts/Gameplay/StandingArea.gd" id="1_74jwn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l8m"]
-size = Vector2(638, 220)
+size = Vector2(1432, 374)
 
 [node name="StandingArea" type="Area2D"]
 collision_layer = 4

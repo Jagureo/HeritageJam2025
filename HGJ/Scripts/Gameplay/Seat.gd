@@ -16,7 +16,7 @@ var mCurrentlySeatedBy : Passenger
 var mSeatIndex : int
 
 # References
-@onready var mSeatSprite : Sprite2D = $SeatSprite
+# @onready var mSeatSprite : Sprite2D = $SeatSprite
 
 
 func AddPassenger(_passenger : Passenger):

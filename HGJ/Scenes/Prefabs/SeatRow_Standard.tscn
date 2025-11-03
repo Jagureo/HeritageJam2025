@@ -7,23 +7,23 @@
 script = ExtResource("1_bmsnw")
 
 [node name="Seat1" parent="." instance=ExtResource("2_vksif")]
-position = Vector2(-225, 0)
+position = Vector2(-480, 0)
 mSeatType = 1
 
 [node name="Seat2" parent="." instance=ExtResource("2_vksif")]
-position = Vector2(-150, 0)
+position = Vector2(-320, 0)
 
 [node name="Seat3" parent="." instance=ExtResource("2_vksif")]
-position = Vector2(-75, 0)
+position = Vector2(-160, 0)
 
 [node name="Seat4" parent="." instance=ExtResource("2_vksif")]
 
 [node name="Seat5" parent="." instance=ExtResource("2_vksif")]
-position = Vector2(75, 0)
+position = Vector2(160, 0)
 
 [node name="Seat6" parent="." instance=ExtResource("2_vksif")]
-position = Vector2(150, 0)
+position = Vector2(320, 0)
 
 [node name="Seat7" parent="." instance=ExtResource("2_vksif")]
-position = Vector2(225, 0)
+position = Vector2(480, 0)
 mSeatType = 1

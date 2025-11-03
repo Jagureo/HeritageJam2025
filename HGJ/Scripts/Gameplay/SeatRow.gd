@@ -4,11 +4,11 @@ class_name SeatRow
 # A row of seats
 
 # References
-var mSeats : Array[Seat]
+var mSeats : Array
 
 func _ready():
-	mSeats = get_children() as Array[Seat]
+	mSeats = get_children() 
 
 	for i in range(len(mSeats)):
-		mSeats[i].mSeatIndex = i
+		(mSeats[i] as Seat).mSeatIndex = i
 		
