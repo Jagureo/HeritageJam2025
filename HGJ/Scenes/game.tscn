@@ -23,8 +23,10 @@ position = Vector2(962, 607)
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="Passenger" parent="." instance=ExtResource("6_i6g32")]
+[node name="AllPassengers" type="Node2D" parent="."]
+
+[node name="Passenger" parent="AllPassengers" instance=ExtResource("6_i6g32")]
 position = Vector2(1747, 691)
 
-[node name="Passenger2" parent="." instance=ExtResource("6_i6g32")]
+[node name="Passenger2" parent="AllPassengers" instance=ExtResource("6_i6g32")]
 position = Vector2(1782, 517)
