@@ -5,14 +5,16 @@ class_name Station
 var name : String
 var min_passengers: int
 var max_passengers: int
+var passenger_count: int
 
 func _init(_name: String, _min_passengers: int, _max_passengers: int) -> void:
 	name = _name
 	min_passengers = _min_passengers
 	max_passengers = _max_passengers
+	passenger_count = randi_range(min_passengers, max_passengers)
 
 func get_passenger_count() -> int:
-	return randi_range(min_passengers, max_passengers)
+	return passenger_count
 
 # --- Predefined Station Instances ---
 # You can access these directly from other scripts, e.g. Station.EWStations
@@ -45,5 +47,5 @@ static var EWStations: Array[Station] = [
 	Station.new("Tanah Merah", 2, 5),
 	Station.new("Simei", 2, 4),
 	Station.new("Tampines", 3, 6),
-	Station.new("Pasir Ris", 3, 6)
+	Station.new("Pasir Ris", 0, 0)
 ]
