@@ -1,17 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://befplng8mg7t2"]
+[gd_scene load_steps=2 format=3 uid="uid://befplng8mg7t2"]
 
 [ext_resource type="Script" uid="uid://bg5f3f6mb0nte" path="res://Scripts/Gameplay/StandingArea.gd" id="1_74jwn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l8m"]
-size = Vector2(1432, 374)
-
-[node name="StandingArea" type="Area2D"]
-collision_layer = 4
-input_pickable = false
+[node name="StandingArea" type="Node2D"]
 script = ExtResource("1_74jwn")
-
-[node name="StandingAreaCollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_n1l8m")
-
-[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
-[connection signal="area_exited" from="." to="." method="OnAreaExited"]

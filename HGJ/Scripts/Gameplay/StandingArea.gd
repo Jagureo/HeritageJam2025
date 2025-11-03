@@ -1,9 +1,24 @@
-extends Area2D
+extends Node2D
 class_name StandingArea
 
 
 # References
 var mCurrentlyStanding : Array[Passenger]
+
+# Only 1 instance of standing area
+static var sStandingArea : StandingArea = null
+
+
+func _init():
+	if sStandingArea == null:
+		sStandingArea = self
+	else:
+		sStandingArea.queue_free()
+
+# func _process(delta):
+# 	if Input.is_key_pressed(KEY_0):
+# 		print(mCurrentlyStanding)
+
 
 func AddPassenger(_passenger : Passenger):
 	mCurrentlyStanding.append(_passenger)
@@ -14,9 +29,5 @@ func RemovePassenger(_passenger : Passenger):
 	EventMgr.OnPassengerRemovedFromStandingArea.emit(_passenger)
 
 
-func OnAreaEntered(_body : Area2D):
-	pass
-
-
-func OnAreaExited(_body : Area2D):
-	pass
+func _exit_tree():
+	sStandingArea = null
