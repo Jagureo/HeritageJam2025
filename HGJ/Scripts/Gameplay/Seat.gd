@@ -16,7 +16,11 @@ var mCurrentlySeatedBy : Passenger
 var mSeatIndex : int
 
 # References
-# @onready var mSeatSprite : Sprite2D = $SeatSprite
+@onready var mSeatSprite : Sprite2D = $SeatSprite
+
+
+# Determine which Seat is hovered
+static var sSelectedSeat : Seat = null
 
 
 func AddPassenger(_passenger : Passenger):
@@ -28,9 +32,20 @@ func RemovePassenger():
 	mCurrentlySeatedBy = null
 
 
-func OnAreaEntered(_body : Area2D):
-	pass
+func HasPassenger() -> bool:
+	return mCurrentlySeatedBy != null
 
 
-func OnAreaExited(_body : Area2D):
-	pass
+func OnMouseEntered():
+	sSelectedSeat = self
+	print("Selected Seat: ", self.name)
+
+func OnMouseExited():
+	if sSelectedSeat == self:
+		sSelectedSeat = null
+	print("Deselected Seat: ", self.name)
+
+
+func _exit_tree():
+	if sSelectedSeat == self:
+		sSelectedSeat = null

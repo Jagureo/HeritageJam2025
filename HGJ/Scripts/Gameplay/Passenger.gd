@@ -44,13 +44,19 @@ var mSeated : bool
 # Determine which passenger is clicked
 static var sSelectedPassenger : Passenger = null
 
+# Seat that this passenger is sitting on
+var mSittingOn : Seat = null
+
 
 func OnMouseInputEvent(_viewport : Node, _event : InputEvent, _shape_idx : int):
 	if Input.is_action_just_pressed("Click") and sSelectedPassenger == null:
 		print("Picked up passenger: ", self.name)
 		sSelectedPassenger = self
 
-
+		# If passenger is sitting on a seat
+		if mSittingOn != null:
+			mSittingOn.RemovePassenger()
+			mSittingOn = null
 
 
 func _process(_delta):
@@ -60,7 +66,18 @@ func _process(_delta):
 		sSelectedPassenger.position = get_global_mouse_position().clamp(Vector2(Constant.LEFT_DRAG_LIMIT, Constant.TOP_DRAG_LIMIT), 
 																	    Vector2(Constant.RIGHT_DRAG_LIMIT, Constant.BOTTOM_DRAG_LIMIT))
 
-
+		# Release mouse
 		if Input.is_action_just_released("Click"):
+			# If passenger is dropped off at a selected seat, put it there
+			if Seat.sSelectedSeat != null and not Seat.sSelectedSeat.HasPassenger():
+				sSelectedPassenger.global_position = Seat.sSelectedSeat.global_position
+				Seat.sSelectedSeat.AddPassenger(sSelectedPassenger)
+				mSittingOn = Seat.sSelectedSeat
+
 			print("Dropped off passenger: ", self.name)
 			sSelectedPassenger = null
+
+
+func _exit_tree():
+	if sSelectedPassenger == self:
+		sSelectedPassenger = null

@@ -1,17 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bek6ncxxmtrt"]
+[gd_scene load_steps=4 format=3 uid="uid://bek6ncxxmtrt"]
 
 [ext_resource type="Script" uid="uid://bvwn34oxbvf4x" path="res://Scripts/Gameplay/Seat.gd" id="1_no3bi"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_no3bi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l8m"]
 size = Vector2(148, 238)
 
 [node name="Seat" type="Area2D"]
 collision_layer = 2
-input_pickable = false
 script = ExtResource("1_no3bi")
+
+[node name="SeatSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(148, 238)
+texture = SubResource("PlaceholderTexture2D_no3bi")
 
 [node name="SeatCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n1l8m")
 
-[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
-[connection signal="area_exited" from="." to="." method="OnAreaExited"]
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]

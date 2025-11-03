@@ -28,7 +28,10 @@ position = Vector2(160, 0)
 position = Vector2(400, 0)
 mSeatType = 2
 
-[node name="SeatCollisionShape" parent="Seat6" index="0"]
+[node name="SeatSprite" parent="Seat6" index="0"]
+scale = Vector2(308, 238)
+
+[node name="SeatCollisionShape" parent="Seat6" index="1"]
 shape = SubResource("RectangleShape2D_t7fmw")
 
 [editable path="Seat6"]
