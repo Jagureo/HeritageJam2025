@@ -12,3 +12,11 @@ func AddPassenger(_passenger : Passenger):
 func RemovePassenger(_passenger : Passenger):
 	mCurrentlyStanding.erase(_passenger)
 	EventMgr.OnPassengerRemovedFromStandingArea.emit(_passenger)
+
+
+func OnAreaEntered(_body : Area2D):
+	pass
+
+
+func OnAreaExited(_body : Area2D):
+	pass

@@ -28,6 +28,9 @@ enum GenderType {
 	FEMALE,
 }
 
+# Reference
+@onready var mPassengerSprite : Sprite2D = $PassengerSprite
+
 # Passenger details
 var mPassengerType : PassengerType
 var mTraitType     : TraitTypes
@@ -35,3 +38,6 @@ var mGenderType    : GenderType
 
 # Passenger in-game stuff
 var mHappinessLevel : float
+var mSeated : bool 
+
+
