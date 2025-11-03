@@ -17,3 +17,5 @@ texture = SubResource("PlaceholderTexture2D_0ypmp")
 
 [node name="PassengerCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n1l8m")
+
+[connection signal="input_event" from="." to="." method="OnMouseInputEvent"]

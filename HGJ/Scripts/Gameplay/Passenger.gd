@@ -41,3 +41,26 @@ var mHappinessLevel : float
 var mSeated : bool 
 
 
+# Determine which passenger is clicked
+static var sSelectedPassenger : Passenger = null
+
+
+func OnMouseInputEvent(_viewport : Node, _event : InputEvent, _shape_idx : int):
+	if Input.is_action_just_pressed("Click") and sSelectedPassenger == null:
+		print("Picked up passenger: ", self.name)
+		sSelectedPassenger = self
+
+
+
+
+func _process(_delta):
+	if sSelectedPassenger == self:
+		# Drag the passenger to the mouse's position
+		# Clamp the mouse position to be within the screen
+		sSelectedPassenger.position = get_global_mouse_position().clamp(Vector2(Constant.LEFT_DRAG_LIMIT, Constant.TOP_DRAG_LIMIT), 
+																	    Vector2(Constant.RIGHT_DRAG_LIMIT, Constant.BOTTOM_DRAG_LIMIT))
+
+
+		if Input.is_action_just_released("Click"):
+			print("Dropped off passenger: ", self.name)
+			sSelectedPassenger = null
