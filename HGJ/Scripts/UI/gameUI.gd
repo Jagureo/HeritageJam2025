@@ -1,13 +1,14 @@
 extends Control
 
-@onready var station_label = $MainScreen/Station_Label
-@onready var passenger_count_label = $MainScreen/Passenger_Count_Label
+@onready var station_label = $MainScreen/Sign/Station_Label
+@onready var happiness_label = $MainScreen/Sign2/Happniess_Level
 
 func set_station(msg: String) -> void:
 	station_label.text = msg
 
 func next_station() -> void:
 	EventMgr.OnNextStationPressed.emit()
+	AudioManager.sInstance.mClickSound.play()
 
-func set_passenger_count(value: int) -> void:
-	passenger_count_label.text = "Passengers: %d" % value
+func set_happiness_level(value: int) -> void:
+	happiness_label.text = "Happiness Level: %d" % value
