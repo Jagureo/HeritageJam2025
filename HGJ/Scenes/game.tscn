@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1o618cdsf1is"]
+[gd_scene load_steps=7 format=3 uid="uid://b1o618cdsf1is"]
 
 [ext_resource type="Script" uid="uid://7u8flb2r01xw" path="res://Scripts/Managers/GameManager.gd" id="1_ebmjs"]
 [ext_resource type="Texture2D" uid="uid://dexdjyy6clhwc" path="res://Sprites/scene_sketch.png" id="2_1l0tm"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cop3bpaxlj8uv" path="res://Scenes/Prefabs/SeatRow_Standard.tscn" id="3_wowpa"]
 [ext_resource type="PackedScene" uid="uid://dyyyip6wqfeht" path="res://Scenes/Prefabs/SeatRow_Wheelchair.tscn" id="4_i6g32"]
 [ext_resource type="PackedScene" uid="uid://befplng8mg7t2" path="res://Scenes/Prefabs/StandingArea.tscn" id="5_1l0tm"]
-[ext_resource type="PackedScene" uid="uid://bc4vtwmv5eiqe" path="res://Scenes/Prefabs/SeatRow_Standing.tscn" id="5_v158k"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ebmjs")
@@ -20,9 +19,6 @@ position = Vector2(958, 341)
 
 [node name="SeatRow_Wheelchair" parent="." instance=ExtResource("4_i6g32")]
 position = Vector2(960, 930)
-
-[node name="SeatRow_Standing" parent="." instance=ExtResource("5_v158k")]
-position = Vector2(960, 639)
 
 [node name="StandingArea" parent="." instance=ExtResource("5_1l0tm")]
 position = Vector2(962, 607)
