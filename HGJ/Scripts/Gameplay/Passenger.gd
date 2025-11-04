@@ -37,7 +37,7 @@ var mTraitType     : TraitTypes
 var mGenderType    : GenderType
 
 # Passenger in-game stuff
-var mHappinessLevel : float
+var mHappinessLevel : int
 var mSeated : bool 
 
 

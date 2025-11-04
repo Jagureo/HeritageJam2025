@@ -8,6 +8,7 @@ enum SeatType {
 	NORMAL,
 	PRIORITY,
 	WHEELCHAIR,
+	STANDING,
 }
 
 # Seat details

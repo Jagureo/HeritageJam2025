@@ -4,12 +4,18 @@ extends Node
 @onready var passenger_prefab = preload("res://Scenes/Prefabs/Passenger.tscn")
 @onready var passenger_container : Node2D = %AllPassengers
 
-var passengers_in_train_max : int = 13
 var current_station_index : int = 0
+
+
+func _enter_tree():
+	EventMgr.OnNextStationPressed.connect(next_station)
+
+func _exit_tree():
+	EventMgr.OnNextStationPressed.disconnect(next_station)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	EventMgr.OnNextStationPressed.connect(next_station)
 	_update_station_display()
 	update_happiness_level(0)
 	for i in range(Station.EWStations[current_station_index].get_passenger_count()):
@@ -24,7 +30,7 @@ func next_station() -> void:
 		current_station_index += 1
 		var new_passengers = Station.EWStations[current_station_index].get_passenger_count()
 		var passengers_in_train = passenger_container.get_child_count() + new_passengers
-		var passengers_to_kick_min = (passengers_in_train - passengers_in_train_max) if passengers_in_train > passengers_in_train_max else 0
+		var passengers_to_kick_min = (passengers_in_train - Constant.MAX_PASSENGERS_IN_TRAIN) if passengers_in_train > Constant.MAX_PASSENGERS_IN_TRAIN else 0
 		var passengers_to_kick_max = (passenger_container.get_child_count() - 1) if passenger_container.get_child_count() > 1 else 0
 		print("passengers-max is %d" % passengers_to_kick_max)
 		print("passengers-child count is %d" % passenger_container.get_child_count())

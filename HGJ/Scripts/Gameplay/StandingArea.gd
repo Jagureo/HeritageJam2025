@@ -1,6 +1,7 @@
 extends Node2D
 class_name StandingArea
 
+# Passengers that does not have a slot yet
 
 # References
 var mCurrentlyStanding : Array[Passenger]

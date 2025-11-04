@@ -3,6 +3,8 @@ class_name SeatRow
 
 # A row of seats
 
+@export var mAffectedByAdjacencyRules : bool = true
+
 # References
 var mSeats : Array
 
@@ -12,3 +14,7 @@ func _ready():
 	for i in range(len(mSeats)):
 		(mSeats[i] as Seat).mSeatIndex = i
 		
+
+
+func EvaluateHappiness():
+	pass
