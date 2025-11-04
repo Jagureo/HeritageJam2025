@@ -23,9 +23,14 @@ var mSeatIndex : int
 static var sSelectedSeat : Seat = null
 
 
-func AddPassenger(_passenger : Passenger):
+func AddPassenger(_passenger : Passenger) -> bool:
+	if _passenger.mPassengerType == Passenger.PassengerType.WHEELCHAIR_BOUND:
+		if mSeatType != SeatType.WHEELCHAIR:
+			return false
+	print(_passenger.mPassengerType)
 	mCurrentlySeatedBy = _passenger
 	EventMgr.OnPassengerAddedToSeat.emit(_passenger, mSeatIndex)
+	return true
 
 func RemovePassenger():
 	EventMgr.OnPassengerRemovedFromSeat.emit(mCurrentlySeatedBy, mSeatIndex)

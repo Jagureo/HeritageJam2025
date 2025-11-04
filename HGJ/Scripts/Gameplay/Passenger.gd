@@ -14,18 +14,21 @@ enum PassengerType {
 	WHEELCHAIR_BOUND,		# Must use wheelchair slot, otherwise makes standing passengers angry
 	
 	# might not do due to technical difficulties
-	FAT,					# Occupies 2 seats
+	# FAT,					# Occupies 2 seats
+	LAST
 }
 
 enum TraitTypes {
 	NORMAL,
 	NOISY,		# Makes adjacent seated passengers angry
 	# FAMILY,		# Prefers to sit with other family members
+	LAST
 }
 
 enum GenderType {
 	MALE,
 	FEMALE,
+	LAST
 }
 
 # Reference
@@ -48,8 +51,13 @@ static var sSelectedPassenger : Passenger = null
 # Seat that this passenger is sitting on
 var mSittingOn : Seat = null
 
-# func _ready():
-# 	StandingArea.sStandingArea.AddPassenger(self)
+func _ready():
+	# 	StandingArea.sStandingArea.AddPassenger(self)
+	mPassengerType = randi() % PassengerType.LAST
+	mTraitType = randi() % TraitTypes.LAST
+	mGenderType = randi() % GenderType.LAST
+	if mPassengerType == PassengerType.WHEELCHAIR_BOUND:
+		mPassengerSprite.texture = load("res://Sprites/character_wheelchair_sketch.png")
 
 func _process(_delta):
 	if sSelectedPassenger == self:
@@ -62,10 +70,10 @@ func _process(_delta):
 		if Input.is_action_just_released("Click"):
 			# If passenger is dropped off at a selected seat, put it there
 			if Seat.sSelectedSeat != null and not Seat.sSelectedSeat.HasPassenger():
-				self.global_position = Seat.sSelectedSeat.global_position
-				Seat.sSelectedSeat.AddPassenger(self)
-				mSittingOn = Seat.sSelectedSeat
-				StandingArea.sStandingArea.RemovePassenger(self)
+				if Seat.sSelectedSeat.AddPassenger(self):
+					self.global_position = Seat.sSelectedSeat.global_position
+					mSittingOn = Seat.sSelectedSeat
+					StandingArea.sStandingArea.RemovePassenger(self)
 
 			# print("Dropped off passenger: ", self.name)
 			sSelectedPassenger = null
