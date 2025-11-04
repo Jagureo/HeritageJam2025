@@ -8,7 +8,6 @@ enum SeatType {
 	NORMAL,
 	PRIORITY,
 	WHEELCHAIR,
-	STANDING,
 }
 
 # Seat details
@@ -39,12 +38,12 @@ func HasPassenger() -> bool:
 
 func OnMouseEntered():
 	sSelectedSeat = self
-	print("Selected Seat: ", self.name)
+	# print("Selected Seat: ", self.name)
 
 func OnMouseExited():
 	if sSelectedSeat == self:
 		sSelectedSeat = null
-	print("Deselected Seat: ", self.name)
+	# print("Deselected Seat: ", self.name)
 
 
 func _exit_tree():

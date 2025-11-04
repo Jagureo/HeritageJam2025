@@ -20,7 +20,7 @@ enum PassengerType {
 enum TraitTypes {
 	NORMAL,
 	NOISY,		# Makes adjacent seated passengers angry
-	FAMILY,		# Prefers to sit with other family members
+	# FAMILY,		# Prefers to sit with other family members
 }
 
 enum GenderType {
@@ -39,6 +39,7 @@ var mGenderType    : GenderType
 # Passenger in-game stuff
 # var mHappinessLevel : int
 # var mSeated : bool 
+var mIsAlighting : bool = false
 
 
 # Determine which passenger is clicked
@@ -66,13 +67,13 @@ func _process(_delta):
 				mSittingOn = Seat.sSelectedSeat
 				StandingArea.sStandingArea.RemovePassenger(self)
 
-			print("Dropped off passenger: ", self.name)
+			# print("Dropped off passenger: ", self.name)
 			sSelectedPassenger = null
 
 		
 func OnMouseInputEvent(_viewport : Node, _event : InputEvent, _shape_idx : int):
 	if Input.is_action_just_pressed("Click") and sSelectedPassenger == null:
-		print("Picked up passenger: ", self.name)
+		# print("Picked up passenger: ", self.name)
 		sSelectedPassenger = self
 
 		# If passenger is sitting on a seat

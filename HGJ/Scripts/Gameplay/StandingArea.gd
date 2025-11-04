@@ -32,7 +32,13 @@ func RemovePassenger(_passenger : Passenger):
 
 # Evaluate happiness for people in the standing area
 func EvaluateHappiness():
+	var sectionScore : int = 0
+	var alightingPassengers : Array[Passenger] = []
+
 	for passenger in mCurrentlyStanding:
+		if passenger.mIsAlighting:
+			alightingPassengers.push_back(passenger)
+
 		match passenger.mPassengerType:
 			Passenger.PassengerType.CHILDREN:
 				# no change in score
@@ -45,32 +51,40 @@ func EvaluateHappiness():
 				pass
 			Passenger.PassengerType.ADULT_WITH_BAGS:
 				# If standing, causes others to be unhappy, -1 per standing passenger
-				GameManager.sInstance.mOverallHappiness -= (len(mCurrentlyStanding) - 1)
-				pass
+				sectionScore -= (len(mCurrentlyStanding) - 1)
 			Passenger.PassengerType.ADULT_WITH_BABY:
 				# If standing, -1 happiness
-				GameManager.sInstance.mOverallHappiness -= 1
-				pass
+				sectionScore -= 1
 			Passenger.PassengerType.PREGNANT:
 				# If standing, -1 happiness
-				GameManager.sInstance.mOverallHappiness -= 1
-				pass
+				sectionScore -= 1
 			Passenger.PassengerType.ELDERLY:
 				# If standing, -2 happiness
-				GameManager.sInstance.mOverallHappiness -= 2
-				pass
+				sectionScore -= 2
 			Passenger.PassengerType.INJURED:
 				# If standing, -2 happiness
-				GameManager.sInstance.mOverallHappiness -= 2
-				pass
+				sectionScore -= 2
 			Passenger.PassengerType.HEMORRHOID:
 				# no change in score
 				pass
 			Passenger.PassengerType.WHEELCHAIR_BOUND:
 				# If standing, causes others to be unhappy, -1 per standing passenger
-				GameManager.sInstance.mOverallHappiness -= (len(mCurrentlyStanding) - 1)
-				pass
+				sectionScore -= (len(mCurrentlyStanding) - 1)
 
+	GameManager.sInstance.mOverallHappiness += sectionScore
+
+	# Remove passengers from the standing area if they are going to alight
+	for alightingPassenger in alightingPassengers:
+		RemovePassenger(alightingPassenger)		
+	alightingPassengers.clear()
+
+	print(name, ": ", len(mCurrentlyStanding))
+	
+
+
+func _enter_tree():
+	EventMgr.OnNextStationPressed.connect(EvaluateHappiness)
 
 func _exit_tree():
 	sStandingArea = null
+	EventMgr.OnNextStationPressed.disconnect(EvaluateHappiness)

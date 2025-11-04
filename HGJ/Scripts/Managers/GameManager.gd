@@ -54,7 +54,16 @@ func next_station() -> void:
 		for i in range(passengers_to_kick):
 			print("loop")
 			var random_passenger = passenger_container.get_child(randi() % passenger_container.get_child_count())
-			StandingArea.sStandingArea.AddPassenger(random_passenger)
+			
+			if random_passenger is Passenger:
+				(random_passenger as Passenger).mIsAlighting = true
+				# # Passenger not seated, remove it from sitting area
+				# if (random_passenger as Passenger).mSittingOn == null:
+				# 	StandingArea.sStandingArea.RemovePassenger(random_passenger)
+				# # Passenger is seated
+				# else:
+				# 	(random_passenger as Passenger).mSittingOn.RemovePassenger()
+
 			random_passenger.queue_free()
 		for i in range(new_passengers):
 			_spawn_passenger()
