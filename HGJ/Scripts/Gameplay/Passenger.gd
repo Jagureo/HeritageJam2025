@@ -90,7 +90,61 @@ func OnMouseInputEvent(_viewport : Node, _event : InputEvent, _shape_idx : int):
 			mSittingOn = null
 			StandingArea.sStandingArea.AddPassenger(self)
 
+func _enter_tree():
+	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
+	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
+	
+func get_passenger_type_string() -> String:
+	match mPassengerType:
+		0:
+			return "Child"
+		1:
+			return "Teenager"
+		2:
+			return "Adult"
+		3:
+			return "Adult with Bags"
+		4:
+			return "Adult with Baby"
+		5:
+			return "Pregnant"
+		6:
+			return "Elderly"
+		7:
+			return "Injured"
+		8:
+			return "Hemorrhoid"
+		9:
+			return "Wheelchair"
+		_:
+			return "Human"
+			
+func get_passenger_trait_string() -> String:
+	match mTraitType:
+		0:
+			return "Normal"
+		1:
+			return "Noisy"
+		_:
+			return "Ghost"
+			
+func get_passenger_gender_string() -> String:
+	match mGenderType:
+		0:
+			return "Male"
+		1:
+			return "Female"
+		_:
+			return "Questioning"
+	
+func _on_mouse_entered():
+	EventMgr.OnPassengerHoverStart.emit(self)
+	
+func _on_mouse_exited():
+	EventMgr.OnPassengerHoverEnd.emit(self)
 
 func _exit_tree():
+	disconnect("mouse_entered", Callable(self, "_on_mouse_entered"))
+	disconnect("mouse_exited", Callable(self, "_on_mouse_exited"))
 	if sSelectedPassenger == self:
 		sSelectedPassenger = null

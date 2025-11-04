@@ -4,6 +4,7 @@ class_name GameManager
 @onready var game_ui : Control = %GameUi
 @onready var passenger_prefab = preload("res://Scenes/Prefabs/Passenger.tscn")
 @onready var passenger_container : Node2D = %AllPassengers
+@onready var passenger_information : PassengerInformation = $PassengerInformation
 
 var current_station_index : int = 0
 var mOverallHappiness : int = 0:
@@ -12,15 +13,21 @@ var mOverallHappiness : int = 0:
 	set(newValue):
 		mOverallHappiness = newValue
 		update_happiness_level(newValue)
+		
+var passenger_hover_queue : Array[Passenger] = []
 
 static var sInstance : GameManager = null
 
 
 func _enter_tree():
 	EventMgr.OnNextStationPressed.connect(next_station)
+	EventMgr.OnPassengerHoverStart.connect(on_passenger_hover_start)
+	EventMgr.OnPassengerHoverEnd.connect(on_passenger_hover_end)
 
 func _exit_tree():
 	EventMgr.OnNextStationPressed.disconnect(next_station)
+	EventMgr.OnPassengerHoverStart.disconnect(on_passenger_hover_start)
+	EventMgr.OnPassengerHoverEnd.disconnect(on_passenger_hover_end)
 	sInstance = null
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +42,8 @@ func _ready():
 	update_happiness_level(0)
 	for i in range(Station.EWStations[current_station_index].get_passenger_count()):
 		_spawn_passenger()
+		
+	passenger_information.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -75,3 +84,13 @@ func _spawn_passenger() -> void:
 
 func update_happiness_level(value: int) -> void:
 	game_ui.set_happiness_level(value)
+
+func on_passenger_hover_start(passenger : Passenger):
+	passenger_information.show()
+	passenger_hover_queue.append(passenger)
+	passenger_information.show_display(passenger_hover_queue.front())
+
+func on_passenger_hover_end(passenger : Passenger):
+	passenger_hover_queue.erase(passenger)
+	if passenger_hover_queue.size() == 0:
+		passenger_information.hide()

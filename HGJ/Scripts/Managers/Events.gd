@@ -11,3 +11,6 @@ signal OnPassengerAddedToStandingArea(_passenger : Passenger)
 signal OnPassengerRemovedFromStandingArea(_passenger : Passenger)
 
 signal OnNextStationPressed()
+
+signal OnPassengerHoverStart(_passenger : Passenger)
+signal OnPassengerHoverEnd(_passenger : Passenger)
