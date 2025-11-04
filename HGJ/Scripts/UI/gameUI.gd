@@ -7,8 +7,9 @@ func set_station(msg: String) -> void:
 	station_label.text = msg
 
 func next_station() -> void:
-	EventMgr.OnNextStationPressed.emit()
-	AudioManager.sInstance.mClickSound.play()
+	if GameManager.sInstance.current_station_index < Station.EWStations.size() - 1 :
+		EventMgr.OnNextStationPressed.emit()
+		AudioManager.sInstance.mClickSound.play()
 
 func set_happiness_level(value: int) -> void:
 	happiness_label.text = "Happiness Level: %d" % value

@@ -47,14 +47,9 @@ func next_station() -> void:
 		var passengers_in_train = passenger_container.get_child_count() + new_passengers
 		var passengers_to_kick_min = (passengers_in_train - Constant.MAX_PASSENGERS_IN_TRAIN) if passengers_in_train > Constant.MAX_PASSENGERS_IN_TRAIN else 0
 		var passengers_to_kick_max = (passenger_container.get_child_count() - 1) if passenger_container.get_child_count() > 1 else 0
-		print("passengers-max is %d" % passengers_to_kick_max)
-		print("passengers-child count is %d" % passenger_container.get_child_count())
 		var passengers_to_kick = randi_range(passengers_to_kick_min, passengers_to_kick_max)
-		print("passengers-to-kick is %d" % passengers_to_kick)
 		for i in range(passengers_to_kick):
-			print("loop")
 			var random_passenger = passenger_container.get_child(randi() % passenger_container.get_child_count())
-			
 			if random_passenger is Passenger:
 				(random_passenger as Passenger).mIsAlighting = true
 				# # Passenger not seated, remove it from sitting area
