@@ -1,10 +1,19 @@
 extends Node
+class_name GameManager
 
 @onready var game_ui : Control = %GameUi
 @onready var passenger_prefab = preload("res://Scenes/Prefabs/Passenger.tscn")
 @onready var passenger_container : Node2D = %AllPassengers
 
 var current_station_index : int = 0
+var mOverallHappiness : int = 0:
+	get:
+		return mOverallHappiness
+	set(newValue):
+		mOverallHappiness = newValue
+		update_happiness_level(newValue)
+
+static var sInstance : GameManager = null
 
 
 func _enter_tree():
@@ -12,10 +21,16 @@ func _enter_tree():
 
 func _exit_tree():
 	EventMgr.OnNextStationPressed.disconnect(next_station)
-
+	sInstance = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if sInstance == null:
+		sInstance = self
+	else:
+		queue_free()
+		return
+
 	_update_station_display()
 	update_happiness_level(0)
 	for i in range(Station.EWStations[current_station_index].get_passenger_count()):

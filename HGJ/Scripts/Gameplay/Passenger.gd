@@ -4,7 +4,7 @@ class_name Passenger
 enum PassengerType {
 	CHILDREN,				# Prefers to sit down
 	TEENAGER,				# Does not want to sit with someone opposite gender
-	ADULT,					# No special property
+	ADULT,					# Prefers to sit down
 	ADULT_WITH_BAGS,		# Prefers to sit down, if standing, makes standing passengers angry
 	ADULT_WITH_BABY,		# Prefers to sit down, bonus if sit on priority seat	
 	PREGNANT,				# Prefers to sit down, bonus if sit on priority seat
@@ -37,8 +37,8 @@ var mTraitType     : TraitTypes
 var mGenderType    : GenderType
 
 # Passenger in-game stuff
-var mHappinessLevel : int
-var mSeated : bool 
+# var mHappinessLevel : int
+# var mSeated : bool 
 
 
 # Determine which passenger is clicked

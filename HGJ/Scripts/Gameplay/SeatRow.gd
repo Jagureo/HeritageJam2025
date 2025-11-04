@@ -3,8 +3,6 @@ class_name SeatRow
 
 # A row of seats
 
-@export var mAffectedByAdjacencyRules : bool = true
-
 # References
 var mSeats : Array
 
@@ -15,6 +13,32 @@ func _ready():
 		(mSeats[i] as Seat).mSeatIndex = i
 		
 
-
+# Evaluate happiness for people seated down
 func EvaluateHappiness():
-	pass
+	for i in range(len(mSeats)):
+		if not (mSeats[i] as Seat).HasPassenger():
+			continue
+
+		var passenger : Passenger = (mSeats[i] as Seat).mCurrentlySeatedBy
+
+		match passenger.mPassengerType:
+			Passenger.PassengerType.CHILDREN:
+				pass
+			Passenger.PassengerType.TEENAGER:
+				pass
+			Passenger.PassengerType.ADULT:
+				pass
+			Passenger.PassengerType.ADULT_WITH_BAGS:
+				pass
+			Passenger.PassengerType.ADULT_WITH_BABY:
+				pass
+			Passenger.PassengerType.PREGNANT:
+				pass
+			Passenger.PassengerType.ELDERLY:
+				pass
+			Passenger.PassengerType.INJURED:
+				pass
+			Passenger.PassengerType.HEMORRHOID:
+				pass
+			Passenger.PassengerType.WHEELCHAIR_BOUND:
+				pass
