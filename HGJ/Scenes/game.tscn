@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1o618cdsf1is"]
 
 [ext_resource type="Script" uid="uid://7u8flb2r01xw" path="res://Scripts/Managers/GameManager.gd" id="1_ebmjs"]
-[ext_resource type="Texture2D" uid="uid://dexdjyy6clhwc" path="res://Sprites/scene_sketch.png" id="2_1l0tm"]
+[ext_resource type="Texture2D" uid="uid://bqhc4pbuhi6es" path="res://Sprites/scene_MRT.jpg" id="2_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://5ln5jieeyw4b" path="res://Scenes/UI/game_ui.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://cop3bpaxlj8uv" path="res://Scenes/Prefabs/SeatRow_Standard.tscn" id="3_wowpa"]
 [ext_resource type="PackedScene" uid="uid://dyyyip6wqfeht" path="res://Scenes/Prefabs/SeatRow_Wheelchair.tscn" id="4_i6g32"]

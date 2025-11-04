@@ -70,9 +70,9 @@ mouse_filter = 2
 
 [node name="Sign" type="ColorRect" parent="MainScreen"]
 layout_mode = 0
-offset_left = 25.0
+offset_left = 96.0
 offset_top = 7.0
-offset_right = 325.0
+offset_right = 396.0
 offset_bottom = 57.0
 color = Color(0.00784314, 0.286275, 0.309804, 1)
 
@@ -96,9 +96,9 @@ script = ExtResource("2_5b8pf")
 
 [node name="Sign2" type="ColorRect" parent="MainScreen"]
 layout_mode = 0
-offset_left = 355.0
+offset_left = 426.0
 offset_top = 6.0
-offset_right = 755.0
+offset_right = 826.0
 offset_bottom = 56.0
 color = Color(0.00784314, 0.286275, 0.309804, 1)
 
@@ -125,9 +125,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
+offset_left = 96.0
 offset_top = -1010.0
-offset_right = 325.0
+offset_right = 396.0
 offset_bottom = -937.0
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
