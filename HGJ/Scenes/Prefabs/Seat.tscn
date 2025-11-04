@@ -9,6 +9,7 @@ size = Vector2(148, 238)
 
 [node name="Seat" type="Area2D"]
 collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_no3bi")
 
 [node name="SeatSprite" type="Sprite2D" parent="."]
