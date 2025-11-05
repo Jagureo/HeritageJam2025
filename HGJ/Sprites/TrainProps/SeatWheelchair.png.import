@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ukshimwnuye1"
-path="res://.godot/imported/character_wheelchair_sketch.png-cae751da01bd4e0ec5a95fc193fed047.ctex"
+uid="uid://4fnbi8wvh1jp"
+path="res://.godot/imported/SeatWheelchair.png-2abea6ac65a060be0af256cba0ae3d41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/character_wheelchair_sketch.png"
-dest_files=["res://.godot/imported/character_wheelchair_sketch.png-cae751da01bd4e0ec5a95fc193fed047.ctex"]
+source_file="res://Sprites/TrainProps/SeatWheelchair.png"
+dest_files=["res://.godot/imported/SeatWheelchair.png-2abea6ac65a060be0af256cba0ae3d41.ctex"]
 
 [params]
 

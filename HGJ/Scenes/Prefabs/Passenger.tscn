@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvuwrt4hor7ht"]
 
 [ext_resource type="Script" uid="uid://bj7k4jp7rwk3r" path="res://Scripts/Gameplay/Passenger.gd" id="1_0ypmp"]
-[ext_resource type="Texture2D" uid="uid://cbld8bgdbfb2p" path="res://Sprites/character_basic_sketch.png" id="2_wveo2"]
+[ext_resource type="Texture2D" uid="uid://cbld8bgdbfb2p" path="res://Sprites/Character/character_basic_sketch.png" id="2_wveo2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l8m"]
 size = Vector2(66, 118)

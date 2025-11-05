@@ -57,7 +57,7 @@ func _ready():
 	mTraitType = randi() % TraitTypes.LAST as TraitTypes
 	mGenderType = randi() % GenderType.LAST as GenderType
 	if mPassengerType == PassengerType.WHEELCHAIR_BOUND:
-		mPassengerSprite.texture = load("res://Sprites/character_wheelchair_sketch.png")
+		mPassengerSprite.texture = load("res://Sprites/Character/character_wheelchair_sketch.png")
 
 func _process(_delta):
 	if sSelectedPassenger == self:

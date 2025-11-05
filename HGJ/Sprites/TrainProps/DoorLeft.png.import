@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqhc4pbuhi6es"
-path="res://.godot/imported/scene_MRT.jpg-a8cb236ecde62722be8aac5ca944c94a.ctex"
+uid="uid://ds3nrfbm6f7wk"
+path="res://.godot/imported/DoorLeft.png-e9c7acc068a08f1c70485a5f88643e5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/scene_MRT.jpg"
-dest_files=["res://.godot/imported/scene_MRT.jpg-a8cb236ecde62722be8aac5ca944c94a.ctex"]
+source_file="res://Sprites/TrainProps/DoorLeft.png"
+dest_files=["res://.godot/imported/DoorLeft.png-e9c7acc068a08f1c70485a5f88643e5e.ctex"]
 
 [params]
 
