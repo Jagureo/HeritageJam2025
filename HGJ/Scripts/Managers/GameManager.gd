@@ -104,6 +104,9 @@ func ReachedNextStation():
 		# Update the next station sign
 		current_station_index += 1
 		_update_station_display()
+		
+	else:
+		game_ui.showGameOverPanel(true)
 
 	# Reached station
 	mCurrLevelState = LevelState.AT_STATION
