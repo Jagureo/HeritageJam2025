@@ -37,3 +37,8 @@ offset_bottom = 167.0
 
 [node name="AllPassengers" type="Node2D" parent="."]
 unique_name_in_owner = true
+
+[node name="StationTransitionTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="StationTransitionTimer" to="." method="ReachedNextStation"]

@@ -16,7 +16,7 @@ func _ready():
 # Evaluate happiness for people seated down
 func EvaluateHappiness():
 	var sectionScore : int = 0
-	var alightingPassengers : Array[Passenger] = []
+	# var alightingPassengers : Array[Passenger] = []
 
 	for i in range(len(mSeats)):
 		if not (mSeats[i] as Seat).HasPassenger():
@@ -26,8 +26,8 @@ func EvaluateHappiness():
 		var leftPassenger : Passenger  = null if i == 0 else (mSeats[i-1] as Seat).mCurrentlySeatedBy
 		var rightPassenger : Passenger = null if i == len(mSeats) - 1 else (mSeats[i+1] as Seat).mCurrentlySeatedBy
 		
-		if passenger.mIsAlighting:
-			alightingPassengers.push_back(passenger)
+		# if passenger.mIsAlighting:
+		# 	alightingPassengers.push_back(passenger)
 
 		# If current passenger is noisy, then -1 score for each non-noisy adjacent passenger
 		if passenger.mTraitType == Passenger.TraitTypes.NOISY:
@@ -85,14 +85,14 @@ func EvaluateHappiness():
 	GameManager.sInstance.mOverallHappiness += sectionScore
 
 	# Remove passengers from the standing area if they are going to alight
-	for alightingPassenger in alightingPassengers:
-		alightingPassenger.mSittingOn.RemovePassenger()		
-	alightingPassengers.clear()
+	# for alightingPassenger in alightingPassengers:
+	# 	alightingPassenger.mSittingOn.RemovePassenger()		
+	# alightingPassengers.clear()
 
 
 
 func _enter_tree():
-	EventMgr.OnNextStationPressed.connect(EvaluateHappiness)
+	EventMgr.OnNextStationReaching.connect(EvaluateHappiness)
 
 func _exit_tree():
-	EventMgr.OnNextStationPressed.disconnect(EvaluateHappiness)
+	EventMgr.OnNextStationReaching.disconnect(EvaluateHappiness)

@@ -5,6 +5,7 @@ class_name GameManager
 @onready var passenger_prefab = preload("res://Scenes/Prefabs/Passenger.tscn")
 @onready var passenger_container : Node2D = %AllPassengers
 @onready var passenger_information : PassengerInformation = $PassengerInformation
+@onready var mStationTransitionTimer : Timer = $StationTransitionTimer
 
 var current_station_index : int = 0
 var mOverallHappiness : int = 0:
@@ -24,6 +25,9 @@ enum LevelState {
 	MOVING,			# Train is moving, show the moving animation
 	REACHING_NEXT,	# Train is about to reach, happiness will be evaluated at this stage
 }
+
+var mCurrLevelState : LevelState = LevelState.AT_STATION
+
 
 func _enter_tree():
 	EventMgr.OnNextStationPressed.connect(next_station)
@@ -51,13 +55,26 @@ func _ready():
 		
 	passenger_information.hide()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func next_station() -> void:
+	mCurrLevelState = LevelState.MOVING
+	# Disable the button
+	game_ui.DisableButton(true)
+	# Start the timer
+	mStationTransitionTimer.start(Constant.TIME_TO_NEXT_STATION)
+
+
+
+func ReachedNextStation():
+	mCurrLevelState = LevelState.REACHING_NEXT
+
+	# Evaluate happiness
+	EventMgr.OnNextStationReaching.emit()
+
 	if current_station_index < Station.EWStations.size() - 1:
-		current_station_index += 1
+		
+		_update_station_display()
+
 		var new_passengers = Station.EWStations[current_station_index].get_passenger_count()
 		var passengers_in_train = passenger_container.get_child_count() + new_passengers
 		var passengers_to_kick_min = (passengers_in_train - Constant.MAX_PASSENGERS_IN_TRAIN) if passengers_in_train > Constant.MAX_PASSENGERS_IN_TRAIN else 0
@@ -65,19 +82,29 @@ func next_station() -> void:
 		var passengers_to_kick = randi_range(passengers_to_kick_min, passengers_to_kick_max)
 		for i in range(passengers_to_kick):
 			var random_passenger = passenger_container.get_child(randi() % passenger_container.get_child_count())
-			if random_passenger is Passenger:
-				(random_passenger as Passenger).mIsAlighting = true
-				# # Passenger not seated, remove it from sitting area
-				# if (random_passenger as Passenger).mSittingOn == null:
-				# 	StandingArea.sStandingArea.RemovePassenger(random_passenger)
-				# # Passenger is seated
-				# else:
-				# 	(random_passenger as Passenger).mSittingOn.RemovePassenger()
+
+			# Passenger not seated, remove it from sitting area
+			if (random_passenger as Passenger).mSittingOn == null:
+				StandingArea.sStandingArea.RemovePassenger(random_passenger)
+			# Passenger is seated
+			else:
+				(random_passenger as Passenger).mSittingOn.RemovePassenger()
 
 			random_passenger.queue_free()
 		for i in range(new_passengers):
 			_spawn_passenger()
+
+		# Update the next station sign
+		current_station_index += 1
 		_update_station_display()
+
+	# Reached station
+	mCurrLevelState = LevelState.AT_STATION
+
+	# Next station button can be pressed
+	game_ui.DisableButton(false)
+
+
 
 func _update_station_display() -> void:
 	game_ui.set_station(Station.EWStations[current_station_index].name)

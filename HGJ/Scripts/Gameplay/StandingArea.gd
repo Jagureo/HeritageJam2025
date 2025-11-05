@@ -33,11 +33,11 @@ func RemovePassenger(_passenger : Passenger):
 # Evaluate happiness for people in the standing area
 func EvaluateHappiness():
 	var sectionScore : int = 0
-	var alightingPassengers : Array[Passenger] = []
+	# var alightingPassengers : Array[Passenger] = []
 
 	for passenger in mCurrentlyStanding:
-		if passenger.mIsAlighting:
-			alightingPassengers.push_back(passenger)
+		# if passenger.mIsAlighting:
+		# 	alightingPassengers.push_back(passenger)
 
 		match passenger.mPassengerType:
 			Passenger.PassengerType.CHILDREN:
@@ -74,14 +74,14 @@ func EvaluateHappiness():
 	GameManager.sInstance.mOverallHappiness += sectionScore
 
 	# Remove passengers from the standing area if they are going to alight
-	for alightingPassenger in alightingPassengers:
-		RemovePassenger(alightingPassenger)		
-	alightingPassengers.clear()
+	# for alightingPassenger in alightingPassengers:
+	# 	RemovePassenger(alightingPassenger)		
+	# alightingPassengers.clear()
 
 
 func _enter_tree():
-	EventMgr.OnNextStationPressed.connect(EvaluateHappiness)
+	EventMgr.OnNextStationReaching.connect(EvaluateHappiness)
 
 func _exit_tree():
 	sStandingArea = null
-	EventMgr.OnNextStationPressed.disconnect(EvaluateHappiness)
+	EventMgr.OnNextStationReaching.disconnect(EvaluateHappiness)

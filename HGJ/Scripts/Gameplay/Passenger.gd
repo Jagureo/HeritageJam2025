@@ -42,7 +42,7 @@ var mGenderType    : GenderType
 # Passenger in-game stuff
 # var mHappinessLevel : int
 # var mSeated : bool 
-var mIsAlighting : bool = false
+# var mIsAlighting : bool = false
 
 
 # Determine which passenger is clicked
@@ -53,9 +53,9 @@ var mSittingOn : Seat = null
 
 func _ready():
 	# 	StandingArea.sStandingArea.AddPassenger(self)
-	mPassengerType = randi() % PassengerType.LAST
-	mTraitType = randi() % TraitTypes.LAST
-	mGenderType = randi() % GenderType.LAST
+	mPassengerType = randi() % PassengerType.LAST as PassengerType
+	mTraitType = randi() % TraitTypes.LAST as TraitTypes
+	mGenderType = randi() % GenderType.LAST as GenderType
 	if mPassengerType == PassengerType.WHEELCHAIR_BOUND:
 		mPassengerSprite.texture = load("res://Sprites/character_wheelchair_sketch.png")
 
@@ -80,7 +80,8 @@ func _process(_delta):
 
 		
 func OnMouseInputEvent(_viewport : Node, _event : InputEvent, _shape_idx : int):
-	if Input.is_action_just_pressed("Click") and sSelectedPassenger == null:
+	# Can only move while at station
+	if Input.is_action_just_pressed("Click") and sSelectedPassenger == null and GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION:
 		# print("Picked up passenger: ", self.name)
 		sSelectedPassenger = self
 
