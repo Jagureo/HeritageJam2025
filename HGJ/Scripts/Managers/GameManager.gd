@@ -105,7 +105,7 @@ func ReachedNextStation():
 		current_station_index += 1
 		_update_station_display()
 		
-	else:
+	if current_station_index == Station.EWStations.size() - 1:
 		game_ui.showGameOverPanel(true)
 
 	# Reached station
