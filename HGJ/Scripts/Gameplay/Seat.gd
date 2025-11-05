@@ -23,6 +23,9 @@ var mSeatIndex : int
 static var sSelectedSeat : Seat = null
 
 
+func _ready():
+	mSeatSprite.material = mSeatSprite.material.duplicate()
+
 func AddPassenger(_passenger : Passenger) -> bool:
 	if _passenger.mPassengerType == Passenger.PassengerType.WHEELCHAIR_BOUND:
 		if mSeatType != SeatType.WHEELCHAIR:
@@ -43,12 +46,15 @@ func HasPassenger() -> bool:
 
 func OnMouseEntered():
 	sSelectedSeat = self
+	mSeatSprite.material.set_shader_parameter("tintFactor", -0.15)
 	# print("Selected Seat: ", self.name)
+
 
 func OnMouseExited():
 	if sSelectedSeat == self:
 		sSelectedSeat = null
 	# print("Deselected Seat: ", self.name)
+	mSeatSprite.material.set_shader_parameter("tintFactor", 0)
 
 
 func _exit_tree():

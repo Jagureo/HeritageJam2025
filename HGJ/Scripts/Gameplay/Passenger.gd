@@ -52,6 +52,8 @@ static var sSelectedPassenger : Passenger = null
 var mSittingOn : Seat = null
 
 func _ready():
+	mPassengerSprite.material = mPassengerSprite.material.duplicate()
+
 	# 	StandingArea.sStandingArea.AddPassenger(self)
 	mPassengerType = randi() % PassengerType.LAST as PassengerType
 	mTraitType = randi() % TraitTypes.LAST as TraitTypes
@@ -91,10 +93,20 @@ func OnMouseInputEvent(_viewport : Node, _event : InputEvent, _shape_idx : int):
 			mSittingOn = null
 			StandingArea.sStandingArea.AddPassenger(self)
 
+
+
 func _enter_tree():
 	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
 	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
 	
+
+func _exit_tree():
+	disconnect("mouse_entered", Callable(self, "_on_mouse_entered"))
+	disconnect("mouse_exited", Callable(self, "_on_mouse_exited"))
+	if sSelectedPassenger == self:
+		sSelectedPassenger = null
+
+
 func get_passenger_type_string() -> String:
 	match mPassengerType:
 		PassengerType.CHILDREN:
@@ -140,12 +152,11 @@ func get_passenger_gender_string() -> String:
 	
 func _on_mouse_entered():
 	EventMgr.OnPassengerHoverStart.emit(self)
+	mPassengerSprite.material.set_shader_parameter("tintFactor", -0.15)
 	
+
 func _on_mouse_exited():
 	EventMgr.OnPassengerHoverEnd.emit(self)
+	mPassengerSprite.material.set_shader_parameter("tintFactor", 0)
 
-func _exit_tree():
-	disconnect("mouse_entered", Callable(self, "_on_mouse_entered"))
-	disconnect("mouse_exited", Callable(self, "_on_mouse_exited"))
-	if sSelectedPassenger == self:
-		sSelectedPassenger = null
+

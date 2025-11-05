@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1o618cdsf1is"]
 
 [ext_resource type="Script" uid="uid://7u8flb2r01xw" path="res://Scripts/Managers/GameManager.gd" id="1_ebmjs"]
-[ext_resource type="Texture2D" uid="uid://bqhc4pbuhi6es" path="res://Sprites/TrainProps/scene_MRT.jpg" id="2_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://gntibs0quypb" path="res://Scenes/Prefabs/Background.tscn" id="2_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://5ln5jieeyw4b" path="res://Scenes/UI/game_ui.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://cop3bpaxlj8uv" path="res://Scenes/Prefabs/SeatRow_Standard.tscn" id="3_wowpa"]
 [ext_resource type="PackedScene" uid="uid://dyyyip6wqfeht" path="res://Scenes/Prefabs/SeatRow_Wheelchair.tscn" id="4_i6g32"]
@@ -11,15 +11,14 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ebmjs")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" parent="." instance=ExtResource("2_1l0tm")]
 position = Vector2(960, 540)
-texture = ExtResource("2_1l0tm")
 
 [node name="SeatRow_Standard" parent="." instance=ExtResource("3_wowpa")]
-position = Vector2(958, 341)
+position = Vector2(960, 407)
 
 [node name="SeatRow_Wheelchair" parent="." instance=ExtResource("4_i6g32")]
-position = Vector2(960, 930)
+position = Vector2(960, 822)
 
 [node name="StandingArea" parent="." instance=ExtResource("5_1l0tm")]
 position = Vector2(962, 607)

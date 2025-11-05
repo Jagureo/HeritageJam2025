@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvuwrt4hor7ht"]
+[gd_scene load_steps=6 format=3 uid="uid://cvuwrt4hor7ht"]
 
 [ext_resource type="Script" uid="uid://bj7k4jp7rwk3r" path="res://Scripts/Gameplay/Passenger.gd" id="1_0ypmp"]
+[ext_resource type="Shader" uid="uid://ffjvlocfuud7" path="res://Shaders/Selection.gdshader" id="2_wcd72"]
 [ext_resource type="Texture2D" uid="uid://cbld8bgdbfb2p" path="res://Sprites/Character/character_basic_sketch.png" id="2_wveo2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cpje"]
+shader = ExtResource("2_wcd72")
+shader_parameter/tintColour = Color(1, 1, 1, 1)
+shader_parameter/tintFactor = 0.0
+shader_parameter/fade = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l8m"]
 size = Vector2(66, 118)
@@ -11,6 +18,7 @@ collision_mask = 0
 script = ExtResource("1_0ypmp")
 
 [node name="PassengerSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6cpje")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_wveo2")
 
