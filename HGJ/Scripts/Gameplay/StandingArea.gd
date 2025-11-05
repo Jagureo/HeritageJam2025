@@ -10,7 +10,7 @@ var mCurrentlyStanding : Array[Passenger]
 static var sStandingArea : StandingArea = null
 
 
-func _init():
+func _ready():
 	if sStandingArea == null:
 		sStandingArea = self
 	else:

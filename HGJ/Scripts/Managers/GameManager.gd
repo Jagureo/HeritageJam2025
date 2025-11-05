@@ -7,6 +7,7 @@ class_name GameManager
 @onready var passenger_information : PassengerInformation = $PassengerInformation
 @onready var mStationTransitionTimer : Timer = $StationTransitionTimer
 
+var mScore : int = 0
 var current_station_index : int = 0
 var mOverallHappiness : int = 0:
 	get:
@@ -14,6 +15,8 @@ var mOverallHappiness : int = 0:
 	set(newValue):
 		mOverallHappiness = newValue
 		update_happiness_level(newValue)
+		if newValue < -5:
+			game_ui.showGameOverPanel(true)
 		
 var passenger_hover_queue : Array[Passenger] = []
 
@@ -71,6 +74,7 @@ func ReachedNextStation():
 
 	# Evaluate happiness
 	EventMgr.OnNextStationReaching.emit()
+	mScore += mOverallHappiness
 
 	if current_station_index < Station.EWStations.size() - 1:
 		
@@ -141,3 +145,7 @@ func on_passenger_hover_end(passenger : Passenger):
 		passenger_information.show_display(passenger_hover_queue.front())
 	else:
 		passenger_information.hide()
+
+func _input(event): 
+	if event.is_action_pressed("ui_cancel"): 
+		game_ui.showGameOverPanel(true)

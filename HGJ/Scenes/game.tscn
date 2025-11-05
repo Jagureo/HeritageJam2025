@@ -23,11 +23,6 @@ position = Vector2(960, 822)
 [node name="StandingArea" parent="." instance=ExtResource("5_1l0tm")]
 position = Vector2(962, 607)
 
-[node name="GameUi" parent="." instance=ExtResource("2_qxrlw")]
-unique_name_in_owner = true
-offset_right = 1920.0
-offset_bottom = 1080.0
-
 [node name="PassengerInformation" parent="." instance=ExtResource("7_1l0tm")]
 offset_left = 24.0
 offset_top = 167.0
@@ -36,6 +31,11 @@ offset_bottom = 167.0
 
 [node name="AllPassengers" type="Node2D" parent="."]
 unique_name_in_owner = true
+
+[node name="GameUi" parent="." instance=ExtResource("2_qxrlw")]
+unique_name_in_owner = true
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="StationTransitionTimer" type="Timer" parent="."]
 one_shot = true
