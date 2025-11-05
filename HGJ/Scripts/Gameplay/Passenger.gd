@@ -55,7 +55,10 @@ func _ready():
 	mPassengerSprite.material = mPassengerSprite.material.duplicate()
 
 	# 	StandingArea.sStandingArea.AddPassenger(self)
-	mPassengerType = randi() % PassengerType.LAST as PassengerType
+	if GameManager.sInstance.hasWheelchairPassenger == true:
+		mPassengerType = randi() % PassengerType.WHEELCHAIR_BOUND as PassengerType
+	else:
+		mPassengerType = randi() % PassengerType.LAST as PassengerType
 	mTraitType = randi() % TraitTypes.LAST as TraitTypes
 	mGenderType = randi() % GenderType.LAST as GenderType
 	if mPassengerType == PassengerType.WHEELCHAIR_BOUND:
@@ -158,5 +161,3 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	EventMgr.OnPassengerHoverEnd.emit(self)
 	mPassengerSprite.material.set_shader_parameter("tintFactor", 0)
-
-
