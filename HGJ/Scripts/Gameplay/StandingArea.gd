@@ -23,11 +23,11 @@ func _init():
 
 func AddPassenger(_passenger : Passenger):
 	mCurrentlyStanding.append(_passenger)
-	EventMgr.OnPassengerAddedToStandingArea.emit(_passenger)
+	# EventMgr.OnPassengerAddedToStandingArea.emit(_passenger)
 
 func RemovePassenger(_passenger : Passenger):
 	mCurrentlyStanding.erase(_passenger)
-	EventMgr.OnPassengerRemovedFromStandingArea.emit(_passenger)
+	# EventMgr.OnPassengerRemovedFromStandingArea.emit(_passenger)
 
 
 # Evaluate happiness for people in the standing area

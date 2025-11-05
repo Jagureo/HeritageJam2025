@@ -29,11 +29,11 @@ func AddPassenger(_passenger : Passenger) -> bool:
 			return false
 	print(_passenger.mPassengerType)
 	mCurrentlySeatedBy = _passenger
-	EventMgr.OnPassengerAddedToSeat.emit(_passenger, mSeatIndex)
+	# EventMgr.OnPassengerAddedToSeat.emit(_passenger, mSeatIndex)
 	return true
 
 func RemovePassenger():
-	EventMgr.OnPassengerRemovedFromSeat.emit(mCurrentlySeatedBy, mSeatIndex)
+	# EventMgr.OnPassengerRemovedFromSeat.emit(mCurrentlySeatedBy, mSeatIndex)
 	mCurrentlySeatedBy = null
 
 
