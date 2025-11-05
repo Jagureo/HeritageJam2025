@@ -96,43 +96,43 @@ func _enter_tree():
 	
 func get_passenger_type_string() -> String:
 	match mPassengerType:
-		0:
+		PassengerType.CHILDREN:
 			return "Child"
-		1:
+		PassengerType.TEENAGER:
 			return "Teenager"
-		2:
+		PassengerType.ADULT:
 			return "Adult"
-		3:
+		PassengerType.ADULT_WITH_BAGS:
 			return "Adult with Bags"
-		4:
+		PassengerType.ADULT_WITH_BABY:
 			return "Adult with Baby"
-		5:
+		PassengerType.PREGNANT:
 			return "Pregnant"
-		6:
+		PassengerType.ELDERLY:
 			return "Elderly"
-		7:
+		PassengerType.INJURED:
 			return "Injured"
-		8:
+		PassengerType.HEMORRHOID:
 			return "Hemorrhoid"
-		9:
+		PassengerType.WHEELCHAIR_BOUND:
 			return "Wheelchair"
 		_:
 			return "Human"
 			
 func get_passenger_trait_string() -> String:
 	match mTraitType:
-		0:
+		TraitTypes.NORMAL:
 			return "Normal"
-		1:
+		TraitTypes.NOISY:
 			return "Noisy"
 		_:
 			return "Ghost"
 			
 func get_passenger_gender_string() -> String:
 	match mGenderType:
-		0:
+		GenderType.MALE:
 			return "Male"
-		1:
+		GenderType.FEMALE:
 			return "Female"
 		_:
 			return "Questioning"

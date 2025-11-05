@@ -78,9 +78,6 @@ func EvaluateHappiness():
 		RemovePassenger(alightingPassenger)		
 	alightingPassengers.clear()
 
-	print(name, ": ", len(mCurrentlyStanding))
-	
-
 
 func _enter_tree():
 	EventMgr.OnNextStationPressed.connect(EvaluateHappiness)

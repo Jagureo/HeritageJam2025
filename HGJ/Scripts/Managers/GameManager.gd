@@ -19,6 +19,12 @@ var passenger_hover_queue : Array[Passenger] = []
 static var sInstance : GameManager = null
 
 
+enum LevelState {
+	AT_STATION,		# Train is at the station, passengers will alight, players can drag drop the passenger
+	MOVING,			# Train is moving, show the moving animation
+	REACHING_NEXT,	# Train is about to reach, happiness will be evaluated at this stage
+}
+
 func _enter_tree():
 	EventMgr.OnNextStationPressed.connect(next_station)
 	EventMgr.OnPassengerHoverStart.connect(on_passenger_hover_start)

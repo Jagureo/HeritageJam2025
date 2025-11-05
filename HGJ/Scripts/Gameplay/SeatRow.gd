@@ -88,7 +88,6 @@ func EvaluateHappiness():
 	for alightingPassenger in alightingPassengers:
 		alightingPassenger.mSittingOn.RemovePassenger()		
 	alightingPassengers.clear()
-	print(name, ": ", mSeats)
 
 
 
