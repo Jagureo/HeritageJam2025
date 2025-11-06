@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://0841sxhexvjj"]
-
-[node name="Background" type="Sprite2D"]
-z_index = -2
