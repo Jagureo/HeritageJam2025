@@ -12,6 +12,7 @@ class_name Event
 
 signal OnNextStationPressed()
 signal OnNextStationReaching()
+signal OnNextstationReached()
 
 signal OnPassengerHoverStart(_passenger : Passenger)
 signal OnPassengerHoverEnd(_passenger : Passenger)
