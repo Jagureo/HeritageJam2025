@@ -6,6 +6,7 @@ class_name GameManager
 @onready var passenger_container : Node2D = %AllPassengers
 @onready var passenger_information : PassengerInformation = $PassengerInformation
 @onready var mStationTransitionTimer : Timer = $StationTransitionTimer
+@onready var mStationWaitingTimer : Timer = $StationStayTimer
 
 var mScore : int = 0
 var current_station_index : int = 0
@@ -61,6 +62,7 @@ func _ready():
 
 
 func next_station() -> void:
+	mStationWaitingTimer.stop()
 	mCurrLevelState = LevelState.MOVING
 	# Disable the button
 	game_ui.DisableButton(true)
@@ -105,6 +107,9 @@ func ReachedNextStation():
 		current_station_index += 1
 		_update_station_display()
 		EventMgr.OnNextstationReached.emit()
+		print("duration")
+		print(new_passengers * lerp(3, 5, float(Station.EWStations.size() - current_station_index) / float(Station.EWStations.size())))
+		mStationWaitingTimer.start(new_passengers * lerp(2, 4, float(Station.EWStations.size() - current_station_index) / float(Station.EWStations.size())))
 		
 	if current_station_index == Station.EWStations.size() - 1:
 		game_ui.showGameOverPanel(true)
@@ -153,3 +158,8 @@ func on_passenger_hover_end(passenger : Passenger):
 func _input(event): 
 	if event.is_action_pressed("ui_cancel"): 
 		game_ui.showGameOverPanel(true)
+
+func _station_stay_timer_timeout():
+	if current_station_index < Station.EWStations.size() - 1 and mOverallHappiness >= -5 :
+		EventMgr.OnNextStationPressed.emit()
+		AudioManager.sInstance.mClickSound.play()
