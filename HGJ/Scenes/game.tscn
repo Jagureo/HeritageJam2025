@@ -18,16 +18,10 @@ position = Vector2(960, 540)
 position = Vector2(960, 407)
 
 [node name="SeatRow_Wheelchair" parent="." instance=ExtResource("4_i6g32")]
-position = Vector2(960, 822)
+position = Vector2(959, 838)
 
 [node name="StandingArea" parent="." instance=ExtResource("5_1l0tm")]
 position = Vector2(962, 607)
-
-[node name="PassengerInformation" parent="." instance=ExtResource("7_1l0tm")]
-offset_left = 24.0
-offset_top = 167.0
-offset_right = 24.0
-offset_bottom = 167.0
 
 [node name="AllPassengers" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -36,6 +30,12 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 offset_right = 1920.0
 offset_bottom = 1080.0
+
+[node name="PassengerInformation" parent="." instance=ExtResource("7_1l0tm")]
+offset_left = 24.0
+offset_top = 167.0
+offset_right = 24.0
+offset_bottom = 167.0
 
 [node name="StationTransitionTimer" type="Timer" parent="."]
 one_shot = true

@@ -43,33 +43,42 @@ func EvaluateHappiness():
 			Passenger.PassengerType.CHILDREN:
 				# no change in score
 				pass
+			
 			Passenger.PassengerType.TEENAGER:
 				# no change in score
 				pass
+			
 			Passenger.PassengerType.ADULT:
 				# no change in score
 				pass
+			
 			Passenger.PassengerType.ADULT_WITH_BAGS:
-				# If standing, causes others to be unhappy, -1 per standing passenger
-				sectionScore -= (len(mCurrentlyStanding) - 1)
+				# If standing, causes others to be unhappy, -2 happiness
+				sectionScore -= 2
+			
 			Passenger.PassengerType.ADULT_WITH_BABY:
 				# If standing, -1 happiness
 				sectionScore -= 1
+			
 			Passenger.PassengerType.PREGNANT:
 				# If standing, -1 happiness
 				sectionScore -= 1
+			
 			Passenger.PassengerType.ELDERLY:
 				# If standing, -2 happiness
 				sectionScore -= 2
+			
 			Passenger.PassengerType.INJURED:
 				# If standing, -2 happiness
 				sectionScore -= 2
+			
 			Passenger.PassengerType.HEMORRHOID:
-				# no change in score
-				pass
+				# If standing, +1 happiness
+				sectionScore += 1
+			
 			Passenger.PassengerType.WHEELCHAIR_BOUND:
-				# If standing, causes others to be unhappy, -1 per standing passenger
-				sectionScore -= (len(mCurrentlyStanding) - 1)
+				# If standing, causes others to be unhappy, -3 happiness
+				sectionScore -= 3
 
 	GameManager.sInstance.mOverallHappiness += sectionScore
 

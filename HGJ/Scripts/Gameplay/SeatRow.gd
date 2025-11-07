@@ -39,48 +39,78 @@ func EvaluateHappiness():
 		match passenger.mPassengerType:
 			Passenger.PassengerType.CHILDREN:
 				# if seated down, +2 happiness
-				sectionScore += 2
+				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
+					sectionScore += 2
+			
 			Passenger.PassengerType.TEENAGER:
 				# If seated down, +1 happiness
-				sectionScore += 1
+				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
+					sectionScore += 1
 				# If seated with opp gender, -1
 				if leftPassenger != null && leftPassenger.mGenderType != passenger.mGenderType:
 					sectionScore -= 1
 				if rightPassenger != null && rightPassenger.mGenderType != passenger.mGenderType:
 					sectionScore -= 1
+			
 			Passenger.PassengerType.ADULT:
 				# if seated down, +1 happiness
-				sectionScore += 1
+				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
+					sectionScore += 1
+			
 			Passenger.PassengerType.ADULT_WITH_BAGS:
 				# If seated down, +1 happiness
-				sectionScore += 1
+				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
+					sectionScore += 1
+			
 			Passenger.PassengerType.ADULT_WITH_BABY:
 				# If seated down, +1 happiness, bonus if sitting on priority seat
-				sectionScore += 1
-				if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
+				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
 					sectionScore += 1
+					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
+						sectionScore += 1
+				# If occupying wheelchair slot, it's as if standing up
+				else:
+					sectionScore -= 1
+			
 			Passenger.PassengerType.PREGNANT:
 				# If seated down, +1 happiness, bonus if sitting on priority seat
-				sectionScore += 1
-				if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
+				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
 					sectionScore += 1
+					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
+						sectionScore += 1
+				# If occupying wheelchair slot, it's as if standing up
+				else:
+					sectionScore -= 1
+			
 			Passenger.PassengerType.ELDERLY:
 				# If seated down, +2 happiness, bonus if sitting on priority seat
-				sectionScore += 2
-				if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-					sectionScore += 1
+				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
+					sectionScore += 2
+					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
+						sectionScore += 1
+				# If occupying wheelchair slot, it's as if standing up
+				else:
+					sectionScore -= 2
+			
 			Passenger.PassengerType.INJURED:
 				# If seated down, +2 happiness, bonus if sitting on priority seat
-				sectionScore += 2
-				if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-					sectionScore += 1
+				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
+					sectionScore += 2
+					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
+						sectionScore += 1
+				# If occupying wheelchair slot, it's as if standing up
+				else:
+					sectionScore -= 2
+			
 			Passenger.PassengerType.HEMORRHOID:
 				# If seated down, -2 happiness
-				sectionScore -= 2
+				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
+					sectionScore -= 2
+			
 			Passenger.PassengerType.WHEELCHAIR_BOUND:
 				# If seated down at wheelchair slot, +1 happiness
 				if mSeats[i].mSeatType == Seat.SeatType.WHEELCHAIR:
-					sectionScore += 1
+					sectionScore += 2
 
 	GameManager.sInstance.mOverallHappiness += sectionScore
 
