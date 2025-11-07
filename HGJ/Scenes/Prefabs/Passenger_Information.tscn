@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c1ja3wqwg4vl3" path="res://Scripts/UI/passengerInformation.gd" id="1_iq863"]
 
 [node name="PassengerInformation" type="Control"]
+z_index = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_iq863")
 
 [node name="Panel" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 300.0
 offset_bottom = 150.0
 color = Color(0.00784314, 0.286275, 0.309804, 1)

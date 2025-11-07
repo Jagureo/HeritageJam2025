@@ -28,14 +28,12 @@ unique_name_in_owner = true
 
 [node name="GameUi" parent="." instance=ExtResource("2_qxrlw")]
 unique_name_in_owner = true
-offset_right = 1920.0
-offset_bottom = 1080.0
 
 [node name="PassengerInformation" parent="." instance=ExtResource("7_1l0tm")]
-offset_left = 24.0
-offset_top = 167.0
-offset_right = 24.0
-offset_bottom = 167.0
+offset_left = 1600.0
+offset_top = 925.0
+offset_right = 1600.0
+offset_bottom = 925.0
 
 [node name="StationTransitionTimer" type="Timer" parent="."]
 one_shot = true

@@ -1,7 +1,7 @@
 extends Node
 class_name GameManager
 
-@onready var game_ui : Control = %GameUi
+@onready var game_ui : CanvasLayer = %GameUi
 @onready var passenger_prefab = preload("res://Scenes/Prefabs/Passenger.tscn")
 @onready var passenger_container : Node2D = %AllPassengers
 @onready var passenger_information : PassengerInformation = $PassengerInformation

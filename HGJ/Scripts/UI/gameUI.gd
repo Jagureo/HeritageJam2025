@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var station_label = $MainScreen/Sign/Station_Label
 @onready var happiness_label = $MainScreen/Sign2/Happniess_Level
