@@ -51,6 +51,22 @@ static var sSelectedPassenger : Passenger = null
 # Seat that this passenger is sitting on
 var mSittingOn : Seat = null
 
+# Passenger sprites
+static var sPassengerTextures : Dictionary[PassengerType, Texture2D] = {
+	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
+	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
+	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
+	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
+	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
+	Passenger.PassengerType.PREGNANT :         preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
+	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
+	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
+	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
+	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/character_wheelchair_sketch.png") as Texture2D,
+}
+
+
+
 func _ready():
 	mPassengerSprite.material = mPassengerSprite.material.duplicate()
 
@@ -59,10 +75,16 @@ func _ready():
 		mPassengerType = randi() % PassengerType.WHEELCHAIR_BOUND as PassengerType
 	else:
 		mPassengerType = randi() % PassengerType.LAST as PassengerType
+	
 	mTraitType = randi() % TraitTypes.LAST as TraitTypes
-	mGenderType = randi() % GenderType.LAST as GenderType
-	if mPassengerType == PassengerType.WHEELCHAIR_BOUND:
-		mPassengerSprite.texture = load("res://Sprites/Character/character_wheelchair_sketch.png")
+
+	# Only female can be pregnant
+	if mPassengerType == PassengerType.PREGNANT:
+		mGenderType = GenderType.FEMALE
+	else:
+		mGenderType = randi() % GenderType.LAST as GenderType
+	
+	mPassengerSprite.texture = sPassengerTextures[mPassengerType]
 
 func _process(_delta):
 	if sSelectedPassenger == self:
