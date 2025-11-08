@@ -39,7 +39,7 @@ scale = Vector2(0.346354, 0.346354)
 sprite_frames = ExtResource("3_l66kw")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.784706
+frame_progress = 0.647673
 
 [node name="PassengerCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n1l8m")
