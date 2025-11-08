@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5ln5jieeyw4b"]
+[gd_scene load_steps=11 format=3 uid="uid://5ln5jieeyw4b"]
 
 [ext_resource type="Script" uid="uid://bj1d6mvillccq" path="res://Scripts/UI/gameUI.gd" id="1_vo2tu"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/RonysiswadiArchitect4-qZmp2.ttf" id="2_vo2tu"]
@@ -66,6 +66,15 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8jce"]
+bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 100
+corner_radius_bottom_right = 100
 
 [node name="GameUi" type="CanvasLayer"]
 script = ExtResource("1_vo2tu")
@@ -196,8 +205,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_lolt2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
 text = "Next Station"
 
-[node name="GameOverPanel" type="ColorRect" parent="MainScreen"]
-visible = false
+[node name="GameOverPanel" type="Panel" parent="MainScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -210,7 +218,7 @@ offset_right = 300.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.00784314, 0.286275, 0.309804, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_p8jce")
 
 [node name="GameOverText" type="Label" parent="MainScreen/GameOverPanel"]
 layout_mode = 1
@@ -220,9 +228,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -293.0
+offset_top = -268.0
 offset_right = 300.0
-offset_bottom = -183.0
+offset_bottom = -158.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
@@ -239,9 +247,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -180.0
+offset_top = -155.0
 offset_right = 300.0
-offset_bottom = -125.0
+offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
@@ -258,9 +266,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -135.0
+offset_top = -110.0
 offset_right = 300.0
-offset_bottom = -80.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
@@ -277,8 +285,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -69.0
+offset_top = -44.0
 offset_right = 300.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
@@ -293,9 +302,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 147.0
-offset_top = -266.0
+offset_top = -241.0
 offset_right = 447.0
-offset_bottom = -193.0
+offset_bottom = -168.0
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
 theme_override_colors/font_color = Color(1, 0.964706, 1, 1)
@@ -316,9 +325,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 147.0
-offset_top = -158.0
+offset_top = -133.0
 offset_right = 447.0
-offset_bottom = -85.0
+offset_bottom = -60.0
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
 theme_override_colors/font_color = Color(1, 0.964706, 1, 1)
