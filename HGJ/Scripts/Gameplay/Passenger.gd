@@ -33,6 +33,8 @@ enum GenderType {
 
 # Reference
 @onready var mPassengerSprite : Sprite2D = $PassengerSprite
+@onready var mScorePopupLabel : Label = $ScorePopupLabel
+@onready var mScorePopupTimer : Timer = $ScorePopupTimer
 
 # Passenger details
 var mPassengerType : PassengerType
@@ -94,7 +96,7 @@ func _process(_delta):
 														  Vector2(Constant.RIGHT_DRAG_LIMIT, Constant.BOTTOM_DRAG_LIMIT))
 
 		# Release mouse
-		if Input.is_action_just_released("Click"):
+		if Input.is_action_just_released("Click") or GameManager.sInstance.mCurrLevelState != GameManager.LevelState.AT_STATION:
 			# If passenger is dropped off at a selected seat, put it there
 			if Seat.sSelectedSeat != null and not Seat.sSelectedSeat.HasPassenger():
 				if Seat.sSelectedSeat.AddPassenger(self):
@@ -183,3 +185,16 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	EventMgr.OnPassengerHoverEnd.emit(self)
 	mPassengerSprite.material.set_shader_parameter("tintFactor", 0)
+
+func show_evaluated_score_popup(score : int) -> void:
+	if score < 0:
+		mScorePopupLabel.text = "%d" % score
+	else:
+		mScorePopupLabel.text = "+%d" % score
+	mScorePopupTimer.start(2)
+	mScorePopupLabel.visible = true
+	
+func hide_evaluated_score_popup() -> void:
+	mScorePopupTimer.stop()
+	mScorePopupLabel.hide()
+	

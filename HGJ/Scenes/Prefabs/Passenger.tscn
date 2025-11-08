@@ -25,4 +25,19 @@ texture = ExtResource("2_wveo2")
 [node name="PassengerCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n1l8m")
 
+[node name="ScorePopupLabel" type="Label" parent="."]
+visible = false
+offset_left = -28.0
+offset_top = -103.0
+offset_right = 27.0
+offset_bottom = -58.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "+67"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePopupTimer" type="Timer" parent="."]
+
 [connection signal="input_event" from="." to="." method="OnMouseInputEvent"]
+[connection signal="timeout" from="ScorePopupTimer" to="." method="hide_evaluated_score_popup"]

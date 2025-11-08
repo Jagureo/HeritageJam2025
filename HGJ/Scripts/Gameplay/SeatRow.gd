@@ -111,6 +111,8 @@ func EvaluateHappiness():
 				# If seated down at wheelchair slot, +1 happiness
 				if mSeats[i].mSeatType == Seat.SeatType.WHEELCHAIR:
 					sectionScore += 2
+					
+		passenger.show_evaluated_score_popup(sectionScore)
 
 	GameManager.sInstance.mOverallHappiness += sectionScore
 

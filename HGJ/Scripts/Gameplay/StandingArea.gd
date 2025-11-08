@@ -79,6 +79,8 @@ func EvaluateHappiness():
 			Passenger.PassengerType.WHEELCHAIR_BOUND:
 				# If standing, causes others to be unhappy, -3 happiness
 				sectionScore -= 3
+				
+		passenger.show_evaluated_score_popup(sectionScore)
 
 	GameManager.sInstance.mOverallHappiness += sectionScore
 
