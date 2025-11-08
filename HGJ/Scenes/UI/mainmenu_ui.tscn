@@ -289,16 +289,25 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 17.0
-offset_top = 41.0
-offset_right = -16.0
-offset_bottom = 772.0
+offset_left = 21.0
+offset_top = 38.0
+offset_right = -12.0
+offset_bottom = 769.0
 grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("4_wfx2n")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[color=orange]> GAMEPLAY <[/color]
-Blah Blah Blah [color=aqua]blah but in blue[/color] test"
+
+Travel back to the 90's and promote some gracious travelling in Singapore's MRT.
+
+Every traveler has their own preferences, can you ensure has the most pleasant ride, but also extend that courtesy to other travelers.
+
+Hover over the passengers to uncover their traits and preferences and help them find their optimal seating.
+
+Simply hold right click to drag the passengers and make sure you seat everyone before the doors close!
+
+After the doors close your happiness score will be calculated for the round based on how well you were able to seat everyone, but beware, if your happiness drops below (-5) the train will ignite and derail spontaneously simultaneously."
 autowrap_mode = 2
 vertical_alignment = 1
 
