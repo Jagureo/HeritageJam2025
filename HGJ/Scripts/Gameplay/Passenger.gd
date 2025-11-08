@@ -36,6 +36,7 @@ enum GenderType {
 @onready var mScorePopupLabel : Label = $ScorePopupPanel/ScorePopupLabel
 @onready var mScorePopupPanel : Panel = $ScorePopupPanel
 @onready var mScorePopupTimer : Timer = $ScorePopupTimer
+@onready var mNoiseParticles : Node2D = $Particles
 
 # Passenger details
 var mPassengerType : PassengerType
@@ -100,6 +101,10 @@ func _ready():
 		mGenderType = randi() % GenderType.LAST as GenderType
 	
 	mPassengerSprite.texture = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
+
+	# Noisy particles
+	if mTraitType == TraitTypes.NOISY:
+		mNoiseParticles.visible = true
 
 func _process(_delta):
 	if sSelectedPassenger == self:

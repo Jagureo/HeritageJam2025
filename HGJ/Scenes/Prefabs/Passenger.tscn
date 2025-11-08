@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvuwrt4hor7ht"]
+[gd_scene load_steps=11 format=3 uid="uid://cvuwrt4hor7ht"]
 
 [ext_resource type="Script" uid="uid://bj7k4jp7rwk3r" path="res://Scripts/Gameplay/Passenger.gd" id="1_0ypmp"]
 [ext_resource type="Shader" uid="uid://ffjvlocfuud7" path="res://Shaders/Selection.gdshader" id="2_wcd72"]
 [ext_resource type="Texture2D" uid="uid://ci52y1goeiru" path="res://Sprites/Character/MaleAdult.png" id="3_6cpje"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/RonysiswadiArchitect4-qZmp2.ttf" id="4_6cpje"]
+[ext_resource type="Texture2D" uid="uid://d0vdbn5s5m1nl" path="res://Sprites/Particles/Music_Note1.png" id="5_fovop"]
+[ext_resource type="Texture2D" uid="uid://b3nq27y1vappo" path="res://Sprites/Particles/Music_Note2.png" id="6_w1p4x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cpje"]
 shader = ExtResource("2_wcd72")
@@ -22,6 +24,9 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="Gradient" id="Gradient_fovop"]
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0)
 
 [node name="Passenger" type="Area2D"]
 collision_mask = 0
@@ -56,6 +61,37 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScorePopupTimer" type="Timer" parent="."]
+
+[node name="Particles" type="Node2D" parent="."]
+visible = false
+
+[node name="NoiseParticles1" type="CPUParticles2D" parent="Particles"]
+amount = 3
+texture = ExtResource("5_fovop")
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+color_ramp = SubResource("Gradient_fovop")
+
+[node name="NoiseParticles2" type="CPUParticles2D" parent="Particles"]
+amount = 3
+texture = ExtResource("6_w1p4x")
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+color_ramp = SubResource("Gradient_fovop")
 
 [connection signal="input_event" from="." to="." method="OnMouseInputEvent"]
 [connection signal="timeout" from="ScorePopupTimer" to="." method="hide_evaluated_score_popup"]
