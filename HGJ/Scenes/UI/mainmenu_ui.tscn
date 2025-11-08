@@ -245,7 +245,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 43.0
 offset_top = -309.0
-offset_right = 884.0
+offset_right = 1878.0
 offset_bottom = 491.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
@@ -254,48 +254,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 20.0
+offset_left = 40.0
 offset_top = 21.0
-offset_right = -10.0
+offset_right = -45.0
 offset_bottom = 791.0
 grow_horizontal = 2
 theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("4_wfx2n")
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "[color=orange]> CONTROLS <[/color]
-[color=lime][A/D] or [Left/Right Arrow][/color]: Move
-[color=lime][W] or [SPACE][/color]: Jump"
-autowrap_mode = 2
-vertical_alignment = 1
-justification_flags = 160
-
-[node name="TextWrapper2" type="Panel" parent="HowToPlayScreen"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1010.0
-offset_top = -314.0
-offset_right = -40.0
-offset_bottom = 486.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
-
-[node name="Text2" type="RichTextLabel" parent="HowToPlayScreen/TextWrapper2"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 21.0
-offset_top = 38.0
-offset_right = -12.0
-offset_bottom = 769.0
-grow_horizontal = 2
-theme_override_fonts/normal_font = ExtResource("4_wfx2n")
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "[color=orange]> GAMEPLAY <[/color]
 
@@ -310,6 +276,7 @@ Simply hold right click to drag the passengers and make sure you seat everyone b
 After the doors close your happiness score will be calculated for the round based on how well you were able to seat everyone, but beware, if your happiness drops below (-5) the train will ignite and derail spontaneously simultaneously."
 autowrap_mode = 2
 vertical_alignment = 1
+justification_flags = 160
 
 [node name="CreditsScreen" type="Control" parent="."]
 visible = false
