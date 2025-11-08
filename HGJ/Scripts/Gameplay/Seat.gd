@@ -12,7 +12,6 @@ enum SeatType {
 
 # Seat details
 @export var mSeatType : SeatType
-@export var mIsBackwards : bool = false
 var mCurrentlySeatedBy : Passenger
 var mSeatIndex : int
 

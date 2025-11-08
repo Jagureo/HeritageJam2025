@@ -68,21 +68,6 @@ static var sPassengerTextures : Dictionary[PassengerType, Texture2D] = {
 	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/character_wheelchair_sketch.png") as Texture2D,
 }
 
-# Passenger sprites for back facing
-static var sPassengerTexturesBackFacing: Dictionary[PassengerType, Texture2D] = {
-	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.PREGNANT :         preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/character_wheelchair_sketch.png") as Texture2D,
-}
-
-
 func _ready():
 	mPassengerSprite.material = mPassengerSprite.material.duplicate()
 
@@ -117,10 +102,6 @@ func _process(_delta):
 					self.global_position = Seat.sSelectedSeat.global_position
 					mSittingOn = Seat.sSelectedSeat
 					StandingArea.sStandingArea.RemovePassenger(self)
-
-					# For back facing seats, we will also change to the backfacing sprites
-					if Seat.sSelectedSeat.mIsBackwards:
-						mPassengerSprite.texture = sPassengerTexturesBackFacing[mPassengerType]
 
 			# print("Dropped off passenger: ", self.name)
 			sSelectedPassenger = null
