@@ -232,7 +232,7 @@ func get_passenger_description() -> String:
 	
 	match mPassengerType:
 		PassengerType.CHILDREN:
-			description_text = "Prefers to sit down."
+			description_text = "Loves to sit down."
 			pass
 		PassengerType.TEENAGER:
 			if mGenderType == GenderType.MALE:
@@ -243,21 +243,21 @@ func get_passenger_description() -> String:
 		PassengerType.ADULT:
 			description_text +=  "Prefers to sit down."
 		PassengerType.ADULT_WITH_BAGS:
-			description_text +=  "Hates standing."
+			description_text +=  "Prefers to sit down. Standing passengers get upset however."
 		PassengerType.ADULT_WITH_BABY:
-			description_text +=  "Prefers to sit in priority seat."
+			description_text +=  "Needs to sit. Priority seat bonus"
 		PassengerType.PREGNANT:
-			description_text +=  "Prefers to sit in priority seat."
+			description_text +=  "Needs to sit. Priority seat bonus."
 		PassengerType.ELDERLY:
-			description_text +=  "Prefers to sit in priority seat."
+			description_text +=  "Must sit. Priority seat bonus."
 		PassengerType.INJURED:
-			description_text +=  "Prefers to sit in priority seat."
+			description_text +=  "Must sit. Priority seat bonus."
 		PassengerType.HEMORRHOID:
-			description_text +=  "Prefers to stand."
+			description_text +=  "Must stand."
 		PassengerType.WHEELCHAIR_BOUND:
-			description_text +=  "Needs to be in wheelchair section."
+			description_text +=  "Must be in wheelchair section. Standing passengers get angry."
 			
 	if mTraitType == Passenger.TraitTypes.NOISY:
-		description_text += " Also enjoys being around noisy people."
+		description_text += " Cannot be next to Quiet Passengers."
 
 	return description_text
