@@ -55,18 +55,32 @@ static var sSelectedPassenger : Passenger = null
 var mSittingOn : Seat = null
 
 # Passenger sprites
-static var sPassengerTextures : Dictionary[PassengerType, Texture2D] = {
-	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.PREGNANT :         preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/character_basic_sketch.png") as Texture2D,
-	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/character_wheelchair_sketch.png") as Texture2D,
+static var sMalePassengerTextures : Dictionary[PassengerType, Texture2D] = {
+	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/MaleChild.png") as Texture2D,
+	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/MaleTeen.png") as Texture2D,
+	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
+	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/MaleBag.png") as Texture2D,
+	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/MaleAdultWithBaby.png") as Texture2D,
+	Passenger.PassengerType.PREGNANT :         null,
+	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/MaleElderly.png") as Texture2D,
+	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/MaleInjured.png") as Texture2D,
+	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
+	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/MaleWheelchair.png") as Texture2D,
 }
+
+static var sFemalePassengerTextures : Dictionary[PassengerType, Texture2D] = {
+	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/FemaleChild.png") as Texture2D,
+	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/FemaleTeen.png") as Texture2D,
+	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
+	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/FemaleBag.png") as Texture2D,
+	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/FemaleAdultWithBaby.png") as Texture2D,
+	Passenger.PassengerType.PREGNANT :         preload("res://Sprites/Character/FemalePregnant.png") as Texture2D,
+	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/FemaleElderly.png") as Texture2D,
+	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/FemaleInjured.png") as Texture2D,
+	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
+	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/FemaleWheelchair.png") as Texture2D,
+}
+
 
 func _ready():
 	mPassengerSprite.material = mPassengerSprite.material.duplicate()
@@ -85,7 +99,7 @@ func _ready():
 	else:
 		mGenderType = randi() % GenderType.LAST as GenderType
 	
-	mPassengerSprite.texture = sPassengerTextures[mPassengerType]
+	mPassengerSprite.texture = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
 
 func _process(_delta):
 	if sSelectedPassenger == self:
@@ -118,8 +132,6 @@ func OnMouseInputEvent(_viewport : Node, _event : InputEvent, _shape_idx : int):
 			mSittingOn.RemovePassenger()
 			mSittingOn = null
 			StandingArea.sStandingArea.AddPassenger(self)
-
-		mPassengerSprite.texture = sPassengerTextures[mPassengerType]
 
 
 
