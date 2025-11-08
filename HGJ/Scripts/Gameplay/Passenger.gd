@@ -33,6 +33,8 @@ enum GenderType {
 
 # Reference
 @onready var mPassengerSprite : Sprite2D = $PassengerSprite
+@onready var mScorePopupLabel : Label = $ScorePopupLabel
+@onready var mScorePopupTimer : Timer = $ScorePopupTimer
 
 # Passenger details
 var mPassengerType : PassengerType
@@ -107,7 +109,7 @@ func _process(_delta):
 														  Vector2(Constant.RIGHT_DRAG_LIMIT, Constant.BOTTOM_DRAG_LIMIT))
 
 		# Release mouse
-		if Input.is_action_just_released("Click"):
+		if Input.is_action_just_released("Click") or GameManager.sInstance.mCurrLevelState != GameManager.LevelState.AT_STATION:
 			# If passenger is dropped off at a selected seat, put it there
 			if Seat.sSelectedSeat != null and not Seat.sSelectedSeat.HasPassenger():
 				if Seat.sSelectedSeat.AddPassenger(self):
@@ -202,3 +204,85 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	EventMgr.OnPassengerHoverEnd.emit(self)
 	mPassengerSprite.material.set_shader_parameter("tintFactor", 0)
+
+func show_evaluated_score_popup(score : int) -> void:
+	if score < 0:
+		mScorePopupLabel.add_theme_color_override("font_color", Color.RED)
+		mScorePopupLabel.text = "%d" % score
+	else:
+		if score > 0:
+			mScorePopupLabel.add_theme_color_override("font_color", Color.GREEN)
+		else:
+			mScorePopupLabel.add_theme_color_override("font_color", Color.WHITE)
+		mScorePopupLabel.text = "+%d" % score
+	mScorePopupTimer.start(2)
+	mScorePopupLabel.visible = true
+	
+func hide_evaluated_score_popup() -> void:
+	mScorePopupTimer.stop()
+	mScorePopupLabel.hide()
+	
+func alight_passenger() -> void:
+	await get_tree().create_timer(randf_range(1, 2)).timeout
+	queue_free()
+
+func get_passenger_likes() -> String:
+	var likes_description = ""
+	match mPassengerType:
+		PassengerType.CHILDREN:
+			likes_description += "Sitting"
+		PassengerType.TEENAGER:
+			likes_description +=  "Teenager"
+		PassengerType.ADULT:
+			likes_description +=  "Adult"
+		PassengerType.ADULT_WITH_BAGS:
+			likes_description +=  "Adult with Bags"
+		PassengerType.ADULT_WITH_BABY:
+			likes_description +=  "Adult with Baby"
+		PassengerType.PREGNANT:
+			likes_description +=  "Pregnant"
+		PassengerType.ELDERLY:
+			likes_description +=  "Elderly"
+		PassengerType.INJURED:
+			likes_description +=  "Injured"
+		PassengerType.HEMORRHOID:
+			likes_description +=  "Hemorrhoid"
+		PassengerType.WHEELCHAIR_BOUND:
+			likes_description +=  "Wheelchair"
+
+	return likes_description
+
+func get_passenger_hates() -> String:
+	var hates_description = ""
+	if mTraitType == Passenger.TraitTypes.NOISY:
+		hates_description += "Quiet"
+		
+	match mPassengerType:
+		PassengerType.CHILDREN:
+			pass
+		PassengerType.TEENAGER:
+			if mTraitType == Passenger.TraitTypes.NOISY:
+				hates_description += ", "
+			if mGenderType == GenderType.MALE:
+				hates_description += "Female"
+			else:
+				if mGenderType == GenderType.FEMALE:
+					hates_description += "Male"
+		PassengerType.ADULT:
+			hates_description +=  "Adult"
+		PassengerType.ADULT_WITH_BAGS:
+			hates_description +=  "Adult with Bags"
+		PassengerType.ADULT_WITH_BABY:
+			hates_description +=  "Adult with Baby"
+		PassengerType.PREGNANT:
+			hates_description +=  "Pregnant"
+		PassengerType.ELDERLY:
+			hates_description +=  "Elderly"
+		PassengerType.INJURED:
+			hates_description +=  "Injured"
+		PassengerType.HEMORRHOID:
+			hates_description +=  "Hemorrhoid"
+		PassengerType.WHEELCHAIR_BOUND:
+			hates_description +=  "Wheelchair"
+
+	return hates_description
