@@ -66,7 +66,7 @@ func _ready():
 
 func _process(_delta):
 	# If time to next station left 1s, then fire off station approaching signal
-	if not mReachingNextStation and mStationTransitionTimer.time_left <= 1.0:
+	if not mReachingNextStation and mStationTransitionTimer.time_left <= Constant.EVALUATE_SCORE_BEFORE_REACHING_NEXT_STATION:
 		mReachingNextStation = true
 		EventMgr.OnNextStationReaching.emit()
 		mCurrLevelState = LevelState.REACHING_NEXT

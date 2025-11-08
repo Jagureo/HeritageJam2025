@@ -176,9 +176,10 @@ z_index = -1
 texture = ExtResource("1_l38g2")
 
 [node name="SceneryBackground" parent="." instance=ExtResource("2_atd0o")]
-position = Vector2(-4, -272)
+position = Vector2(-4, -200)
 
 [node name="StationBackground" parent="." instance=ExtResource("3_56jb5")]
+position = Vector2(0, -248)
 
 [node name="LeftDoor1" type="Sprite2D" parent="."]
 z_index = -1

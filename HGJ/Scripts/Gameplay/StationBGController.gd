@@ -1,28 +1,39 @@
 extends Node
 
 # Variables
-var mBackgroundPosition : float = 0
+@export var mPositionScalar : float = 0
 
 # References
 @onready var mBGSprite : Sprite2D = $StationBGSprite
 @onready var mAnimationPlayer : AnimationPlayer = $AnimationPlayer
 
-var lastAnim : String
+var mEntryPos : float = 2500
+var mStationPos : float = 10
+var mExitPos : float = -2500
+var mIsEntry : int = 0
+
+
 
 func _ready():
-	mAnimationPlayer.play("Start")
+	mBGSprite.position.x = mStationPos
+
 
 func _process(_delta):
-	mBGSprite.position.x = mBackgroundPosition
-	
+	if mIsEntry == 1:
+		mBGSprite.position.x = lerpf(mEntryPos, mStationPos, mPositionScalar)
+	elif mIsEntry == -1:
+		mBGSprite.position.x = lerpf(mStationPos, mExitPos, mPositionScalar)
+
 
 func NextStationReaching():
+	mIsEntry = 1
+	mPositionScalar = 0
 	mAnimationPlayer.play("EnteringStation")
 
-
 func StationLeaving():
+	mIsEntry = -1
+	mPositionScalar = 0
 	mAnimationPlayer.play("LeavingStation")
-
 
 
 func _enter_tree():

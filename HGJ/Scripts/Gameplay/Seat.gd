@@ -47,6 +47,7 @@ func HasPassenger() -> bool:
 func OnMouseEntered():
 	sSelectedSeat = self
 	mSeatSprite.material.set_shader_parameter("tintFactor", -0.15)
+	mSeatSprite.material.set_shader_parameter("outlineWidth", 4)
 	# print("Selected Seat: ", self.name)
 
 
@@ -55,6 +56,7 @@ func OnMouseExited():
 		sSelectedSeat = null
 	# print("Deselected Seat: ", self.name)
 	mSeatSprite.material.set_shader_parameter("tintFactor", 0)
+	mSeatSprite.material.set_shader_parameter("outlineWidth", 0)
 
 
 func _exit_tree():

@@ -7,9 +7,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cpje"]
 shader = ExtResource("2_wcd72")
-shader_parameter/tintColour = Color(1, 1, 1, 1)
+shader_parameter/tintColour = Color(1, 1, 1, 0.501961)
 shader_parameter/tintFactor = 0.0
 shader_parameter/fade = 1.0
+shader_parameter/outlineColour = Color(1, 1, 1, 0.501961)
+shader_parameter/outlineWidth = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l8m"]
 size = Vector2(108, 186)

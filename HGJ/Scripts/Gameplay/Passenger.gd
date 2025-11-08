@@ -193,11 +193,14 @@ func get_passenger_gender_string() -> String:
 func _on_mouse_entered():
 	EventMgr.OnPassengerHoverStart.emit(self)
 	mPassengerSprite.material.set_shader_parameter("tintFactor", -0.15)
+	mPassengerSprite.material.set_shader_parameter("outlineWidth", 10)
 	
 
 func _on_mouse_exited():
 	EventMgr.OnPassengerHoverEnd.emit(self)
 	mPassengerSprite.material.set_shader_parameter("tintFactor", 0)
+	mPassengerSprite.material.set_shader_parameter("outlineWidth", 0)
+	
 
 func show_evaluated_score_popup(score : int) -> void:
 	if score < 0:

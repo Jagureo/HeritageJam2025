@@ -1,21 +1,45 @@
 extends Node
 
 # Variables
-@export var mScrollSpeed : float = 0
+@export_range(0,1) var mScrollSpeedScaler : float = 0
+@export var mSkyScrollSpeed : float
+@export var mHDBScrollSpeed : float
+@export var mTreeScrollSpeed : float
+
 
 # References
-@onready var mSpriteSections : Array[Sprite2D] = [$Section1, $Section2, $Section3]
+@onready var mSkySections : Array[Sprite2D] = [$SkySection1, $SkySection2, $SkySection3]
+@onready var mHDBSections : Array[Sprite2D] = [$HDBSection1, $HDBSection2, $HDBSection3]
+@onready var mTreeSections : Array[Sprite2D] = [$TreeSection1, $TreeSection2, $TreeSection3]
 @onready var mAnimationPlayer : AnimationPlayer = $AnimationPlayer
 
 
 func _process(delta):
-	for sprite in mSpriteSections:
-		(sprite as Node2D).position.x += (-mScrollSpeed * delta)
+	for sprite in mSkySections:
+		(sprite as Node2D).position.x += (-mSkyScrollSpeed * mScrollSpeedScaler * delta)
 
-	if (mSpriteSections[0] as Node2D).position.x < -2000:
-		(mSpriteSections[0] as Node2D).position.x = (mSpriteSections[len(mSpriteSections) - 1] as Node2D).position.x + 1920
-		mSpriteSections.push_back(mSpriteSections[0])
-		mSpriteSections.pop_front()
+	for sprite in mHDBSections:
+		(sprite as Node2D).position.x += (-mHDBScrollSpeed * mScrollSpeedScaler * delta)
+	
+	for sprite in mTreeSections:
+		(sprite as Node2D).position.x += (-mTreeScrollSpeed * mScrollSpeedScaler * delta)
+
+	if mSkySections[0].position.x < -2000:
+		mSkySections[0].position.x = mSkySections.back().position.x + 1920
+		mSkySections.push_back(mSkySections[0])
+		mSkySections.pop_front()
+
+	if mHDBSections[0].position.x < -2000:
+		mHDBSections[0].position.x = mHDBSections.back().position.x + 1920
+		mHDBSections.push_back(mHDBSections[0])
+		mHDBSections.pop_front()
+	
+	if mTreeSections[0].position.x < -2000:
+		mTreeSections[0].position.x = mTreeSections.back().position.x + 1920
+		mTreeSections.push_back(mTreeSections[0])
+		mTreeSections.pop_front()
+
+
 
 
 func NextStationReaching():
