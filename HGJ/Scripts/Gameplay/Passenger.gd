@@ -216,7 +216,7 @@ func show_evaluated_score_popup(score : int) -> void:
 		else:
 			mScorePopupLabel.add_theme_color_override("font_color", Color.WHITE)
 		mScorePopupLabel.text = "+%d" % score
-	mScorePopupTimer.start(2)
+	mScorePopupTimer.start(3)
 	mScorePopupPanel.visible = true
 	
 func hide_evaluated_score_popup() -> void:

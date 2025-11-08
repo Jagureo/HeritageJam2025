@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b12ms6vuv3ss0"]
+[gd_scene load_steps=5 format=3 uid="uid://b12ms6vuv3ss0"]
 
 [ext_resource type="Script" uid="uid://c1ja3wqwg4vl3" path="res://Scripts/UI/passengerInformation.gd" id="1_iq863"]
+[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/RonysiswadiArchitect4-qZmp2.ttf" id="2_ip4o3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq863"]
 bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
@@ -50,6 +51,7 @@ offset_right = 258.0
 offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ip4o3")
 theme_override_font_sizes/font_size = 30
 text = "Passenger_Type"
 horizontal_alignment = 1
@@ -67,6 +69,7 @@ offset_right = 257.5
 offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ip4o3")
 theme_override_font_sizes/font_size = 30
 text = "Passenger_Trait"
 horizontal_alignment = 1
@@ -84,6 +87,7 @@ offset_right = 277.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ip4o3")
 theme_override_font_sizes/font_size = 30
 text = "Passenger_Gender"
 horizontal_alignment = 1
@@ -103,13 +107,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 10.0
+offset_left = 12.0
 offset_top = -71.0
-offset_right = 285.0
+offset_right = 287.0
 offset_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/line_spacing = -7
+theme_override_constants/line_spacing = -6
+theme_override_fonts/font = ExtResource("2_ip4o3")
 theme_override_font_sizes/font_size = 24
 text = "Description Line 1
 Description Line 2
