@@ -1,9 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b12ms6vuv3ss0"]
 
-[ext_resource type="Script" path="res://Scripts/UI/passengerInformation.gd" id="1_iq863"]
+[ext_resource type="Script" uid="uid://c1ja3wqwg4vl3" path="res://Scripts/UI/passengerInformation.gd" id="1_iq863"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq863"]
 bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
 corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 

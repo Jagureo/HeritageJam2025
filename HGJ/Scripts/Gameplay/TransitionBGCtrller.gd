@@ -9,7 +9,6 @@ extends Node
 
 
 func _process(delta):
-	print((mSpriteSections[0] as Node2D).position.x)
 	for sprite in mSpriteSections:
 		(sprite as Node2D).position.x += (-mScrollSpeed * delta)
 

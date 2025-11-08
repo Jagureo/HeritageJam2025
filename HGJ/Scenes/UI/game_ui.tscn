@@ -1,15 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://5ln5jieeyw4b"]
+[gd_scene load_steps=9 format=3 uid="uid://5ln5jieeyw4b"]
 
 [ext_resource type="Script" uid="uid://bj1d6mvillccq" path="res://Scripts/UI/gameUI.gd" id="1_vo2tu"]
-[ext_resource type="Script" uid="uid://cign7xud1xsnv" path="res://Scripts/UI/versionNumber.gd" id="2_5b8pf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo2tu"]
 bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 corner_radius_top_left = 100
 corner_radius_bottom_right = 100
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plf53"]
 bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
 corner_radius_top_left = 100
 corner_radius_bottom_right = 100
 
@@ -73,11 +80,15 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Sign" type="Panel" parent="MainScreen"]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 930.0
-offset_right = 350.0
-offset_bottom = 980.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 360.0
+offset_top = -80.0
+offset_right = 660.0
+offset_bottom = -30.0
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vo2tu")
 
 [node name="Station_Label" type="Label" parent="MainScreen/Sign"]
@@ -96,14 +107,17 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Station Name"
 horizontal_alignment = 1
-script = ExtResource("2_5b8pf")
 
 [node name="Sign2" type="Panel" parent="MainScreen"]
-layout_mode = 0
-offset_left = 400.0
-offset_top = 930.0
-offset_right = 800.0
-offset_bottom = 980.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 660.0
+offset_top = -80.0
+offset_right = 960.0
+offset_bottom = -30.0
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_plf53")
 
 [node name="Happniess_Level" type="Label" parent="MainScreen/Sign2"]
@@ -120,16 +134,19 @@ offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-text = "Happiness Level"
+text = "Happiness: 0"
 horizontal_alignment = 1
-script = ExtResource("2_5b8pf")
 
 [node name="Sign3" type="Panel" parent="MainScreen"]
-layout_mode = 0
-offset_left = 400.0
-offset_top = 1000.0
-offset_right = 800.0
-offset_bottom = 1050.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 960.0
+offset_top = -80.0
+offset_right = 1260.0
+offset_bottom = -30.0
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_plf53")
 
 [node name="Time_Left" type="Label" parent="MainScreen/Sign3"]
@@ -146,7 +163,7 @@ offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-text = "Time Remaining: "
+text = "Time: 0"
 horizontal_alignment = 1
 
 [node name="NextStationButton" type="Button" parent="MainScreen"]
@@ -173,11 +190,18 @@ text = "Next Station"
 
 [node name="GameOverPanel" type="ColorRect" parent="MainScreen"]
 visible = false
-layout_mode = 0
-offset_left = 660.0
-offset_top = 240.0
-offset_right = 1260.0
-offset_bottom = 840.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 300.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.00784314, 0.286275, 0.309804, 1)
 
 [node name="GameOverText" type="Label" parent="MainScreen/GameOverPanel"]

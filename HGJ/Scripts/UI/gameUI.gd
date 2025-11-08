@@ -23,7 +23,7 @@ func next_station() -> void:
 		AudioManager.sInstance.mClickSound.play()
 
 func set_happiness_level(value: int) -> void:
-	happiness_label.text = "Happiness Level: %d" % value
+	happiness_label.text = "Happiness: %d" % value
 
 func DisableButton(val : bool):
 	nextStationButton.disabled = val
@@ -50,4 +50,4 @@ func OnMainMenuButtonPressed() -> void:
 	get_tree().change_scene_to_file(mMainMenuScene)
 	
 func _process(delta: float) -> void:
-	timerDisplay.text = "Time Remaining: %.1f" % GameManager.sInstance.mStationWaitingTimer.time_left
+	timerDisplay.text = "Time: %.1f" % GameManager.sInstance.mStationWaitingTimer.time_left
