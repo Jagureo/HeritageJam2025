@@ -58,7 +58,7 @@ func _ready():
 
 	_update_station_display()
 	update_happiness_level(0)
-	for i in range(Station.EWStations[current_station_index].get_passenger_count()):
+	for i in randi_range(5, 16):
 		_spawn_passenger()
 		
 	passenger_information.hide()
