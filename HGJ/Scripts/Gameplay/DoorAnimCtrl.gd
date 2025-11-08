@@ -7,6 +7,8 @@ func OpenDoor():
 
 
 func CloseDoor():
+	AudioManager.sInstance.mDoorClosingSound.play()
+	await get_tree().create_timer(2.3).timeout
 	play("DoorClose")
 
 
@@ -22,5 +24,3 @@ func _enter_tree():
 func _exit_tree():
 	EventMgr.OnNextStationPressed.disconnect(CloseDoor)
 	EventMgr.OnNextstationReached.disconnect(OpenDoor)
-
-

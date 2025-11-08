@@ -33,6 +33,7 @@ func NextStationReaching():
 	mStationSign.text = Station.EWStations[GameManager.sInstance.current_station_index + 1].name
 
 func StationLeaving():
+	await get_tree().create_timer(2.4).timeout
 	mIsEntry = -1
 	mPositionScalar = 0
 	mAnimationPlayer.play("LeavingStation")

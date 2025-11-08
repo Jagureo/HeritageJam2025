@@ -78,9 +78,13 @@ func _process(_delta):
 
 func next_station() -> void:
 	mStationWaitingTimer.stop()
-	mCurrLevelState = LevelState.MOVING
+	
 	# Disable the button
 	game_ui.DisableButton(true)
+	await get_tree().create_timer(2.5).timeout
+
+	mCurrLevelState = LevelState.MOVING
+	
 	# Start the timer
 	mStationTransitionTimer.start(Constant.TIME_TO_NEXT_STATION)
 	mReachingNextStation = false
@@ -171,4 +175,3 @@ func _input(event):
 func _station_stay_timer_timeout():
 	if current_station_index < Station.EWStations.size() - 1 and mOverallHappiness >= Constant.GAME_OVER_SCORE:
 		EventMgr.OnNextStationPressed.emit()
-		AudioManager.sInstance.mClickSound.play()

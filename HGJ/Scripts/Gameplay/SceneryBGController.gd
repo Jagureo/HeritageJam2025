@@ -47,6 +47,7 @@ func NextStationReaching():
 
 
 func StationLeaving():
+	await get_tree().create_timer(2.4).timeout
 	mAnimationPlayer.play("LeavingStation")
 
 
