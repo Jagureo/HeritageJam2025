@@ -188,8 +188,13 @@ func _on_mouse_exited():
 
 func show_evaluated_score_popup(score : int) -> void:
 	if score < 0:
+		mScorePopupLabel.add_theme_color_override("font_color", Color.RED)
 		mScorePopupLabel.text = "%d" % score
 	else:
+		if score > 0:
+			mScorePopupLabel.add_theme_color_override("font_color", Color.GREEN)
+		else:
+			mScorePopupLabel.add_theme_color_override("font_color", Color.WHITE)
 		mScorePopupLabel.text = "+%d" % score
 	mScorePopupTimer.start(2)
 	mScorePopupLabel.visible = true
