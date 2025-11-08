@@ -30,10 +30,10 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="PassengerInformation" parent="." instance=ExtResource("7_1l0tm")]
-offset_left = 1300.0
-offset_top = 925.0
-offset_right = 1300.0
-offset_bottom = 925.0
+offset_left = 1305.0
+offset_top = 945.0
+offset_right = 1305.0
+offset_bottom = 945.0
 
 [node name="StationTransitionTimer" type="Timer" parent="."]
 one_shot = true

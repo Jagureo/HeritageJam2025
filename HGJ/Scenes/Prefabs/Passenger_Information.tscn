@@ -32,7 +32,7 @@ script = ExtResource("1_iq863")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 600.0
-offset_bottom = 150.0
+offset_bottom = 125.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_iq863")
 
 [node name="BasicDetails" type="Control" parent="Panel"]
@@ -45,10 +45,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 28.0
-offset_top = 20.0
-offset_right = 258.0
-offset_bottom = 62.0
+offset_left = 22.0
+offset_top = 9.0
+offset_right = 252.0
+offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ip4o3")
@@ -63,10 +63,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 28.5
-offset_top = 53.0
-offset_right = 257.5
-offset_bottom = 95.0
+offset_left = 22.5
+offset_top = 42.0
+offset_right = 251.5
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ip4o3")
@@ -81,10 +81,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = 86.0
-offset_right = 277.0
-offset_bottom = 128.0
+offset_left = 22.5
+offset_top = 75.0
+offset_right = 251.5
+offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ip4o3")
@@ -94,10 +94,10 @@ horizontal_alignment = 1
 
 [node name="Divider" type="Panel" parent="Panel"]
 layout_mode = 0
-offset_left = 290.0
+offset_left = 271.0
 offset_top = 10.0
-offset_right = 300.0
-offset_bottom = 140.0
+offset_right = 281.0
+offset_bottom = 115.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ip4o3")
 
 [node name="Description" type="Label" parent="Panel"]
@@ -107,10 +107,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 12.0
-offset_top = -71.0
-offset_right = 287.0
-offset_bottom = 71.0
+offset_left = -9.0
+offset_top = -59.5
+offset_right = 281.0
+offset_bottom = 60.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = -6
@@ -118,6 +118,6 @@ theme_override_fonts/font = ExtResource("2_ip4o3")
 theme_override_font_sizes/font_size = 24
 text = "Description Line 1
 Description Line 2
-Really long description lineeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+Really long description lineeeeeeeeeeeeeeeeeeeeeee"
 vertical_alignment = 1
 autowrap_mode = 3
