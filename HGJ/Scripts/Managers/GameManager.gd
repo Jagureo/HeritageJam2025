@@ -137,7 +137,7 @@ func _update_station_display() -> void:
 func _spawn_passenger() -> void:
 	var passenger = passenger_prefab.instantiate()
 	passenger_container.add_child(passenger)
-	passenger.position = Vector2(randf() * 200 + (100 if randi() % 2 == 0 else 1600), randf() * 300 + 400)
+	passenger.position = Vector2(randf() * 200 + (100 if randi() % 2 == 0 else 1600), randf() * 350 + 550)
 	StandingArea.sStandingArea.AddPassenger(passenger)
 	if passenger.mPassengerType == Passenger.PassengerType.WHEELCHAIR_BOUND:
 		hasWheelchairPassenger = true

@@ -11,7 +11,7 @@ shader_parameter/tintFactor = 0.0
 shader_parameter/fade = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l8m"]
-size = Vector2(66, 118)
+size = Vector2(108, 186)
 
 [node name="Passenger" type="Area2D"]
 collision_mask = 0
@@ -19,7 +19,7 @@ script = ExtResource("1_0ypmp")
 
 [node name="PassengerSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_6cpje")
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_wveo2")
 
 [node name="PassengerCollisionShape" type="CollisionShape2D" parent="."]
@@ -28,9 +28,9 @@ shape = SubResource("RectangleShape2D_n1l8m")
 [node name="ScorePopupLabel" type="Label" parent="."]
 visible = false
 offset_left = -28.0
-offset_top = -103.0
+offset_top = -147.0
 offset_right = 27.0
-offset_bottom = -58.0
+offset_bottom = -102.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.247059)
 theme_override_font_sizes/font_size = 32
