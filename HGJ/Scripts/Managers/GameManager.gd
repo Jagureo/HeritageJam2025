@@ -84,11 +84,11 @@ func next_station() -> void:
 	await get_tree().create_timer(2.5).timeout
 
 	mCurrLevelState = LevelState.MOVING
-	
-	# Start the timer
-	mStationTransitionTimer.start(Constant.TIME_TO_NEXT_STATION)
 	mReachingNextStation = false
 	
+	# Start the timer
+	if not game_ui.gameover_panel.visible:
+		mStationTransitionTimer.start(Constant.TIME_TO_NEXT_STATION)
 
 
 func ReachedNextStation():
