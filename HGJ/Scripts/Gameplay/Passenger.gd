@@ -198,3 +198,6 @@ func hide_evaluated_score_popup() -> void:
 	mScorePopupTimer.stop()
 	mScorePopupLabel.hide()
 	
+func alight_passenger() -> void:
+	await get_tree().create_timer(randf_range(1, 2)).timeout
+	queue_free()

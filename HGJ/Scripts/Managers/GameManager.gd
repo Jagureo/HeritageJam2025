@@ -99,7 +99,7 @@ func ReachedNextStation():
 			else:
 				(random_passenger as Passenger).mSittingOn.RemovePassenger()
 
-			random_passenger.queue_free()
+			random_passenger.alight_passenger()
 		for i in range(new_passengers):
 			_spawn_passenger()
 
