@@ -8,6 +8,7 @@ class_name GameManager
 @onready var mStationTransitionTimer : Timer = $StationTransitionTimer
 @onready var mStationWaitingTimer : Timer = $StationStayTimer
 
+
 var mScore : int = 0
 var current_station_index : int = 0
 var mOverallHappiness : int = 0:
@@ -16,10 +17,12 @@ var mOverallHappiness : int = 0:
 	set(newValue):
 		mOverallHappiness = newValue
 		update_happiness_level(newValue)
-		if newValue < -5:
+		if newValue < Constant.GAME_OVER_SCORE:
 			game_ui.showGameOverPanel(true)
 		
 var passenger_hover_queue : Array[Passenger] = []
+var mReachingNextStation : bool = true
+
 
 static var sInstance : GameManager = null
 
@@ -61,6 +64,18 @@ func _ready():
 	passenger_information.hide()
 
 
+func _process(_delta):
+	# If time to next station left 1s, then fire off station approaching signal
+	if not mReachingNextStation and mStationTransitionTimer.time_left <= 1.0:
+		mReachingNextStation = true
+		EventMgr.OnNextStationReaching.emit()
+		mCurrLevelState = LevelState.REACHING_NEXT
+
+		# Evaluate happiness
+		mScore += mOverallHappiness
+		pass	
+
+
 func next_station() -> void:
 	mStationWaitingTimer.stop()
 	mCurrLevelState = LevelState.MOVING
@@ -68,18 +83,12 @@ func next_station() -> void:
 	game_ui.DisableButton(true)
 	# Start the timer
 	mStationTransitionTimer.start(Constant.TIME_TO_NEXT_STATION)
-
+	mReachingNextStation = false
+	
 
 
 func ReachedNextStation():
-	mCurrLevelState = LevelState.REACHING_NEXT
-
-	# Evaluate happiness
-	EventMgr.OnNextStationReaching.emit()
-	mScore += mOverallHappiness
-
 	if current_station_index < Station.EWStations.size() - 1:
-		
 		_update_station_display()
 
 		var new_passengers = Station.EWStations[current_station_index].get_passenger_count()
@@ -160,6 +169,6 @@ func _input(event):
 		game_ui.showGameOverPanel(true)
 
 func _station_stay_timer_timeout():
-	if current_station_index < Station.EWStations.size() - 1 and mOverallHappiness >= -5 :
+	if current_station_index < Station.EWStations.size() - 1 and mOverallHappiness >= Constant.GAME_OVER_SCORE:
 		EventMgr.OnNextStationPressed.emit()
 		AudioManager.sInstance.mClickSound.play()

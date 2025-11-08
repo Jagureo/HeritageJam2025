@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b12ms6vuv3ss0"]
 
-[ext_resource type="Script" uid="uid://c1ja3wqwg4vl3" path="res://Scripts/UI/passengerInformation.gd" id="1_iq863"]
+[ext_resource type="Script" path="res://Scripts/UI/passengerInformation.gd" id="1_iq863"]
 
 [node name="PassengerInformation" type="Control"]
 z_index = 3
