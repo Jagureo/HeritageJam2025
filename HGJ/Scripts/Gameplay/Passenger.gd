@@ -32,7 +32,7 @@ enum GenderType {
 }
 
 # Reference
-@onready var mPassengerSprite : Sprite2D = $PassengerSprite
+@onready var mPassengerSprite : AnimatedSprite2D = $PassengerSprite
 @onready var mScorePopupLabel : Label = $ScorePopupPanel/ScorePopupLabel
 @onready var mScorePopupPanel : Panel = $ScorePopupPanel
 @onready var mScorePopupTimer : Timer = $ScorePopupTimer
@@ -55,31 +55,59 @@ static var sSelectedPassenger : Passenger = null
 # Seat that this passenger is sitting on
 var mSittingOn : Seat = null
 
-# Passenger sprites
-static var sMalePassengerTextures : Dictionary[PassengerType, Texture2D] = {
-	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/MaleChild.png") as Texture2D,
-	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/MaleTeen.png") as Texture2D,
-	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
-	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/MaleBag.png") as Texture2D,
-	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/MaleAdultWithBaby.png") as Texture2D,
+
+# # Passenger sprites
+# static var sMalePassengerTextures : Dictionary[PassengerType, Texture2D] = {
+# 	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/MaleChild.png") as Texture2D,
+# 	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/MaleTeen.png") as Texture2D,
+# 	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
+# 	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/MaleBag.png") as Texture2D,
+# 	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
+# 	Passenger.PassengerType.PREGNANT :         null,
+# 	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/MaleElderly.png") as Texture2D,
+# 	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/MaleInjured.png") as Texture2D,
+# 	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
+# 	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
+# }
+
+# static var sFemalePassengerTextures : Dictionary[PassengerType, Texture2D] = {
+# 	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/FemaleChild.png") as Texture2D,
+# 	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/FemaleTeen.png") as Texture2D,
+# 	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
+# 	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/FemaleBag.png") as Texture2D,
+# 	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
+# 	Passenger.PassengerType.PREGNANT :         preload("res://Sprites/Character/FemalePregnant.png") as Texture2D,
+# 	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/FemaleElderly.png") as Texture2D,
+# 	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/FemaleInjured.png") as Texture2D,
+# 	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
+# 	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
+# }
+
+
+static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
+	Passenger.PassengerType.CHILDREN :         preload("res://Animations/MaleChild.tres") as SpriteFrames,
+	Passenger.PassengerType.TEENAGER :         preload("res://Animations/MaleTeen.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT :            preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Animations/MaleAdultBag.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Animations/MaleAdultWithBaby.tres") as SpriteFrames,
 	Passenger.PassengerType.PREGNANT :         null,
-	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/MaleElderly.png") as Texture2D,
-	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/MaleInjured.png") as Texture2D,
-	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
-	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/MaleWheelchair.png") as Texture2D,
+	Passenger.PassengerType.ELDERLY :          preload("res://Animations/MaleElderly.tres") as SpriteFrames,
+	Passenger.PassengerType.INJURED :          preload("res://Animations/MaleInjured.tres") as SpriteFrames,
+	Passenger.PassengerType.HEMORRHOID :       preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Animations/MaleWheelchair.tres") as SpriteFrames,
 }
 
-static var sFemalePassengerTextures : Dictionary[PassengerType, Texture2D] = {
-	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/FemaleChild.png") as Texture2D,
-	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/FemaleTeen.png") as Texture2D,
-	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
-	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/FemaleBag.png") as Texture2D,
-	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/FemaleAdultWithBaby.png") as Texture2D,
-	Passenger.PassengerType.PREGNANT :         preload("res://Sprites/Character/FemalePregnant.png") as Texture2D,
-	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/FemaleElderly.png") as Texture2D,
-	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/FemaleInjured.png") as Texture2D,
-	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
-	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/FemaleWheelchair.png") as Texture2D,
+static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
+	Passenger.PassengerType.CHILDREN :         preload("res://Animations/FemaleChild.tres") as SpriteFrames,
+	Passenger.PassengerType.TEENAGER :         preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT :            preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Animations/FemaleAdultBag.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Animations/FemaleAdultWithBaby.tres") as SpriteFrames,
+	Passenger.PassengerType.PREGNANT :         preload("res://Animations/FemalePregnant.tres") as SpriteFrames,
+	Passenger.PassengerType.ELDERLY :          preload("res://Animations/FemaleElderly.tres") as SpriteFrames,
+	Passenger.PassengerType.INJURED :          preload("res://Animations/FemaleInjured.tres") as SpriteFrames,
+	Passenger.PassengerType.HEMORRHOID :       preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Animations/FemaleWheelchair.tres") as SpriteFrames,
 }
 
 
@@ -100,7 +128,9 @@ func _ready():
 	else:
 		mGenderType = randi() % GenderType.LAST as GenderType
 	
-	mPassengerSprite.texture = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
+	# mPassengerSprite.texture = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
+	mPassengerSprite.sprite_frames = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
+	mPassengerSprite.play("Idle")
 
 	# Noisy particles
 	if mTraitType == TraitTypes.NOISY:

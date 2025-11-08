@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://bvjw0jboyd14s"]
+
+[ext_resource type="Texture2D" uid="uid://xqmwn8yk6b4o" path="res://Sprites/Character/MaleElderlyAnim.png" id="1_ksnsl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy5o4"]
+atlas = ExtResource("1_ksnsl")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bajo"]
+atlas = ExtResource("1_ksnsl")
+region = Rect2(768, 0, 768, 768)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy5o4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bajo")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]

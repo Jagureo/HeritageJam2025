@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://dea6twoqm57mw"]
+
+[ext_resource type="Texture2D" uid="uid://b3ttbi5nw5wf4" path="res://Sprites/Character/MaleBagAnim.png" id="1_3jmf5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y47n7"]
+atlas = ExtResource("1_3jmf5")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb0em"]
+atlas = ExtResource("1_3jmf5")
+region = Rect2(768, 0, 768, 768)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y47n7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb0em")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]

@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://c7y75n2vkmcpu"]
+
+[ext_resource type="Texture2D" uid="uid://bo3jyspu50gpu" path="res://Sprites/Character/FemalePregnantAnim.png" id="1_ebbcf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfyk7"]
+atlas = ExtResource("1_ebbcf")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqry7"]
+atlas = ExtResource("1_ebbcf")
+region = Rect2(768, 0, 768, 768)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfyk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqry7")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]

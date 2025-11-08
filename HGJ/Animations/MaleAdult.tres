@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://dubpsb1nht04i"]
+
+[ext_resource type="Texture2D" uid="uid://bddchkdym774v" path="res://Sprites/Character/MaleAdultAnim.png" id="1_ixo51"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxovj"]
+atlas = ExtResource("1_ixo51")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtd7y"]
+atlas = ExtResource("1_ixo51")
+region = Rect2(768, 0, 768, 768)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxovj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtd7y")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]
