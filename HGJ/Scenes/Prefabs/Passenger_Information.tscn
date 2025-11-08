@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://b12ms6vuv3ss0"]
+[gd_scene load_steps=4 format=3 uid="uid://b12ms6vuv3ss0"]
 
 [ext_resource type="Script" uid="uid://c1ja3wqwg4vl3" path="res://Scripts/UI/passengerInformation.gd" id="1_iq863"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq863"]
+bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip4o3"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="PassengerInformation" type="Control"]
 z_index = 3
@@ -12,59 +24,141 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iq863")
 
-[node name="Panel" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 300.0
+offset_right = 600.0
 offset_bottom = 150.0
-color = Color(0.00784314, 0.286275, 0.309804, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_iq863")
 
-[node name="Passenger_Type" type="Label" parent="Panel"]
+[node name="BasicDetails" type="Control" parent="Panel"]
+anchors_preset = 0
+
+[node name="Passenger_Type" type="Label" parent="Panel/BasicDetails"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -115.0
-offset_top = -55.0
-offset_right = 115.0
-offset_bottom = -13.0
+offset_left = 28.0
+offset_top = 20.0
+offset_right = 258.0
+offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Passenger_Type"
 horizontal_alignment = 1
 
-[node name="Passenger_Trait" type="Label" parent="Panel"]
+[node name="Passenger_Trait" type="Label" parent="Panel/BasicDetails"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -114.5
-offset_top = -22.0
-offset_right = 114.5
-offset_bottom = 20.0
+offset_left = 28.5
+offset_top = 53.0
+offset_right = 257.5
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Passenger_Trait"
 horizontal_alignment = 1
 
-[node name="Passenger_Gender" type="Label" parent="Panel"]
+[node name="Passenger_Gender" type="Label" parent="Panel/BasicDetails"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -134.0
-offset_top = 11.0
-offset_right = 134.0
-offset_bottom = 53.0
+offset_left = 9.0
+offset_top = 86.0
+offset_right = 277.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Passenger_Gender"
 horizontal_alignment = 1
+
+[node name="Divider" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 10.0
+offset_right = 300.0
+offset_bottom = 140.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ip4o3")
+
+[node name="LikesDislikes" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 305.0
+offset_right = 305.0
+
+[node name="LikesLabel" type="Label" parent="Panel/LikesDislikes"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = 11.0
+offset_right = 256.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.74902, 1, 0.74902, 1)
+theme_override_font_sizes/font_size = 25
+text = "Likes:"
+
+[node name="LikesDescription" type="Label" parent="Panel/LikesDislikes"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = 36.0
+offset_right = 256.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Lorem Ipsum"
+
+[node name="HatesLabel" type="Label" parent="Panel/LikesDislikes"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = 76.0
+offset_right = 256.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.74902, 0.74902, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hates:"
+
+[node name="HatesDescription" type="Label" parent="Panel/LikesDislikes"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = 101.0
+offset_right = 256.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Lorem Ipsum"

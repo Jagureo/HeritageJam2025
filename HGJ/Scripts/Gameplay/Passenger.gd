@@ -206,3 +206,64 @@ func hide_evaluated_score_popup() -> void:
 func alight_passenger() -> void:
 	await get_tree().create_timer(randf_range(1, 2)).timeout
 	queue_free()
+
+func get_passenger_likes() -> String:
+	var likes_description = ""
+	match mPassengerType:
+		PassengerType.CHILDREN:
+			likes_description += "Sitting"
+		PassengerType.TEENAGER:
+			likes_description +=  "Teenager"
+		PassengerType.ADULT:
+			likes_description +=  "Adult"
+		PassengerType.ADULT_WITH_BAGS:
+			likes_description +=  "Adult with Bags"
+		PassengerType.ADULT_WITH_BABY:
+			likes_description +=  "Adult with Baby"
+		PassengerType.PREGNANT:
+			likes_description +=  "Pregnant"
+		PassengerType.ELDERLY:
+			likes_description +=  "Elderly"
+		PassengerType.INJURED:
+			likes_description +=  "Injured"
+		PassengerType.HEMORRHOID:
+			likes_description +=  "Hemorrhoid"
+		PassengerType.WHEELCHAIR_BOUND:
+			likes_description +=  "Wheelchair"
+
+	return likes_description
+
+func get_passenger_hates() -> String:
+	var hates_description = ""
+	if mTraitType == Passenger.TraitTypes.NOISY:
+		hates_description += "Quiet"
+		
+	match mPassengerType:
+		PassengerType.CHILDREN:
+			pass
+		PassengerType.TEENAGER:
+			if mTraitType == Passenger.TraitTypes.NOISY:
+				hates_description += ", "
+			if mGenderType == GenderType.MALE:
+				hates_description += "Female"
+			else:
+				if mGenderType == GenderType.FEMALE:
+					hates_description += "Male"
+		PassengerType.ADULT:
+			hates_description +=  "Adult"
+		PassengerType.ADULT_WITH_BAGS:
+			hates_description +=  "Adult with Bags"
+		PassengerType.ADULT_WITH_BABY:
+			hates_description +=  "Adult with Baby"
+		PassengerType.PREGNANT:
+			hates_description +=  "Pregnant"
+		PassengerType.ELDERLY:
+			hates_description +=  "Elderly"
+		PassengerType.INJURED:
+			hates_description +=  "Injured"
+		PassengerType.HEMORRHOID:
+			hates_description +=  "Hemorrhoid"
+		PassengerType.WHEELCHAIR_BOUND:
+			hates_description +=  "Wheelchair"
+
+	return hates_description
