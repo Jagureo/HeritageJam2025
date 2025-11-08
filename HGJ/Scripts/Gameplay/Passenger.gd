@@ -245,13 +245,13 @@ func get_passenger_description() -> String:
 		PassengerType.ADULT_WITH_BAGS:
 			description_text +=  "Hates standing."
 		PassengerType.ADULT_WITH_BABY:
-			description_text +=  "Needs to sit in priority seat."
+			description_text +=  "Prefers to sit in priority seat."
 		PassengerType.PREGNANT:
-			description_text +=  "Needs to sit in priority seat."
+			description_text +=  "Prefers to sit in priority seat."
 		PassengerType.ELDERLY:
-			description_text +=  "Needs to sit in priority seat."
+			description_text +=  "Prefers to sit in priority seat."
 		PassengerType.INJURED:
-			description_text +=  "Needs to sit in priority seat."
+			description_text +=  "Prefers to sit in priority seat."
 		PassengerType.HEMORRHOID:
 			description_text +=  "Prefers to stand."
 		PassengerType.WHEELCHAIR_BOUND:
