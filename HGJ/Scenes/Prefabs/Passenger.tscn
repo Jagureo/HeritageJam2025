@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvuwrt4hor7ht"]
+[gd_scene load_steps=8 format=3 uid="uid://cvuwrt4hor7ht"]
 
 [ext_resource type="Script" uid="uid://bj7k4jp7rwk3r" path="res://Scripts/Gameplay/Passenger.gd" id="1_0ypmp"]
 [ext_resource type="Shader" uid="uid://ffjvlocfuud7" path="res://Shaders/Selection.gdshader" id="2_wcd72"]
 [ext_resource type="Texture2D" uid="uid://cbld8bgdbfb2p" path="res://Sprites/Character/character_basic_sketch.png" id="2_wveo2"]
+[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/RonysiswadiArchitect4-qZmp2.ttf" id="4_6cpje"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cpje"]
 shader = ExtResource("2_wcd72")
@@ -34,17 +35,19 @@ shape = SubResource("RectangleShape2D_n1l8m")
 
 [node name="ScorePopupPanel" type="Panel" parent="."]
 visible = false
-offset_left = -26.0
+offset_left = -30.0
 offset_top = -150.0
-offset_right = 28.0
+offset_right = 30.0
 offset_bottom = -106.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wcd72")
 
 [node name="ScorePopupLabel" type="Label" parent="ScorePopupPanel"]
-offset_right = 55.0
+layout_mode = 0
+offset_right = 60.0
 offset_bottom = 45.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.247059)
+theme_override_fonts/font = ExtResource("4_6cpje")
 theme_override_font_sizes/font_size = 32
 text = "+67"
 horizontal_alignment = 1
