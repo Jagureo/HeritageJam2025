@@ -25,94 +25,93 @@ func EvaluateHappiness():
 		var passenger : Passenger = (mSeats[i] as Seat).mCurrentlySeatedBy
 		var leftPassenger : Passenger  = null if i == 0 else (mSeats[i-1] as Seat).mCurrentlySeatedBy
 		var rightPassenger : Passenger = null if i == len(mSeats) - 1 else (mSeats[i+1] as Seat).mCurrentlySeatedBy
-		
-		# if passenger.mIsAlighting:
-		# 	alightingPassengers.push_back(passenger)
+		var passengerScore : int = 0
 
 		# If current passenger is noisy, then -1 score for each non-noisy adjacent passenger
 		if passenger.mTraitType == Passenger.TraitTypes.NOISY:
 			if leftPassenger != null && leftPassenger.mTraitType != Passenger.TraitTypes.NOISY:
-				sectionScore -= 1
+				passengerScore -= 1
 			if rightPassenger != null && rightPassenger.mTraitType != Passenger.TraitTypes.NOISY:
-				sectionScore -= 1
+				passengerScore -= 1
 
 		match passenger.mPassengerType:
 			Passenger.PassengerType.CHILDREN:
 				# if seated down, +2 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					sectionScore += 2
+					passengerScore += 2
 			
 			Passenger.PassengerType.TEENAGER:
 				# If seated down, +1 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					sectionScore += 1
+					passengerScore += 1
 				# If seated with opp gender, -1
 				if leftPassenger != null && leftPassenger.mGenderType != passenger.mGenderType:
-					sectionScore -= 1
+					passengerScore -= 1
 				if rightPassenger != null && rightPassenger.mGenderType != passenger.mGenderType:
-					sectionScore -= 1
+					passengerScore -= 1
 			
 			Passenger.PassengerType.ADULT:
 				# if seated down, +1 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					sectionScore += 1
+					passengerScore += 1
 			
 			Passenger.PassengerType.ADULT_WITH_BAGS:
 				# If seated down, +1 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					sectionScore += 1
+					passengerScore += 1
 			
 			Passenger.PassengerType.ADULT_WITH_BABY:
 				# If seated down, +1 happiness, bonus if sitting on priority seat
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					sectionScore += 1
+					passengerScore += 1
 					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-						sectionScore += 1
+						passengerScore += 1
 				# If occupying wheelchair slot, it's as if standing up
 				else:
-					sectionScore -= 1
+					passengerScore -= 1
 			
 			Passenger.PassengerType.PREGNANT:
 				# If seated down, +1 happiness, bonus if sitting on priority seat
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					sectionScore += 1
+					passengerScore += 1
 					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-						sectionScore += 1
+						passengerScore += 1
 				# If occupying wheelchair slot, it's as if standing up
 				else:
-					sectionScore -= 1
+					passengerScore -= 1
 			
 			Passenger.PassengerType.ELDERLY:
 				# If seated down, +2 happiness, bonus if sitting on priority seat
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					sectionScore += 2
+					passengerScore += 2
 					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-						sectionScore += 1
+						passengerScore += 1
 				# If occupying wheelchair slot, it's as if standing up
 				else:
-					sectionScore -= 2
+					passengerScore -= 2
 			
 			Passenger.PassengerType.INJURED:
 				# If seated down, +2 happiness, bonus if sitting on priority seat
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					sectionScore += 2
+					passengerScore += 2
 					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-						sectionScore += 1
+						passengerScore += 1
 				# If occupying wheelchair slot, it's as if standing up
 				else:
-					sectionScore -= 2
+					passengerScore -= 2
 			
 			Passenger.PassengerType.HEMORRHOID:
 				# If seated down, -2 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					sectionScore -= 2
+					passengerScore -= 2
 			
 			Passenger.PassengerType.WHEELCHAIR_BOUND:
 				# If seated down at wheelchair slot, +1 happiness
 				if mSeats[i].mSeatType == Seat.SeatType.WHEELCHAIR:
-					sectionScore += 2
+					passengerScore += 2
 					
-		passenger.show_evaluated_score_popup(sectionScore)
+		sectionScore += passengerScore
+		passenger.show_evaluated_score_popup(passengerScore)
 
 	GameManager.sInstance.mOverallHappiness += sectionScore
 

@@ -101,23 +101,6 @@ anchors_preset = 0
 offset_left = 305.0
 offset_right = 305.0
 
-[node name="LikesLabel" type="Label" parent="Panel/LikesDislikes"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 6.0
-offset_top = 11.0
-offset_right = 256.0
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.74902, 1, 0.74902, 1)
-theme_override_font_sizes/font_size = 25
-text = "Likes:"
-
 [node name="LikesDescription" type="Label" parent="Panel/LikesDislikes"]
 layout_mode = 1
 anchors_preset = 8
@@ -125,44 +108,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 6.0
-offset_top = 36.0
-offset_right = 256.0
-offset_bottom = 71.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "Lorem Ipsum"
-
-[node name="HatesLabel" type="Label" parent="Panel/LikesDislikes"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 6.0
-offset_top = 76.0
-offset_right = 256.0
-offset_bottom = 111.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.74902, 0.74902, 1)
-theme_override_font_sizes/font_size = 25
-text = "Hates:"
-
-[node name="HatesDescription" type="Label" parent="Panel/LikesDislikes"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 6.0
-offset_top = 101.0
-offset_right = 256.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 276.0
 offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "Lorem Ipsum"
+theme_override_font_sizes/font_size = 20
+text = "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
+autowrap_mode = 2

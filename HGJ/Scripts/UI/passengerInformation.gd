@@ -6,7 +6,6 @@ class_name PassengerInformation
 @onready var passenger_gender_label : Label = $Panel/BasicDetails/Passenger_Gender
 
 @onready var passenger_likes_description : Label = $Panel/LikesDislikes/LikesDescription
-@onready var passenger_hates_description : Label = $Panel/LikesDislikes/HatesDescription
 
 func show_display(passenger: Passenger):
 	passenger_type_label.text = passenger.get_passenger_type_string()
@@ -14,4 +13,3 @@ func show_display(passenger: Passenger):
 	passenger_gender_label.text = passenger.get_passenger_gender_string()
 	
 	passenger_likes_description.text = passenger.get_passenger_likes()
-	passenger_hates_description.text = passenger.get_passenger_hates()

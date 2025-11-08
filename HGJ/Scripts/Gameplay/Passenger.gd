@@ -182,7 +182,7 @@ func get_passenger_type_string() -> String:
 func get_passenger_trait_string() -> String:
 	match mTraitType:
 		TraitTypes.NORMAL:
-			return "Normal"
+			return "Quiet"
 		TraitTypes.NOISY:
 			return "Noisy"
 		_:
@@ -231,50 +231,56 @@ func get_passenger_likes() -> String:
 	var likes_description = ""
 	match mPassengerType:
 		PassengerType.CHILDREN:
-			likes_description += "Sitting"
+			likes_description = "Loves to sit."
 		PassengerType.TEENAGER:
-			likes_description +=  "Teenager"
+			if mGenderType == GenderType.MALE:
+				likes_description = "Prefers to sit, does not want to sit bside Female passengers."
+			elif mGenderType == GenderType.FEMALE:
+				likes_description = "Prefers to sit, does not want to sit beside Male passengers."
 		PassengerType.ADULT:
-			likes_description +=  "Adult"
+			likes_description +=  "Prefers to sit."
 		PassengerType.ADULT_WITH_BAGS:
-			likes_description +=  "Adult with Bags"
+			likes_description +=  "Prefers to sit. Standing passengers gets upset."
 		PassengerType.ADULT_WITH_BABY:
-			likes_description +=  "Adult with Baby"
+			likes_description +=  "Needs to sit. Priority seat bonus."
 		PassengerType.PREGNANT:
-			likes_description +=  "Pregnant"
+			likes_description +=  "Needs to sit. Priority seat bonus."
 		PassengerType.ELDERLY:
-			likes_description +=  "Elderly"
+			likes_description +=  "Must sit. Priority seat bonus."
 		PassengerType.INJURED:
-			likes_description +=  "Injured"
+			likes_description +=  "Must sit. Priority seat bonus."
 		PassengerType.HEMORRHOID:
-			likes_description +=  "Hemorrhoid"
+			likes_description +=  "Must stand."
 		PassengerType.WHEELCHAIR_BOUND:
-			likes_description +=  "Wheelchair"
+			likes_description +=  "Must use Wheelchair slot. Standing passengers gets angry."
 
+	if mTraitType == TraitTypes.NOISY:
+		likes_description += " Cannot be next to Quiet Passengers."
 	return likes_description
+
+
 
 func get_passenger_hates() -> String:
 	var hates_description = ""
 	if mTraitType == Passenger.TraitTypes.NOISY:
-		hates_description += "Quiet"
+		hates_description += "Must not be next to Quiet passengers."
 		
 	match mPassengerType:
 		PassengerType.CHILDREN:
-			pass
+			hates_description += "None"
 		PassengerType.TEENAGER:
 			if mTraitType == Passenger.TraitTypes.NOISY:
 				hates_description += ", "
 			if mGenderType == GenderType.MALE:
-				hates_description += "Female"
-			else:
-				if mGenderType == GenderType.FEMALE:
-					hates_description += "Male"
+				hates_description += "Must not sit next to Female passenger."
+			elif mGenderType == GenderType.FEMALE:
+				hates_description += "Must not sit next to Male passenger."
 		PassengerType.ADULT:
-			hates_description +=  "Adult"
+			hates_description +=  "None"
 		PassengerType.ADULT_WITH_BAGS:
-			hates_description +=  "Adult with Bags"
+			hates_description +=  "Makes standing passengers upset."
 		PassengerType.ADULT_WITH_BABY:
-			hates_description +=  "Adult with Baby"
+			hates_description +=  "None"
 		PassengerType.PREGNANT:
 			hates_description +=  "Pregnant"
 		PassengerType.ELDERLY:

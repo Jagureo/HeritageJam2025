@@ -33,12 +33,9 @@ func RemovePassenger(_passenger : Passenger):
 # Evaluate happiness for people in the standing area
 func EvaluateHappiness():
 	var sectionScore : int = 0
-	# var alightingPassengers : Array[Passenger] = []
 
 	for passenger in mCurrentlyStanding:
-		# if passenger.mIsAlighting:
-		# 	alightingPassengers.push_back(passenger)
-
+		var passengerScore : int = 0
 		match passenger.mPassengerType:
 			Passenger.PassengerType.CHILDREN:
 				# no change in score
@@ -53,34 +50,35 @@ func EvaluateHappiness():
 				pass
 			
 			Passenger.PassengerType.ADULT_WITH_BAGS:
-				# If standing, causes others to be unhappy, -2 happiness
-				sectionScore -= 2
+				# If standing, causes others to be unhappy, -1 happiness per standing passenger
+				passengerScore -= len(mCurrentlyStanding) - 1
 			
 			Passenger.PassengerType.ADULT_WITH_BABY:
 				# If standing, -1 happiness
-				sectionScore -= 1
+				passengerScore -= 1
 			
 			Passenger.PassengerType.PREGNANT:
 				# If standing, -1 happiness
-				sectionScore -= 1
+				passengerScore -= 1
 			
 			Passenger.PassengerType.ELDERLY:
 				# If standing, -2 happiness
-				sectionScore -= 2
+				passengerScore -= 2
 			
 			Passenger.PassengerType.INJURED:
 				# If standing, -2 happiness
-				sectionScore -= 2
+				passengerScore -= 2
 			
 			Passenger.PassengerType.HEMORRHOID:
 				# If standing, +1 happiness
-				sectionScore += 1
+				passengerScore += 1
 			
 			Passenger.PassengerType.WHEELCHAIR_BOUND:
-				# If standing, causes others to be unhappy, -3 happiness
-				sectionScore -= 3
-				
-		passenger.show_evaluated_score_popup(sectionScore)
+				# If standing, causes others to be unhappy, -2 happiness per standing passenger
+				passengerScore -= (len(mCurrentlyStanding) - 1) * 2
+
+		sectionScore += passengerScore
+		passenger.show_evaluated_score_popup(passengerScore)
 
 	GameManager.sInstance.mOverallHappiness += sectionScore
 
