@@ -227,63 +227,37 @@ func alight_passenger() -> void:
 	await get_tree().create_timer(randf_range(1, 2)).timeout
 	queue_free()
 
-func get_passenger_likes() -> String:
-	var likes_description = ""
+func get_passenger_description() -> String:
+	var description_text = ""
+	
 	match mPassengerType:
 		PassengerType.CHILDREN:
-			likes_description += "Sitting"
-		PassengerType.TEENAGER:
-			likes_description +=  "Teenager"
-		PassengerType.ADULT:
-			likes_description +=  "Adult"
-		PassengerType.ADULT_WITH_BAGS:
-			likes_description +=  "Adult with Bags"
-		PassengerType.ADULT_WITH_BABY:
-			likes_description +=  "Adult with Baby"
-		PassengerType.PREGNANT:
-			likes_description +=  "Pregnant"
-		PassengerType.ELDERLY:
-			likes_description +=  "Elderly"
-		PassengerType.INJURED:
-			likes_description +=  "Injured"
-		PassengerType.HEMORRHOID:
-			likes_description +=  "Hemorrhoid"
-		PassengerType.WHEELCHAIR_BOUND:
-			likes_description +=  "Wheelchair"
-
-	return likes_description
-
-func get_passenger_hates() -> String:
-	var hates_description = ""
-	if mTraitType == Passenger.TraitTypes.NOISY:
-		hates_description += "Quiet"
-		
-	match mPassengerType:
-		PassengerType.CHILDREN:
+			description_text = "Prefers to sit down."
 			pass
 		PassengerType.TEENAGER:
-			if mTraitType == Passenger.TraitTypes.NOISY:
-				hates_description += ", "
 			if mGenderType == GenderType.MALE:
-				hates_description += "Female"
+				description_text += "Prefers to sit down, does not like sitting beside females."
 			else:
 				if mGenderType == GenderType.FEMALE:
-					hates_description += "Male"
+					description_text += "Prefers to sit down, does not like sitting beside males."
 		PassengerType.ADULT:
-			hates_description +=  "Adult"
+			description_text +=  "Prefers to sit down."
 		PassengerType.ADULT_WITH_BAGS:
-			hates_description +=  "Adult with Bags"
+			description_text +=  "Hates standing."
 		PassengerType.ADULT_WITH_BABY:
-			hates_description +=  "Adult with Baby"
+			description_text +=  "Needs to sit in priority seat."
 		PassengerType.PREGNANT:
-			hates_description +=  "Pregnant"
+			description_text +=  "Needs to sit in priority seat."
 		PassengerType.ELDERLY:
-			hates_description +=  "Elderly"
+			description_text +=  "Needs to sit in priority seat."
 		PassengerType.INJURED:
-			hates_description +=  "Injured"
+			description_text +=  "Needs to sit in priority seat."
 		PassengerType.HEMORRHOID:
-			hates_description +=  "Hemorrhoid"
+			description_text +=  "Prefers to stand."
 		PassengerType.WHEELCHAIR_BOUND:
-			hates_description +=  "Wheelchair"
+			description_text +=  "Needs to be in wheelchair section."
+			
+	if mTraitType == Passenger.TraitTypes.NOISY:
+		description_text += " Also enjoys being around noisy people."
 
-	return hates_description
+	return description_text
