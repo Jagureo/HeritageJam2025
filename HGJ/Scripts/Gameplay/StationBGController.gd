@@ -6,6 +6,7 @@ extends Node
 # References
 @onready var mBGSprite : Sprite2D = $StationBGSprite
 @onready var mAnimationPlayer : AnimationPlayer = $AnimationPlayer
+@onready var mStationSign : Label = $StationBGSprite/Sign/Label
 
 var mEntryPos : float = 2500
 var mStationPos : float = 10
@@ -29,6 +30,7 @@ func NextStationReaching():
 	mIsEntry = 1
 	mPositionScalar = 0
 	mAnimationPlayer.play("EnteringStation")
+	mStationSign.text = Station.EWStations[GameManager.sInstance.current_station_index + 1].name
 
 func StationLeaving():
 	mIsEntry = -1
