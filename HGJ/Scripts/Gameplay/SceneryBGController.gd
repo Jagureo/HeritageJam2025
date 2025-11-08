@@ -17,7 +17,6 @@ func _process(delta):
 		mSpriteSections.push_back(mSpriteSections[0])
 		mSpriteSections.pop_front()
 
-	print(mAnimationPlayer.current_animation)
 
 func NextStationReaching():
 	mAnimationPlayer.play("EnteringStation")

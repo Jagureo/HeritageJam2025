@@ -33,7 +33,8 @@ enum GenderType {
 
 # Reference
 @onready var mPassengerSprite : Sprite2D = $PassengerSprite
-@onready var mScorePopupLabel : Label = $ScorePopupLabel
+@onready var mScorePopupLabel : Label = $ScorePopupPanel/ScorePopupLabel
+@onready var mScorePopupPanel : Panel = $ScorePopupPanel
 @onready var mScorePopupTimer : Timer = $ScorePopupTimer
 
 # Passenger details
@@ -216,11 +217,11 @@ func show_evaluated_score_popup(score : int) -> void:
 			mScorePopupLabel.add_theme_color_override("font_color", Color.WHITE)
 		mScorePopupLabel.text = "+%d" % score
 	mScorePopupTimer.start(2)
-	mScorePopupLabel.visible = true
+	mScorePopupPanel.visible = true
 	
 func hide_evaluated_score_popup() -> void:
 	mScorePopupTimer.stop()
-	mScorePopupLabel.hide()
+	mScorePopupPanel.hide()
 	
 func alight_passenger() -> void:
 	await get_tree().create_timer(randf_range(1, 2)).timeout

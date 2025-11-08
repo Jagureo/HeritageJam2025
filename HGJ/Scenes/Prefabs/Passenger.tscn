@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvuwrt4hor7ht"]
+[gd_scene load_steps=7 format=3 uid="uid://cvuwrt4hor7ht"]
 
 [ext_resource type="Script" uid="uid://bj7k4jp7rwk3r" path="res://Scripts/Gameplay/Passenger.gd" id="1_0ypmp"]
 [ext_resource type="Shader" uid="uid://ffjvlocfuud7" path="res://Shaders/Selection.gdshader" id="2_wcd72"]
@@ -13,6 +13,13 @@ shader_parameter/fade = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l8m"]
 size = Vector2(108, 186)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcd72"]
+bg_color = Color(0.132813, 0.132813, 0.132813, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Passenger" type="Area2D"]
 collision_mask = 0
 script = ExtResource("1_0ypmp")
@@ -25,12 +32,17 @@ texture = ExtResource("2_wveo2")
 [node name="PassengerCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n1l8m")
 
-[node name="ScorePopupLabel" type="Label" parent="."]
+[node name="ScorePopupPanel" type="Panel" parent="."]
 visible = false
-offset_left = -28.0
-offset_top = -147.0
-offset_right = 27.0
-offset_bottom = -102.0
+offset_left = -26.0
+offset_top = -150.0
+offset_right = 28.0
+offset_bottom = -106.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wcd72")
+
+[node name="ScorePopupLabel" type="Label" parent="ScorePopupPanel"]
+offset_right = 55.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.247059)
 theme_override_font_sizes/font_size = 32
