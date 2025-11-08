@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://byly53o7s0tal"]
+
+[ext_resource type="Texture2D" uid="uid://djeglfycg4ng5" path="res://Sprites/Character/FemaleElderlyAnim.png" id="1_qap1m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tnrb"]
+atlas = ExtResource("1_qap1m")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kc5k"]
+atlas = ExtResource("1_qap1m")
+region = Rect2(768, 0, 768, 768)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tnrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kc5k")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]

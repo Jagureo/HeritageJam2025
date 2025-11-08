@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgsrj1drhnafo"]
+[gd_scene load_steps=13 format=3 uid="uid://cgsrj1drhnafo"]
 
 [ext_resource type="Script" uid="uid://c7d1tiyq1gj1e" path="res://Scripts/UI/mainmenuUI.gd" id="1_nelyp"]
+[ext_resource type="PackedScene" uid="uid://bvyt75alno37d" path="res://Scenes/Prefabs/MainMenuBackground.tscn" id="2_6r04x"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/RonysiswadiArchitect4-qZmp2.ttf" id="4_wfx2n"]
 [ext_resource type="Script" uid="uid://cign7xud1xsnv" path="res://Scripts/UI/versionNumber.gd" id="5_mcpc0"]
 [ext_resource type="Texture2D" uid="uid://syd6cyagis07" path="res://Sprites/UI/Credits/DE Round Rect.png" id="5_wfx2n"]
@@ -77,14 +78,8 @@ mouse_filter = 2
 script = ExtResource("1_nelyp")
 mGameScene = "uid://b1o618cdsf1is"
 
-[node name="Background" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="MainMenuBackground" parent="." instance=ExtResource("2_6r04x")]
+position = Vector2(960, 540)
 
 [node name="MainScreen" type="Control" parent="."]
 layout_mode = 1

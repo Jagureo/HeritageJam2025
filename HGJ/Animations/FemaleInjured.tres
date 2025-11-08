@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://ddxjtseptutrq"]
+
+[ext_resource type="Texture2D" uid="uid://ctms4j4s2ocrx" path="res://Sprites/Character/FemaleInjuredAnim.png" id="1_p1eoq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aept4"]
+atlas = ExtResource("1_p1eoq")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnj5k"]
+atlas = ExtResource("1_p1eoq")
+region = Rect2(768, 0, 768, 768)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aept4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnj5k")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]
