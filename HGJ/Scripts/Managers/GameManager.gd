@@ -120,9 +120,7 @@ func ReachedNextStation():
 		current_station_index += 1
 		_update_station_display()
 		EventMgr.OnNextstationReached.emit()
-		print("duration")
-		print(new_passengers * lerp(3, 5, float(Station.EWStations.size() - current_station_index) / float(Station.EWStations.size())))
-		mStationWaitingTimer.start(new_passengers * lerp(2, 4, float(Station.EWStations.size() - current_station_index) / float(Station.EWStations.size())))
+		mStationWaitingTimer.start((new_passengers * lerp(2, 4, float(Station.EWStations.size() - current_station_index) / float(Station.EWStations.size()))) + 1)
 		
 	if current_station_index == Station.EWStations.size() - 1:
 		game_ui.showGameOverPanel(true)
