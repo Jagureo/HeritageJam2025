@@ -301,7 +301,7 @@ Hover over the passengers to uncover their traits and preferences and help them 
 
 Simply hold right click to drag the passengers and make sure you seat everyone before the doors close!
 
-After the doors close your happiness score will be calculated for the round based on how well you were able to seat everyone, but beware, if your happiness drops below (-5) the train will ignite and derail spontaneously simultaneously."
+After the doors close your happiness score will be calculated for the round based on how well you were able to seat everyone, but beware, if your happiness drops below (-25) the train will ignite and derail spontaneously simultaneously."
 autowrap_mode = 2
 vertical_alignment = 1
 justification_flags = 160
