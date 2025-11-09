@@ -68,6 +68,11 @@ z_index = -1
 texture = ExtResource("2_6jqsr")
 
 [node name="HDBSection" type="Sprite2D" parent="."]
+position = Vector2(-1014, 96.5)
+texture = ExtResource("3_vnvqc")
+
+[node name="HDBSection2" type="Sprite2D" parent="."]
+position = Vector2(1333, 124)
 texture = ExtResource("3_vnvqc")
 
 [node name="Train" type="Sprite2D" parent="."]
