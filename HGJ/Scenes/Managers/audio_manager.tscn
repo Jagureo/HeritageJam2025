@@ -17,5 +17,8 @@ autoplay = true
 stream = ExtResource("2_kpiw8")
 volume_db = -5.0
 
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
 [node name="DoorClosingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_dm4xc")

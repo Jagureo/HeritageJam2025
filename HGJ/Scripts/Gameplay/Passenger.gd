@@ -110,7 +110,6 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Animations/FemaleWheelchair.tres") as SpriteFrames,
 }
 
-
 func _ready():
 	mPassengerSprite.material = mPassengerSprite.material.duplicate()
 
@@ -161,6 +160,7 @@ func OnMouseInputEvent(_viewport : Node, _event : InputEvent, _shape_idx : int):
 	if Input.is_action_just_pressed("Click") and sSelectedPassenger == null and GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION:
 		# print("Picked up passenger: ", self.name)
 		sSelectedPassenger = self
+		AudioManager.sInstance.play_pickup_sound()
 
 		# If passenger is sitting on a seat
 		if mSittingOn != null:
