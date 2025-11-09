@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bj7k4jp7rwk3r" path="res://Scripts/Gameplay/Passenger.gd" id="1_0ypmp"]
 [ext_resource type="Shader" uid="uid://ffjvlocfuud7" path="res://Shaders/Selection.gdshader" id="2_wcd72"]
 [ext_resource type="SpriteFrames" uid="uid://dubpsb1nht04i" path="res://Animations/MaleAdult.tres" id="3_l66kw"]
-[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/RonysiswadiArchitect4-qZmp2.ttf" id="4_6cpje"]
+[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="4_6cpje"]
 [ext_resource type="Texture2D" uid="uid://d0vdbn5s5m1nl" path="res://Sprites/Particles/Music_Note1.png" id="5_fovop"]
 [ext_resource type="Texture2D" uid="uid://b3nq27y1vappo" path="res://Sprites/Particles/Music_Note2.png" id="6_w1p4x"]
 

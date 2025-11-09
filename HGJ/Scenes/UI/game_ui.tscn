@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://5ln5jieeyw4b"]
 
 [ext_resource type="Script" uid="uid://bj1d6mvillccq" path="res://Scripts/UI/gameUI.gd" id="1_vo2tu"]
-[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/RonysiswadiArchitect4-qZmp2.ttf" id="2_vo2tu"]
+[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="2_vo2tu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo2tu"]
 bg_color = Color(0.00784314, 0.286275, 0.309804, 1)

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://d1x0h7mgv7hdj"
-path="res://.godot/imported/RonysiswadiArchitect4-qZmp2.ttf-a0a87c07ad47e9999ca3aef97c45771b.fontdata"
+path="res://.godot/imported/Mtir-Medium.ttf-d64c2a7509d65275154b0a8078172a85.fontdata"
 
 [deps]
 
-source_file="res://Fonts/RonysiswadiArchitect4-qZmp2.ttf"
-dest_files=["res://.godot/imported/RonysiswadiArchitect4-qZmp2.ttf-a0a87c07ad47e9999ca3aef97c45771b.fontdata"]
+source_file="res://Fonts/Mtir-Medium.ttf"
+dest_files=["res://.godot/imported/Mtir-Medium.ttf-d64c2a7509d65275154b0a8078172a85.fontdata"]
 
 [params]
 
@@ -21,7 +21,7 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
-hinting=1
+hinting=2
 subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
@@ -29,7 +29,12 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[]
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
 language_support={}
 script_support={}
 opentype_features={}

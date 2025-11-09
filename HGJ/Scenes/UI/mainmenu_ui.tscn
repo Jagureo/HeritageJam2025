@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c7d1tiyq1gj1e" path="res://Scripts/UI/mainmenuUI.gd" id="1_nelyp"]
 [ext_resource type="PackedScene" uid="uid://bvyt75alno37d" path="res://Scenes/Prefabs/MainMenuBackground.tscn" id="2_6r04x"]
 [ext_resource type="Texture2D" uid="uid://br81os8aimevn" path="res://Sprites/UI/game_logo.png" id="3_jw33x"]
-[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/RonysiswadiArchitect4-qZmp2.ttf" id="4_wfx2n"]
+[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="4_wfx2n"]
 [ext_resource type="Script" uid="uid://cign7xud1xsnv" path="res://Scripts/UI/versionNumber.gd" id="5_mcpc0"]
 [ext_resource type="Texture2D" uid="uid://syd6cyagis07" path="res://Sprites/UI/Credits/DE Round Rect.png" id="5_wfx2n"]
 [ext_resource type="Texture2D" uid="uid://cpdtyjfbr8hrw" path="res://Sprites/UI/Credits/credits_jagureo.png" id="6_egq24"]
@@ -140,10 +140,6 @@ offset_right = -290.0
 offset_bottom = -99.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(1, 0.969971, 0.519531, 1)
-theme_override_colors/font_color = Color(1, 0.966553, 0.464844, 1)
-theme_override_colors/font_focus_color = Color(1, 0.964706, 0.466667, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.964706, 0.466667, 1)
 theme_override_fonts/font = ExtResource("4_wfx2n")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
@@ -166,10 +162,6 @@ offset_right = 250.0
 offset_bottom = -99.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(1, 0.969971, 0.519531, 1)
-theme_override_colors/font_color = Color(1, 0.966553, 0.464844, 1)
-theme_override_colors/font_focus_color = Color(1, 0.964706, 0.466667, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.964706, 0.466667, 1)
 theme_override_fonts/font = ExtResource("4_wfx2n")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
@@ -192,10 +184,6 @@ offset_right = 790.0
 offset_bottom = -99.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(1, 0.969971, 0.519531, 1)
-theme_override_colors/font_color = Color(1, 0.966553, 0.464844, 1)
-theme_override_colors/font_focus_color = Color(1, 0.964706, 0.466667, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.964706, 0.466667, 1)
 theme_override_fonts/font = ExtResource("4_wfx2n")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
@@ -252,10 +240,6 @@ offset_top = 60.0
 offset_right = -50.0
 offset_bottom = 178.0
 grow_horizontal = 0
-theme_override_colors/font_hover_color = Color(1, 0.968627, 0.517647, 1)
-theme_override_colors/font_color = Color(1, 0.968627, 0.517647, 1)
-theme_override_colors/font_focus_color = Color(1, 0.968627, 0.517647, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.968627, 0.517647, 1)
 theme_override_fonts/font = ExtResource("4_wfx2n")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
@@ -283,11 +267,11 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 40.0
-offset_top = 21.0
+offset_top = 16.0
 offset_right = -45.0
-offset_bottom = 791.0
+offset_bottom = 786.0
 grow_horizontal = 2
-theme_override_constants/line_separation = 10
+theme_override_constants/line_separation = -8
 theme_override_fonts/normal_font = ExtResource("4_wfx2n")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
@@ -352,10 +336,6 @@ offset_top = 60.0
 offset_right = -50.0
 offset_bottom = 178.0
 grow_horizontal = 0
-theme_override_colors/font_hover_color = Color(1, 0.968627, 0.517647, 1)
-theme_override_colors/font_color = Color(1, 0.968627, 0.517647, 1)
-theme_override_colors/font_focus_color = Color(1, 0.968627, 0.517647, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.968627, 0.517647, 1)
 theme_override_fonts/font = ExtResource("4_wfx2n")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
@@ -372,7 +352,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 48.0
 offset_top = 244.0
-offset_right = 696.0
+offset_right = 891.0
 offset_bottom = -36.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
@@ -570,7 +550,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 164.0
 offset_top = -5.0
-offset_right = 614.0
+offset_right = 716.0
 offset_bottom = 59.0
 grow_vertical = 2
 theme_override_constants/line_spacing = -4
@@ -586,7 +566,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1199.0
+offset_left = -983.0
 offset_top = 247.0
 offset_right = -43.0
 offset_bottom = -33.0
@@ -661,9 +641,9 @@ text = "[color=pink]> SOUND <[/color]
    License: Attribution NonCommercial 4.0
 
 [color=pink]> FONT <[/color]
-- Rony Siswadi Architect 4 Font
-   https://www.fontspace.com/rony-siswadi-architect-4-font-f57592
-   License: Freeware"
+- Mitr
+   https://fonts.google.com/specimen/Mitr
+   License: SIL Open Font License, Version 1.1"
 
 [connection signal="pressed" from="MainScreen/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="MainScreen/H2PButton" to="." method="OnHowToPlayButtonPressed"]
