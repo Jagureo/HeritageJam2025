@@ -291,8 +291,7 @@ theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("4_wfx2n")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
-text = "[color=orange]> GAMEPLAY <[/color]
-
+text = "[color=yellow]> GAMEPLAY <[/color]
 Travel back to the 90's and promote some gracious travelling in Singapore's MRT.
 
 Every traveler has their own preferences, can you ensure has the most pleasant ride, but also extend that courtesy to other travelers.
@@ -656,12 +655,12 @@ offset_bottom = 760.0
 theme_override_fonts/normal_font = ExtResource("4_wfx2n")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[color=orange]> SOUND <[/color]
+text = "[color=pink]> SOUND <[/color]
 - Button Click 1 by Mellau. 
    https://freesound.org/s/506054/
    License: Attribution NonCommercial 4.0
 
-[color=orange]> FONT <[/color]
+[color=pink]> FONT <[/color]
 - Rony Siswadi Architect 4 Font
    https://www.fontspace.com/rony-siswadi-architect-4-font-f57592
    License: Freeware"
