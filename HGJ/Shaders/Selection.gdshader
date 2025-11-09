@@ -23,14 +23,14 @@ void fragment() {
 
 	// Calculate outline alpha
 	float outline = 0.0;
-	for (int i = 0; i < OFFSETS.length(); i++) 
+	for (int i = 0; i < OFFSETS.length(); i++)
 	{
 		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
-	}	
+	}
 	outline = min(outline, 1.0);
 
 	// If pixel is outside main sprite but within outline
-	if (mainTexture.a < 0.1 && outline > 0.0) 
+	if (mainTexture.a < 0.1 && outline > 0.0)
 	{
 		COLOR = vec4(outlineColour.rgb, outline * fade);
 	}

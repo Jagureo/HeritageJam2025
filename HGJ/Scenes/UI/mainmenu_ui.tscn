@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cgsrj1drhnafo"]
+[gd_scene load_steps=21 format=3 uid="uid://cgsrj1drhnafo"]
 
 [ext_resource type="Script" uid="uid://c7d1tiyq1gj1e" path="res://Scripts/UI/mainmenuUI.gd" id="1_nelyp"]
 [ext_resource type="PackedScene" uid="uid://bvyt75alno37d" path="res://Scenes/Prefabs/MainMenuBackground.tscn" id="2_6r04x"]
@@ -69,6 +69,16 @@ corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
+
+[sub_resource type="InputEventKey" id="InputEventKey_jw33x"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_wqgbw"]
+events = [SubResource("InputEventKey_jw33x")]
+
+[sub_resource type="Shortcut" id="Shortcut_nsp82"]
+events = [SubResource("InputEventKey_jw33x")]
 
 [node name="MainMenuUI" type="Control"]
 layout_mode = 3
@@ -253,6 +263,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
+shortcut = SubResource("Shortcut_wqgbw")
 text = "BACK"
 
 [node name="TextWrapper1" type="Panel" parent="HowToPlayScreen"]
@@ -353,6 +364,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
+shortcut = SubResource("Shortcut_nsp82")
 text = "BACK"
 
 [node name="TextWrapper1" type="Panel" parent="CreditsScreen"]
@@ -403,7 +415,7 @@ offset_bottom = 59.0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_wfx2n")
 theme_override_font_sizes/font_size = 32
-text = "Gameplay Programming, Shaders"
+text = "Gameplay Programming"
 vertical_alignment = 1
 
 [node name="DevLogo2" type="NinePatchRect" parent="CreditsScreen/TextWrapper1"]
