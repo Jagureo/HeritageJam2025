@@ -106,13 +106,12 @@ func ReachedNextStation():
 				hasWheelchairPassenger = false
 
 			# Passenger not seated, remove it from sitting area
-			if (random_passenger as Passenger).mSittingOn == null:
-				StandingArea.sStandingArea.RemovePassenger(random_passenger)
-			# Passenger is seated
-			else:
+			if (random_passenger as Passenger).mSittingOn != null:
 				(random_passenger as Passenger).mSittingOn.RemovePassenger()
 
+			StandingArea.sStandingArea.RemovePassenger(random_passenger)
 			random_passenger.alight_passenger()
+		
 		for i in range(new_passengers):
 			_spawn_passenger()
 
