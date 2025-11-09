@@ -256,7 +256,15 @@ func hide_evaluated_score_popup() -> void:
 	
 func alight_passenger() -> void:
 	await get_tree().create_timer(randf_range(1, 2)).timeout
+
+	if mSittingOn != null:
+		mSittingOn.RemovePassenger()
+
+	StandingArea.sStandingArea.RemovePassenger(self)
 	queue_free()
+
+
+
 
 func get_passenger_description() -> String:
 	var description_text = ""
