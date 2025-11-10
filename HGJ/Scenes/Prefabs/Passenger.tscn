@@ -26,7 +26,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="Gradient" id="Gradient_fovop"]
-colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Passenger" type="Area2D"]
 collision_mask = 0
@@ -73,7 +73,7 @@ amount = 3
 texture = ExtResource("5_fovop")
 lifetime = 0.5
 emission_shape = 1
-emission_sphere_radius = 128.0
+emission_sphere_radius = 48.0
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 10.0
@@ -87,7 +87,7 @@ amount = 3
 texture = ExtResource("6_w1p4x")
 lifetime = 0.5
 emission_shape = 1
-emission_sphere_radius = 128.0
+emission_sphere_radius = 48.0
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 10.0

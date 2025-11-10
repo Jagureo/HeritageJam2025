@@ -19,6 +19,7 @@ script = ExtResource("1_t7fmw")
 [node name="Seat1" parent="." instance=ExtResource("2_7bxc3")]
 position = Vector2(-420, 0)
 mSeatType = 1
+mIsBackFacing = true
 
 [node name="SeatSprite" parent="Seat1" index="0"]
 scale = Vector2(1.15, 1.15)
@@ -29,6 +30,7 @@ shape = SubResource("RectangleShape2D_qoro8")
 
 [node name="Seat2" parent="." instance=ExtResource("2_7bxc3")]
 position = Vector2(-280, 0)
+mIsBackFacing = true
 
 [node name="SeatSprite" parent="Seat2" index="0"]
 scale = Vector2(1.15, 1.15)
@@ -39,6 +41,7 @@ shape = SubResource("RectangleShape2D_qoro8")
 
 [node name="Seat3" parent="." instance=ExtResource("2_7bxc3")]
 position = Vector2(-140, 0)
+mIsBackFacing = true
 
 [node name="SeatSprite" parent="Seat3" index="0"]
 scale = Vector2(1.15, 1.15)
@@ -48,6 +51,7 @@ texture = ExtResource("4_yv3xb")
 shape = SubResource("RectangleShape2D_qoro8")
 
 [node name="Seat4" parent="." instance=ExtResource("2_7bxc3")]
+mIsBackFacing = true
 
 [node name="SeatSprite" parent="Seat4" index="0"]
 scale = Vector2(1.15, 1.15)
@@ -58,6 +62,7 @@ shape = SubResource("RectangleShape2D_qoro8")
 
 [node name="Seat5" parent="." instance=ExtResource("2_7bxc3")]
 position = Vector2(140, 0)
+mIsBackFacing = true
 
 [node name="SeatSprite" parent="Seat5" index="0"]
 scale = Vector2(1.15, 1.15)

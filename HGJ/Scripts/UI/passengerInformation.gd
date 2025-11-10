@@ -8,8 +8,8 @@ class_name PassengerInformation
 @onready var passenger_description : Label = $Panel/Description
 
 func show_display(passenger: Passenger):
-	passenger_type_label.text = passenger.get_passenger_type_string()
-	passenger_trait_label.text = passenger.get_passenger_trait_string()
-	passenger_gender_label.text = passenger.get_passenger_gender_string()
+	passenger_type_label.text = passenger.GetPassengerTypeString()
+	passenger_trait_label.text = passenger.GetPassengerTraitString()
+	passenger_gender_label.text = passenger.GetPassengerGenderString()
 	
-	passenger_description.text = passenger.get_passenger_description()
+	passenger_description.text = passenger.GetPassengerDescription()

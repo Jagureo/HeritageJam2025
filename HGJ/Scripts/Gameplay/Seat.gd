@@ -12,11 +12,14 @@ enum SeatType {
 
 # Seat details
 @export var mSeatType : SeatType
+@export var mIsBackFacing : bool = false
 var mCurrentlySeatedBy : Passenger
 var mSeatIndex : int
 
 # References
 @onready var mSeatSprite : Sprite2D = $SeatSprite
+@onready var mChildSitPos : Node2D = $ChildSitPos
+@onready var mTeenSitPos : Node2D = $TeenSitPos
 
 
 # Determine which Seat is hovered

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cwsny2ahgo1u2"]
 
-[ext_resource type="Script" uid="uid://c4x43nod7ql0" path="res://Scripts/Gameplay/StationBGController.gd" id="1_vxtes"]
+[ext_resource type="Script" uid="uid://c4x43nod7ql0" path="res://Scripts/BGController/StationBGController.gd" id="1_vxtes"]
 [ext_resource type="Texture2D" uid="uid://dxvu81ffwkit1" path="res://Sprites/Background/Station.png" id="2_vxtes"]
 [ext_resource type="Texture2D" uid="uid://b5fw4t65qoktb" path="res://Sprites/TrainProps/MRTStationSign.png" id="3_tuksv"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="4_740it"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dp2j8y2guvxd7"]
 
-[ext_resource type="Script" uid="uid://cn7u7gk3xc3wv" path="res://Scripts/Gameplay/SceneryBGController.gd" id="1_o44p5"]
+[ext_resource type="Script" uid="uid://cn7u7gk3xc3wv" path="res://Scripts/BGController/SceneryBGController.gd" id="1_o44p5"]
 [ext_resource type="Texture2D" uid="uid://cx8t3yuhcohjd" path="res://Sprites/Background/Sky2.png" id="2_gdyhk"]
 [ext_resource type="Texture2D" uid="uid://cmyfhf7bj3w4t" path="res://Sprites/Background/HDB2.png" id="3_xappe"]
 [ext_resource type="Texture2D" uid="uid://r22f5aa6souk" path="res://Sprites/Background/Tree2.png" id="4_p2hkp"]

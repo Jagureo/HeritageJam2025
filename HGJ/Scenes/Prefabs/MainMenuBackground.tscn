@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cmyfhf7bj3w4t" path="res://Sprites/Background/HDB2.png" id="3_vnvqc"]
 [ext_resource type="Texture2D" uid="uid://d24rskswg03bi" path="res://Sprites/Background/Viaduct.png" id="4_73euf"]
 [ext_resource type="Texture2D" uid="uid://r22f5aa6souk" path="res://Sprites/Background/Tree2.png" id="4_l35el"]
-[ext_resource type="Script" uid="uid://d06xqnn7n83nc" path="res://Scripts/Gameplay/MainMenuTrainAnimCtrl.gd" id="4_r8bwr"]
+[ext_resource type="Script" uid="uid://d06xqnn7n83nc" path="res://Scripts/BGController/MainMenuTrainAnimCtrl.gd" id="4_r8bwr"]
 
 [sub_resource type="Animation" id="Animation_6jqsr"]
 length = 0.001

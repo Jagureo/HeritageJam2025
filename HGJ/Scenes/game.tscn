@@ -42,4 +42,4 @@ one_shot = true
 one_shot = true
 
 [connection signal="timeout" from="StationTransitionTimer" to="." method="ReachedNextStation"]
-[connection signal="timeout" from="StationStayTimer" to="." method="_station_stay_timer_timeout"]
+[connection signal="timeout" from="StationStayTimer" to="." method="StationStayTimerTimeout"]

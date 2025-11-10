@@ -56,10 +56,12 @@ func _ready():
 		queue_free()
 		return
 
-	_update_station_display()
+	get_viewport().physics_object_picking_sort = true
+
+	UpdateStationDisplay()
 	update_happiness_level(0)
 	for i in randi_range(5, 16):
-		_spawn_passenger()
+		SpawnPassenger()
 		
 	passenger_information.hide()
 
@@ -73,7 +75,11 @@ func _process(_delta):
 
 		# Evaluate happiness
 		mScore += mOverallHappiness
-		pass	
+
+
+func _input(event): 
+	if event.is_action_pressed("ui_cancel"): 
+		game_ui.showGameOverPanel(true)
 
 
 func next_station() -> void:
@@ -93,7 +99,7 @@ func next_station() -> void:
 
 func ReachedNextStation():
 	if current_station_index < Station.EWStations.size() - 1:
-		_update_station_display()
+		UpdateStationDisplay()
 
 		var new_passengers = Station.EWStations[current_station_index].get_passenger_count()
 		var passengers_in_train = passenger_container.get_child_count() + new_passengers
@@ -113,11 +119,11 @@ func ReachedNextStation():
 			random_passenger.alight_passenger()
 		
 		for i in range(new_passengers):
-			_spawn_passenger()
+			SpawnPassenger()
 
 		# Update the next station sign
 		current_station_index += 1
-		_update_station_display()
+		UpdateStationDisplay()
 		EventMgr.OnNextstationReached.emit()
 		mStationWaitingTimer.start((new_passengers * lerp(2, 4, float(Station.EWStations.size() - current_station_index) / float(Station.EWStations.size()))) + 1)
 		
@@ -132,10 +138,10 @@ func ReachedNextStation():
 
 
 
-func _update_station_display() -> void:
+func UpdateStationDisplay() -> void:
 	game_ui.set_station(Station.EWStations[current_station_index].name)
 
-func _spawn_passenger() -> void:
+func SpawnPassenger() -> void:
 	var passenger = passenger_prefab.instantiate()
 	passenger_container.add_child(passenger)
 	passenger.position = Vector2(randf() * 200 + (100 if randi() % 2 == 0 else 1600), randf() * 350 + 550)
@@ -143,8 +149,10 @@ func _spawn_passenger() -> void:
 	if passenger.mPassengerType == Passenger.PassengerType.WHEELCHAIR_BOUND:
 		hasWheelchairPassenger = true
 
+
 func update_happiness_level(value: int) -> void:
 	game_ui.set_happiness_level(value)
+
 
 func on_passenger_hover_start(passenger : Passenger):
 	passenger_information.show()
@@ -165,10 +173,7 @@ func on_passenger_hover_end(passenger : Passenger):
 	else:
 		passenger_information.hide()
 
-func _input(event): 
-	if event.is_action_pressed("ui_cancel"): 
-		game_ui.showGameOverPanel(true)
 
-func _station_stay_timer_timeout():
+func StationStayTimerTimeout():
 	if current_station_index < Station.EWStations.size() - 1 and mOverallHappiness >= Constant.GAME_OVER_SCORE:
 		EventMgr.OnNextStationPressed.emit()
