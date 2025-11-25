@@ -1,0 +1,132 @@
+
+== TRAIN LINES ==
+- NSL: 2-3-2 seat, 2-3-W seat, normal crowd
+- EWL: 2-3-2 seat, 2-3-W seat, heavy crowd
+- NEL: 1-5-1 seat, 1-4-W seat, heavy crowd
+- CCL: 1-5-1 seat, 1-4-W seat, normal crowd, endless mode
+- DTL: 1-5-1 seat, W seat standalone, normal crowd
+- TEL: 1-3-1 seat, 1-2-W seat, normal crowd (Will have 2 rows of seat per side, and a middle door)
+
+V These probably won't do V
+- JRL: 1-6-1 seat, W seat standalone, normal crowd
+- CRL: 1-3-1 seat, W seat standalone, heavy crowd
+* Place passenger at the door to kick them out
+
+== DIFFICULTY ==
+- Peak hour - x1.5 crowd size [Evening sky]
+- Off peak hour - normal crowd size [Afternoon sky]
+- Last train - x0.5 crowd size [Night sky]
+
+== PASSENGERS ==
+- Child
+    > If standing: +0 points
+    > If sitting:  +5 points
+- Teenager
+    > If standing: +0 points
+    > If sitting:  +5 points, -4 points if sitting adjacent to opposite gender
+- Adult
+    > If standing: +0 points
+    > If sitting:  +3 points
+- Adult with bag
+    > If standing: -2 points per standing passenger
+    > If sitting:  +3 points
+- Adult with baby
+    > If standing: +0 points
+    > If sitting:  +5 points, +3 points if sitting on priority seat
+- Elderly
+    > If standing: -5 points
+    > If sitting:  +5 points, +3 points if sitting on priority seat
+- Injured
+    > If standing: -5 points
+    > If sitting:  +5 points, +3 points if sitting on priority seat
+- Pregnant
+    > If standing: +0 points
+    > If sitting:  +5 points, +3 points if sitting on priority seat
+- Adult that can't sit down
+    > If standing: +5 points
+    > If sitting:  -10 points
+- Wheelchair bound
+    > If standing: -5 points per standing passenger
+    > If sitting:  +5 points if on wheelchair slot. Cannot use seats.
+- Durian Lover (NEW)
+    > If standing: +10 points. -1 point per standing and sitting passenger (Except another Durian Lover)
+    > If sitting:  +13 points, -1 point per standing and sitting passenger (Except another Durian Lover)
+- Teenager with bag (NEW)
+    > If standing: -2 points per standing passenger
+    > If sitting:  +5 points, -4 points if sitting adjacent to passenger of opposite gender
+- Obese Adult (NEW)
+    > If standing: +0 points
+    > If sitting:  +5 points, -4 points on adjacent passenger.
+- Sleepy Teenager (NEW)
+    > If standing: -3 points
+    > If sitting:  +5 points. Once seated, cannot change seat.
+- Noisy Child (NEW)
+    > If standing: -2 points per standing passenger (Except another Noisy Child).
+    > If sitting:  +5 points. -4 points to adjacent passenger (Except another Noisy Child).
+
+Statuses: No more!
+
+== Passengers spawn weightage ==
+* Will be different for each line, but will provide baseline here for EWL
+- Child				> Weightage: 15 | Max: 99
+- Teenager			> Weightage: 15 | Max: 99
+- Adult				> Weightage: 20 | Max: 99
+- Adult with bag		> Weightage: 5  | Max: 5
+- Adult with baby		> Weightage: 5  | Max: 99
+- Elderly			> Weightage: 10 | Max: 99
+- Injured			> Weightage: 10 | Max: 99
+- Pregnant			> Weightage: 10 | Max: 99
+- Adult that can't sit down	> Weightage: 5  | Max: 99
+- Wheelchair bound		> Weightage: 10 | Max: 1
+- Durian Lover			> Weightage: 5  | Max: 2
+- Teenager with bag		> Weightage: 5  | Max: 5
+- Obese Adult			> Weightage: 5  | Max: 2
+- Sleepy Teenager		> Weightage: 5  | Max: 5
+- Noisy Child			> Weightage: 5  | Max: 5
+
+== LOSING CONDITION ==
+- Each station will have it's minimum goal points instead of flat -25 for losing.
+
+== LEVEL DATA ==
+- Line name
+- Line colour
+- Line text colour
+- Stations list
+    > Code
+    > Name
+    > Underground or overground - determines whether to use overground or tunnel BG
+    > Target score
+    > Number of passengers to board (min, max)
+- Passenger Spawn weightage
+    > Weightage
+    > Max number
+
+
+== PASSENGER TOOLTIP ==
+- Passenger Type
+- Gender Type
+- "If standing" description
+- "If sitting" description
+- Destination
+
+[+Score] in Green
+[-Score] in Red
+[+0 Score] in Gray
+[Priority Seat] in Blue
+[Standing Passenger] in Orange
+[Sitting Passenger] in Teal
+[Adjacent Passenger] in Rose
+[Wheelchair slot] in Blue
+
+== UI ==
+Bottom section:
+- Current station and next station map
+- Door closing timer progress bar
+- Current Score (animated increase)
+- Goal Score (animated change)
+- Next station button
+
+== Polish stuff ==
+- HDB and trees motion blur?
+
+
