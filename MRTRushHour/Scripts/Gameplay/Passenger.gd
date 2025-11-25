@@ -13,8 +13,6 @@ enum PassengerType {
 	HEMORRHOID,				# Must stand up
 	WHEELCHAIR_BOUND,		# Must use wheelchair slot, otherwise makes standing passengers angry
 	
-	# might not do due to technical difficulties
-	# FAT,					# Occupies 2 seats
 	LAST
 }
 

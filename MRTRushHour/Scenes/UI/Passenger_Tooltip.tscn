@@ -1,0 +1,147 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3ga1d2i553dn"]
+
+[ext_resource type="Texture2D" uid="uid://baciw3p5lc2ry" path="res://Sprites/UI/Credits/icon.svg" id="1_h13bv"]
+[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="2_usj5b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq863"]
+bg_color = Color(0, 0.211765, 0.231373, 0.752941)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="PassengerTooltip" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -124.0
+offset_right = 204.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iq863")
+
+[node name="GenderIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -110.5
+offset_right = -128.5
+offset_bottom = -50.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h13bv")
+expand_mode = 1
+
+[node name="PassengerType" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.5
+offset_top = -101.5
+offset_right = 136.5
+offset_bottom = -61.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.988798, 0.996094, 0.0622559, 1)
+theme_override_fonts/font = ExtResource("2_usj5b")
+theme_override_font_sizes/font_size = 25
+text = "Teenager with bag"
+
+[node name="StandingTitle" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -45.0
+offset_right = 114.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = -5
+theme_override_fonts/normal_font = ExtResource("2_usj5b")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[color=orange]If standing:[/color]"
+fit_content = true
+vertical_alignment = 1
+
+[node name="StandingDesc" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -19.0
+offset_right = 187.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = -5
+theme_override_fonts/normal_font = ExtResource("2_usj5b")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "[color=green]+10 points[/color]. [color=red]-1[/color] point per [color=orange]standing[/color] and [color=skyblue]sitting passenger[/color] (Except another Durian Lover)."
+fit_content = true
+vertical_alignment = 1
+
+[node name="SittingTitle" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = 31.0
+offset_right = 114.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = -5
+theme_override_fonts/normal_font = ExtResource("2_usj5b")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[color=skyblue]If sitting:[/color]"
+fit_content = true
+vertical_alignment = 1
+
+[node name="SittingDesc" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = 58.0
+offset_right = 187.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = -5
+theme_override_fonts/normal_font = ExtResource("2_usj5b")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "[color=green]+13 points[/color]. [color=red]-1[/color] point per [color=orange]standing[/color] and [color=skyblue]sitting passenger[/color] (Except another Durian Lover)."
+fit_content = true
+vertical_alignment = 1

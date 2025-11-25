@@ -76,7 +76,7 @@ Statuses: No more!
 - Elderly			> Weightage: 10 | Max: 99
 - Injured			> Weightage: 10 | Max: 99
 - Pregnant			> Weightage: 10 | Max: 99
-- Adult that can't sit down	> Weightage: 5  | Max: 99
+- Hemorrhoid		> Weightage: 5  | Max: 99
 - Wheelchair bound		> Weightage: 10 | Max: 1
 - Durian Lover			> Weightage: 5  | Max: 2
 - Teenager with bag		> Weightage: 5  | Max: 5
@@ -114,7 +114,7 @@ Statuses: No more!
 [+0 Score] in Gray
 [Priority Seat] in Blue
 [Standing Passenger] in Orange
-[Sitting Passenger] in Teal
+[Sitting Passenger] in sky blue
 [Adjacent Passenger] in Rose
 [Wheelchair slot] in Blue
 
@@ -129,4 +129,12 @@ Bottom section:
 == Polish stuff ==
 - HDB and trees motion blur?
 
-
+== Colour (RGB) ==
+EWL: 0, 150, 77
+NSL: 226, 39, 38
+NEL: 143, 65, 153
+CCL: 249, 157, 37
+DTL: 0, 93, 168
+TEL: 157, 91, 37
+JRL: 0, 166, 182
+CRL: 149, 214, 6
