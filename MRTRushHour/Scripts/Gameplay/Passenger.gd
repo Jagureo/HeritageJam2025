@@ -13,15 +13,12 @@ enum PassengerType {
 	HEMORRHOID,				# Must stand up
 	WHEELCHAIR_BOUND,		# Must use wheelchair slot, otherwise makes standing passengers angry
 	
-	# might not do due to technical difficulties
-	# FAT,					# Occupies 2 seats
 	LAST
 }
 
 enum TraitTypes {
 	NORMAL,
 	NOISY,		# Makes adjacent seated passengers angry
-	# FAMILY,		# Prefers to sit with other family members
 	LAST
 }
 
@@ -43,46 +40,11 @@ var mPassengerType : PassengerType
 var mTraitType     : TraitTypes
 var mGenderType    : GenderType
 
-# Passenger in-game stuff
-# var mHappinessLevel : int
-# var mSeated : bool 
-# var mIsAlighting : bool = false
-
-
 # Determine which passenger is clicked
 static var sSelectedPassenger : Passenger = null
 
 # Seat that this passenger is sitting on
 var mSittingOn : Seat = null
-
-
-# # Passenger sprites
-# static var sMalePassengerTextures : Dictionary[PassengerType, Texture2D] = {
-# 	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/MaleChild.png") as Texture2D,
-# 	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/MaleTeen.png") as Texture2D,
-# 	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
-# 	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/MaleBag.png") as Texture2D,
-# 	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
-# 	Passenger.PassengerType.PREGNANT :         null,
-# 	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/MaleElderly.png") as Texture2D,
-# 	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/MaleInjured.png") as Texture2D,
-# 	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
-# 	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/MaleAdult.png") as Texture2D,
-# }
-
-# static var sFemalePassengerTextures : Dictionary[PassengerType, Texture2D] = {
-# 	Passenger.PassengerType.CHILDREN :         preload("res://Sprites/Character/FemaleChild.png") as Texture2D,
-# 	Passenger.PassengerType.TEENAGER :         preload("res://Sprites/Character/FemaleTeen.png") as Texture2D,
-# 	Passenger.PassengerType.ADULT :            preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
-# 	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Sprites/Character/FemaleBag.png") as Texture2D,
-# 	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
-# 	Passenger.PassengerType.PREGNANT :         preload("res://Sprites/Character/FemalePregnant.png") as Texture2D,
-# 	Passenger.PassengerType.ELDERLY :          preload("res://Sprites/Character/FemaleElderly.png") as Texture2D,
-# 	Passenger.PassengerType.INJURED :          preload("res://Sprites/Character/FemaleInjured.png") as Texture2D,
-# 	Passenger.PassengerType.HEMORRHOID :       preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
-# 	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Sprites/Character/FemaleAdult.png") as Texture2D,
-# }
-
 
 static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
 	Passenger.PassengerType.CHILDREN :         preload("res://Animations/MaleChild.tres") as SpriteFrames,
@@ -135,6 +97,8 @@ func _ready():
 	if mTraitType == TraitTypes.NOISY:
 		mNoiseParticles.visible = true
 
+
+
 func _process(_delta):
 	if sSelectedPassenger == self:
 		# Drag the passenger to the mouse's position
@@ -145,11 +109,20 @@ func _process(_delta):
 		# Release mouse
 		if Input.is_action_just_released("Click") or GameManager.sInstance.mCurrLevelState != GameManager.LevelState.AT_STATION:
 			# If passenger is dropped off at a selected seat, put it there
-			if Seat.sSelectedSeat != null and not Seat.sSelectedSeat.HasPassenger():
-				if Seat.sSelectedSeat.AddPassenger(self):
+			if Seat.sSelectedSeat != null and not Seat.sSelectedSeat.HasPassenger() and Seat.sSelectedSeat.AddPassenger(self):
+				# If seat is backfacing and passenger is child/teen, use a special node position for them
+				if Seat.sSelectedSeat.mIsBackFacing and mPassengerType == PassengerType.CHILDREN:
+					self.global_position = Seat.sSelectedSeat.mChildSitPos.global_position
+				elif Seat.sSelectedSeat.mIsBackFacing and mPassengerType == PassengerType.TEENAGER:
+					self.global_position = Seat.sSelectedSeat.mTeenSitPos.global_position
+				else:
 					self.global_position = Seat.sSelectedSeat.global_position
-					mSittingOn = Seat.sSelectedSeat
-					StandingArea.sStandingArea.RemovePassenger(self)
+				
+				mSittingOn = Seat.sSelectedSeat
+				StandingArea.sStandingArea.RemovePassenger(self)
+			else:
+				# TODO: Snap passenger back to the middle region
+				pass
 
 			# print("Dropped off passenger: ", self.name)
 			sSelectedPassenger = null
@@ -182,7 +155,7 @@ func _exit_tree():
 		sSelectedPassenger = null
 
 
-func get_passenger_type_string() -> String:
+func GetPassengerTypeString() -> String:
 	match mPassengerType:
 		PassengerType.CHILDREN:
 			return "Child"
@@ -207,7 +180,7 @@ func get_passenger_type_string() -> String:
 		_:
 			return "Human"
 			
-func get_passenger_trait_string() -> String:
+func GetPassengerTraitString() -> String:
 	match mTraitType:
 		TraitTypes.NORMAL:
 			return "Quiet"
@@ -216,7 +189,7 @@ func get_passenger_trait_string() -> String:
 		_:
 			return "Ghost"
 			
-func get_passenger_gender_string() -> String:
+func GetPassengerGenderString() -> String:
 	match mGenderType:
 		GenderType.MALE:
 			return "Male"
@@ -250,10 +223,12 @@ func show_evaluated_score_popup(score : int) -> void:
 	mScorePopupTimer.start(3)
 	mScorePopupPanel.visible = true
 	
+
 func hide_evaluated_score_popup() -> void:
 	mScorePopupTimer.stop()
 	mScorePopupPanel.hide()
 	
+
 func alight_passenger() -> void:
 	await get_tree().create_timer(randf_range(1, 2)).timeout
 
@@ -266,7 +241,7 @@ func alight_passenger() -> void:
 
 
 
-func get_passenger_description() -> String:
+func GetPassengerDescription() -> String:
 	var description_text = ""
 	
 	match mPassengerType:

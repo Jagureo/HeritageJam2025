@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1o618cdsf1is"]
+
+[ext_resource type="Script" uid="uid://7u8flb2r01xw" path="res://Scripts/Managers/GameManager.gd" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://gntibs0quypb" path="res://Scenes/Prefabs/Background.tscn" id="2_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://5ln5jieeyw4b" path="res://Scenes/UI/game_ui.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://cop3bpaxlj8uv" path="res://Scenes/Prefabs/SeatRow_Standard.tscn" id="3_wowpa"]
+[ext_resource type="PackedScene" uid="uid://dyyyip6wqfeht" path="res://Scenes/Prefabs/SeatRow_Wheelchair.tscn" id="4_i6g32"]
+[ext_resource type="PackedScene" uid="uid://befplng8mg7t2" path="res://Scenes/Prefabs/StandingArea.tscn" id="5_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://b12ms6vuv3ss0" path="res://Scenes/Prefabs/Passenger_Information.tscn" id="7_1l0tm"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ebmjs")
+
+[node name="Background" parent="." instance=ExtResource("2_1l0tm")]
+position = Vector2(960, 599)
+
+[node name="SeatRow_Standard" parent="." instance=ExtResource("3_wowpa")]
+position = Vector2(960, 466)
+
+[node name="SeatRow_Wheelchair" parent="." instance=ExtResource("4_i6g32")]
+position = Vector2(959, 897)
+
+[node name="StandingArea" parent="." instance=ExtResource("5_1l0tm")]
+position = Vector2(962, 607)
+
+[node name="AllPassengers" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="GameUi" parent="." instance=ExtResource("2_qxrlw")]
+unique_name_in_owner = true
+
+[node name="PassengerInformation" parent="." instance=ExtResource("7_1l0tm")]
+offset_left = 1305.0
+offset_top = 945.0
+offset_right = 1305.0
+offset_bottom = 945.0
+
+[node name="StationTransitionTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StationStayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="StationTransitionTimer" to="." method="ReachedNextStation"]
+[connection signal="timeout" from="StationStayTimer" to="." method="StationStayTimerTimeout"]
