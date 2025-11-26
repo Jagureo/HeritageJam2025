@@ -9,32 +9,32 @@ class_name PassengerTooltip
 
 
 func SetTooltip(_passenger : Passenger):
-	SetPassengerName(_passenger.mPassengerType)
-	SetPassengerStandingDesc(_passenger.mPassengerType)
-	SetPassengerSittingDesc(_passenger.mPassengerType)
-	SetPassengerGenderSprite(_passenger.mGenderType)
+	GetPassengerName(_passenger.mPassengerType)
+	GetPassengerStandingDesc(_passenger.mPassengerType)
+	GetPassengerSittingDesc(_passenger.mPassengerType)
+	GetPassengerGenderSprite(_passenger.mGenderType)
 
 
-func SetPassengerName(_passengerType : Passenger.PassengerType):
-	pass
+static func GetPassengerName(_passengerType : Passenger.PassengerType) -> String:
+	return ""
 
 
-func SetPassengerStandingDesc(_passengerType : Passenger.PassengerType):
-	pass
+static func GetPassengerStandingDesc(_passengerType : Passenger.PassengerType) -> String:
+	return ""
 
 
-func SetPassengerSittingDesc(_passengerType : Passenger.PassengerType):
-	pass
+static func GetPassengerSittingDesc(_passengerType : Passenger.PassengerType) -> String:
+	return ""
 
 
-func SetPassengerGenderSprite(_passengerGender : Passenger.GenderType):
-	pass
+static func GetPassengerGenderSprite(_passengerGender : Passenger.GenderType) -> Texture2D:
+	return null
 
 
 static func ColouriseScore(_score : int) -> String:
 	if _score > 0:
-		return "[color=green]+{0}[/color]".format([_score])
+		return "[color=green]+{0} Happiness[/color]".format([_score])
 	elif _score < 0:
-		return "[color=red]{0}[/color]".format([_score])
+		return "[color=red]{0} Happiness[/color]".format([_score])
 	else:
-		return "[color=gray]+{0}[/color]".format([_score])
+		return "[color=gray]+{0} Happiness[/color]".format([_score])

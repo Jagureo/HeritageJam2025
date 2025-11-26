@@ -20,10 +20,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -204.0
-offset_top = -124.0
-offset_right = 204.0
-offset_bottom = 125.0
+offset_left = -207.5
+offset_top = -124.5
+offset_right = 207.5
+offset_bottom = 124.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iq863")
@@ -91,16 +91,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -173.0
-offset_top = -19.0
-offset_right = 187.0
-offset_bottom = 31.0
+offset_top = -26.5
+offset_right = 207.0
+offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_separation = -5
 theme_override_fonts/normal_font = ExtResource("2_usj5b")
 theme_override_font_sizes/normal_font_size = 15
 bbcode_enabled = true
-text = "[color=green]+10 points[/color]. [color=red]-1[/color] point per [color=orange]standing[/color] and [color=skyblue]sitting passenger[/color] (Except another Durian Lover)."
+text = "[color=green]+10 Happiness[/color]. [color=red]-1 Happiness[/color] per [color=orange]standing[/color] and [color=skyblue]sitting passenger[/color] (Except Durian Lover)."
 fit_content = true
 vertical_alignment = 1
 
@@ -133,15 +133,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -173.0
-offset_top = 58.0
-offset_right = 187.0
-offset_bottom = 108.0
+offset_top = 50.5
+offset_right = 207.0
+offset_bottom = 110.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_separation = -5
 theme_override_fonts/normal_font = ExtResource("2_usj5b")
 theme_override_font_sizes/normal_font_size = 15
 bbcode_enabled = true
-text = "[color=green]+13 points[/color]. [color=red]-1[/color] point per [color=orange]standing[/color] and [color=skyblue]sitting passenger[/color] (Except another Durian Lover)."
+text = "[color=green]+10 Happiness[/color]. [color=red]-1 Happiness[/color] per [color=orange]standing[/color] and [color=skyblue]sitting passenger[/color] (Except Durian Lover)."
 fit_content = true
 vertical_alignment = 1
