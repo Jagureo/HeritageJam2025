@@ -28,11 +28,11 @@ func EvaluateHappiness():
 		var passengerScore : int = 0
 
 		# If current passenger is noisy, then -1 score for each non-noisy adjacent passenger
-		if passenger.mTraitType == Passenger.TraitTypes.NOISY:
-			if leftPassenger != null && leftPassenger.mTraitType != Passenger.TraitTypes.NOISY:
-				passengerScore -= 1
-			if rightPassenger != null && rightPassenger.mTraitType != Passenger.TraitTypes.NOISY:
-				passengerScore -= 1
+		# if passenger.mTraitType == Passenger.TraitTypes.NOISY:
+		# 	if leftPassenger != null && leftPassenger.mTraitType != Passenger.TraitTypes.NOISY:
+		# 		passengerScore -= 1
+		# 	if rightPassenger != null && rightPassenger.mTraitType != Passenger.TraitTypes.NOISY:
+		# 		passengerScore -= 1
 
 		match passenger.mPassengerType:
 			Passenger.PassengerType.CHILDREN:

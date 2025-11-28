@@ -28,7 +28,7 @@ V These probably won't do V
     > If standing: +0 points
     > If sitting:  +3 points
 - Adult with bag
-    > If standing: -2 points per standing passenger
+    > If standing: +0 points. -2 points per standing passenger
     > If sitting:  +3 points
 - Adult with baby
     > If standing: +0 points
@@ -42,17 +42,17 @@ V These probably won't do V
 - Pregnant
     > If standing: +0 points
     > If sitting:  +5 points, +3 points if sitting on priority seat
-- Adult that can't sit down
+- Hemorrhoid
     > If standing: +5 points
     > If sitting:  -10 points
 - Wheelchair bound
-    > If standing: -5 points per standing passenger
+    > If standing: +0 points. -5 points per standing passenger
     > If sitting:  +5 points if on wheelchair slot. Cannot use seats.
 - Durian Lover (NEW)
     > If standing: +10 points. -1 point per standing and sitting passenger (Except another Durian Lover)
     > If sitting:  +13 points, -1 point per standing and sitting passenger (Except another Durian Lover)
 - Teenager with bag (NEW)
-    > If standing: -2 points per standing passenger
+    > If standing: 0 points. -1 point per standing passenger
     > If sitting:  +5 points, -4 points if sitting adjacent to passenger of opposite gender
 - Obese Adult (NEW)
     > If standing: +0 points
@@ -61,7 +61,7 @@ V These probably won't do V
     > If standing: -3 points
     > If sitting:  +5 points. Once seated, cannot change seat.
 - Noisy Child (NEW)
-    > If standing: -2 points per standing passenger (Except another Noisy Child).
+    > If standing: 0 points. -2 points per standing passenger (Except another Noisy Child).
     > If sitting:  +5 points. -4 points to adjacent passenger (Except another Noisy Child).
 
 Statuses: No more!

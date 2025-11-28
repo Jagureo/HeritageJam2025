@@ -12,15 +12,20 @@ enum PassengerType {
 	INJURED,				# Must sit down, bonus if sit on priority seat
 	HEMORRHOID,				# Must stand up
 	WHEELCHAIR_BOUND,		# Must use wheelchair slot, otherwise makes standing passengers angry
-	
+	DURIAN_LOVER,
+	TEENAGER_WITH_BAGS,
+	OBESE_ADULT,
+	SLEEPY_TEENAGER,
+	NOISY_CHILD,
+
 	LAST
 }
 
-enum TraitTypes {
-	NORMAL,
-	NOISY,		# Makes adjacent seated passengers angry
-	LAST
-}
+# enum TraitTypes {
+# 	NORMAL,
+# 	NOISY,		# Makes adjacent seated passengers angry
+# 	LAST
+# }
 
 enum GenderType {
 	MALE,
@@ -37,7 +42,7 @@ enum GenderType {
 
 # Passenger details
 var mPassengerType : PassengerType
-var mTraitType     : TraitTypes
+# var mTraitType     : TraitTypes
 var mGenderType    : GenderType
 
 # Determine which passenger is clicked
@@ -47,29 +52,39 @@ static var sSelectedPassenger : Passenger = null
 var mSittingOn : Seat = null
 
 static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
-	Passenger.PassengerType.CHILDREN :         preload("res://Animations/MaleChild.tres") as SpriteFrames,
-	Passenger.PassengerType.TEENAGER :         preload("res://Animations/MaleTeen.tres") as SpriteFrames,
-	Passenger.PassengerType.ADULT :            preload("res://Animations/MaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Animations/MaleAdultBag.tres") as SpriteFrames,
-	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Animations/MaleAdultWithBaby.tres") as SpriteFrames,
-	Passenger.PassengerType.PREGNANT :         null,
-	Passenger.PassengerType.ELDERLY :          preload("res://Animations/MaleElderly.tres") as SpriteFrames,
-	Passenger.PassengerType.INJURED :          preload("res://Animations/MaleInjured.tres") as SpriteFrames,
-	Passenger.PassengerType.HEMORRHOID :       preload("res://Animations/MaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Animations/MaleWheelchair.tres") as SpriteFrames,
+	Passenger.PassengerType.CHILDREN :           preload("res://Animations/MaleChild.tres") as SpriteFrames,
+	Passenger.PassengerType.TEENAGER :           preload("res://Animations/MaleTeen.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT :              preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT_WITH_BAGS :    preload("res://Animations/MaleAdultBag.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT_WITH_BABY :    preload("res://Animations/MaleAdultWithBaby.tres") as SpriteFrames,
+	Passenger.PassengerType.PREGNANT :           null,
+	Passenger.PassengerType.ELDERLY :            preload("res://Animations/MaleElderly.tres") as SpriteFrames,
+	Passenger.PassengerType.INJURED :            preload("res://Animations/MaleInjured.tres") as SpriteFrames,
+	Passenger.PassengerType.HEMORRHOID :         preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/MaleWheelchair.tres") as SpriteFrames,
+	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.OBESE_ADULT :        preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 }
 
 static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
-	Passenger.PassengerType.CHILDREN :         preload("res://Animations/FemaleChild.tres") as SpriteFrames,
-	Passenger.PassengerType.TEENAGER :         preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
-	Passenger.PassengerType.ADULT :            preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.ADULT_WITH_BAGS :  preload("res://Animations/FemaleAdultBag.tres") as SpriteFrames,
-	Passenger.PassengerType.ADULT_WITH_BABY :  preload("res://Animations/FemaleAdultWithBaby.tres") as SpriteFrames,
-	Passenger.PassengerType.PREGNANT :         preload("res://Animations/FemalePregnant.tres") as SpriteFrames,
-	Passenger.PassengerType.ELDERLY :          preload("res://Animations/FemaleElderly.tres") as SpriteFrames,
-	Passenger.PassengerType.INJURED :          preload("res://Animations/FemaleInjured.tres") as SpriteFrames,
-	Passenger.PassengerType.HEMORRHOID :       preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.WHEELCHAIR_BOUND : preload("res://Animations/FemaleWheelchair.tres") as SpriteFrames,
+	Passenger.PassengerType.CHILDREN :           preload("res://Animations/FemaleChild.tres") as SpriteFrames,
+	Passenger.PassengerType.TEENAGER :           preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT :              preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT_WITH_BAGS :    preload("res://Animations/FemaleAdultBag.tres") as SpriteFrames,
+	Passenger.PassengerType.ADULT_WITH_BABY :    preload("res://Animations/FemaleAdultWithBaby.tres") as SpriteFrames,
+	Passenger.PassengerType.PREGNANT :           preload("res://Animations/FemalePregnant.tres") as SpriteFrames,
+	Passenger.PassengerType.ELDERLY :            preload("res://Animations/FemaleElderly.tres") as SpriteFrames,
+	Passenger.PassengerType.INJURED :            preload("res://Animations/FemaleInjured.tres") as SpriteFrames,
+	Passenger.PassengerType.HEMORRHOID :         preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/FemaleWheelchair.tres") as SpriteFrames,
+	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.OBESE_ADULT :        preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 }
 
 func _ready():
@@ -81,7 +96,7 @@ func _ready():
 	else:
 		mPassengerType = randi() % PassengerType.LAST as PassengerType
 	
-	mTraitType = randi() % TraitTypes.LAST as TraitTypes
+	# mTraitType = randi() % TraitTypes.LAST as TraitTypes
 
 	# Only female can be pregnant
 	if mPassengerType == PassengerType.PREGNANT:
@@ -94,8 +109,8 @@ func _ready():
 	mPassengerSprite.play("Idle")
 
 	# Noisy particles
-	if mTraitType == TraitTypes.NOISY:
-		mNoiseParticles.visible = true
+	# if mTraitType == TraitTypes.NOISY:
+	# 	mNoiseParticles.visible = true
 
 
 
@@ -180,14 +195,14 @@ func GetPassengerTypeString() -> String:
 		_:
 			return "Human"
 			
-func GetPassengerTraitString() -> String:
-	match mTraitType:
-		TraitTypes.NORMAL:
-			return "Quiet"
-		TraitTypes.NOISY:
-			return "Noisy"
-		_:
-			return "Ghost"
+# func GetPassengerTraitString() -> String:
+# 	match mTraitType:
+# 		TraitTypes.NORMAL:
+# 			return "Quiet"
+# 		TraitTypes.NOISY:
+# 			return "Noisy"
+# 		_:
+# 			return "Ghost"
 			
 func GetPassengerGenderString() -> String:
 	match mGenderType:
@@ -271,7 +286,7 @@ func GetPassengerDescription() -> String:
 		PassengerType.WHEELCHAIR_BOUND:
 			description_text +=  "Must be in wheelchair area, otherwise Standing passengers get angry."
 			
-	if mTraitType == Passenger.TraitTypes.NOISY:
-		description_text += " Cannot be next to Quiet Passengers."
+	# if mTraitType == Passenger.TraitTypes.NOISY:
+	# 	description_text += " Cannot be next to Quiet Passengers."
 
 	return description_text

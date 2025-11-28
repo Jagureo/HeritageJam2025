@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cop3bpaxlj8uv" path="res://Scenes/Prefabs/SeatRow_Standard.tscn" id="3_wowpa"]
 [ext_resource type="PackedScene" uid="uid://dyyyip6wqfeht" path="res://Scenes/Prefabs/SeatRow_Wheelchair.tscn" id="4_i6g32"]
 [ext_resource type="PackedScene" uid="uid://befplng8mg7t2" path="res://Scenes/Prefabs/StandingArea.tscn" id="5_1l0tm"]
-[ext_resource type="PackedScene" uid="uid://b12ms6vuv3ss0" path="res://Scenes/Prefabs/Passenger_Information.tscn" id="7_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://d3ga1d2i553dn" path="res://Scenes/UI/Passenger_Tooltip.tscn" id="7_1l0tm"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ebmjs")
@@ -29,11 +29,11 @@ unique_name_in_owner = true
 [node name="GameUi" parent="." instance=ExtResource("2_qxrlw")]
 unique_name_in_owner = true
 
-[node name="PassengerInformation" parent="." instance=ExtResource("7_1l0tm")]
-offset_left = 1305.0
-offset_top = 945.0
-offset_right = 1305.0
-offset_bottom = 945.0
+[node name="PassengerTooltip" parent="." instance=ExtResource("7_1l0tm")]
+offset_left = 658.0
+offset_top = 296.0
+offset_right = 1258.0
+offset_bottom = 671.0
 
 [node name="StationTransitionTimer" type="Timer" parent="."]
 one_shot = true

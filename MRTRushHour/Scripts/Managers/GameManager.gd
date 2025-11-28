@@ -4,7 +4,7 @@ class_name GameManager
 @onready var game_ui : CanvasLayer = %GameUi
 @onready var passenger_prefab = preload("res://Scenes/Prefabs/Passenger.tscn")
 @onready var passenger_container : Node2D = %AllPassengers
-@onready var passenger_information : PassengerInformation = $PassengerInformation
+@onready var passenger_information : PassengerTooltip = $PassengerTooltip 
 @onready var mStationTransitionTimer : Timer = $StationTransitionTimer
 @onready var mStationWaitingTimer : Timer = $StationStayTimer
 
@@ -155,12 +155,13 @@ func update_happiness_level(value: int) -> void:
 
 
 func on_passenger_hover_start(passenger : Passenger):
+	passenger_information.SetTooltip(passenger)
 	passenger_information.show()
 	passenger_hover_queue.append(passenger)
 	while passenger_hover_queue.size() > 0 and not is_instance_valid(passenger_hover_queue.front()):
 		passenger_hover_queue.pop_front()
 	if passenger_hover_queue.size() > 0:
-		passenger_information.show_display(passenger_hover_queue.front())
+		passenger_information.SetTooltip(passenger_hover_queue.front())
 	else:
 		passenger_information.hide()
 
@@ -169,7 +170,7 @@ func on_passenger_hover_end(passenger : Passenger):
 	while passenger_hover_queue.size() > 0 and not is_instance_valid(passenger_hover_queue.front()):
 		passenger_hover_queue.pop_front()
 	if passenger_hover_queue.size() > 0:
-		passenger_information.show_display(passenger_hover_queue.front())
+		passenger_information.SetTooltip(passenger_hover_queue.front())
 	else:
 		passenger_information.hide()
 
