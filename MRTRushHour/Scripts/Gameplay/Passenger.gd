@@ -14,7 +14,7 @@ enum PassengerType {
 	WHEELCHAIR_BOUND,		# Must use wheelchair slot, otherwise makes standing passengers angry
 	DURIAN_LOVER,
 	TEENAGER_WITH_BAGS,
-	OBESE_ADULT,
+	# OBESE_ADULT,
 	SLEEPY_TEENAGER,
 	NOISY_CHILD,
 
@@ -64,7 +64,7 @@ static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/MaleWheelchair.tres") as SpriteFrames,
 	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/MaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.OBESE_ADULT :        preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	# Passenger.PassengerType.OBESE_ADULT :        preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 }
@@ -82,7 +82,7 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/FemaleWheelchair.tres") as SpriteFrames,
 	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.OBESE_ADULT :        preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	# Passenger.PassengerType.OBESE_ADULT :        preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 }

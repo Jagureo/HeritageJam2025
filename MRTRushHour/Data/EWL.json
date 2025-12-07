@@ -54,7 +54,6 @@
 		{ "type": "Wheelchair", "weight": 10, "max": 1 },
 		{ "type": "DurianLover", "weight": 5, "max": 2 },
 		{ "type": "TeenagerWithBag", "weight": 5, "max": 5 },
-		{ "type": "ObeseAdult", "weight": 5, "max": 2 },
 		{ "type": "SleepyTeenager", "weight": 5, "max": 5 },
 		{ "type": "NoisyChild", "weight": 5, "max": 5 }
 	]
