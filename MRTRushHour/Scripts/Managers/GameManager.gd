@@ -38,25 +38,26 @@ var mCurrLevelState : LevelState = LevelState.AT_STATION
 var hasWheelchairPassenger : bool = false
 
 func _enter_tree():
+	if sInstance != null:
+		queue_free()
+		return
+
+	sInstance = self
 	EventMgr.OnNextStationPressed.connect(next_station)
 	EventMgr.OnPassengerHoverStart.connect(on_passenger_hover_start)
 	EventMgr.OnPassengerHoverEnd.connect(on_passenger_hover_end)
 
 func _exit_tree():
-	EventMgr.OnNextStationPressed.disconnect(next_station)
-	EventMgr.OnPassengerHoverStart.disconnect(on_passenger_hover_start)
-	EventMgr.OnPassengerHoverEnd.disconnect(on_passenger_hover_end)
-	sInstance = null
+	if sInstance == self:
+		sInstance = null
+		EventMgr.OnNextStationPressed.disconnect(next_station)
+		EventMgr.OnPassengerHoverStart.disconnect(on_passenger_hover_start)
+		EventMgr.OnPassengerHoverEnd.disconnect(on_passenger_hover_end)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if sInstance == null:
-		sInstance = self
-	else:
-		queue_free()
-		return
-
-	get_viewport().physics_object_picking_sort = true
+	# get_viewport().physics_object_picking_sort = true
 
 	UpdateStationDisplay()
 	update_happiness_level(0)
@@ -90,6 +91,7 @@ func next_station() -> void:
 	await get_tree().create_timer(2.5).timeout
 
 	mCurrLevelState = LevelState.MOVING
+	SelectionManager.sInstance.EndDrag()
 	mReachingNextStation = false
 	
 	# Start the timer

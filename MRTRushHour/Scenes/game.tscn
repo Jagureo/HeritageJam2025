@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1o618cdsf1is"]
+[gd_scene load_steps=9 format=3 uid="uid://b1o618cdsf1is"]
 
 [ext_resource type="Script" uid="uid://7u8flb2r01xw" path="res://Scripts/Managers/GameManager.gd" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://gntibs0quypb" path="res://Scenes/Prefabs/Background.tscn" id="2_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://5ln5jieeyw4b" path="res://Scenes/UI/game_ui.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://c4dujnr40idvj" path="res://Scenes/Managers/selection_manager.tscn" id="2_v158k"]
 [ext_resource type="PackedScene" uid="uid://cop3bpaxlj8uv" path="res://Scenes/Prefabs/SeatRow_Standard.tscn" id="3_wowpa"]
 [ext_resource type="PackedScene" uid="uid://dyyyip6wqfeht" path="res://Scenes/Prefabs/SeatRow_Wheelchair.tscn" id="4_i6g32"]
 [ext_resource type="PackedScene" uid="uid://befplng8mg7t2" path="res://Scenes/Prefabs/StandingArea.tscn" id="5_1l0tm"]
@@ -10,6 +11,8 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ebmjs")
+
+[node name="SelectionManager" parent="." instance=ExtResource("2_v158k")]
 
 [node name="Background" parent="." instance=ExtResource("2_1l0tm")]
 position = Vector2(960, 599)
@@ -25,15 +28,16 @@ position = Vector2(962, 607)
 
 [node name="AllPassengers" type="Node2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
 
 [node name="GameUi" parent="." instance=ExtResource("2_qxrlw")]
 unique_name_in_owner = true
 
 [node name="PassengerTooltip" parent="." instance=ExtResource("7_1l0tm")]
-offset_left = 658.0
-offset_top = 296.0
-offset_right = 1258.0
-offset_bottom = 671.0
+offset_left = 670.0
+offset_top = 19.0
+offset_right = 1270.0
+offset_bottom = 394.0
 
 [node name="StationTransitionTimer" type="Timer" parent="."]
 one_shot = true

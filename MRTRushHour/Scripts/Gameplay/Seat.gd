@@ -18,8 +18,6 @@ var mSeatIndex : int
 
 # References
 @onready var mSeatSprite : Sprite2D = $SeatSprite
-@onready var mChildSitPos : Node2D = $ChildSitPos
-@onready var mTeenSitPos : Node2D = $TeenSitPos
 
 
 # Determine which Seat is hovered
@@ -35,11 +33,9 @@ func AddPassenger(_passenger : Passenger) -> bool:
 			return false
 	print(_passenger.mPassengerType)
 	mCurrentlySeatedBy = _passenger
-	# EventMgr.OnPassengerAddedToSeat.emit(_passenger, mSeatIndex)
 	return true
 
 func RemovePassenger():
-	# EventMgr.OnPassengerRemovedFromSeat.emit(mCurrentlySeatedBy, mSeatIndex)
 	mCurrentlySeatedBy = null
 
 
@@ -48,16 +44,23 @@ func HasPassenger() -> bool:
 
 
 func OnMouseEntered():
+	# Only show outline when dragging a passenger
+	if SelectionManager.sInstance.mDraggedPassenger == null:
+		return
+
 	sSelectedSeat = self
+	
+	# If seat has passenger then don't show highlight
+	if HasPassenger():
+		return
+
 	mSeatSprite.material.set_shader_parameter("tintFactor", -0.15)
 	mSeatSprite.material.set_shader_parameter("outlineWidth", 4)
-	# print("Selected Seat: ", self.name)
 
 
 func OnMouseExited():
 	if sSelectedSeat == self:
 		sSelectedSeat = null
-	# print("Deselected Seat: ", self.name)
 	mSeatSprite.material.set_shader_parameter("tintFactor", 0)
 	mSeatSprite.material.set_shader_parameter("outlineWidth", 0)
 

@@ -14,18 +14,11 @@ enum PassengerType {
 	WHEELCHAIR_BOUND,		# Must use wheelchair slot, otherwise makes standing passengers angry
 	DURIAN_LOVER,
 	TEENAGER_WITH_BAGS,
-	# OBESE_ADULT,
 	SLEEPY_TEENAGER,
 	NOISY_CHILD,
 
 	LAST
 }
-
-# enum TraitTypes {
-# 	NORMAL,
-# 	NOISY,		# Makes adjacent seated passengers angry
-# 	LAST
-# }
 
 enum GenderType {
 	MALE,
@@ -38,15 +31,10 @@ enum GenderType {
 @onready var mScorePopupLabel : Label = $ScorePopupPanel/ScorePopupLabel
 @onready var mScorePopupPanel : Panel = $ScorePopupPanel
 @onready var mScorePopupTimer : Timer = $ScorePopupTimer
-@onready var mNoiseParticles : Node2D = $Particles
 
 # Passenger details
 var mPassengerType : PassengerType
-# var mTraitType     : TraitTypes
 var mGenderType    : GenderType
-
-# Determine which passenger is clicked
-static var sSelectedPassenger : Passenger = null
 
 # Seat that this passenger is sitting on
 var mSittingOn : Seat = null
@@ -64,7 +52,6 @@ static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/MaleWheelchair.tres") as SpriteFrames,
 	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/MaleAdult.tres") as SpriteFrames,
-	# Passenger.PassengerType.OBESE_ADULT :        preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 }
@@ -82,7 +69,6 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/FemaleWheelchair.tres") as SpriteFrames,
 	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
-	# Passenger.PassengerType.OBESE_ADULT :        preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 }
@@ -90,140 +76,61 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 func _ready():
 	mPassengerSprite.material = mPassengerSprite.material.duplicate()
 
-	# 	StandingArea.sStandingArea.AddPassenger(self)
 	if GameManager.sInstance.hasWheelchairPassenger == true:
 		mPassengerType = randi() % PassengerType.WHEELCHAIR_BOUND as PassengerType
 	else:
 		mPassengerType = randi() % PassengerType.LAST as PassengerType
 	
-	# mTraitType = randi() % TraitTypes.LAST as TraitTypes
-
 	# Only female can be pregnant
 	if mPassengerType == PassengerType.PREGNANT:
 		mGenderType = GenderType.FEMALE
 	else:
 		mGenderType = randi() % GenderType.LAST as GenderType
 	
-	# mPassengerSprite.texture = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
 	mPassengerSprite.sprite_frames = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
 	mPassengerSprite.play("Idle")
 
-	# Noisy particles
-	# if mTraitType == TraitTypes.NOISY:
-	# 	mNoiseParticles.visible = true
 
 
+func CanBeDragged() -> bool:
+	return GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION
 
-func _process(_delta):
-	if sSelectedPassenger == self:
-		# Drag the passenger to the mouse's position
-		# Clamp the mouse position to be within the screen
-		self.position = get_global_mouse_position().clamp(Vector2(Constant.LEFT_DRAG_LIMIT, Constant.TOP_DRAG_LIMIT), 
-														  Vector2(Constant.RIGHT_DRAG_LIMIT, Constant.BOTTOM_DRAG_LIMIT))
 
-		# Release mouse
-		if Input.is_action_just_released("Click") or GameManager.sInstance.mCurrLevelState != GameManager.LevelState.AT_STATION:
-			# If passenger is dropped off at a selected seat, put it there
-			if Seat.sSelectedSeat != null and not Seat.sSelectedSeat.HasPassenger() and Seat.sSelectedSeat.AddPassenger(self):
-				# If seat is backfacing and passenger is child/teen, use a special node position for them
-				if Seat.sSelectedSeat.mIsBackFacing and mPassengerType == PassengerType.CHILDREN:
-					self.global_position = Seat.sSelectedSeat.mChildSitPos.global_position
-				elif Seat.sSelectedSeat.mIsBackFacing and mPassengerType == PassengerType.TEENAGER:
-					self.global_position = Seat.sSelectedSeat.mTeenSitPos.global_position
-				else:
-					self.global_position = Seat.sSelectedSeat.global_position
-				
-				mSittingOn = Seat.sSelectedSeat
-				StandingArea.sStandingArea.RemovePassenger(self)
-			else:
-				# TODO: Snap passenger back to the middle region
-				pass
+func OnDragStart():
+	AudioManager.sInstance.play_pickup_sound()
+	# z_index = Constant.DRAGGED_Z_INDEX
 
-			# print("Dropped off passenger: ", self.name)
-			sSelectedPassenger = null
+	if mSittingOn:
+		mSittingOn.RemovePassenger()
+		mSittingOn = null
+		StandingArea.sStandingArea.AddPassenger(self)
 
+
+func OnDragUpdate():
+	global_position = (get_global_mouse_position() - SelectionManager.sInstance.mClickPos).clamp(
+		Vector2(Constant.LEFT_DRAG_LIMIT, Constant.TOP_DRAG_LIMIT),
+		Vector2(Constant.RIGHT_DRAG_LIMIT, Constant.BOTTOM_DRAG_LIMIT)
+	)
 		
-func OnMouseInputEvent(_viewport : Node, _event : InputEvent, _shape_idx : int):
-	# Can only move while at station
-	if Input.is_action_just_pressed("Click") and sSelectedPassenger == null and GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION:
-		# print("Picked up passenger: ", self.name)
-		sSelectedPassenger = self
-		AudioManager.sInstance.play_pickup_sound()
 
-		# If passenger is sitting on a seat
-		if mSittingOn != null:
-			mSittingOn.RemovePassenger()
-			mSittingOn = null
-			StandingArea.sStandingArea.AddPassenger(self)
+func OnDragEnd():
+	if Seat.sSelectedSeat and not Seat.sSelectedSeat.HasPassenger():
+		if Seat.sSelectedSeat.AddPassenger(self):
+			global_position = Seat.sSelectedSeat.global_position
+			mSittingOn = Seat.sSelectedSeat
+			StandingArea.sStandingArea.RemovePassenger(self)
 
 
-
-func _enter_tree():
-	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
-	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
-	
-
-func _exit_tree():
-	disconnect("mouse_entered", Callable(self, "_on_mouse_entered"))
-	disconnect("mouse_exited", Callable(self, "_on_mouse_exited"))
-	if sSelectedPassenger == self:
-		sSelectedPassenger = null
-
-
-func GetPassengerTypeString() -> String:
-	match mPassengerType:
-		PassengerType.CHILDREN:
-			return "Child"
-		PassengerType.TEENAGER:
-			return "Teenager"
-		PassengerType.ADULT:
-			return "Adult"
-		PassengerType.ADULT_WITH_BAGS:
-			return "Adult with Bags"
-		PassengerType.ADULT_WITH_BABY:
-			return "Adult with Baby"
-		PassengerType.PREGNANT:
-			return "Pregnant"
-		PassengerType.ELDERLY:
-			return "Elderly"
-		PassengerType.INJURED:
-			return "Injured"
-		PassengerType.HEMORRHOID:
-			return "Hemorrhoid"
-		PassengerType.WHEELCHAIR_BOUND:
-			return "Wheelchair"
-		_:
-			return "Human"
-			
-# func GetPassengerTraitString() -> String:
-# 	match mTraitType:
-# 		TraitTypes.NORMAL:
-# 			return "Quiet"
-# 		TraitTypes.NOISY:
-# 			return "Noisy"
-# 		_:
-# 			return "Ghost"
-			
-func GetPassengerGenderString() -> String:
-	match mGenderType:
-		GenderType.MALE:
-			return "Male"
-		GenderType.FEMALE:
-			return "Female"
-		_:
-			return "Questioning"
-	
-func _on_mouse_entered():
-	EventMgr.OnPassengerHoverStart.emit(self)
+func OnHoverStart():
 	mPassengerSprite.material.set_shader_parameter("tintFactor", -0.15)
 	mPassengerSprite.material.set_shader_parameter("outlineWidth", 10)
-	
 
-func _on_mouse_exited():
-	EventMgr.OnPassengerHoverEnd.emit(self)
+
+func OnHoverEnd():
 	mPassengerSprite.material.set_shader_parameter("tintFactor", 0)
 	mPassengerSprite.material.set_shader_parameter("outlineWidth", 0)
-	
+
+
 
 func show_evaluated_score_popup(score : int) -> void:
 	if score < 0:
@@ -253,40 +160,3 @@ func alight_passenger() -> void:
 	StandingArea.sStandingArea.RemovePassenger(self)
 	queue_free()
 
-
-
-
-func GetPassengerDescription() -> String:
-	var description_text = ""
-	
-	match mPassengerType:
-		PassengerType.CHILDREN:
-			description_text = "Loves to sit."
-			pass
-		PassengerType.TEENAGER:
-			if mGenderType == GenderType.MALE:
-				description_text += "Prefers to sit, does not like sitting beside females."
-			else:
-				if mGenderType == GenderType.FEMALE:
-					description_text += "Prefers to sit, does not like sitting beside males."
-		PassengerType.ADULT:
-			description_text +=  "Prefers to sit."
-		PassengerType.ADULT_WITH_BAGS:
-			description_text +=  "Prefers to sit. If standing, upsets Standing passengers."
-		PassengerType.ADULT_WITH_BABY:
-			description_text +=  "Needs to sit. Priority seat bonus"
-		PassengerType.PREGNANT:
-			description_text +=  "Needs to sit. Priority seat bonus."
-		PassengerType.ELDERLY:
-			description_text +=  "Must sit. Priority seat bonus."
-		PassengerType.INJURED:
-			description_text +=  "Must sit. Priority seat bonus."
-		PassengerType.HEMORRHOID:
-			description_text +=  "Must stand."
-		PassengerType.WHEELCHAIR_BOUND:
-			description_text +=  "Must be in wheelchair area, otherwise Standing passengers get angry."
-			
-	# if mTraitType == Passenger.TraitTypes.NOISY:
-	# 	description_text += " Cannot be next to Quiet Passengers."
-
-	return description_text

@@ -1,7 +1,7 @@
 extends Node
 class_name AudioManager
 
-static var sInstance : AudioManager
+static var sInstance : AudioManager = null
 
 @onready var mBGMMusic : AudioStreamPlayer = $BackgroundMusic
 @onready var mClickSound : AudioStreamPlayer = $ClickSound
@@ -20,11 +20,17 @@ var sPassengerPickupSounds : Array[AudioStream] = [
 	preload("res://Audio/Pickup/pickup9.mp3") as AudioStream,
 ]
 
-func _init():
+func _enter_tree():
 	if sInstance != null:
-		self.queue_free()
+		queue_free()
 		return
 	sInstance = self
+	
+
+func _exit_tree():
+	if sInstance == self:
+		sInstance = null
+
 
 func play_pickup_sound() -> void:
 	mPickupSound.stream = sPassengerPickupSounds[randi_range(0, len(sPassengerPickupSounds) - 1)]

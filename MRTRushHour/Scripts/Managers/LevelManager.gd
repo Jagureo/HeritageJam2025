@@ -1,7 +1,7 @@
 extends Node
 class_name LevelManager
 
-static var sInstance : LevelManager
+static var sInstance : LevelManager = null
 
 # All the levels that are available
 enum MRTLine {
@@ -18,18 +18,23 @@ var mLevelData : LevelData
 
 
 
-func _init():
+func _enter_tree():
 	if sInstance != null:
 		self.queue_free()
 		return
 	sInstance = self
 
 
+func _exit_tree():
+	if sInstance == self:
+		sInstance = null
+
+
 func SetLevel(_line : MRTLine):
 	mSelectedLine = _line
 	
 	match(_line):
-		case MRTLine.EWL:
+		MRTLine.EWL:
 			LoadLevel("res://Data/EWL.json")
 		_:
 			printerr("Unknown Line Level loaded: ", str(_line))
