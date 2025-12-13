@@ -38,6 +38,7 @@ offset_left = 670.0
 offset_top = 19.0
 offset_right = 1270.0
 offset_bottom = 394.0
+metadata/_edit_use_anchors_ = true
 
 [node name="StationTransitionTimer" type="Timer" parent="."]
 one_shot = true

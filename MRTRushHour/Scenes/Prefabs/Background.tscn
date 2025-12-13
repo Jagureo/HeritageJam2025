@@ -172,7 +172,7 @@ _data = {
 }
 
 [node name="TrainBackground" type="Sprite2D"]
-z_index = -1
+z_index = -2
 texture = ExtResource("1_l38g2")
 
 [node name="SceneryBackground" parent="." instance=ExtResource("2_atd0o")]
@@ -212,7 +212,8 @@ scale = Vector2(1.25, 1.25)
 texture = ExtResource("4_atd0o")
 
 [node name="TrainWall" type="Sprite2D" parent="."]
-z_index = 3
+z_index = 5
+z_as_relative = false
 position = Vector2(0, 424)
 texture = ExtResource("5_5gtxu")
 

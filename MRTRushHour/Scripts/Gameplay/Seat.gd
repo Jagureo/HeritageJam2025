@@ -33,6 +33,8 @@ func AddPassenger(_passenger : Passenger) -> bool:
 			return false
 	print(_passenger.mPassengerType)
 	mCurrentlySeatedBy = _passenger
+	# Lighter glow to indicate seat is occupied
+	mSeatSprite.material.set_shader_parameter("tintFactor", -0.15)
 	return true
 
 func RemovePassenger():
@@ -56,13 +58,25 @@ func OnMouseEntered():
 
 	mSeatSprite.material.set_shader_parameter("tintFactor", -0.15)
 	mSeatSprite.material.set_shader_parameter("outlineWidth", 4)
+	if mIsBackFacing:
+		z_index = 3
+	else:
+		z_index = 0
 
 
 func OnMouseExited():
 	if sSelectedSeat == self:
 		sSelectedSeat = null
-	mSeatSprite.material.set_shader_parameter("tintFactor", 0)
+
+	# If got passenger sitting, then don't change the tint
+	if mCurrentlySeatedBy == null:
+		mSeatSprite.material.set_shader_parameter("tintFactor", 0)
+	
 	mSeatSprite.material.set_shader_parameter("outlineWidth", 0)
+	if mIsBackFacing:
+		z_index = 2
+	else:
+		z_index = -1
 
 
 func _exit_tree():
