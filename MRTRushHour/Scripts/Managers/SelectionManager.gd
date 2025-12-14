@@ -52,6 +52,7 @@ func _unhandled_input(event):
 
 
 func TryStartDrag():
+	# Should not be able to drag another passenger
 	if mDraggedPassenger != null:
 		return
 
@@ -60,6 +61,7 @@ func TryStartDrag():
 		mClickPos = picked.get_local_mouse_position()
 		mDraggedPassenger = picked
 		picked.OnDragStart()
+		GameManager.sInstance.HidePassengerTooltip()
 
 
 func EndDrag():
@@ -76,24 +78,34 @@ func _process(_delta):
 
 
 func UpdateHover():
+	# Don't evaluate hover if a passenger is being dragged
 	if mDraggedPassenger:
 		return
 
 	var picked := GetFrontmostPassenger()
 
 	if picked == mHoveredPassenger:
+		# This is required so if players were to click and release without exiting the Area2D,
+		# Then the tooltip will show again
+		if mHoveredPassenger != null and not GameManager.sInstance.IsPassengerTooltipVisible():
+			GameManager.sInstance.ShowPassengerTooltip(mHoveredPassenger)
 		return
 
+	# If there's a change in who is hovering then undo white outline for old one
 	if mHoveredPassenger:
 		mHoveredPassenger.OnHoverEnd()
+		GameManager.sInstance.HidePassengerTooltip()
 
 	mHoveredPassenger = picked
 
+	# Add white outline for newly picked one
 	if mHoveredPassenger:
 		mHoveredPassenger.OnHoverStart()
+		GameManager.sInstance.ShowPassengerTooltip(mHoveredPassenger)
 
 
 func UpdateDrag():
+	# Don't need to do anything if no pasengers are being dragged
 	if mDraggedPassenger == null:
 		return
 

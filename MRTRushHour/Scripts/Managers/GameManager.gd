@@ -20,7 +20,7 @@ var mOverallHappiness : int = 0:
 		if newValue < Constant.GAME_OVER_SCORE:
 			game_ui.showGameOverPanel(true)
 		
-var passenger_hover_queue : Array[Passenger] = []
+# var passenger_hover_queue : Array[Passenger] = []
 var mReachingNextStation : bool = true
 
 
@@ -44,15 +44,11 @@ func _enter_tree():
 
 	sInstance = self
 	EventMgr.OnNextStationPressed.connect(next_station)
-	EventMgr.OnPassengerHoverStart.connect(on_passenger_hover_start)
-	EventMgr.OnPassengerHoverEnd.connect(on_passenger_hover_end)
 
 func _exit_tree():
 	if sInstance == self:
 		sInstance = null
 		EventMgr.OnNextStationPressed.disconnect(next_station)
-		EventMgr.OnPassengerHoverStart.disconnect(on_passenger_hover_start)
-		EventMgr.OnPassengerHoverEnd.disconnect(on_passenger_hover_end)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -156,25 +152,43 @@ func update_happiness_level(value: int) -> void:
 	game_ui.set_happiness_level(value)
 
 
-func on_passenger_hover_start(passenger : Passenger):
-	passenger_information.SetTooltip(passenger)
+func ShowPassengerTooltip(_passenger : Passenger):
+	passenger_information.SetTooltip(_passenger)
 	passenger_information.show()
-	passenger_hover_queue.append(passenger)
-	while passenger_hover_queue.size() > 0 and not is_instance_valid(passenger_hover_queue.front()):
-		passenger_hover_queue.pop_front()
-	if passenger_hover_queue.size() > 0:
-		passenger_information.SetTooltip(passenger_hover_queue.front())
-	else:
-		passenger_information.hide()
+	# Cap at X position at [250, 1670] so the tooltip won't go over the screen
+	passenger_information.position = Vector2(clamp(_passenger.global_position.x, 250, 1670), _passenger.global_position.y)  + Vector2(0, -275)
 
-func on_passenger_hover_end(passenger : Passenger):
-	passenger_hover_queue.erase(passenger)
-	while passenger_hover_queue.size() > 0 and not is_instance_valid(passenger_hover_queue.front()):
-		passenger_hover_queue.pop_front()
-	if passenger_hover_queue.size() > 0:
-		passenger_information.SetTooltip(passenger_hover_queue.front())
-	else:
-		passenger_information.hide()
+
+func HidePassengerTooltip():
+	passenger_information.hide()
+
+
+func IsPassengerTooltipVisible() -> bool:
+	return passenger_information.visible
+
+
+
+
+
+# func on_passenger_hover_start(passenger : Passenger):
+# 	passenger_information.SetTooltip(passenger)
+# 	passenger_information.show()
+# 	passenger_hover_queue.append(passenger)
+# 	while passenger_hover_queue.size() > 0 and not is_instance_valid(passenger_hover_queue.front()):
+# 		passenger_hover_queue.pop_front()
+# 	if passenger_hover_queue.size() > 0:
+# 		passenger_information.SetTooltip(passenger_hover_queue.front())
+# 	else:
+# 		passenger_information.hide()
+
+# func on_passenger_hover_end(passenger : Passenger):
+# 	passenger_hover_queue.erase(passenger)
+# 	while passenger_hover_queue.size() > 0 and not is_instance_valid(passenger_hover_queue.front()):
+# 		passenger_hover_queue.pop_front()
+# 	if passenger_hover_queue.size() > 0:
+# 		passenger_information.SetTooltip(passenger_hover_queue.front())
+# 	else:
+# 		passenger_information.hide()
 
 
 func StationStayTimerTimeout():

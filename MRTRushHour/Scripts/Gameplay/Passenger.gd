@@ -98,8 +98,8 @@ func CanBeDragged() -> bool:
 
 func OnDragStart():
 	AudioManager.sInstance.play_pickup_sound()
-	# z_index = Constant.DRAGGED_Z_INDEX
 
+	# If passenger was sitting on a seat then unassign this seat
 	if mSittingOn:
 		mSittingOn.RemovePassenger()
 		mSittingOn = null

@@ -31,7 +31,6 @@ func AddPassenger(_passenger : Passenger) -> bool:
 	if _passenger.mPassengerType == Passenger.PassengerType.WHEELCHAIR_BOUND:
 		if mSeatType != SeatType.WHEELCHAIR:
 			return false
-	print(_passenger.mPassengerType)
 	mCurrentlySeatedBy = _passenger
 	# Lighter glow to indicate seat is occupied
 	mSeatSprite.material.set_shader_parameter("tintFactor", -0.15)
@@ -39,7 +38,8 @@ func AddPassenger(_passenger : Passenger) -> bool:
 
 func RemovePassenger():
 	mCurrentlySeatedBy = null
-
+	# Remove the tint that showed this seat is occupied
+	mSeatSprite.material.set_shader_parameter("tintFactor", 0)
 
 func HasPassenger() -> bool:
 	return mCurrentlySeatedBy != null

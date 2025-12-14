@@ -17,6 +17,7 @@ z_index = 1
 script = ExtResource("1_t7fmw")
 
 [node name="Seat1" parent="." instance=ExtResource("2_7bxc3")]
+z_index = 2
 position = Vector2(-420, 0)
 mSeatType = 1
 mIsBackFacing = true
@@ -29,6 +30,7 @@ texture = ExtResource("3_qoro8")
 shape = SubResource("RectangleShape2D_qoro8")
 
 [node name="Seat2" parent="." instance=ExtResource("2_7bxc3")]
+z_index = 2
 position = Vector2(-280, 0)
 mIsBackFacing = true
 
@@ -40,6 +42,7 @@ texture = ExtResource("4_yv3xb")
 shape = SubResource("RectangleShape2D_qoro8")
 
 [node name="Seat3" parent="." instance=ExtResource("2_7bxc3")]
+z_index = 2
 position = Vector2(-140, 0)
 mIsBackFacing = true
 
@@ -51,6 +54,7 @@ texture = ExtResource("4_yv3xb")
 shape = SubResource("RectangleShape2D_qoro8")
 
 [node name="Seat4" parent="." instance=ExtResource("2_7bxc3")]
+z_index = 2
 mIsBackFacing = true
 
 [node name="SeatSprite" parent="Seat4" index="0"]
@@ -61,6 +65,7 @@ texture = ExtResource("4_yv3xb")
 shape = SubResource("RectangleShape2D_qoro8")
 
 [node name="Seat5" parent="." instance=ExtResource("2_7bxc3")]
+z_index = 2
 position = Vector2(140, 0)
 mIsBackFacing = true
 
