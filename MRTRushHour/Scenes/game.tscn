@@ -34,10 +34,11 @@ y_sort_enabled = true
 unique_name_in_owner = true
 
 [node name="PassengerTooltip" parent="." instance=ExtResource("7_1l0tm")]
-offset_left = 1014.0
-offset_top = 332.0
-offset_right = 1014.0
-offset_bottom = 332.0
+visible = false
+offset_left = -267.0
+offset_top = 158.0
+offset_right = -267.0
+offset_bottom = 158.0
 
 [node name="StationTransitionTimer" type="Timer" parent="."]
 one_shot = true

@@ -35,21 +35,19 @@ static func GetPassengerName(_passengerType : Passenger.PassengerType) -> String
 		Passenger.PassengerType.ADULT_WITH_BABY:
 			return "Adult with Baby"
 		Passenger.PassengerType.PREGNANT:
-			return "Pregnant"
+			return "Pregnant Adult"
 		Passenger.PassengerType.ELDERLY:
 			return "Elderly"
 		Passenger.PassengerType.INJURED:
-			return "Injured"
+			return "Injured Adult"
 		Passenger.PassengerType.HEMORRHOID:
-			return "Hemorrhoid"
+			return "Hemorrhoid Adult"
 		Passenger.PassengerType.WHEELCHAIR_BOUND:
-			return "Wheelchair-Bound"
+			return "Wheelchair-Bound Adult"
 		Passenger.PassengerType.DURIAN_LOVER:
-			return "Durian Lover"
+			return "Durian Loving Adult"
 		Passenger.PassengerType.TEENAGER_WITH_BAGS:
 			return "Teenager with Bags"
-		# Passenger.PassengerType.OBESE_ADULT:
-		# 	return "Obese Adult"
 		Passenger.PassengerType.SLEEPY_TEENAGER:
 			return "Sleepy Teenager"
 		Passenger.PassengerType.NOISY_CHILD:
@@ -91,8 +89,6 @@ static func GetPassengerStandingDesc(_passengerType : Passenger.PassengerType) -
 			return "{0}. {1} per {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[0]), 
 											   ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[2]), 
 											   ColourKeyword("Standing Passenger", "orange")])
-		# Passenger.PassengerType.OBESE_ADULT:
-		# 	return ColourScore(Constant.OBESE_ADULT_SCORE[0]) + "."
 		Passenger.PassengerType.SLEEPY_TEENAGER:
 			return ColourScore(Constant.SLEEPY_TEENAGER_SCORE[0]) + "."
 		Passenger.PassengerType.NOISY_CHILD:
@@ -149,22 +145,9 @@ static func GetPassengerSittingDesc(_passengerType : Passenger.PassengerType, _g
 			return "{0}. {1} per onboard passenger (Except another Durian Lover).".format([ColourScore(Constant.DURIAN_LOVER_SCORE[1]), 
 																							ColourScore(Constant.DURIAN_LOVER_SCORE[2])])		
 		Passenger.PassengerType.TEENAGER_WITH_BAGS:
-			if _genderType == Passenger.GenderType.MALE:
-				return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[1]),
-														 ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[3]),
-														 ColourKeyword("adjacent to Female Passenger", "hotpink")]) 
-			elif _genderType == Passenger.GenderType.FEMALE:
-				return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[1]),
-														 ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[3]),
-														 ColourKeyword("adjacent to Male Passenger", "hotpink")])
-			else:
-				return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[1]),
+			return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[1]),
 														 ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[2]),
-														 ColourKeyword("adjacent to Passenger of different gender", "hotpink")]) 
-		# Passenger.PassengerType.OBESE_ADULT:
-		# 	return "{0}. {1} to {2}.".format([ColourScore(Constant.OBESE_ADULT_SCORE[1]),
-		# 									  ColourScore(Constant.OBESE_ADULT_SCORE[2]),
-		# 									  ColourKeyword("Adjacent Passengers", "hotpink")])
+														 ColourKeyword("adjacent to an Elderly Passenger", "hotpink")]) 
 		Passenger.PassengerType.SLEEPY_TEENAGER:
 			return "{0}. Once seated, cannot change seat.".format([ColourScore(Constant.SLEEPY_TEENAGER_SCORE[1])])
 		Passenger.PassengerType.NOISY_CHILD:

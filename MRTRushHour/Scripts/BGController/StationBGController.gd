@@ -6,11 +6,11 @@ extends Node
 # References
 @onready var mBGSprite : Sprite2D = $StationBGSprite
 @onready var mAnimationPlayer : AnimationPlayer = $AnimationPlayer
-@onready var mStationSign : Label = $StationBGSprite/Sign/Label
+@onready var mStationSign : Label = $StationBGSprite/Sign/StationSignContainer/StationName
 
-var mEntryPos : float = 2500
+var mEntryPos : float = -2500
 var mStationPos : float = 10
-var mExitPos : float = -2500
+var mExitPos : float = 2500
 var mIsEntry : int = 0
 
 

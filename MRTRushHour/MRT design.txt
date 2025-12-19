@@ -53,10 +53,7 @@ V These probably won't do V
     > If sitting:  +13 points, -1 point per standing and sitting passenger (Except another Durian Lover)
 - Teenager with bag (NEW)
     > If standing: 0 points. -1 point per standing passenger
-    > If sitting:  +5 points, -4 points if sitting adjacent to passenger of opposite gender
-- Obese Adult (NEW)
-    > If standing: +0 points
-    > If sitting:  +5 points, -4 points on adjacent passenger.
+    > If sitting:  +5 points, -4 points if sitting adjacent to an Elderly Passenger.
 - Sleepy Teenager (NEW)
     > If standing: -3 points
     > If sitting:  +5 points. Once seated, cannot change seat.

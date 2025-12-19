@@ -57,7 +57,7 @@ func TryStartDrag():
 		return
 
 	var picked := GetFrontmostPassenger()
-	if picked and picked.CanBeDragged():
+	if picked and CanDrag():
 		mClickPos = picked.get_local_mouse_position()
 		mDraggedPassenger = picked
 		picked.OnDragStart()
@@ -110,10 +110,13 @@ func UpdateDrag():
 		return
 
 	# Stop drag immediately if no longer allowed
-	if not mDraggedPassenger.CanBeDragged():
+	if not CanDrag():
 		EndDrag()
 		return
 
 	# Only update position if drag is valid
 	mDraggedPassenger.OnDragUpdate()
 
+
+func CanDrag() -> bool:
+	return GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION

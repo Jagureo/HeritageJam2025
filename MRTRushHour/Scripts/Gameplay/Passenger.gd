@@ -12,12 +12,14 @@ enum PassengerType {
 	INJURED,				# Must sit down, bonus if sit on priority seat
 	HEMORRHOID,				# Must stand up
 	WHEELCHAIR_BOUND,		# Must use wheelchair slot, otherwise makes standing passengers angry
+	LAST,
+	
+	# DLC ones
 	DURIAN_LOVER,
 	TEENAGER_WITH_BAGS,
 	SLEEPY_TEENAGER,
 	NOISY_CHILD,
 
-	LAST
 }
 
 enum GenderType {
@@ -51,9 +53,9 @@ static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
 	Passenger.PassengerType.HEMORRHOID :         preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/MaleWheelchair.tres") as SpriteFrames,
 	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/MaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/MaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/MaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/MaleTeen.tres") as SpriteFrames,
+	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/MaleTeen.tres") as SpriteFrames,
+	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/MaleChild.tres") as SpriteFrames,
 }
 
 static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
@@ -68,9 +70,9 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 	Passenger.PassengerType.HEMORRHOID :         preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/FemaleWheelchair.tres") as SpriteFrames,
 	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
+	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
+	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/FemaleChild.tres") as SpriteFrames,
 }
 
 func _ready():
@@ -90,10 +92,6 @@ func _ready():
 	mPassengerSprite.sprite_frames = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
 	mPassengerSprite.play("Idle")
 
-
-
-func CanBeDragged() -> bool:
-	return GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION
 
 
 func OnDragStart():

@@ -8,34 +8,34 @@ extends Node
 
 
 # References
-@onready var mSkySections : Array[Sprite2D] = [$SkySection1, $SkySection2, $SkySection3]
-@onready var mHDBSections : Array[Sprite2D] = [$HDBSection1, $HDBSection2, $HDBSection3]
-@onready var mTreeSections : Array[Sprite2D] = [$TreeSection1, $TreeSection2, $TreeSection3]
+@onready var mSkySections : Array[Sprite2D] = [$SkySection3, $SkySection2, $SkySection1]
+@onready var mHDBSections : Array[Sprite2D] = [$HDBSection3, $HDBSection2, $HDBSection1]
+@onready var mTreeSections : Array[Sprite2D] = [$TreeSection3, $TreeSection2, $TreeSection1]
 @onready var mAnimationPlayer : AnimationPlayer = $AnimationPlayer
 
 
 func _process(delta):
 	for sprite in mSkySections:
-		(sprite as Node2D).position.x += (-mSkyScrollSpeed * mScrollSpeedScaler * delta)
+		(sprite as Node2D).position.x += (mSkyScrollSpeed * mScrollSpeedScaler * delta)
 
 	for sprite in mHDBSections:
-		(sprite as Node2D).position.x += (-mHDBScrollSpeed * mScrollSpeedScaler * delta)
+		(sprite as Node2D).position.x += (mHDBScrollSpeed * mScrollSpeedScaler * delta)
 	
 	for sprite in mTreeSections:
-		(sprite as Node2D).position.x += (-mTreeScrollSpeed * mScrollSpeedScaler * delta)
+		(sprite as Node2D).position.x += (mTreeScrollSpeed * mScrollSpeedScaler * delta)
 
-	if mSkySections[0].position.x < -2000:
-		mSkySections[0].position.x = mSkySections.back().position.x + 1920
+	if mSkySections[0].position.x > 2000:
+		mSkySections[0].position.x = mSkySections.back().position.x - 1920
 		mSkySections.push_back(mSkySections[0])
 		mSkySections.pop_front()
 
-	if mHDBSections[0].position.x < -2000:
-		mHDBSections[0].position.x = mHDBSections.back().position.x + 1920
+	if mHDBSections[0].position.x > 2000:
+		mHDBSections[0].position.x = mHDBSections.back().position.x - 1920
 		mHDBSections.push_back(mHDBSections[0])
 		mHDBSections.pop_front()
 	
-	if mTreeSections[0].position.x < -2000:
-		mTreeSections[0].position.x = mTreeSections.back().position.x + 1920
+	if mTreeSections[0].position.x > 2000:
+		mTreeSections[0].position.x = mTreeSections.back().position.x - 1920
 		mTreeSections.push_back(mTreeSections[0])
 		mTreeSections.pop_front()
 

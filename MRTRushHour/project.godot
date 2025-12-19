@@ -14,6 +14,7 @@ config/name="MRT: Rush Hour"
 config/version="1.1.0-Indev1"
 run/main_scene="uid://cgsrj1drhnafo"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="uid://bqrefy0jwotgd"
 
 [autoload]
 
