@@ -1,7 +1,7 @@
 extends Node
 class_name LevelManager
 
-static var sInstance : LevelManager = null
+# static var sInstance : LevelManager = null
 
 # All the levels that are available
 enum MRTLine {
@@ -15,19 +15,18 @@ enum MRTLine {
 
 var mSelectedLine : MRTLine
 var mLevelData : LevelData
+var mReversed : bool = false
+
+# func _enter_tree():
+# 	if sInstance != null:
+# 		self.queue_free()
+# 		return
+# 	sInstance = self
 
 
-
-func _enter_tree():
-	if sInstance != null:
-		self.queue_free()
-		return
-	sInstance = self
-
-
-func _exit_tree():
-	if sInstance == self:
-		sInstance = null
+# func _exit_tree():
+# 	if sInstance == self:
+# 		sInstance = null
 
 
 func SetLevel(_line : MRTLine):
@@ -36,6 +35,8 @@ func SetLevel(_line : MRTLine):
 	match(_line):
 		MRTLine.EWL:
 			LoadLevel("res://Data/EWL.json")
+		MRTLine.NSL:
+			LoadLevel("res://Data/NSL.json")
 		_:
 			printerr("Unknown Line Level loaded: ", str(_line))
 
@@ -55,28 +56,45 @@ func LoadLevel(_levelDataFile : String):
 		return
 
 	mLevelData = LevelData.new()
+
+	# Load the name of the line
 	mLevelData.mLineName = results["lineName"]
 
-	mLevelData.mLineColour.r = results["lineColor"]["r"]
-	mLevelData.mLineColour.g = results["lineColor"]["g"]
-	mLevelData.mLineColour.b = results["lineColor"]["b"]
+	# Load the line's background colour
+	mLevelData.mLineColour.r = results["lineColour"]["r"] / 255.0
+	mLevelData.mLineColour.g = results["lineColour"]["g"] / 255.0
+	mLevelData.mLineColour.b = results["lineColour"]["b"] / 255.0
 	mLevelData.mLineColour.a = 1
 
+	# Load the line's text colour
 	if results["lineTextColour"] == "black":
 		mLevelData.mLineTextColour = Color.BLACK
 	else:
 		mLevelData.mLineTextColour = Color.WHITE
 
+	# Load all the stations
 	for station in results["stations"]:
-		var stationDetail : LevelData.StationDetail = LevelData.StationDetail.new()
-		stationDetail.mCode = station["code"]
-		stationDetail.mName = station["name"]
-		stationDetail.mIsUnderground = station["isUnderground"]
-		stationDetail.mTargetScore = station["targetScore"]
-		stationDetail.mMinPassengers = station["minPassengers"]
-		stationDetail.mMaxPassengers = station["maxPassengers"]
-		mLevelData.mStations.push_back(stationDetail)
+		var s : LevelData.Station = LevelData.Station.new()
+		s.mCode = station["code"]
+		s.mName = station["name"]
+		s.mIsUnderground = station["isUnderground"]
+		mLevelData.mStations.push_back(s)
 
+	# 50% chance to reverse the stations
+	mReversed = (randi_range(0, 1) == 0)
+	if mReversed:
+		print("Station List is reversed")
+		mLevelData.mStations.reverse()
+
+	# Load target score and max passengers
+	for station in results["stationDetails"]:
+		var sd : LevelData.StationDetail = LevelData.StationDetail.new()
+		sd.mTargetScore = station["targetScore"]
+		sd.mMinPassengers = station["minPassengers"]
+		sd.mMaxPassengers = station["maxPassengers"]
+		mLevelData.mStationDetails.push_back(sd)
+
+	# Load passenger spawn weight and max spawn
 	for passengerSpawn in results["passengersSpawn"]:
 		var passengerDetail : LevelData.PassengerWeight = LevelData.PassengerWeight.new()
 		passengerDetail.mSpawnWeight = passengerSpawn["weight"]
@@ -105,15 +123,20 @@ func LoadLevel(_levelDataFile : String):
 				passengerType = Passenger.PassengerType.HEMORRHOID
 			"Wheelchair": 
 				passengerType = Passenger.PassengerType.WHEELCHAIR_BOUND
-			"DurianLover": 
-				passengerType = Passenger.PassengerType.DURIAN_LOVER
-			"TeenagerWithBag": 
-				passengerType = Passenger.PassengerType.TEENAGER_WITH_BAGS
-			"SleepyTeenager": 
-				passengerType = Passenger.PassengerType.SLEEPY_TEENAGER
-			"NoisyChild": 
-				passengerType = Passenger.PassengerType.NOISY_CHILD
+			# DLC Passengers
+			# "DurianLover": 
+			# 	passengerType = Passenger.PassengerType.DURIAN_LOVER
+			# "TeenagerWithBag": 
+			# 	passengerType = Passenger.PassengerType.TEENAGER_WITH_BAGS
+			# "SleepyTeenager": 
+			# 	passengerType = Passenger.PassengerType.SLEEPY_TEENAGER
+			# "NoisyChild": 
+			# 	passengerType = Passenger.PassengerType.NOISY_CHILD
 			_:
 				printerr("Unknown passenger parsed: ", passengerTypeString)
+				assert(false, "Unknown passenger parsed")
 				return
 		mLevelData.mPassengerSpawn[passengerType] = passengerDetail
+
+	# Some assertion checks for the level like mStations length and mStationDetails length must be the same
+	mLevelData.ValidateLevel()

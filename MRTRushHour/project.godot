@@ -20,6 +20,7 @@ config/icon="uid://bqrefy0jwotgd"
 
 AudioMgr="*res://Scenes/Managers/audio_manager.tscn"
 EventMgr="*res://Scenes/Managers/event_manager.tscn"
+LevelMgr="*res://Scenes/Managers/level_manager.tscn"
 
 [display]
 

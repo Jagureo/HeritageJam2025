@@ -18,7 +18,7 @@ func set_station(msg: String) -> void:
 	station_label.text = msg
 
 func next_station() -> void:
-	if GameManager.sInstance.current_station_index < Station.EWStations.size() - 1 :
+	if GameManager.sInstance.current_station_index < LevelMgr.mLevelData.mStations.size() - 1:
 		EventMgr.OnNextStationPressed.emit()
 		AudioManager.sInstance.mClickSound.play()
 

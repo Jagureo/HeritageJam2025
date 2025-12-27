@@ -6,7 +6,9 @@ extends Node
 # References
 @onready var mBGSprite : Sprite2D = $StationBGSprite
 @onready var mAnimationPlayer : AnimationPlayer = $AnimationPlayer
-@onready var mStationSign : Label = $StationBGSprite/Sign/StationSignContainer/StationName
+@onready var mStationNameSign : Label = $StationBGSprite/Sign/StationSignContainer/StationName
+@onready var mStationCodeSign : Label = $StationBGSprite/Sign/StationSignContainer/StationBubble/StationCode
+@onready var mStationCodeBubble : Panel = $StationBGSprite/Sign/StationSignContainer/StationBubble
 
 var mEntryPos : float = -2500
 var mStationPos : float = 10
@@ -17,6 +19,10 @@ var mIsEntry : int = 0
 
 func _ready():
 	mBGSprite.position.x = mStationPos
+	mStationCodeBubble.get_theme_stylebox("panel").bg_color = LevelMgr.mLevelData.mLineColour
+	mStationCodeSign.add_theme_color_override("font_color", LevelMgr.mLevelData.mLineTextColour)
+	mStationNameSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index].mName
+	mStationCodeSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index].mCode
 
 
 func _process(_delta):
@@ -30,7 +36,8 @@ func NextStationReaching():
 	mIsEntry = 1
 	mPositionScalar = 0
 	mAnimationPlayer.play("EnteringStation")
-	mStationSign.text = Station.EWStations[GameManager.sInstance.current_station_index + 1].name
+	mStationNameSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index + 1].mName
+	mStationCodeSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index + 1].mCode
 
 func StationLeaving():
 	await get_tree().create_timer(2.4).timeout

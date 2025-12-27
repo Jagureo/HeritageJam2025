@@ -44,14 +44,15 @@ static func GetPassengerName(_passengerType : Passenger.PassengerType) -> String
 			return "Hemorrhoid Adult"
 		Passenger.PassengerType.WHEELCHAIR_BOUND:
 			return "Wheelchair-Bound Adult"
-		Passenger.PassengerType.DURIAN_LOVER:
-			return "Durian Loving Adult"
-		Passenger.PassengerType.TEENAGER_WITH_BAGS:
-			return "Teenager with Bags"
-		Passenger.PassengerType.SLEEPY_TEENAGER:
-			return "Sleepy Teenager"
-		Passenger.PassengerType.NOISY_CHILD:
-			return "Noisy Child"
+		# DLC Passengers
+		# Passenger.PassengerType.DURIAN_LOVER:
+		# 	return "Durian Loving Adult"
+		# Passenger.PassengerType.TEENAGER_WITH_BAGS:
+		# 	return "Teenager with Bags"
+		# Passenger.PassengerType.SLEEPY_TEENAGER:
+		# 	return "Sleepy Teenager"
+		# Passenger.PassengerType.NOISY_CHILD:
+		# 	return "Noisy Child"
 		_:
 			return "Unknown"
 
@@ -82,19 +83,20 @@ static func GetPassengerStandingDesc(_passengerType : Passenger.PassengerType) -
 			return "{0}. {1} per {2}.".format([ColourScore(Constant.WHEELCHAIR_BOUND_SCORE[0]), 
 											   ColourScore(Constant.WHEELCHAIR_BOUND_SCORE[2]), 
 											   ColourKeyword("Standing Passenger", "orange")])
-		Passenger.PassengerType.DURIAN_LOVER:
-			return "{0}. {1} per onboard passenger (Except another Durian Lover).".format([ColourScore(Constant.DURIAN_LOVER_SCORE[0]), 
-																					 		ColourScore(Constant.DURIAN_LOVER_SCORE[2])])
-		Passenger.PassengerType.TEENAGER_WITH_BAGS:
-			return "{0}. {1} per {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[0]), 
-											   ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[2]), 
-											   ColourKeyword("Standing Passenger", "orange")])
-		Passenger.PassengerType.SLEEPY_TEENAGER:
-			return ColourScore(Constant.SLEEPY_TEENAGER_SCORE[0]) + "."
-		Passenger.PassengerType.NOISY_CHILD:
-			return "{0}. {1} per {2} (Except another Noisy Child).".format([ColourScore(Constant.NOISY_CHILD_SCORE[0]), 
-																			ColourScore(Constant.NOISY_CHILD_SCORE[2]), 
-																			ColourKeyword("Standing Passenger", "orange")])
+		# DLC Passengers
+		# Passenger.PassengerType.DURIAN_LOVER:
+		# 	return "{0}. {1} per onboard passenger (Except another Durian Lover).".format([ColourScore(Constant.DURIAN_LOVER_SCORE[0]), 
+		# 																			 		ColourScore(Constant.DURIAN_LOVER_SCORE[2])])
+		# Passenger.PassengerType.TEENAGER_WITH_BAGS:
+		# 	return "{0}. {1} per {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[0]), 
+		# 									   ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[2]), 
+		# 									   ColourKeyword("Standing Passenger", "orange")])
+		# Passenger.PassengerType.SLEEPY_TEENAGER:
+		# 	return ColourScore(Constant.SLEEPY_TEENAGER_SCORE[0]) + "."
+		# Passenger.PassengerType.NOISY_CHILD:
+		# 	return "{0}. {1} per {2} (Except another Noisy Child).".format([ColourScore(Constant.NOISY_CHILD_SCORE[0]), 
+		# 																	ColourScore(Constant.NOISY_CHILD_SCORE[2]), 
+		# 																	ColourKeyword("Standing Passenger", "orange")])
 		_:
 			return "Unknown Description."
 
@@ -141,19 +143,20 @@ static func GetPassengerSittingDesc(_passengerType : Passenger.PassengerType, _g
 		Passenger.PassengerType.WHEELCHAIR_BOUND:
 			return "{0}. Can only use {1}.".format([ColourScore(Constant.WHEELCHAIR_BOUND_SCORE[1]),
 													ColourKeyword("Wheelchair Slot", "deepskyblue")])
-		Passenger.PassengerType.DURIAN_LOVER:
-			return "{0}. {1} per onboard passenger (Except another Durian Lover).".format([ColourScore(Constant.DURIAN_LOVER_SCORE[1]), 
-																							ColourScore(Constant.DURIAN_LOVER_SCORE[2])])		
-		Passenger.PassengerType.TEENAGER_WITH_BAGS:
-			return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[1]),
-														 ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[2]),
-														 ColourKeyword("adjacent to an Elderly Passenger", "hotpink")]) 
-		Passenger.PassengerType.SLEEPY_TEENAGER:
-			return "{0}. Once seated, cannot change seat.".format([ColourScore(Constant.SLEEPY_TEENAGER_SCORE[1])])
-		Passenger.PassengerType.NOISY_CHILD:
-			return "{0}. {1} to {2} (Except another Noisy Child).".format([ColourScore(Constant.NOISY_CHILD_SCORE[1]), 
-																			ColourScore(Constant.NOISY_CHILD_SCORE[2]), 
-																			ColourKeyword("Adjacent Passenger", "hotpink")])
+		# DLC Passengers
+		# Passenger.PassengerType.DURIAN_LOVER:
+		# 	return "{0}. {1} per onboard passenger (Except another Durian Lover).".format([ColourScore(Constant.DURIAN_LOVER_SCORE[1]), 
+		# 																					ColourScore(Constant.DURIAN_LOVER_SCORE[2])])		
+		# Passenger.PassengerType.TEENAGER_WITH_BAGS:
+		# 	return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[1]),
+		# 												 ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[2]),
+		# 												 ColourKeyword("adjacent to an Elderly Passenger", "hotpink")]) 
+		# Passenger.PassengerType.SLEEPY_TEENAGER:
+		# 	return "{0}. Once seated, cannot change seat.".format([ColourScore(Constant.SLEEPY_TEENAGER_SCORE[1])])
+		# Passenger.PassengerType.NOISY_CHILD:
+		# 	return "{0}. {1} to {2} (Except another Noisy Child).".format([ColourScore(Constant.NOISY_CHILD_SCORE[1]), 
+		# 																	ColourScore(Constant.NOISY_CHILD_SCORE[2]), 
+		# 																	ColourKeyword("Adjacent Passenger", "hotpink")])
 		_:
 			return "Unknown Description."
 

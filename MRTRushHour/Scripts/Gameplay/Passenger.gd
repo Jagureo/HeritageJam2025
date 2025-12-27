@@ -14,11 +14,11 @@ enum PassengerType {
 	WHEELCHAIR_BOUND,		# Must use wheelchair slot, otherwise makes standing passengers angry
 	LAST,
 	
-	# DLC ones
-	DURIAN_LOVER,
-	TEENAGER_WITH_BAGS,
-	SLEEPY_TEENAGER,
-	NOISY_CHILD,
+	# DLC Passengers
+	# DURIAN_LOVER,
+	# TEENAGER_WITH_BAGS,
+	# SLEEPY_TEENAGER,
+	# NOISY_CHILD,
 
 }
 
@@ -52,10 +52,10 @@ static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
 	Passenger.PassengerType.INJURED :            preload("res://Animations/MaleInjured.tres") as SpriteFrames,
 	Passenger.PassengerType.HEMORRHOID :         preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/MaleWheelchair.tres") as SpriteFrames,
-	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/MaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/MaleTeen.tres") as SpriteFrames,
-	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/MaleTeen.tres") as SpriteFrames,
-	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/MaleChild.tres") as SpriteFrames,
+	# Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/MaleAdult.tres") as SpriteFrames,
+	# Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/MaleTeen.tres") as SpriteFrames,
+	# Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/MaleTeen.tres") as SpriteFrames,
+	# Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/MaleChild.tres") as SpriteFrames,
 }
 
 static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
@@ -69,10 +69,10 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 	Passenger.PassengerType.INJURED :            preload("res://Animations/FemaleInjured.tres") as SpriteFrames,
 	Passenger.PassengerType.HEMORRHOID :         preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/FemaleWheelchair.tres") as SpriteFrames,
-	Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
-	Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
-	Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
-	Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/FemaleChild.tres") as SpriteFrames,
+	# Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
+	# Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
+	# Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
+	# Passenger.PassengerType.NOISY_CHILD :        preload("res://Animations/FemaleChild.tres") as SpriteFrames,
 }
 
 func _ready():

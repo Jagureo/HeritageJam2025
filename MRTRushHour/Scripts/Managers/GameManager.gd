@@ -96,10 +96,11 @@ func next_station() -> void:
 
 
 func ReachedNextStation():
-	if current_station_index < Station.EWStations.size() - 1:
+	if current_station_index < LevelMgr.mLevelData.mStations.size() - 1:
 		UpdateStationDisplay()
 
-		var new_passengers = Station.EWStations[current_station_index].get_passenger_count()
+		# var new_passengers = Station.EWStations[current_station_index].get_passenger_count()
+		var new_passengers = 0
 		var passengers_in_train = passenger_container.get_child_count() + new_passengers
 		var passengers_to_kick_min = (passengers_in_train - Constant.MAX_PASSENGERS_IN_TRAIN) if passengers_in_train > Constant.MAX_PASSENGERS_IN_TRAIN else 0
 		var passengers_to_kick_max = (passenger_container.get_child_count() - 1) if passenger_container.get_child_count() > 1 else 0
@@ -123,9 +124,9 @@ func ReachedNextStation():
 		current_station_index += 1
 		UpdateStationDisplay()
 		EventMgr.OnNextstationReached.emit()
-		mStationWaitingTimer.start((new_passengers * lerp(2, 4, float(Station.EWStations.size() - current_station_index) / float(Station.EWStations.size()))) + 1)
+		mStationWaitingTimer.start((new_passengers * lerp(2, 4, float(LevelMgr.mLevelData.mStations.size() - current_station_index) / float(LevelMgr.mLevelData.mStations.size()))) + 1)
 		
-	if current_station_index == Station.EWStations.size() - 1:
+	if current_station_index == LevelMgr.mLevelData.mStations.size() - 1:
 		game_ui.showGameOverPanel(true)
 
 	# Reached station
@@ -137,7 +138,7 @@ func ReachedNextStation():
 
 
 func UpdateStationDisplay() -> void:
-	game_ui.set_station(Station.EWStations[current_station_index].name)
+	game_ui.set_station(LevelMgr.mLevelData.mStations[current_station_index].mName)
 
 func SpawnPassenger() -> void:
 	var passenger = passenger_prefab.instantiate()
@@ -192,5 +193,5 @@ func IsPassengerTooltipVisible() -> bool:
 
 
 func StationStayTimerTimeout():
-	if current_station_index < Station.EWStations.size() - 1 and mOverallHappiness >= Constant.GAME_OVER_SCORE:
+	if current_station_index < LevelMgr.mLevelData.mStations.size() - 1 and mOverallHappiness >= Constant.GAME_OVER_SCORE:
 		EventMgr.OnNextStationPressed.emit()
