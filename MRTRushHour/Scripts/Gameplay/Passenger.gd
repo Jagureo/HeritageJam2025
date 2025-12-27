@@ -30,9 +30,9 @@ enum GenderType {
 
 # Reference
 @onready var mPassengerSprite : AnimatedSprite2D = $PassengerSprite
-@onready var mScorePopupLabel : Label = $ScorePopupPanel/ScorePopupLabel
-@onready var mScorePopupPanel : Panel = $ScorePopupPanel
-@onready var mScorePopupTimer : Timer = $ScorePopupTimer
+# @onready var mScorePopupLabel : Label = $ScorePopupPanel/ScorePopupLabel
+# @onready var mScorePopupPanel : Panel = $ScorePopupPanel
+# @onready var mScorePopupTimer : Timer = $ScorePopupTimer
 
 # Passenger details
 var mPassengerType : PassengerType
@@ -40,6 +40,9 @@ var mGenderType    : GenderType
 
 # Seat that this passenger is sitting on
 var mSittingOn : Seat = null
+
+# Number of stations to stay
+var mAlightingIn : int = 0
 
 static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
 	Passenger.PassengerType.CHILDREN :           preload("res://Animations/MaleChild.tres") as SpriteFrames,
@@ -52,6 +55,7 @@ static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
 	Passenger.PassengerType.INJURED :            preload("res://Animations/MaleInjured.tres") as SpriteFrames,
 	Passenger.PassengerType.HEMORRHOID :         preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/MaleWheelchair.tres") as SpriteFrames,
+	# DLC Passengers
 	# Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/MaleAdult.tres") as SpriteFrames,
 	# Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/MaleTeen.tres") as SpriteFrames,
 	# Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/MaleTeen.tres") as SpriteFrames,
@@ -69,6 +73,7 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 	Passenger.PassengerType.INJURED :            preload("res://Animations/FemaleInjured.tres") as SpriteFrames,
 	Passenger.PassengerType.HEMORRHOID :         preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	Passenger.PassengerType.WHEELCHAIR_BOUND :   preload("res://Animations/FemaleWheelchair.tres") as SpriteFrames,
+	# DLC Passengers
 	# Passenger.PassengerType.DURIAN_LOVER :       preload("res://Animations/FemaleAdult.tres") as SpriteFrames,
 	# Passenger.PassengerType.TEENAGER_WITH_BAGS : preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
 	# Passenger.PassengerType.SLEEPY_TEENAGER :    preload("res://Animations/FemaleTeen.tres") as SpriteFrames,
@@ -78,11 +83,9 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 func _ready():
 	mPassengerSprite.material = mPassengerSprite.material.duplicate()
 
-	if GameManager.sInstance.hasWheelchairPassenger == true:
-		mPassengerType = randi() % PassengerType.WHEELCHAIR_BOUND as PassengerType
-	else:
-		mPassengerType = randi() % PassengerType.LAST as PassengerType
-	
+	mAlightingIn = randi_range(Constant.MIN_NUMBER_OF_STATIONS_TO_STAY, Constant.MAX_NUMBER_OF_STATIONS_TO_STAY)
+	mPassengerType = PassengerManager.sInstance.GetRandomSpawnablePassenger()
+
 	# Only female can be pregnant
 	if mPassengerType == PassengerType.PREGNANT:
 		mGenderType = GenderType.FEMALE
@@ -130,23 +133,23 @@ func OnHoverEnd():
 
 
 
-func show_evaluated_score_popup(score : int) -> void:
-	if score < 0:
-		mScorePopupLabel.add_theme_color_override("font_color", Color.RED)
-		mScorePopupLabel.text = "%d" % score
-	else:
-		if score > 0:
-			mScorePopupLabel.add_theme_color_override("font_color", Color.GREEN)
-		else:
-			mScorePopupLabel.add_theme_color_override("font_color", Color.WHITE)
-		mScorePopupLabel.text = "+%d" % score
-	mScorePopupTimer.start(3)
-	mScorePopupPanel.visible = true
+# func show_evaluated_score_popup(score : int) -> void:
+# 	if score < 0:
+# 		mScorePopupLabel.add_theme_color_override("font_color", Color.RED)
+# 		mScorePopupLabel.text = "%d" % score
+# 	else:
+# 		if score > 0:
+# 			mScorePopupLabel.add_theme_color_override("font_color", Color.GREEN)
+# 		else:
+# 			mScorePopupLabel.add_theme_color_override("font_color", Color.WHITE)
+# 		mScorePopupLabel.text = "+%d" % score
+# 	mScorePopupTimer.start(3)
+# 	mScorePopupPanel.visible = true
 	
 
-func hide_evaluated_score_popup() -> void:
-	mScorePopupTimer.stop()
-	mScorePopupPanel.hide()
+# func hide_evaluated_score_popup() -> void:
+# 	mScorePopupTimer.stop()
+# 	mScorePopupPanel.hide()
 	
 
 func alight_passenger() -> void:
@@ -157,4 +160,3 @@ func alight_passenger() -> void:
 
 	StandingArea.sStandingArea.RemovePassenger(self)
 	queue_free()
-

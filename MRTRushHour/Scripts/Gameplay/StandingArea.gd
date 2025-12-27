@@ -78,7 +78,8 @@ func EvaluateHappiness():
 				passengerScore -= (len(mCurrentlyStanding) - 1) * 2
 
 		sectionScore += passengerScore
-		passenger.show_evaluated_score_popup(passengerScore)
+		# TODO: Show score
+		# passenger.show_evaluated_score_popup(passengerScore)
 
 	GameManager.sInstance.mOverallHappiness += sectionScore
 

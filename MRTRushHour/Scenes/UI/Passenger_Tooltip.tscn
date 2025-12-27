@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3ga1d2i553dn"]
 
 [ext_resource type="Texture2D" uid="uid://baciw3p5lc2ry" path="res://Sprites/UI/Credits/icon.svg" id="1_h13bv"]
-[ext_resource type="Script" uid="uid://cxpucjgn1hc3d" path="res://Scripts/UI/passengerTooltip.gd" id="1_usj5b"]
+[ext_resource type="Script" uid="uid://cxpucjgn1hc3d" path="res://Scripts/UI/PassengerTooltip.gd" id="1_usj5b"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="2_usj5b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq863"]
@@ -30,9 +30,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -244.0
-offset_top = -144.0
+offset_top = -158.0
 offset_right = 244.0
-offset_bottom = 144.0
+offset_bottom = 158.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -46,9 +46,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -225.0
-offset_top = -127.0
+offset_top = -145.0
 offset_right = -173.0
-offset_bottom = -75.0
+offset_bottom = -93.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -63,9 +63,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -162.0
-offset_top = -127.0
+offset_top = -145.0
 offset_right = 280.0
-offset_bottom = -64.0
+offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.988798, 0.996094, 0.0622559, 1)
@@ -81,9 +81,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -219.0
-offset_top = -70.0
+offset_top = -88.0
 offset_right = -29.0
-offset_bottom = -30.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -103,9 +103,8 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -214.0
-offset_top = -35.0
+offset_top = -53.0
 offset_right = 216.0
-offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -124,9 +123,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -219.0
-offset_top = 23.0
+offset_top = 5.0
 offset_right = -29.0
-offset_bottom = 71.0
+offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -146,9 +145,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -214.0
-offset_top = 71.0
+offset_top = 45.0
 offset_right = 216.0
-offset_bottom = 124.0
+offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -157,4 +156,47 @@ theme_override_fonts/normal_font = ExtResource("2_usj5b")
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "+10 points. -1 point per standing and sitting passenger (Except another Durian Lover)."
+fit_content = true
+
+[node name="DestinationTitle" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = 102.0
+offset_right = -29.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/line_separation = -5
+theme_override_fonts/normal_font = ExtResource("2_usj5b")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[color=yellow]Destination:[/color]"
+fit_content = true
+vertical_alignment = 1
+
+[node name="DestinationDesc" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = 112.0
+offset_right = 228.0
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/line_separation = -5
+theme_override_fonts/normal_font = ExtResource("2_usj5b")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[Code] Station Name"
 fit_content = true

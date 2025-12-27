@@ -7,11 +7,6 @@
 - DTL: 1-5-1 seat, W seat standalone, normal crowd
 - TEL: 1-3-1 seat, 1-2-W seat, normal crowd (Will have 2 rows of seat per side, and a middle door)
 
-V These probably won't do V
-- JRL: 1-6-1 seat, W seat standalone, normal crowd
-- CRL: 1-3-1 seat, W seat standalone, heavy crowd
-* Place passenger at the door to kick them out
-
 == DIFFICULTY ==
 - Peak hour - x1.5 crowd size [Evening sky]
 - Off peak hour - normal crowd size [Afternoon sky]
@@ -83,20 +78,6 @@ Statuses: No more!
 
 == LOSING CONDITION ==
 - Each station will have it's minimum goal points instead of flat -25 for losing.
-
-== LEVEL DATA ==
-- Line name
-- Line colour
-- Line text colour
-- Stations list
-    > Code
-    > Name
-    > Underground or overground - determines whether to use overground or tunnel BG
-    > Target score
-    > Number of passengers to board (min, max)
-- Passenger Spawn weightage
-    > Weightage
-    > Max number
 
 
 == PASSENGER TOOLTIP ==

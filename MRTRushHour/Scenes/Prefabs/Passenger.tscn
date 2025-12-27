@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvuwrt4hor7ht"]
+[gd_scene load_steps=6 format=3 uid="uid://cvuwrt4hor7ht"]
 
 [ext_resource type="Script" uid="uid://bj7k4jp7rwk3r" path="res://Scripts/Gameplay/Passenger.gd" id="1_0ypmp"]
 [ext_resource type="Shader" uid="uid://ffjvlocfuud7" path="res://Shaders/Selection.gdshader" id="2_wcd72"]
 [ext_resource type="SpriteFrames" uid="uid://dubpsb1nht04i" path="res://Animations/MaleAdult.tres" id="3_l66kw"]
-[ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="4_6cpje"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cpje"]
 shader = ExtResource("2_wcd72")
@@ -15,13 +14,6 @@ shader_parameter/outlineWidth = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l8m"]
 size = Vector2(108, 186)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcd72"]
-bg_color = Color(0.132813, 0.132813, 0.132813, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="Passenger" type="Area2D"]
 z_as_relative = false
@@ -40,26 +32,3 @@ frame_progress = 0.647673
 
 [node name="PassengerCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n1l8m")
-
-[node name="ScorePopupPanel" type="Panel" parent="."]
-visible = false
-offset_left = -30.0
-offset_top = -150.0
-offset_right = 30.0
-offset_bottom = -106.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_wcd72")
-
-[node name="ScorePopupLabel" type="Label" parent="ScorePopupPanel"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 45.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_6cpje")
-theme_override_font_sizes/font_size = 32
-text = "+67"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScorePopupTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="ScorePopupTimer" to="." method="hide_evaluated_score_popup"]

@@ -90,8 +90,8 @@ func LoadLevel(_levelDataFile : String):
 	for station in results["stationDetails"]:
 		var sd : LevelData.StationDetail = LevelData.StationDetail.new()
 		sd.mTargetScore = station["targetScore"]
-		sd.mMinPassengers = station["minPassengers"]
-		sd.mMaxPassengers = station["maxPassengers"]
+		sd.mMinPassengers = station["minPassengersToSpawn"]
+		sd.mMaxPassengers = station["maxPassengersToSpawn"]
 		mLevelData.mStationDetails.push_back(sd)
 
 	# Load passenger spawn weight and max spawn
@@ -140,3 +140,8 @@ func LoadLevel(_levelDataFile : String):
 
 	# Some assertion checks for the level like mStations length and mStationDetails length must be the same
 	mLevelData.ValidateLevel()
+
+
+
+func ClearData():
+	mLevelData.free()

@@ -17,7 +17,7 @@ var mOverallHappiness : int = 0:
 	set(newValue):
 		mOverallHappiness = newValue
 		update_happiness_level(newValue)
-		if newValue < Constant.GAME_OVER_SCORE:
+		if newValue < LevelMgr.mLevelData.mStationDetails[current_station_index].mTargetScore:
 			game_ui.showGameOverPanel(true)
 		
 # var passenger_hover_queue : Array[Passenger] = []
@@ -34,8 +34,6 @@ enum LevelState {
 }
 
 var mCurrLevelState : LevelState = LevelState.AT_STATION
-
-var hasWheelchairPassenger : bool = false
 
 func _enter_tree():
 	if sInstance != null:
@@ -57,8 +55,7 @@ func _ready():
 
 	UpdateStationDisplay()
 	update_happiness_level(0)
-	for i in randi_range(5, 16):
-		SpawnPassenger()
+	SpawnPassengers()
 		
 	passenger_information.hide()
 
@@ -107,8 +104,6 @@ func ReachedNextStation():
 		var passengers_to_kick = randi_range(passengers_to_kick_min, passengers_to_kick_max)
 		for i in range(passengers_to_kick):
 			var random_passenger = passenger_container.get_child(randi() % passenger_container.get_child_count())
-			if random_passenger.mPassengerType == Passenger.PassengerType.WHEELCHAIR_BOUND:
-				hasWheelchairPassenger = false
 
 			# Passenger not seated, remove it from sitting area
 			if (random_passenger as Passenger).mSittingOn != null:
@@ -117,8 +112,7 @@ func ReachedNextStation():
 			StandingArea.sStandingArea.RemovePassenger(random_passenger)
 			random_passenger.alight_passenger()
 		
-		for i in range(new_passengers):
-			SpawnPassenger()
+		SpawnPassengers()
 
 		# Update the next station sign
 		current_station_index += 1
@@ -140,13 +134,17 @@ func ReachedNextStation():
 func UpdateStationDisplay() -> void:
 	game_ui.set_station(LevelMgr.mLevelData.mStations[current_station_index].mName)
 
-func SpawnPassenger() -> void:
-	var passenger = passenger_prefab.instantiate()
-	passenger_container.add_child(passenger)
-	passenger.position = Vector2(randf() * 200 + (100 if randi() % 2 == 0 else 1600), randf() * 350 + 550)
-	StandingArea.sStandingArea.AddPassenger(passenger)
-	if passenger.mPassengerType == Passenger.PassengerType.WHEELCHAIR_BOUND:
-		hasWheelchairPassenger = true
+
+func SpawnPassengers() -> void:
+	# choose how many passengers to spawn
+	var numToSpawn := randi_range(LevelMgr.mLevelData.mStationDetails[current_station_index].mMinPassengers,
+								  LevelMgr.mLevelData.mStationDetails[current_station_index].mMaxPassengers)
+	
+	for i in numToSpawn:
+		var passenger = passenger_prefab.instantiate()
+		passenger_container.add_child(passenger)
+		passenger.position = Vector2(randi_range(Constant.LEFT_DRAG_LIMIT, Constant.RIGHT_DRAG_LIMIT), randi_range(Constant.BOTTOM_DRAG_LIMIT, Constant.TOP_DRAG_LIMIT))
+		StandingArea.sStandingArea.AddPassenger(passenger)
 
 
 func update_happiness_level(value: int) -> void:
@@ -169,29 +167,6 @@ func IsPassengerTooltipVisible() -> bool:
 
 
 
-
-
-# func on_passenger_hover_start(passenger : Passenger):
-# 	passenger_information.SetTooltip(passenger)
-# 	passenger_information.show()
-# 	passenger_hover_queue.append(passenger)
-# 	while passenger_hover_queue.size() > 0 and not is_instance_valid(passenger_hover_queue.front()):
-# 		passenger_hover_queue.pop_front()
-# 	if passenger_hover_queue.size() > 0:
-# 		passenger_information.SetTooltip(passenger_hover_queue.front())
-# 	else:
-# 		passenger_information.hide()
-
-# func on_passenger_hover_end(passenger : Passenger):
-# 	passenger_hover_queue.erase(passenger)
-# 	while passenger_hover_queue.size() > 0 and not is_instance_valid(passenger_hover_queue.front()):
-# 		passenger_hover_queue.pop_front()
-# 	if passenger_hover_queue.size() > 0:
-# 		passenger_information.SetTooltip(passenger_hover_queue.front())
-# 	else:
-# 		passenger_information.hide()
-
-
 func StationStayTimerTimeout():
-	if current_station_index < LevelMgr.mLevelData.mStations.size() - 1 and mOverallHappiness >= Constant.GAME_OVER_SCORE:
+	if current_station_index < LevelMgr.mLevelData.mStations.size() - 1 and mOverallHappiness >= LevelMgr.mLevelData.mStationDetails[current_station_index].mTargetScore:
 		EventMgr.OnNextStationPressed.emit()

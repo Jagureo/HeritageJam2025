@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnnf00kmtqd41"]
+
+[ext_resource type="Script" uid="uid://b3i2gow8o1hgf" path="res://Scripts/Managers/PassengerManager.gd" id="1_34snw"]
+
+[node name="PassengerManager" type="Node"]
+script = ExtResource("1_34snw")

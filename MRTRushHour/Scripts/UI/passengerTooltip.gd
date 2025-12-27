@@ -5,6 +5,7 @@ class_name PassengerTooltip
 @onready var mPassengerText : Label = $PassengerType
 @onready var mStandingDesc : RichTextLabel = $StandingDesc
 @onready var mSittingDesc : RichTextLabel = $SittingDesc
+@onready var mDestinationDesc : RichTextLabel = $DestinationDesc
 
 
 static var sGenderSprite : Dictionary[Passenger.GenderType, Texture2D] = {
@@ -19,6 +20,13 @@ func SetTooltip(_passenger : Passenger):
 	mStandingDesc.text = GetPassengerStandingDesc(_passenger.mPassengerType)
 	mSittingDesc.text = GetPassengerSittingDesc(_passenger.mPassengerType, _passenger.mGenderType)
 	mGenderIcon.texture = GetPassengerGenderSprite(_passenger.mGenderType)
+
+	if GameManager.sInstance.current_station_index + _passenger.mAlightingIn < len(LevelMgr.mLevelData.mStations):
+		var s : LevelData.Station = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index + _passenger.mAlightingIn]
+		mDestinationDesc.text = "[" + s.mCode + "] " + s.mName
+	else:
+		var s : LevelData.Station = LevelMgr.mLevelData.mStations.back()
+		mDestinationDesc.text = "[" + s.mCode + "] " + s.mName
 	visible = true
 
 
@@ -67,7 +75,7 @@ static func GetPassengerStandingDesc(_passengerType : Passenger.PassengerType) -
 			return ColourScore(Constant.ADULT_SCORE[0]) + "."
 		Passenger.PassengerType.ADULT_WITH_BAGS:
 			return "{0}. {1} per {2}.".format([ColourScore(Constant.ADULT_WITH_BAG_SCORE[0]), 
-											   ColourScore(Constant.ADULT_WITH_BAG_SCORE[2]), 
+											   ColourScore(Constant.ADULT_WITH_BAG_SCORE[2], true), 
 											   ColourKeyword("Standing Passenger", "orange")])
 		Passenger.PassengerType.ADULT_WITH_BABY:
 			return ColourScore(Constant.ADULT_WITH_BABY_SCORE[0]) + "."
@@ -81,21 +89,21 @@ static func GetPassengerStandingDesc(_passengerType : Passenger.PassengerType) -
 			return ColourScore(Constant.HEMORRHOID_SCORE[0]) + "."
 		Passenger.PassengerType.WHEELCHAIR_BOUND:
 			return "{0}. {1} per {2}.".format([ColourScore(Constant.WHEELCHAIR_BOUND_SCORE[0]), 
-											   ColourScore(Constant.WHEELCHAIR_BOUND_SCORE[2]), 
+											   ColourScore(Constant.WHEELCHAIR_BOUND_SCORE[2], true), 
 											   ColourKeyword("Standing Passenger", "orange")])
 		# DLC Passengers
 		# Passenger.PassengerType.DURIAN_LOVER:
 		# 	return "{0}. {1} per onboard passenger (Except another Durian Lover).".format([ColourScore(Constant.DURIAN_LOVER_SCORE[0]), 
-		# 																			 		ColourScore(Constant.DURIAN_LOVER_SCORE[2])])
+		# 																			 		ColourScore(Constant.DURIAN_LOVER_SCORE[2]), true])
 		# Passenger.PassengerType.TEENAGER_WITH_BAGS:
 		# 	return "{0}. {1} per {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[0]), 
-		# 									   ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[2]), 
+		# 									   ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[2], true), 
 		# 									   ColourKeyword("Standing Passenger", "orange")])
 		# Passenger.PassengerType.SLEEPY_TEENAGER:
 		# 	return ColourScore(Constant.SLEEPY_TEENAGER_SCORE[0]) + "."
 		# Passenger.PassengerType.NOISY_CHILD:
 		# 	return "{0}. {1} per {2} (Except another Noisy Child).".format([ColourScore(Constant.NOISY_CHILD_SCORE[0]), 
-		# 																	ColourScore(Constant.NOISY_CHILD_SCORE[2]), 
+		# 																	ColourScore(Constant.NOISY_CHILD_SCORE[2], true), 
 		# 																	ColourKeyword("Standing Passenger", "orange")])
 		_:
 			return "Unknown Description."
@@ -107,37 +115,37 @@ static func GetPassengerSittingDesc(_passengerType : Passenger.PassengerType, _g
 			return ColourScore(Constant.CHILD_SCORE[1]) + "."
 		Passenger.PassengerType.TEENAGER:
 			if _genderType == Passenger.GenderType.MALE:
-				return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_SCORE[1]),
-														 ColourScore(Constant.TEENAGER_SCORE[2]),
-														 ColourKeyword("adjacent to Female Passenger", "hotpink")]) 
+				return "{0}. But {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_SCORE[1]),
+															  ColourScore(Constant.TEENAGER_SCORE[2]),
+															  ColourKeyword("adjacent to Female Passenger", "hotpink")]) 
 			elif _genderType == Passenger.GenderType.FEMALE:
-				return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_SCORE[1]),
-														 ColourScore(Constant.TEENAGER_SCORE[2]),
-														 ColourKeyword("adjacent to Male Passenger", "hotpink")]) 
+				return "{0}. But {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_SCORE[1]),
+															  ColourScore(Constant.TEENAGER_SCORE[2]),
+															  ColourKeyword("adjacent to Male Passenger", "hotpink")]) 
 			else:
-				return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_SCORE[1]),
-														 ColourScore(Constant.TEENAGER_SCORE[2]),
-														 ColourKeyword("adjacent to Passenger of different gender", "hotpink")]) 
+				return "{0}. But {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_SCORE[1]),
+															  ColourScore(Constant.TEENAGER_SCORE[2]),
+															  ColourKeyword("adjacent to Passenger of different gender", "hotpink")]) 
 		Passenger.PassengerType.ADULT:
 			return ColourScore(Constant.ADULT_SCORE[1]) + "."
 		Passenger.PassengerType.ADULT_WITH_BAGS:
 			return ColourScore(Constant.ADULT_WITH_BAG_SCORE[1]) + "."
 		Passenger.PassengerType.ADULT_WITH_BABY:
 			return "{0}. {1} if sitting on {2}.".format([ColourScore(Constant.ADULT_WITH_BABY_SCORE[1]),
-													  	ColourScore(Constant.ADULT_WITH_BABY_SCORE[2]),
-													  	ColourKeyword("Priority Seat", "aqua")]) 
+													  	 ColourScore(Constant.ADULT_WITH_BABY_SCORE[2], true),
+													  	 ColourKeyword("Priority Seat", "aqua")]) 
 		Passenger.PassengerType.PREGNANT:
 			return "{0}. {1} if sitting on {2}.".format([ColourScore(Constant.PREGNANT_SCORE[1]),
-													  	ColourScore(Constant.PREGNANT_SCORE[2]),
-													  	ColourKeyword("Priority Seat", "aqua")]) 
+													  	 ColourScore(Constant.PREGNANT_SCORE[2], true),
+													  	 ColourKeyword("Priority Seat", "aqua")]) 
 		Passenger.PassengerType.ELDERLY:
 			return "{0}. {1} if sitting on {2}.".format([ColourScore(Constant.ELDERLY_SCORE[1]),
-													  	ColourScore(Constant.ELDERLY_SCORE[2]),
-													  	ColourKeyword("Priority Seat", "aqua")]) 
+													  	 ColourScore(Constant.ELDERLY_SCORE[2], true),
+													  	 ColourKeyword("Priority Seat", "aqua")]) 
 		Passenger.PassengerType.INJURED:
 			return "{0}. {1} if sitting on {2}.".format([ColourScore(Constant.INJURIED_SCORE[1]),
-													  	ColourScore(Constant.INJURIED_SCORE[2]),
-													  	ColourKeyword("Priority Seat", "aqua")]) 
+													  	 ColourScore(Constant.INJURIED_SCORE[2], true),
+													  	 ColourKeyword("Priority Seat", "aqua")]) 
 		Passenger.PassengerType.HEMORRHOID:
 			return ColourScore(Constant.HEMORRHOID_SCORE[1]) + "."
 		Passenger.PassengerType.WHEELCHAIR_BOUND:
@@ -146,16 +154,16 @@ static func GetPassengerSittingDesc(_passengerType : Passenger.PassengerType, _g
 		# DLC Passengers
 		# Passenger.PassengerType.DURIAN_LOVER:
 		# 	return "{0}. {1} per onboard passenger (Except another Durian Lover).".format([ColourScore(Constant.DURIAN_LOVER_SCORE[1]), 
-		# 																					ColourScore(Constant.DURIAN_LOVER_SCORE[2])])		
+		# 																					ColourScore(Constant.DURIAN_LOVER_SCORE[2], true)])		
 		# Passenger.PassengerType.TEENAGER_WITH_BAGS:
-		# 	return "{0}. {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[1]),
+		# 	return "{0}. But {1} if sitting {2}.".format([ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[1]),
 		# 												 ColourScore(Constant.TEENAGER_WITH_BAG_SCORE[2]),
 		# 												 ColourKeyword("adjacent to an Elderly Passenger", "hotpink")]) 
 		# Passenger.PassengerType.SLEEPY_TEENAGER:
 		# 	return "{0}. Once seated, cannot change seat.".format([ColourScore(Constant.SLEEPY_TEENAGER_SCORE[1])])
 		# Passenger.PassengerType.NOISY_CHILD:
 		# 	return "{0}. {1} to {2} (Except another Noisy Child).".format([ColourScore(Constant.NOISY_CHILD_SCORE[1]), 
-		# 																	ColourScore(Constant.NOISY_CHILD_SCORE[2]), 
+		# 																	ColourScore(Constant.NOISY_CHILD_SCORE[2], true), 
 		# 																	ColourKeyword("Adjacent Passenger", "hotpink")])
 		_:
 			return "Unknown Description."
@@ -165,11 +173,17 @@ static func GetPassengerGenderSprite(_passengerGender : Passenger.GenderType) ->
 	return sGenderSprite[_passengerGender]
 
 
-static func ColourScore(_score : int) -> String:
+static func ColourScore(_score : int, _isExtra : bool = false) -> String:
 	if _score > 0:
-		return "[color=green]+{0} Happiness[/color]".format([_score])
+		if _isExtra:
+			return "[color=green]+{0} extra Happiness[/color]".format([_score])
+		else:
+			return "[color=green]+{0} Happiness[/color]".format([_score])
 	elif _score < 0:
-		return "[color=red]{0} Happiness[/color]".format([_score])
+		if _isExtra:
+			return "[color=red]{0} extra Happiness[/color]".format([_score])
+		else:
+			return "[color=red]{0} Happiness[/color]".format([_score])
 	else:
 		return "[color=gray]+{0} Happiness[/color]".format([_score])
 
