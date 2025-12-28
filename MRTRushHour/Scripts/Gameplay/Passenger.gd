@@ -96,7 +96,7 @@ func InitPassenger():
 	
 	mPassengerSprite.sprite_frames = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
 	mPassengerSprite.play("Idle")
-	position = Vector2(randi_range(Constant.LEFT_DRAG_LIMIT, Constant.RIGHT_DRAG_LIMIT), randi_range(Constant.BOTTOM_DRAG_LIMIT, Constant.TOP_DRAG_LIMIT))
+	position = Vector2(randi_range(Constant.LEFT_DRAG_LIMIT, Constant.RIGHT_DRAG_LIMIT), randi_range(Constant.BOTTOM_DRAG_LIMIT - 150, Constant.TOP_DRAG_LIMIT + 150))
 	visible = true
 
 

@@ -18,6 +18,9 @@ signal OnPassengerAlighting()
 signal OnPassengerBoarding()
 signal OnNextstationReached()
 
+signal OnPassengersFinishedAlighting()		# Finished alighting all the required passengers
+signal OnPassengersFinishedBoarding()		# Finished boarding all the required passengers
+
 signal OnPassengerHoverStart(_passenger : Passenger)
 signal OnPassengerHoverEnd(_passenger : Passenger)
 

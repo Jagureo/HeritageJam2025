@@ -103,7 +103,8 @@ func SpawnPassengers():
 	# choose how many passengers to spawn
 	var numToSpawn := randi_range(LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mMinPassengers,
 								  LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mMaxPassengers)
-	
+	GameManager.sInstance.mNumberOfNewPassengersSpawned = numToSpawn
+
 	for i in numToSpawn:
 		var passenger = mPassengerPool.back()
 
@@ -115,6 +116,10 @@ func SpawnPassengers():
 		passenger.InitPassenger()
 		mStandingArea.AddPassenger(passenger)
 		mNumberOfPassengersInUse += 1
+		mCurrentPassengerCount[passenger.mPassengerType] += 1
+		await get_tree().create_timer(0.1).timeout
+
+	EventMgr.OnPassengersFinishedBoarding.emit()
 
 
 func DespawnPassengers():
@@ -128,16 +133,23 @@ func DespawnPassengers():
 		mStandingArea.RemovePassenger(passenger)
 		mPassengerPool.push_back(passenger)
 		passenger.visible = false
+		mCurrentPassengerCount[passenger.mPassengerType] -= 1
 		mNumberOfPassengersInUse -= 1
+		await get_tree().create_timer(0.1).timeout
 	
 	# Remove all sitting passengers that have reached their destination
 	for seatRow in mSeatRows:			# For each seat row
 		for seat in seatRow.mSeats:		# For each seat
 			if seat.HasPassenger() and seat.mCurrentlySeatedBy.mAlightingIn <= 0:
-				mPassengerPool.push_back(seat.mCurrentlySeatedBy)
-				seat.mCurrentlySeatedBy.visible = false
-				seat.RemovePassenger()
+				var passenger = seat.mCurrentlySeatedBy
+				mPassengerPool.push_back(passenger)
+				passenger.visible = false
+				mCurrentPassengerCount[passenger.mPassengerType] -= 1
 				mNumberOfPassengersInUse -= 1
+				seat.RemovePassenger()
+				await get_tree().create_timer(0.1).timeout
+	
+	EventMgr.OnPassengersFinishedAlighting.emit()
 
 
 func EvaluateScore():

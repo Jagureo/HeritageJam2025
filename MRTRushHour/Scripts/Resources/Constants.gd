@@ -36,7 +36,7 @@ static var WHEELCHAIR_BOUND_SCORE := [0, 5, -5]			# -5 per standing passenger
 
 # Timers
 static var AT_STATION_BASE_TIMER := 5.0
-static var AT_STATION_TIME_PER_PASSENGER := 1.0
+static var AT_STATION_TIME_PER_PASSENGER := 2.0
 static var LEAVING_STATE_TIMER := 2.5
 static var MOVING_STATE_TIMER := 4.0
 # static var REACHING_STATE_TIMER := 3.0

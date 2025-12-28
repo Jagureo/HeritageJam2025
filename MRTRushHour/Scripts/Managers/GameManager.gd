@@ -27,8 +27,7 @@ var mOverallHappiness : int = 0:
 		# if newValue < LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore:
 		# 	mGameUI.ShowGameOverPanel(true)
 		
-var mReachingNextStation : bool = true
-
+var mNumberOfNewPassengersSpawned := 0
 
 static var sInstance : GameManager = null
 
@@ -52,11 +51,15 @@ func _enter_tree():
 
 	sInstance = self
 	EventMgr.OnNextStationPressed.connect(NextStation)
+	EventMgr.OnPassengersFinishedAlighting.connect(StartBoardingPassengers)
+	EventMgr.OnPassengersFinishedBoarding.connect(FinishedBoardingPassengers)
 
 func _exit_tree():
 	if sInstance == self:
 		sInstance = null
 		EventMgr.OnNextStationPressed.disconnect(NextStation)
+		EventMgr.OnPassengersFinishedAlighting.disconnect(StartBoardingPassengers)
+		EventMgr.OnPassengersFinishedBoarding.disconnect(FinishedBoardingPassengers)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -96,9 +99,26 @@ func NextStation():
 
 func ReachedStation():
 	mCurrLevelState = LevelState.ALIGHT_PASSENGER
-	mTimer.start(Constant.ALIGHT_PASSENGER_TIMER)
 	EventMgr.OnPassengerAlighting.emit()
 	print("Alight")
+
+
+func StartBoardingPassengers():
+	mCurrLevelState = LevelState.BOARD_PASSENGER
+	EventMgr.OnPassengerBoarding.emit()
+	print("Board")
+
+
+func FinishedBoardingPassengers():
+	# Don't count down on the first station
+	if mCurrStationIdx == 0 or mCurrStationIdx == len(LevelMgr.mLevelData.mStations) - 1:
+		return
+
+	mCurrLevelState = LevelState.AT_STATION
+	mGameUI.DisableButton(false)
+	mTimer.start(Constant.AT_STATION_BASE_TIMER + mNumberOfNewPassengersSpawned * Constant.AT_STATION_TIME_PER_PASSENGER)
+	EventMgr.OnNextstationReached.emit()
+	print("At station")
 
 
 # Triggered by timer
@@ -108,11 +128,11 @@ func OnTimerTimeout():
 		mCurrLevelState = LevelState.AT_STATION
 
 	match mCurrLevelState:
-		LevelState.AT_STATION:			# currently at station
-			mGameUI.DisableButton(false)
-			mTimer.start(Constant.AT_STATION_BASE_TIMER + PassengerManager.sInstance.mNumberOfPassengersInUse * Constant.AT_STATION_TIME_PER_PASSENGER)
-			EventMgr.OnNextstationReached.emit()
-			print("At station")
+		# LevelState.AT_STATION:			# currently at station
+		# 	mGameUI.DisableButton(false)
+		# 	mTimer.start(Constant.AT_STATION_BASE_TIMER + PassengerManager.sInstance.mNumberOfPassengersInUse * Constant.AT_STATION_TIME_PER_PASSENGER)
+		# 	EventMgr.OnNextstationReached.emit()
+		# 	print("At station")
 
 		LevelState.ABOUT_TO_LEAVE:	# About to leave
 			mGameUI.DisableButton(true)
@@ -137,10 +157,10 @@ func OnTimerTimeout():
 		# 	EventMgr.OnPassengerAlighting.emit()
 		# 	print("Alight")
 
-		LevelState.BOARD_PASSENGER:
-			mTimer.start(Constant.BOARD_PASSENGER_TIMER)
-			EventMgr.OnPassengerBoarding.emit()
-			print("Board")
+		# LevelState.BOARD_PASSENGER:
+		# 	mTimer.start(Constant.BOARD_PASSENGER_TIMER)
+		# 	EventMgr.OnPassengerBoarding.emit()
+		# 	print("Board")
 
 
 
