@@ -9,8 +9,8 @@ class_name PassengerTooltip
 
 
 static var sGenderSprite : Dictionary[Passenger.GenderType, Texture2D] = {
-	Passenger.GenderType.MALE :   preload("res://Sprites/UI/Credits/icon.svg") as Texture2D,
-	Passenger.GenderType.FEMALE : preload("res://Sprites/UI/Credits/icon.svg") as Texture2D,
+	Passenger.GenderType.MALE :   preload("res://Sprites/UI/MaleIcon.png") as Texture2D,
+	Passenger.GenderType.FEMALE : preload("res://Sprites/UI/FemaleIcon.png") as Texture2D,
 }
 
 
@@ -21,8 +21,9 @@ func SetTooltip(_passenger : Passenger):
 	mSittingDesc.text = GetPassengerSittingDesc(_passenger.mPassengerType, _passenger.mGenderType)
 	mGenderIcon.texture = GetPassengerGenderSprite(_passenger.mGenderType)
 
-	if GameManager.sInstance.current_station_index + _passenger.mAlightingIn < len(LevelMgr.mLevelData.mStations):
-		var s : LevelData.Station = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index + _passenger.mAlightingIn]
+	# Set destination text
+	if GameManager.sInstance.mCurrStationIdx + _passenger.mAlightingIn < len(LevelMgr.mLevelData.mStations):
+		var s : LevelData.Station = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx + _passenger.mAlightingIn]
 		mDestinationDesc.text = "[" + s.mCode + "] " + s.mName
 	else:
 		var s : LevelData.Station = LevelMgr.mLevelData.mStations.back()

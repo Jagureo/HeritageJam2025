@@ -22,8 +22,11 @@ var mCurrentPassengerCount : Dictionary[Passenger.PassengerType, int] = {
 	# Passenger.PassengerType.NOISY_CHILD :        0,
 }
 
-var mStandingPassengers : Array[Passenger] = []
+var mStandingArea : StandingArea = null
 var mSeatRows : Array[SeatRow] = []
+
+var mPassengerPool : Array[Passenger] = []
+var mNumberOfPassengersInUse : int = 0
 
 
 func _enter_tree():
@@ -32,14 +35,31 @@ func _enter_tree():
 		return
 
 	sInstance = self
+	mStandingArea = StandingArea.new()
+
+	EventMgr.OnPassengerAlighting.connect(DespawnPassengers)
+	EventMgr.OnPassengerBoarding.connect(SpawnPassengers)
+	EventMgr.OnNextStationReaching.connect(EvaluateScore)
 
 func _exit_tree():
-	if sInstance == self:
-		sInstance = null
+	if sInstance != self:
+		return
+
+	sInstance = null
+	EventMgr.OnPassengerAlighting.disconnect(DespawnPassengers)
+	EventMgr.OnPassengerBoarding.disconnect(SpawnPassengers)
+	EventMgr.OnNextStationReaching.disconnect(EvaluateScore)
+	mStandingArea = null
+	mSeatRows.clear()
+	mPassengerPool.clear()
 
 
 func RegisterSeatRow(_seatRow : SeatRow):
 	mSeatRows.append(_seatRow)
+
+
+func RegisterPassenger(_passenger : Passenger):
+	mPassengerPool.append(_passenger)
 
 
 
@@ -80,18 +100,48 @@ func GetRandomSpawnablePassenger() -> Passenger.PassengerType:
 
 
 func SpawnPassengers():
-	pass
-	# mCurrentPassengerCount[_passenger.mPassengerType] += 1
+	# choose how many passengers to spawn
+	var numToSpawn := randi_range(LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mMinPassengers,
+								  LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mMaxPassengers)
+	
+	for i in numToSpawn:
+		var passenger = mPassengerPool.back()
+
+		# Ran out of passengers in the pool
+		if passenger == null:
+			break
+
+		mPassengerPool.pop_back()
+		passenger.InitPassenger()
+		mStandingArea.AddPassenger(passenger)
+		mNumberOfPassengersInUse += 1
 
 
 func DespawnPassengers():
-	pass
-	# mCurrentPassengerCount[_passenger.mPassengerType] -= 1
+	# Remove all standing passengers that have reached their destination
+	var standingPassengersToRemove : Array[Passenger] = []
+	for passenger in mStandingArea.mCurrentlyStanding:
+		if (passenger.mAlightingIn <= 0):
+			standingPassengersToRemove.push_back(passenger)
+
+	for passenger in standingPassengersToRemove:
+		mStandingArea.RemovePassenger(passenger)
+		mPassengerPool.push_back(passenger)
+		passenger.visible = false
+		mNumberOfPassengersInUse -= 1
+	
+	# Remove all sitting passengers that have reached their destination
+	for seatRow in mSeatRows:			# For each seat row
+		for seat in seatRow.mSeats:		# For each seat
+			if seat.HasPassenger() and seat.mCurrentlySeatedBy.mAlightingIn <= 0:
+				mPassengerPool.push_back(seat.mCurrentlySeatedBy)
+				seat.mCurrentlySeatedBy.visible = false
+				seat.RemovePassenger()
+				mNumberOfPassengersInUse -= 1
 
 
 func EvaluateScore():
-	pass
+	mStandingArea.EvaluateHappiness()
 
-
-func OnStationReached():
-	pass
+	for seatRow in mSeatRows:
+		seatRow.EvaluateHappiness()

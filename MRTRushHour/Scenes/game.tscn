@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1o618cdsf1is"]
+[gd_scene load_steps=9 format=3 uid="uid://b1o618cdsf1is"]
 
 [ext_resource type="Script" uid="uid://7u8flb2r01xw" path="res://Scripts/Managers/GameManager.gd" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://gntibs0quypb" path="res://Scenes/Prefabs/Background.tscn" id="2_1l0tm"]
@@ -7,15 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://dnnf00kmtqd41" path="res://Scenes/Managers/passenger_manager.tscn" id="3_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://cop3bpaxlj8uv" path="res://Scenes/Prefabs/SeatRow_Standard.tscn" id="3_wowpa"]
 [ext_resource type="PackedScene" uid="uid://dyyyip6wqfeht" path="res://Scenes/Prefabs/SeatRow_Wheelchair.tscn" id="4_i6g32"]
-[ext_resource type="PackedScene" uid="uid://befplng8mg7t2" path="res://Scenes/Prefabs/StandingArea.tscn" id="5_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://d3ga1d2i553dn" path="res://Scenes/UI/Passenger_Tooltip.tscn" id="7_1l0tm"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ebmjs")
 
 [node name="SelectionManager" parent="." instance=ExtResource("2_v158k")]
+unique_name_in_owner = true
 
 [node name="PassengerManager" parent="." instance=ExtResource("3_h4fw4")]
+unique_name_in_owner = true
 
 [node name="Background" parent="." instance=ExtResource("2_1l0tm")]
 position = Vector2(960, 599)
@@ -26,12 +27,15 @@ position = Vector2(960, 466)
 [node name="SeatRow_Wheelchair" parent="." instance=ExtResource("4_i6g32")]
 position = Vector2(959, 897)
 
-[node name="StandingArea" parent="." instance=ExtResource("5_1l0tm")]
-position = Vector2(962, 607)
-
 [node name="AllPassengers" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
+
+[node name="AllScorePopups" type="Control" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
 
 [node name="GameUi" parent="." instance=ExtResource("2_qxrlw")]
 unique_name_in_owner = true
@@ -43,11 +47,7 @@ offset_top = 158.0
 offset_right = -267.0
 offset_bottom = 158.0
 
-[node name="StationTransitionTimer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="StationStayTimer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="timeout" from="StationTransitionTimer" to="." method="ReachedNextStation"]
-[connection signal="timeout" from="StationStayTimer" to="." method="StationStayTimerTimeout"]
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

@@ -21,8 +21,8 @@ func _ready():
 	mBGSprite.position.x = mStationPos
 	mStationCodeBubble.get_theme_stylebox("panel").bg_color = LevelMgr.mLevelData.mLineColour
 	mStationCodeSign.add_theme_color_override("font_color", LevelMgr.mLevelData.mLineTextColour)
-	mStationNameSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index].mName
-	mStationCodeSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index].mCode
+	mStationNameSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx].mName
+	mStationCodeSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx].mCode
 
 
 func _process(_delta):
@@ -36,21 +36,26 @@ func NextStationReaching():
 	mIsEntry = 1
 	mPositionScalar = 0
 	mAnimationPlayer.play("EnteringStation")
-	mStationNameSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index + 1].mName
-	mStationCodeSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.current_station_index + 1].mCode
+	mStationNameSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx].mName
+	mStationCodeSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx].mCode
 
 func StationLeaving():
-	await get_tree().create_timer(2.4).timeout
 	mIsEntry = -1
 	mPositionScalar = 0
 	mAnimationPlayer.play("LeavingStation")
 
 
+func StationReached(_anim : StringName):
+	if _anim == "EnteringStation":
+		print("Reached station")
+		GameManager.sInstance.ReachedStation()
+
+
 func _enter_tree():
 	EventMgr.OnNextStationReaching.connect(NextStationReaching)
-	EventMgr.OnNextStationPressed.connect(StationLeaving)
+	EventMgr.OnStationLeft.connect(StationLeaving)
 
 
 func _exit_tree():
 	EventMgr.OnNextStationReaching.disconnect(NextStationReaching)
-	EventMgr.OnNextStationPressed.disconnect(StationLeaving)
+	EventMgr.OnStationLeft.disconnect(StationLeaving)

@@ -1,26 +1,32 @@
 extends Node
 class_name GameManager
 
-@onready var game_ui : CanvasLayer = %GameUi
-@onready var passenger_prefab = preload("res://Scenes/Prefabs/Passenger.tscn")
-@onready var passenger_container : Node2D = %AllPassengers
-@onready var passenger_information : PassengerTooltip = $PassengerTooltip 
-@onready var mStationTransitionTimer : Timer = $StationTransitionTimer
-@onready var mStationWaitingTimer : Timer = $StationStayTimer
+# UI refs
+@onready var mGameUI : CanvasLayer = %GameUi
+@onready var mPassengerTooltip : PassengerTooltip = $PassengerTooltip 
 
+# Passengers refs
+@onready var mPassengerContainer : Node2D = %AllPassengers
+var mPassengerPrefab = preload("res://Scenes/Prefabs/Passenger.tscn")
+
+# Score poups refs
+@onready var mScorePopupContainer : Control = %AllScorePopups
+var mScorePopupPrefab = preload("res://Scenes/UI/score_popup_panel.tscn")
+
+# Timer refs
+@onready var mTimer : Timer = $Timer
 
 var mScore : int = 0
-var current_station_index : int = 0
+var mCurrStationIdx : int = 0
 var mOverallHappiness : int = 0:
 	get:
 		return mOverallHappiness
 	set(newValue):
 		mOverallHappiness = newValue
-		update_happiness_level(newValue)
-		if newValue < LevelMgr.mLevelData.mStationDetails[current_station_index].mTargetScore:
-			game_ui.showGameOverPanel(true)
+		UpdateHappinessLevel(newValue)
+		# if newValue < LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore:
+		# 	mGameUI.ShowGameOverPanel(true)
 		
-# var passenger_hover_queue : Array[Passenger] = []
 var mReachingNextStation : bool = true
 
 
@@ -28,9 +34,13 @@ static var sInstance : GameManager = null
 
 
 enum LevelState {
-	AT_STATION,		# Train is at the station, passengers will alight, players can drag drop the passenger
-	MOVING,			# Train is moving, show the moving animation
-	REACHING_NEXT,	# Train is about to reach, happiness will be evaluated at this stage
+	AT_STATION,			# Train is at the station, passengers will alight, players can drag drop the passenger
+	ABOUT_TO_LEAVE,	# Train is at the station and is about to leave, plays the announcement, can still drag drop passengers
+	MOVING,				# Train is moving, show the moving animation
+	REACHING_NEXT,		# Train is about to reach, happiness will be evaluated at this stage, change station signs also
+	ALIGHT_PASSENGER,	# Alight passengers
+	BOARD_PASSENGER,	# Board passengers
+	LAST,
 }
 
 var mCurrLevelState : LevelState = LevelState.AT_STATION
@@ -41,132 +51,124 @@ func _enter_tree():
 		return
 
 	sInstance = self
-	EventMgr.OnNextStationPressed.connect(next_station)
+	EventMgr.OnNextStationPressed.connect(NextStation)
 
 func _exit_tree():
 	if sInstance == self:
 		sInstance = null
-		EventMgr.OnNextStationPressed.disconnect(next_station)
+		EventMgr.OnNextStationPressed.disconnect(NextStation)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# get_viewport().physics_object_picking_sort = true
 
-	UpdateStationDisplay()
-	update_happiness_level(0)
-	SpawnPassengers()
-		
-	passenger_information.hide()
+	# UpdateStationDisplay()
+	UpdateHappinessLevel(0)
+	mPassengerTooltip.hide()
 
+	# Spawn as many score Popup and passenger Prefabs as there are max passengers
+	for i in range(Constant.MAX_PASSENGERS_IN_TRAIN):
+		var passenger = mPassengerPrefab.instantiate()
+		(passenger as Node2D).hide()
+		mPassengerContainer.add_child(passenger)
+		PassengerManager.sInstance.RegisterPassenger(passenger)
 
-func _process(_delta):
-	# If time to next station left 1s, then fire off station approaching signal
-	if not mReachingNextStation and mStationTransitionTimer.time_left <= Constant.EVALUATE_SCORE_BEFORE_REACHING_NEXT_STATION:
-		mReachingNextStation = true
-		EventMgr.OnNextStationReaching.emit()
-		mCurrLevelState = LevelState.REACHING_NEXT
+		var scorepopup = mScorePopupPrefab.instantiate()
+		(scorepopup as Control).hide()
+		mScorePopupContainer.add_child(scorepopup)
 
-		# Evaluate happiness
-		mScore += mOverallHappiness
+	PassengerManager.sInstance.SpawnPassengers()
 
 
 func _input(event): 
 	if event.is_action_pressed("ui_cancel"): 
-		game_ui.showGameOverPanel(true)
+		mGameUI.ShowGameOverPanel(true)
 
 
-func next_station() -> void:
-	mStationWaitingTimer.stop()
-	
-	# Disable the button
-	game_ui.DisableButton(true)
-	await get_tree().create_timer(2.5).timeout
-
-	mCurrLevelState = LevelState.MOVING
-	SelectionManager.sInstance.EndDrag()
-	mReachingNextStation = false
-	
-	# Start the timer
-	if not game_ui.gameover_panel.visible:
-		mStationTransitionTimer.start(Constant.TIME_TO_NEXT_STATION)
+# Can be triggered by pressing button
+func NextStation():
+	mTimer.stop()
+	mGameUI.DisableButton(true)
+	mCurrLevelState = LevelState.ABOUT_TO_LEAVE
+	mTimer.start(Constant.LEAVING_STATE_TIMER)
+	EventMgr.OnAboutToLeave.emit()
 
 
-func ReachedNextStation():
-	if current_station_index < LevelMgr.mLevelData.mStations.size() - 1:
-		UpdateStationDisplay()
-
-		# var new_passengers = Station.EWStations[current_station_index].get_passenger_count()
-		var new_passengers = 0
-		var passengers_in_train = passenger_container.get_child_count() + new_passengers
-		var passengers_to_kick_min = (passengers_in_train - Constant.MAX_PASSENGERS_IN_TRAIN) if passengers_in_train > Constant.MAX_PASSENGERS_IN_TRAIN else 0
-		var passengers_to_kick_max = (passenger_container.get_child_count() - 1) if passenger_container.get_child_count() > 1 else 0
-		var passengers_to_kick = randi_range(passengers_to_kick_min, passengers_to_kick_max)
-		for i in range(passengers_to_kick):
-			var random_passenger = passenger_container.get_child(randi() % passenger_container.get_child_count())
-
-			# Passenger not seated, remove it from sitting area
-			if (random_passenger as Passenger).mSittingOn != null:
-				(random_passenger as Passenger).mSittingOn.RemovePassenger()
-
-			StandingArea.sStandingArea.RemovePassenger(random_passenger)
-			random_passenger.alight_passenger()
-		
-		SpawnPassengers()
-
-		# Update the next station sign
-		current_station_index += 1
-		UpdateStationDisplay()
-		EventMgr.OnNextstationReached.emit()
-		mStationWaitingTimer.start((new_passengers * lerp(2, 4, float(LevelMgr.mLevelData.mStations.size() - current_station_index) / float(LevelMgr.mLevelData.mStations.size()))) + 1)
-		
-	if current_station_index == LevelMgr.mLevelData.mStations.size() - 1:
-		game_ui.showGameOverPanel(true)
-
-	# Reached station
-	mCurrLevelState = LevelState.AT_STATION
-
-	# Next station button can be pressed
-	game_ui.DisableButton(false)
+func ReachedStation():
+	mCurrLevelState = LevelState.ALIGHT_PASSENGER
+	mTimer.start(Constant.ALIGHT_PASSENGER_TIMER)
+	EventMgr.OnPassengerAlighting.emit()
+	print("Alight")
 
 
+# Triggered by timer
+func OnTimerTimeout():
+	mCurrLevelState += 1
+	if mCurrLevelState >= LevelState.LAST:
+		mCurrLevelState = LevelState.AT_STATION
 
-func UpdateStationDisplay() -> void:
-	game_ui.set_station(LevelMgr.mLevelData.mStations[current_station_index].mName)
+	match mCurrLevelState:
+		LevelState.AT_STATION:			# currently at station
+			mGameUI.DisableButton(false)
+			mTimer.start(Constant.AT_STATION_BASE_TIMER + PassengerManager.sInstance.mNumberOfPassengersInUse * Constant.AT_STATION_TIME_PER_PASSENGER)
+			EventMgr.OnNextstationReached.emit()
+			print("At station")
+
+		LevelState.ABOUT_TO_LEAVE:	# About to leave
+			mGameUI.DisableButton(true)
+			mTimer.start(Constant.LEAVING_STATE_TIMER)
+			EventMgr.OnAboutToLeave.emit()
+			print("about to leave")
+
+		LevelState.MOVING:
+			SelectionManager.sInstance.EndDrag()	# Stop all dragging
+			mTimer.start(Constant.MOVING_STATE_TIMER)
+			EventMgr.OnStationLeft.emit()
+			print("moving")
+
+		LevelState.REACHING_NEXT:
+			mCurrStationIdx += 1
+			# mTimer.start(Constant.REACHING_STATE_TIMER)
+			EventMgr.OnNextStationReaching.emit()
+			print("reaching next station")
+
+		# LevelState.ALIGHT_PASSENGER:
+		# 	mTimer.start(Constant.ALIGHT_PASSENGER_TIMER)
+		# 	EventMgr.OnPassengerAlighting.emit()
+		# 	print("Alight")
+
+		LevelState.BOARD_PASSENGER:
+			mTimer.start(Constant.BOARD_PASSENGER_TIMER)
+			EventMgr.OnPassengerBoarding.emit()
+			print("Board")
 
 
-func SpawnPassengers() -> void:
-	# choose how many passengers to spawn
-	var numToSpawn := randi_range(LevelMgr.mLevelData.mStationDetails[current_station_index].mMinPassengers,
-								  LevelMgr.mLevelData.mStationDetails[current_station_index].mMaxPassengers)
-	
-	for i in numToSpawn:
-		var passenger = passenger_prefab.instantiate()
-		passenger_container.add_child(passenger)
-		passenger.position = Vector2(randi_range(Constant.LEFT_DRAG_LIMIT, Constant.RIGHT_DRAG_LIMIT), randi_range(Constant.BOTTOM_DRAG_LIMIT, Constant.TOP_DRAG_LIMIT))
-		StandingArea.sStandingArea.AddPassenger(passenger)
+
+# func UpdateStationDisplay() -> void:
+# 	mGameUI.set_station(LevelMgr.mLevelData.mStations[mCurrStationIdx].mName)
 
 
-func update_happiness_level(value: int) -> void:
-	game_ui.set_happiness_level(value)
+
+func UpdateHappinessLevel(value: int) -> void:
+	mGameUI.set_happiness_level(value)
 
 
 func ShowPassengerTooltip(_passenger : Passenger):
-	passenger_information.SetTooltip(_passenger)
-	passenger_information.show()
+	mPassengerTooltip.SetTooltip(_passenger)
+	mPassengerTooltip.show()
 	# Cap at X position at [250, 1670] so the tooltip won't go over the screen
-	passenger_information.position = Vector2(clamp(_passenger.global_position.x, 250, 1670), _passenger.global_position.y)  + Vector2(0, -275)
+	mPassengerTooltip.position = Vector2(clamp(_passenger.global_position.x, 250, 1670), _passenger.global_position.y)  + Vector2(0, -275)
 
 
 func HidePassengerTooltip():
-	passenger_information.hide()
+	mPassengerTooltip.hide()
 
 
 func IsPassengerTooltipVisible() -> bool:
-	return passenger_information.visible
+	return mPassengerTooltip.visible
 
 
 
-func StationStayTimerTimeout():
-	if current_station_index < LevelMgr.mLevelData.mStations.size() - 1 and mOverallHappiness >= LevelMgr.mLevelData.mStationDetails[current_station_index].mTargetScore:
-		EventMgr.OnNextStationPressed.emit()
+# func StationStayTimerTimeout():
+# 	if mCurrStationIdx < LevelMgr.mLevelData.mStations.size() - 1 and mOverallHappiness >= LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore:
+# 		EventMgr.OnNextStationPressed.emit()

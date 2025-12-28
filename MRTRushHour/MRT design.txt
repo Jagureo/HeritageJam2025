@@ -116,3 +116,10 @@ DTL: 0, 93, 168
 TEL: 157, 91, 37
 JRL: 0, 166, 182
 CRL: 149, 214, 6
+
+
+State
+- at station: passengers alight and board, moving allowed
+- door closing: door closing animation and announcement played
+- moving: cannot move passengers, train actually starts moving
+- arriving: scores are evaluated

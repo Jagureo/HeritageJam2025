@@ -11,7 +11,9 @@ func _ready():
 
 	for i in range(len(mSeats)):
 		(mSeats[i] as Seat).mSeatIndex = i
-		
+
+	PassengerManager.sInstance.RegisterSeatRow(self)
+
 
 # Evaluate happiness for people seated down
 func EvaluateHappiness():

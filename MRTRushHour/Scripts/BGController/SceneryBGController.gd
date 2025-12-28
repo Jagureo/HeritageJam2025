@@ -47,16 +47,15 @@ func NextStationReaching():
 
 
 func StationLeaving():
-	await get_tree().create_timer(2.4).timeout
 	mAnimationPlayer.play("LeavingStation")
 
 
 
 func _enter_tree():
 	EventMgr.OnNextStationReaching.connect(NextStationReaching)
-	EventMgr.OnNextStationPressed.connect(StationLeaving)
+	EventMgr.OnStationLeft.connect(StationLeaving)
 
 
 func _exit_tree():
 	EventMgr.OnNextStationReaching.disconnect(NextStationReaching)
-	EventMgr.OnNextStationPressed.disconnect(StationLeaving)
+	EventMgr.OnStationLeft.disconnect(StationLeaving)

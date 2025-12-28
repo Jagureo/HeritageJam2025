@@ -11,7 +11,11 @@ class_name Event
 # signal OnPassengerRemovedFromStandingArea(_passenger : Passenger)
 
 signal OnNextStationPressed()
+signal OnAboutToLeave()
+signal OnStationLeft()
 signal OnNextStationReaching()
+signal OnPassengerAlighting()
+signal OnPassengerBoarding()
 signal OnNextstationReached()
 
 signal OnPassengerHoverStart(_passenger : Passenger)

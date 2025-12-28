@@ -119,4 +119,4 @@ func UpdateDrag():
 
 
 func CanDrag() -> bool:
-	return GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION
+	return GameManager.sInstance.mCurrLevelState <= GameManager.LevelState.ABOUT_TO_LEAVE

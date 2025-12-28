@@ -90,6 +90,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Sign" type="Panel" parent="MainScreen"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

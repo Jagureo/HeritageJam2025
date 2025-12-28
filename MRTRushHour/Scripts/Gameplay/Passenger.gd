@@ -83,6 +83,8 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 func _ready():
 	mPassengerSprite.material = mPassengerSprite.material.duplicate()
 
+
+func InitPassenger():
 	mAlightingIn = randi_range(Constant.MIN_NUMBER_OF_STATIONS_TO_STAY, Constant.MAX_NUMBER_OF_STATIONS_TO_STAY)
 	mPassengerType = PassengerManager.sInstance.GetRandomSpawnablePassenger()
 
@@ -94,6 +96,8 @@ func _ready():
 	
 	mPassengerSprite.sprite_frames = sMalePassengerTextures[mPassengerType] if mGenderType == GenderType.MALE else sFemalePassengerTextures[mPassengerType]
 	mPassengerSprite.play("Idle")
+	position = Vector2(randi_range(Constant.LEFT_DRAG_LIMIT, Constant.RIGHT_DRAG_LIMIT), randi_range(Constant.BOTTOM_DRAG_LIMIT, Constant.TOP_DRAG_LIMIT))
+	visible = true
 
 
 
@@ -104,7 +108,7 @@ func OnDragStart():
 	if mSittingOn:
 		mSittingOn.RemovePassenger()
 		mSittingOn = null
-		StandingArea.sStandingArea.AddPassenger(self)
+		PassengerManager.sInstance.mStandingArea.AddPassenger(self)
 
 
 func OnDragUpdate():
@@ -119,7 +123,7 @@ func OnDragEnd():
 		if Seat.sSelectedSeat.AddPassenger(self):
 			global_position = Seat.sSelectedSeat.global_position
 			mSittingOn = Seat.sSelectedSeat
-			StandingArea.sStandingArea.RemovePassenger(self)
+			PassengerManager.sInstance.mStandingArea.RemovePassenger(self)
 
 
 func OnHoverStart():
@@ -152,11 +156,23 @@ func OnHoverEnd():
 # 	mScorePopupPanel.hide()
 	
 
-func alight_passenger() -> void:
-	await get_tree().create_timer(randf_range(1, 2)).timeout
+# func alight_passenger() -> void:
+# 	await get_tree().create_timer(randf_range(1, 2)).timeout
 
-	if mSittingOn != null:
-		mSittingOn.RemovePassenger()
+# 	if mSittingOn != null:
+# 		mSittingOn.RemovePassenger()
 
-	StandingArea.sStandingArea.RemovePassenger(self)
-	queue_free()
+# 	PassengerManager.sInstance.mStandingArea.RemovePassenger(self)
+
+
+
+func UpdateNumberOfStationsLeft():
+	mAlightingIn -= 1
+
+
+func _enter_tree():
+	EventMgr.OnNextStationReaching.connect(UpdateNumberOfStationsLeft)
+
+	
+func _exit_tree():
+	EventMgr.OnNextStationReaching.disconnect(UpdateNumberOfStationsLeft)

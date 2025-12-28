@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var station_label = $MainScreen/Sign/Station_Label
+# @onready var station_label = $MainScreen/Sign/Station_Label
 @onready var happiness_label = $MainScreen/Sign2/Happniess_Level
 @onready var nextStationButton = $MainScreen/NextStationButton
 @onready var timerDisplay = $MainScreen/Sign3/Time_Left
@@ -14,29 +14,32 @@ extends CanvasLayer
 
 @export_file("*.tscn") var mMainMenuScene : String
 
-func set_station(msg: String) -> void:
-	station_label.text = msg
+# func set_station(msg: String) -> void:
+# 	station_label.text = msg
 
 func next_station() -> void:
-	if GameManager.sInstance.current_station_index < LevelMgr.mLevelData.mStations.size() - 1:
+	if GameManager.sInstance.mCurrStationIdx < LevelMgr.mLevelData.mStations.size() - 1:
 		EventMgr.OnNextStationPressed.emit()
 		AudioManager.sInstance.mClickSound.play()
+
 
 func set_happiness_level(value: int) -> void:
 	happiness_label.text = "Happiness: %d" % value
 
+
 func DisableButton(val : bool):
 	nextStationButton.disabled = val
 
-func showGameOverPanel(_show : bool):
+
+func ShowGameOverPanel(_show : bool):
 	if _show:
 		gameover_happiness.text = happiness_label.text
-		gameover_stations.text = "Stations Travelled: %d" % GameManager.sInstance.current_station_index
+		gameover_stations.text = "Stations Travelled: %d" % GameManager.sInstance.mCurrStationIdx
 		gameover_score.text = "Score: %d" % GameManager.sInstance.mScore
 		
 		nextStationButton.hide()
 		gameover_panel.show()
-		GameManager.sInstance.mStationWaitingTimer.stop()
+		GameManager.sInstance.mTimer.stop()
 		
 	else:
 		gameover_panel.hide()
@@ -50,4 +53,5 @@ func OnMainMenuButtonPressed() -> void:
 	get_tree().change_scene_to_file(mMainMenuScene)
 	
 func _process(_showdelta: float) -> void:
-	timerDisplay.text = "Time: %.1f" % GameManager.sInstance.mStationWaitingTimer.time_left
+	if GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION:
+		timerDisplay.text = "Time: %.1f" % GameManager.sInstance.mTimer.time_left

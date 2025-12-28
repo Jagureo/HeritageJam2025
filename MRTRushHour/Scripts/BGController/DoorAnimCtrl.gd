@@ -17,10 +17,10 @@ func _ready():
 
 
 func _enter_tree():
-	EventMgr.OnNextStationPressed.connect(CloseDoor)
-	EventMgr.OnNextstationReached.connect(OpenDoor)
+	EventMgr.OnAboutToLeave.connect(CloseDoor)
+	EventMgr.OnPassengerAlighting.connect(OpenDoor)
 
 
 func _exit_tree():
-	EventMgr.OnNextStationPressed.disconnect(CloseDoor)
-	EventMgr.OnNextstationReached.disconnect(OpenDoor)
+	EventMgr.OnAboutToLeave.disconnect(CloseDoor)
+	EventMgr.OnPassengerAlighting.disconnect(OpenDoor)
