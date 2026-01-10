@@ -30,9 +30,7 @@ enum GenderType {
 
 # Reference
 @onready var mPassengerSprite : AnimatedSprite2D = $PassengerSprite
-# @onready var mScorePopupLabel : Label = $ScorePopupPanel/ScorePopupLabel
-# @onready var mScorePopupPanel : Panel = $ScorePopupPanel
-# @onready var mScorePopupTimer : Timer = $ScorePopupTimer
+var mOriginalSpriteLocalPosition : Vector2 
 
 # Passenger details
 var mPassengerType : PassengerType
@@ -82,6 +80,7 @@ static var sFemalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = 
 
 func _ready():
 	mPassengerSprite.material = mPassengerSprite.material.duplicate()
+	mOriginalSpriteLocalPosition = mPassengerSprite.position
 
 
 func InitPassenger():
@@ -104,6 +103,10 @@ func InitPassenger():
 func OnDragStart():
 	AudioManager.sInstance.play_pickup_sound()
 
+	# Reset the sprite position
+	if mPassengerType == PassengerType.CHILDREN or mPassengerType == PassengerType.TEENAGER:
+		mPassengerSprite.global_position = self.global_position + mOriginalSpriteLocalPosition
+
 	# If passenger was sitting on a seat then unassign this seat
 	if mSittingOn:
 		mSittingOn.RemovePassenger()
@@ -121,7 +124,15 @@ func OnDragUpdate():
 func OnDragEnd():
 	if Seat.sSelectedSeat and not Seat.sSelectedSeat.HasPassenger():
 		if Seat.sSelectedSeat.AddPassenger(self):
+			
 			global_position = Seat.sSelectedSeat.global_position
+			# If the seat is back facing, then the children and teenager has special seating position
+			if Seat.sSelectedSeat.mIsBackFacing:
+				if mPassengerType == PassengerType.CHILDREN:
+					mPassengerSprite.global_position = Seat.sSelectedSeat.mChildSitPos.global_position + mOriginalSpriteLocalPosition
+				elif mPassengerType == PassengerType.TEENAGER:
+					mPassengerSprite.global_position = Seat.sSelectedSeat.mTeenSitPos.global_position + mOriginalSpriteLocalPosition
+				
 			mSittingOn = Seat.sSelectedSeat
 			PassengerManager.sInstance.mStandingArea.RemovePassenger(self)
 

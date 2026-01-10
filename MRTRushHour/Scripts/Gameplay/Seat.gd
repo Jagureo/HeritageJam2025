@@ -19,6 +19,10 @@ var mSeatIndex : int
 # References
 @onready var mSeatSprite : Sprite2D = $SeatSprite
 
+@onready var mChildSitPos : Node2D = $ChildSitPos
+@onready var mTeenSitPos : Node2D = $TeenSitPos
+
+
 
 # Determine which Seat is hovered
 static var sSelectedSeat : Seat = null
@@ -33,13 +37,14 @@ func AddPassenger(_passenger : Passenger) -> bool:
 			return false
 	mCurrentlySeatedBy = _passenger
 	# Lighter glow to indicate seat is occupied
-	mSeatSprite.material.set_shader_parameter("tintFactor", -0.15)
+	mSeatSprite.material.set_shader_parameter("tintFactor", -0.25)
 	return true
 
-func RemovePassenger():
+func RemovePassenger(_isAlighting : bool = false):
 	mCurrentlySeatedBy = null
 	# Remove the tint that showed this seat is occupied
-	mSeatSprite.material.set_shader_parameter("tintFactor", 0)
+	if _isAlighting:
+		mSeatSprite.material.set_shader_parameter("tintFactor", 0)
 
 func HasPassenger() -> bool:
 	return mCurrentlySeatedBy != null
@@ -56,7 +61,7 @@ func OnMouseEntered():
 	if HasPassenger():
 		return
 
-	mSeatSprite.material.set_shader_parameter("tintFactor", -0.15)
+	mSeatSprite.material.set_shader_parameter("tintFactor", -0.25)
 	mSeatSprite.material.set_shader_parameter("outlineWidth", 4)
 	if mIsBackFacing:
 		z_index = 3

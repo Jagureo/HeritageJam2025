@@ -146,7 +146,7 @@ func DespawnPassengers():
 				passenger.visible = false
 				mCurrentPassengerCount[passenger.mPassengerType] -= 1
 				mNumberOfPassengersInUse -= 1
-				seat.RemovePassenger()
+				seat.RemovePassenger(true)
 				await get_tree().create_timer(0.1).timeout
 	
 	EventMgr.OnPassengersFinishedAlighting.emit()

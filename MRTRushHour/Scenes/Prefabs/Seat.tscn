@@ -30,7 +30,7 @@ texture = ExtResource("2_gkp0v")
 shape = SubResource("RectangleShape2D_n1l8m")
 
 [node name="ChildSitPos" type="Node2D" parent="."]
-position = Vector2(0, -70)
+position = Vector2(0, -69)
 
 [node name="TeenSitPos" type="Node2D" parent="."]
 position = Vector2(0, -25)
