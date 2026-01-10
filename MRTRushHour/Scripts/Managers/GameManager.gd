@@ -16,6 +16,8 @@ var mScorePopupPrefab = preload("res://Scenes/UI/score_popup_panel.tscn")
 # Timer refs
 @onready var mTimer : Timer = $Timer
 
+var mGameOver := false
+
 var mScore : int = 0
 var mCurrStationIdx : int = 0
 var mOverallHappiness : int = 0:
@@ -24,8 +26,10 @@ var mOverallHappiness : int = 0:
 	set(newValue):
 		mOverallHappiness = newValue
 		UpdateHappinessLevel(newValue)
-		# if newValue < LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore:
-		# 	mGameUI.ShowGameOverPanel(true)
+		if newValue < LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore:
+			mGameUI.ShowGameOverPanel(true)
+			mGameOver = true
+			mPassengerTooltip.hide()
 		
 var mNumberOfNewPassengersSpawned := 0
 
@@ -34,7 +38,7 @@ static var sInstance : GameManager = null
 
 enum LevelState {
 	AT_STATION,			# Train is at the station, passengers will alight, players can drag drop the passenger
-	ABOUT_TO_LEAVE,	# Train is at the station and is about to leave, plays the announcement, can still drag drop passengers
+	ABOUT_TO_LEAVE,		# Train is at the station and is about to leave, plays the announcement, can still drag drop passengers
 	MOVING,				# Train is moving, show the moving animation
 	REACHING_NEXT,		# Train is about to reach, happiness will be evaluated at this stage, change station signs also
 	ALIGHT_PASSENGER,	# Alight passengers
@@ -104,6 +108,9 @@ func ReachedStation():
 
 
 func StartBoardingPassengers():
+	if mGameOver:
+		return
+
 	mCurrLevelState = LevelState.BOARD_PASSENGER
 	EventMgr.OnPassengerBoarding.emit()
 	print("Board")

@@ -45,6 +45,9 @@ func GetFrontmostPassenger() -> Passenger:
 
 
 func _unhandled_input(event):
+	if GameManager.sInstance.mGameOver:
+		return
+		
 	if event.is_action_pressed("Click"):
 		TryStartDrag()
 	elif event.is_action_released("Click"):
@@ -73,6 +76,9 @@ func EndDrag():
 
 # Hovering logic
 func _process(_delta):
+	if GameManager.sInstance.mGameOver:
+		return
+
 	UpdateHover()
 	UpdateDrag()
 
