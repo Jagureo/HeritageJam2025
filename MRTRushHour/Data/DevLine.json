@@ -15,23 +15,23 @@
 		{ "code": "EW6",  "name": "Kembangan", "isUnderground": false }
 	],
 	"stationDetails": [
-		{ "targetScore": 0,   "minPassengersToSpawn": 15, "maxPassengersToSpawn": 15 },
-		{ "targetScore": 2,   "minPassengersToSpawn": 15, "maxPassengersToSpawn": 15 },
-		{ "targetScore": 5,   "minPassengersToSpawn": 15, "maxPassengersToSpawn": 15 },
-		{ "targetScore": 8,   "minPassengersToSpawn": 15, "maxPassengersToSpawn": 15 },
-		{ "targetScore": 11,  "minPassengersToSpawn": 15, "maxPassengersToSpawn": 15 },
-		{ "targetScore": 14,  "minPassengersToSpawn": 15, "maxPassengersToSpawn": 15 }
+		{ "targetScore": -100,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": -100,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": -100,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": -100,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": -100,  "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": -100,  "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 }
 	],
 	"passengersSpawn": [
 		{ "type": "Child", "weight": 15, "max": 99 },
 		{ "type": "Teenager", "weight": 15, "max": 99 },
 		{ "type": "Adult", "weight": 15, "max": 99 },
-		{ "type": "AdultWithBag", "weight": 0, "max": 99 },
-		{ "type": "AdultWithBaby", "weight": 0, "max": 99 },
-		{ "type": "Elderly", "weight": 0, "max": 99 },
-		{ "type": "Injured", "weight": 0, "max": 99 },
-		{ "type": "Pregnant", "weight": 0, "max": 99 },
-		{ "type": "Hemorrhoid", "weight": 0, "max": 99 },
-		{ "type": "Wheelchair", "weight": 0, "max": 1 }
+		{ "type": "AdultWithBag", "weight": 15, "max": 99 },
+		{ "type": "AdultWithBaby", "weight": 15, "max": 99 },
+		{ "type": "Elderly", "weight": 15, "max": 99 },
+		{ "type": "Injured", "weight": 15, "max": 99 },
+		{ "type": "Pregnant", "weight": 15, "max": 99 },
+		{ "type": "Hemorrhoid", "weight": 15, "max": 99 },
+		{ "type": "Wheelchair", "weight": 15, "max": 1 }
 	]
 }

@@ -31,12 +31,6 @@ position = Vector2(959, 897)
 unique_name_in_owner = true
 y_sort_enabled = true
 
-[node name="AllScorePopups" type="Control" parent="."]
-unique_name_in_owner = true
-y_sort_enabled = true
-layout_mode = 3
-anchors_preset = 0
-
 [node name="GameUi" parent="." instance=ExtResource("2_qxrlw")]
 unique_name_in_owner = true
 

@@ -13,13 +13,16 @@ func AddPassenger(_passenger : Passenger):
 func RemovePassenger(_passenger : Passenger):
 	mCurrentlyStanding.erase(_passenger)
 
-
 # Evaluate happiness for people in the standing area
 func EvaluateHappiness() -> int:
+
 	var sectionScore : int = 0
 
 	# Set the score of all the passengers
 	for passenger in mCurrentlyStanding:
+		# Reset passenger's score
+		passenger.mScore = 0
+
 		match passenger.mPassengerType:
 			Passenger.PassengerType.CHILDREN:
 				passenger.mScore = Constant.CHILD_SCORE[0]
@@ -52,7 +55,7 @@ func EvaluateHappiness() -> int:
 				passenger.mScore = Constant.WHEELCHAIR_BOUND_SCORE[0] + (len(mCurrentlyStanding) - 1) * Constant.WHEELCHAIR_BOUND_SCORE[2]
 
 		sectionScore += passenger.mScore
+		passenger.mPassengerScorePopup.SetScore(passenger.mScore)
+		passenger.mPassengerScorePopup.show()
 
 	return sectionScore
-
-

@@ -47,7 +47,6 @@ func StationLeaving():
 
 func StationReached(_anim : StringName):
 	if _anim == "EnteringStation":
-		print("Reached station")
 		GameManager.sInstance.ReachedStation()
 
 

@@ -106,11 +106,10 @@ func SpawnPassengers():
 	GameManager.sInstance.mNumberOfNewPassengersSpawned = numToSpawn
 
 	for i in numToSpawn:
-		var passenger = mPassengerPool.back()
-
 		# Ran out of passengers in the pool
-		if passenger == null:
+		if mPassengerPool.is_empty():
 			break
+		var passenger = mPassengerPool.back()
 
 		mPassengerPool.pop_back()
 		passenger.InitPassenger()
@@ -133,8 +132,10 @@ func DespawnPassengers():
 		mStandingArea.RemovePassenger(passenger)
 		mPassengerPool.push_back(passenger)
 		passenger.visible = false
+		passenger.mPassengerScorePopup.Reset()
 		mCurrentPassengerCount[passenger.mPassengerType] -= 1
 		mNumberOfPassengersInUse -= 1
+		
 		await get_tree().create_timer(0.1).timeout
 	
 	# Remove all sitting passengers that have reached their destination
@@ -144,9 +145,11 @@ func DespawnPassengers():
 				var passenger = seat.mCurrentlySeatedBy
 				mPassengerPool.push_back(passenger)
 				passenger.visible = false
+				passenger.mPassengerScorePopup.Reset()
 				mCurrentPassengerCount[passenger.mPassengerType] -= 1
 				mNumberOfPassengersInUse -= 1
 				seat.RemovePassenger(true)
+				passenger.mSittingOn = null
 				await get_tree().create_timer(0.1).timeout
 	
 	EventMgr.OnPassengersFinishedAlighting.emit()

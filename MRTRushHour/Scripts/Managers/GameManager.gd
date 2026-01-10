@@ -10,8 +10,8 @@ class_name GameManager
 var mPassengerPrefab = preload("res://Scenes/Prefabs/Passenger.tscn")
 
 # Score poups refs
-@onready var mScorePopupContainer : Control = %AllScorePopups
-var mScorePopupPrefab = preload("res://Scenes/UI/score_popup_panel.tscn")
+# @onready var mScorePopupContainer : Control = %AllScorePopups
+# var mScorePopupPrefab = preload("res://Scenes/UI/score_popup_panel.tscn")
 
 # Timer refs
 @onready var mTimer : Timer = $Timer
@@ -76,9 +76,9 @@ func _ready():
 		mPassengerContainer.add_child(passenger)
 		PassengerManager.sInstance.RegisterPassenger(passenger)
 
-		var scorepopup = mScorePopupPrefab.instantiate()
-		(scorepopup as Control).hide()
-		mScorePopupContainer.add_child(scorepopup)
+		# var scorepopup = mScorePopupPrefab.instantiate()
+		# (scorepopup as Control).hide()
+		# mScorePopupContainer.add_child(scorepopup)
 
 	PassengerManager.sInstance.SpawnPassengers()
 
@@ -100,7 +100,6 @@ func NextStation():
 func ReachedStation():
 	mCurrLevelState = LevelState.ALIGHT_PASSENGER
 	EventMgr.OnPassengerAlighting.emit()
-	print("Alight")
 
 
 func StartBoardingPassengers():
@@ -109,7 +108,6 @@ func StartBoardingPassengers():
 
 	mCurrLevelState = LevelState.BOARD_PASSENGER
 	EventMgr.OnPassengerBoarding.emit()
-	print("Board")
 
 
 func FinishedBoardingPassengers():
@@ -121,7 +119,6 @@ func FinishedBoardingPassengers():
 	mGameUI.DisableButton(false)
 	mTimer.start(Constant.AT_STATION_BASE_TIMER + mNumberOfNewPassengersSpawned * Constant.AT_STATION_TIME_PER_PASSENGER)
 	EventMgr.OnNextstationReached.emit()
-	print("At station")
 
 
 # Triggered by timer
@@ -135,28 +132,21 @@ func OnTimerTimeout():
 			mGameUI.DisableButton(true)
 			mTimer.start(Constant.LEAVING_STATE_TIMER)
 			EventMgr.OnAboutToLeave.emit()
-			print("about to leave")
 
 		LevelState.MOVING:
 			SelectionManager.sInstance.EndDrag()	# Stop all dragging
 			mTimer.start(Constant.MOVING_STATE_TIMER)
 			EventMgr.OnStationLeft.emit()
-			print("moving")
 
 		LevelState.REACHING_NEXT:
 			mCurrStationIdx += 1
 			# mTimer.start(Constant.REACHING_STATE_TIMER)
 			EventMgr.OnNextStationReaching.emit()
-			print("reaching next station")
-
 
 
 func SetHappinessLevel(value: int) -> void:
 	mOverallHappiness = value
 	mGameUI.SetHappinessLevel(mOverallHappiness)
-
-	print("Target score: ", LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mTargetScore)
-	print("Current score: ", mOverallHappiness)
 
 	if GameManager.sInstance.mCurrStationIdx > 0 and mOverallHappiness < LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mTargetScore:
 		mGameUI.ShowGameOverPanel(true)

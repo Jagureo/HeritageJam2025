@@ -9,7 +9,7 @@ static var RIGHT_DRAG_LIMIT : int = 1920 - 100
 # Defines passenger constants
 static var MAX_PASSENGERS_IN_TRAIN : int = 30
 static var MIN_NUMBER_OF_STATIONS_TO_STAY : int = 1
-static var MAX_NUMBER_OF_STATIONS_TO_STAY : int = 10
+static var MAX_NUMBER_OF_STATIONS_TO_STAY : int = 4
 
 # Defines station constants
 static var TIME_TO_NEXT_STATION : float = 5

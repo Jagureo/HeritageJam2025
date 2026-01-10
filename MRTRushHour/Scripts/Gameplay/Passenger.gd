@@ -30,6 +30,9 @@ enum GenderType {
 
 # Reference
 @onready var mPassengerSprite : AnimatedSprite2D = $PassengerSprite
+@onready var mPassengerScorePopup : Control = $ScorePopupPos/ScorePopup
+
+# Sprites
 var mOriginalSpriteLocalPosition : Vector2 
 
 # Passenger details
@@ -101,15 +104,14 @@ func InitPassenger():
 	position = Vector2(randi_range(Constant.LEFT_DRAG_LIMIT, Constant.RIGHT_DRAG_LIMIT), randi_range(Constant.BOTTOM_DRAG_LIMIT - 150, Constant.TOP_DRAG_LIMIT + 150))
 	visible = true
 	mScore = 0
-
-
+	
+	
 
 func OnDragStart():
 	AudioManager.sInstance.play_pickup_sound()
 
 	# Reset the sprite position
-	if mPassengerType == PassengerType.CHILDREN or mPassengerType == PassengerType.TEENAGER:
-		mPassengerSprite.global_position = self.global_position + mOriginalSpriteLocalPosition
+	mPassengerSprite.global_position = self.global_position + mOriginalSpriteLocalPosition
 
 	# If passenger was sitting on a seat then unassign this seat
 	if mSittingOn:
