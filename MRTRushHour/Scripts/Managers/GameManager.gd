@@ -20,16 +20,12 @@ var mGameOver := false
 
 var mScore : int = 0
 var mCurrStationIdx : int = 0
-var mOverallHappiness : int = 0:
-	get:
-		return mOverallHappiness
-	set(newValue):
-		mOverallHappiness = newValue
-		UpdateHappinessLevel(newValue)
-		if newValue < LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore:
-			mGameUI.ShowGameOverPanel(true)
-			mGameOver = true
-			mPassengerTooltip.hide()
+var mOverallHappiness : int = 0
+	# get:
+	# 	return mOverallHappiness
+	# set(newValue):
+	# 	mOverallHappiness = newValue
+		
 		
 var mNumberOfNewPassengersSpawned := 0
 
@@ -70,7 +66,7 @@ func _exit_tree():
 func _ready():
 
 	# UpdateStationDisplay()
-	UpdateHappinessLevel(0)
+	SetHappinessLevel(0)
 	mPassengerTooltip.hide()
 
 	# Spawn as many score Popup and passenger Prefabs as there are max passengers
@@ -135,12 +131,6 @@ func OnTimerTimeout():
 		mCurrLevelState = LevelState.AT_STATION
 
 	match mCurrLevelState:
-		# LevelState.AT_STATION:			# currently at station
-		# 	mGameUI.DisableButton(false)
-		# 	mTimer.start(Constant.AT_STATION_BASE_TIMER + PassengerManager.sInstance.mNumberOfPassengersInUse * Constant.AT_STATION_TIME_PER_PASSENGER)
-		# 	EventMgr.OnNextstationReached.emit()
-		# 	print("At station")
-
 		LevelState.ABOUT_TO_LEAVE:	# About to leave
 			mGameUI.DisableButton(true)
 			mTimer.start(Constant.LEAVING_STATE_TIMER)
@@ -159,25 +149,19 @@ func OnTimerTimeout():
 			EventMgr.OnNextStationReaching.emit()
 			print("reaching next station")
 
-		# LevelState.ALIGHT_PASSENGER:
-		# 	mTimer.start(Constant.ALIGHT_PASSENGER_TIMER)
-		# 	EventMgr.OnPassengerAlighting.emit()
-		# 	print("Alight")
-
-		# LevelState.BOARD_PASSENGER:
-		# 	mTimer.start(Constant.BOARD_PASSENGER_TIMER)
-		# 	EventMgr.OnPassengerBoarding.emit()
-		# 	print("Board")
 
 
+func SetHappinessLevel(value: int) -> void:
+	mOverallHappiness = value
+	mGameUI.SetHappinessLevel(mOverallHappiness)
 
-# func UpdateStationDisplay() -> void:
-# 	mGameUI.set_station(LevelMgr.mLevelData.mStations[mCurrStationIdx].mName)
+	print("Target score: ", LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mTargetScore)
+	print("Current score: ", mOverallHappiness)
 
-
-
-func UpdateHappinessLevel(value: int) -> void:
-	mGameUI.set_happiness_level(value)
+	if GameManager.sInstance.mCurrStationIdx > 0 and mOverallHappiness < LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mTargetScore:
+		mGameUI.ShowGameOverPanel(true)
+		mGameOver = true
+		mPassengerTooltip.hide()
 
 
 func ShowPassengerTooltip(_passenger : Passenger):

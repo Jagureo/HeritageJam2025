@@ -23,7 +23,7 @@ func next_station() -> void:
 		AudioManager.sInstance.mClickSound.play()
 
 
-func set_happiness_level(value: int) -> void:
+func SetHappinessLevel(value: int) -> void:
 	happiness_label.text = "Happiness: %d" % value
 
 

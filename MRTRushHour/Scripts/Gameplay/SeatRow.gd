@@ -16,7 +16,7 @@ func _ready():
 
 
 # Evaluate happiness for people seated down
-func EvaluateHappiness():
+func EvaluateHappiness() -> int:
 	var sectionScore : int = 0
 	# var alightingPassengers : Array[Passenger] = []
 
@@ -27,7 +27,7 @@ func EvaluateHappiness():
 		var passenger : Passenger = (mSeats[i] as Seat).mCurrentlySeatedBy
 		var leftPassenger : Passenger  = null if i == 0 else (mSeats[i-1] as Seat).mCurrentlySeatedBy
 		var rightPassenger : Passenger = null if i == len(mSeats) - 1 else (mSeats[i+1] as Seat).mCurrentlySeatedBy
-		var passengerScore : int = 0
+		# var passengerScore : int = 0
 
 		# If current passenger is noisy, then -1 score for each non-noisy adjacent passenger
 		# if passenger.mTraitType == Passenger.TraitTypes.NOISY:
@@ -38,90 +38,80 @@ func EvaluateHappiness():
 
 		match passenger.mPassengerType:
 			Passenger.PassengerType.CHILDREN:
-				# if seated down, +2 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					passengerScore += 2
+					passenger.mScore = Constant.CHILD_SCORE[1]
 			
 			Passenger.PassengerType.TEENAGER:
-				# If seated down, +1 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					passengerScore += 1
-				# If seated with opp gender, -1
-				if leftPassenger != null && leftPassenger.mGenderType != passenger.mGenderType:
-					passengerScore -= 1
-				if rightPassenger != null && rightPassenger.mGenderType != passenger.mGenderType:
-					passengerScore -= 1
-			
+					# If seated with opp gender, score
+					if leftPassenger != null && leftPassenger.mGenderType != passenger.mGenderType:
+						passenger.mScore = Constant.TEENAGER_SCORE[2]
+					elif rightPassenger != null && rightPassenger.mGenderType != passenger.mGenderType:
+						passenger.mScore = Constant.TEENAGER_SCORE[2]
+					else:
+						passenger.mScore = Constant.TEENAGER_SCORE[1]
+
 			Passenger.PassengerType.ADULT:
-				# if seated down, +1 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					passengerScore += 1
+					passenger.mScore = Constant.ADULT_SCORE[1]
 			
 			Passenger.PassengerType.ADULT_WITH_BAGS:
 				# If seated down, +1 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					passengerScore += 1
+					passenger.mScore = Constant.ADULT_WITH_BAG_SCORE[1]
 			
 			Passenger.PassengerType.ADULT_WITH_BABY:
-				# If seated down, +1 happiness, bonus if sitting on priority seat
+				# If seated down, +happiness, bonus if sitting on priority seat
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					passengerScore += 1
+					passenger.mScore = Constant.ADULT_WITH_BABY_SCORE[1]
 					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-						passengerScore += 1
+						passenger.mScore += Constant.ADULT_WITH_BABY_SCORE[2]
 				# If occupying wheelchair slot, it's as if standing up
 				else:
-					passengerScore -= 1
+					passenger.mScore = Constant.ADULT_WITH_BABY_SCORE[0]
 			
 			Passenger.PassengerType.PREGNANT:
 				# If seated down, +1 happiness, bonus if sitting on priority seat
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					passengerScore += 1
+					passenger.mScore = Constant.PREGNANT_SCORE[1]
 					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-						passengerScore += 1
+						passenger.mScore += Constant.PREGNANT_SCORE[2]
 				# If occupying wheelchair slot, it's as if standing up
 				else:
-					passengerScore -= 1
+					passenger.mScore = Constant.PREGNANT_SCORE[0]
+			
 			
 			Passenger.PassengerType.ELDERLY:
-				# If seated down, +2 happiness, bonus if sitting on priority seat
+				# If seated down, +1 happiness, bonus if sitting on priority seat
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					passengerScore += 2
+					passenger.mScore = Constant.ELDERLY_SCORE[1]
 					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-						passengerScore += 1
+						passenger.mScore += Constant.ELDERLY_SCORE[2]
 				# If occupying wheelchair slot, it's as if standing up
 				else:
-					passengerScore -= 2
+					passenger.mScore = Constant.ELDERLY_SCORE[0]
 			
 			Passenger.PassengerType.INJURED:
-				# If seated down, +2 happiness, bonus if sitting on priority seat
+				# If seated down, +1 happiness, bonus if sitting on priority seat
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					passengerScore += 2
+					passenger.mScore = Constant.INJURIED_SCORE[1]
 					if mSeats[i].mSeatType == Seat.SeatType.PRIORITY:
-						passengerScore += 1
+						passenger.mScore += Constant.INJURIED_SCORE[2]
 				# If occupying wheelchair slot, it's as if standing up
 				else:
-					passengerScore -= 2
+					passenger.mScore = Constant.INJURIED_SCORE[0]
 			
 			Passenger.PassengerType.HEMORRHOID:
-				# If seated down, -2 happiness
 				if mSeats[i].mSeatType != Seat.SeatType.WHEELCHAIR:
-					passengerScore -= 2
+					passenger.mScore = Constant.HEMORRHOID_SCORE[1]
 			
 			Passenger.PassengerType.WHEELCHAIR_BOUND:
-				# If seated down at wheelchair slot, +1 happiness
 				if mSeats[i].mSeatType == Seat.SeatType.WHEELCHAIR:
-					passengerScore += 2
+					passenger.mScore = Constant.WHEELCHAIR_BOUND_SCORE[1]
 					
-		sectionScore += passengerScore
-		# TODO show score
-		# passenger.show_evaluated_score_popup(passengerScore)
+		sectionScore += passenger.mScore
 
-	GameManager.sInstance.mOverallHappiness += sectionScore
-
-	# Remove passengers from the standing area if they are going to alight
-	# for alightingPassenger in alightingPassengers:
-	# 	alightingPassenger.mSittingOn.RemovePassenger()		
-	# alightingPassengers.clear()
+	return sectionScore
 
 
 

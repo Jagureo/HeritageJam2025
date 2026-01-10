@@ -153,7 +153,11 @@ func DespawnPassengers():
 
 
 func EvaluateScore():
-	mStandingArea.EvaluateHappiness()
+	var totalScore := 0
+	totalScore += mStandingArea.EvaluateHappiness()
 
 	for seatRow in mSeatRows:
-		seatRow.EvaluateHappiness()
+		totalScore += seatRow.EvaluateHappiness()
+
+	GameManager.sInstance.SetHappinessLevel(GameManager.sInstance.mOverallHappiness + totalScore)
+	

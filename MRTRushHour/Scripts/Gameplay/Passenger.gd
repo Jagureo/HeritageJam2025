@@ -42,6 +42,9 @@ var mSittingOn : Seat = null
 # Number of stations to stay
 var mAlightingIn : int = 0
 
+# Passenger's score
+var mScore : int = 0
+
 static var sMalePassengerTextures : Dictionary[PassengerType, SpriteFrames] = {
 	Passenger.PassengerType.CHILDREN :           preload("res://Animations/MaleChild.tres") as SpriteFrames,
 	Passenger.PassengerType.TEENAGER :           preload("res://Animations/MaleTeen.tres") as SpriteFrames,
@@ -97,6 +100,7 @@ func InitPassenger():
 	mPassengerSprite.play("Idle")
 	position = Vector2(randi_range(Constant.LEFT_DRAG_LIMIT, Constant.RIGHT_DRAG_LIMIT), randi_range(Constant.BOTTOM_DRAG_LIMIT - 150, Constant.TOP_DRAG_LIMIT + 150))
 	visible = true
+	mScore = 0
 
 
 
