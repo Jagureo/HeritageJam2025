@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br81os8aimevn"
-path="res://.godot/imported/game_logo.png-dc28dc0dcc1b9ae35fdf3f67075c55c8.ctex"
+uid="uid://bqvvcfxt0o7c4"
+path="res://.godot/imported/HappinessIcon.png-d0aca00d89796ec70d3c5d6be0ba69aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/game_logo.png"
-dest_files=["res://.godot/imported/game_logo.png-dc28dc0dcc1b9ae35fdf3f67075c55c8.ctex"]
+source_file="res://Sprites/UI/Gameplay/HappinessIcon.png"
+dest_files=["res://.godot/imported/HappinessIcon.png-d0aca00d89796ec70d3c5d6be0ba69aa.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7d1tiyq1gj1e" path="res://Scripts/UI/MainmenuUI.gd" id="1_nelyp"]
 [ext_resource type="PackedScene" uid="uid://bvyt75alno37d" path="res://Scenes/Prefabs/MainMenuBackground.tscn" id="2_6r04x"]
-[ext_resource type="Texture2D" uid="uid://br81os8aimevn" path="res://Sprites/UI/game_logo.png" id="3_jw33x"]
+[ext_resource type="Texture2D" uid="uid://br81os8aimevn" path="res://Sprites/UI/MainMenu/game_logo.png" id="3_jw33x"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="4_wfx2n"]
 [ext_resource type="Script" uid="uid://cign7xud1xsnv" path="res://Scripts/UI/VersionNumber.gd" id="5_mcpc0"]
 [ext_resource type="Texture2D" uid="uid://syd6cyagis07" path="res://Sprites/UI/Credits/DE Round Rect.png" id="5_wfx2n"]

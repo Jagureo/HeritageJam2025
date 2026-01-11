@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3s0etgvg3k46"
-path="res://.godot/imported/FemaleIcon.png-d561354d034c92d0dbeea7f30d01c882.ctex"
+uid="uid://qguc65lrawq4"
+path="res://.godot/imported/MaleIcon.png-1dc8ab0b13a88d7b431f40a9a8afbf14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/FemaleIcon.png"
-dest_files=["res://.godot/imported/FemaleIcon.png-d561354d034c92d0dbeea7f30d01c882.ctex"]
+source_file="res://Sprites/UI/Gameplay/MaleIcon.png"
+dest_files=["res://.godot/imported/MaleIcon.png-1dc8ab0b13a88d7b431f40a9a8afbf14.ctex"]
 
 [params]
 

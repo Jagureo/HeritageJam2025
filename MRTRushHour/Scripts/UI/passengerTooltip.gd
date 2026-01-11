@@ -9,8 +9,8 @@ class_name PassengerTooltip
 
 
 static var sGenderSprite : Dictionary[Passenger.GenderType, Texture2D] = {
-	Passenger.GenderType.MALE :   preload("res://Sprites/UI/MaleIcon.png") as Texture2D,
-	Passenger.GenderType.FEMALE : preload("res://Sprites/UI/FemaleIcon.png") as Texture2D,
+	Passenger.GenderType.MALE :   preload("res://Sprites/UI/Gameplay/MaleIcon.png") as Texture2D,
+	Passenger.GenderType.FEMALE : preload("res://Sprites/UI/Gameplay/FemaleIcon.png") as Texture2D,
 }
 
 

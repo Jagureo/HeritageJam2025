@@ -1,8 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://5ln5jieeyw4b"]
+[gd_scene load_steps=18 format=3 uid="uid://5ln5jieeyw4b"]
 
 [ext_resource type="Script" uid="uid://bj1d6mvillccq" path="res://Scripts/UI/GameUI.gd" id="1_vo2tu"]
-[ext_resource type="Texture2D" uid="uid://baciw3p5lc2ry" path="res://Sprites/UI/Credits/icon.svg" id="2_5b8pf"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="2_vo2tu"]
+[ext_resource type="Texture2D" uid="uid://bs6a5pim7abmp" path="res://Sprites/UI/Gameplay/TimerIcon.png" id="3_lolt2"]
+[ext_resource type="Texture2D" uid="uid://bqvvcfxt0o7c4" path="res://Sprites/UI/Gameplay/HappinessIcon.png" id="4_tig4k"]
+[ext_resource type="Texture2D" uid="uid://dvk8g0rk1o8k0" path="res://Sprites/UI/Gameplay/TargetIcon.png" id="5_tig4k"]
+[ext_resource type="Texture2D" uid="uid://dwka5jdk3vj56" path="res://Sprites/UI/Gameplay/StationIcon.png" id="6_plf53"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vo2tu"]
 
@@ -168,7 +171,7 @@ offset_right = -512.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("2_5b8pf")
+texture = ExtResource("3_lolt2")
 expand_mode = 1
 
 [node name="TimeProgressBar" type="ProgressBar" parent="MainScreen/TimeIcon"]
@@ -218,7 +221,7 @@ offset_right = -87.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("2_5b8pf")
+texture = ExtResource("4_tig4k")
 expand_mode = 1
 
 [node name="HappinessPanel" type="Panel" parent="MainScreen/HappinessIcon"]
@@ -266,7 +269,7 @@ offset_right = 225.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("2_5b8pf")
+texture = ExtResource("5_tig4k")
 expand_mode = 1
 
 [node name="TargetPanel" type="Panel" parent="MainScreen/TargetIcon"]
@@ -314,7 +317,7 @@ offset_right = 535.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("2_5b8pf")
+texture = ExtResource("6_plf53")
 expand_mode = 1
 
 [node name="RemainingPanel" type="Panel" parent="MainScreen/RemainingIcon"]
