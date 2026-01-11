@@ -1,25 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://5ln5jieeyw4b"]
+[gd_scene load_steps=15 format=3 uid="uid://5ln5jieeyw4b"]
 
 [ext_resource type="Script" uid="uid://bj1d6mvillccq" path="res://Scripts/UI/GameUI.gd" id="1_vo2tu"]
+[ext_resource type="Texture2D" uid="uid://baciw3p5lc2ry" path="res://Sprites/UI/Credits/icon.svg" id="2_5b8pf"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="2_vo2tu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo2tu"]
-bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-corner_radius_top_left = 100
-corner_radius_bottom_right = 100
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plf53"]
-bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 100
-corner_radius_bottom_right = 100
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vo2tu"]
 
@@ -67,6 +50,59 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnd0w"]
+bg_color = Color(0.105882, 0.286275, 0.337255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhxso"]
+content_margin_left = 20.0
+bg_color = Color(0.396078, 0.721569, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.776471, 1, 0.482353, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pgsb"]
+bg_color = Color(0.105882, 0.286275, 0.337255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo2tu"]
+bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 100
+corner_radius_bottom_right = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plf53"]
+bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 100
+corner_radius_bottom_right = 100
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8jce"]
 bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
 border_width_left = 3
@@ -79,6 +115,10 @@ corner_radius_bottom_right = 100
 [node name="GameUi" type="CanvasLayer"]
 script = ExtResource("1_vo2tu")
 mMainMenuScene = "uid://cgsrj1drhnafo"
+mStartingFillColour = Color(0.396078, 0.721569, 0, 1)
+mStartingBorderColour = Color(0.776471, 1, 0.482353, 1)
+mEndingFillColour = Color(0.780392, 0, 0, 1)
+mEndingBorderColour = Color(0.976563, 0.366211, 0.366211, 1)
 
 [node name="MainScreen" type="Control" parent="."]
 layout_mode = 3
@@ -88,6 +128,226 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="NextStationButton" type="Button" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -915.0
+offset_top = -89.0
+offset_right = -615.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
+theme_override_colors/font_color = Color(1, 0.964706, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 0.972549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.964706, 1, 1)
+theme_override_fonts/font = ExtResource("2_vo2tu")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vo2tu")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5b8pf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6w80a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lolt2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
+text = "Next Station"
+
+[node name="TimeIcon" type="TextureRect" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -585.0
+offset_top = -89.0
+offset_right = -512.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_5b8pf")
+expand_mode = 1
+
+[node name="TimeProgressBar" type="ProgressBar" parent="MainScreen/TimeIcon"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = -30.0
+offset_right = 397.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_mnd0w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bhxso")
+show_percentage = false
+
+[node name="TimeLabel" type="Label" parent="MainScreen/TimeIcon/TimeProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_vo2tu")
+theme_override_font_sizes/font_size = 35
+text = "0.0s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HappinessIcon" type="TextureRect" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -89.0
+offset_right = -87.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_5b8pf")
+expand_mode = 1
+
+[node name="HappinessPanel" type="Panel" parent="MainScreen/HappinessIcon"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 59.0
+offset_top = -30.0
+offset_right = 284.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0pgsb")
+
+[node name="HappinessLabel" type="Label" parent="MainScreen/HappinessIcon/HappinessPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_vo2tu")
+theme_override_font_sizes/font_size = 35
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TargetIcon" type="TextureRect" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 152.0
+offset_top = -89.0
+offset_right = 225.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_5b8pf")
+expand_mode = 1
+
+[node name="TargetPanel" type="Panel" parent="MainScreen/TargetIcon"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 59.0
+offset_top = -30.0
+offset_right = 284.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0pgsb")
+
+[node name="TargetLabel" type="Label" parent="MainScreen/TargetIcon/TargetPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -31.5
+offset_right = 77.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_vo2tu")
+theme_override_font_sizes/font_size = 35
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RemainingIcon" type="TextureRect" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 462.0
+offset_top = -89.0
+offset_right = 535.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_5b8pf")
+expand_mode = 1
+
+[node name="RemainingPanel" type="Panel" parent="MainScreen/RemainingIcon"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 59.0
+offset_top = -30.0
+offset_right = 457.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0pgsb")
+
+[node name="RemainingLabel" type="Label" parent="MainScreen/RemainingIcon/RemainingPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -33.5
+offset_right = 219.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_vo2tu")
+theme_override_font_sizes/font_size = 35
+text = "30 stations left"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sign" type="Panel" parent="MainScreen"]
 visible = false
@@ -184,29 +444,6 @@ theme_override_font_sizes/font_size = 32
 text = "Time: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="NextStationButton" type="Button" parent="MainScreen"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = -90.0
-offset_right = 350.0
-offset_bottom = -17.0
-grow_vertical = 0
-theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
-theme_override_colors/font_color = Color(1, 0.964706, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 0.972549, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.964706, 1, 1)
-theme_override_fonts/font = ExtResource("2_vo2tu")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vo2tu")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_5b8pf")
-theme_override_styles/hover = SubResource("StyleBoxFlat_6w80a")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lolt2")
-theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
-text = "Next Station"
 
 [node name="GameOverPanel" type="Panel" parent="MainScreen"]
 visible = false

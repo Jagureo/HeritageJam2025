@@ -1,10 +1,13 @@
 extends CanvasLayer
 
 # UI at the bottom
-# @onready var station_label = $MainScreen/Sign/Station_Label
-@onready var happiness_label = $MainScreen/Sign2/Happniess_Level
-@onready var timerDisplay = $MainScreen/Sign3/Time_Left
-@onready var nextStationButton = $MainScreen/NextStationButton
+@onready var mNextStationButton : Button = $MainScreen/NextStationButton
+@onready var mTimerProgBar : ProgressBar = $MainScreen/TimeIcon/TimeProgressBar
+@onready var mTimerLabel : Label = $MainScreen/TimeIcon/TimeProgressBar/TimeLabel
+@onready var mHappinessLabel : Label = $MainScreen/HappinessIcon/HappinessPanel/HappinessLabel
+@onready var mTargetLabel : Label = $MainScreen/TargetIcon/TargetPanel/TargetLabel
+@onready var mRemainingStationsLabel : Label = $MainScreen/RemainingIcon/RemainingPanel/RemainingLabel
+
 
 # Game over panel
 @onready var gameover_panel = $MainScreen/GameOverPanel
@@ -14,35 +17,65 @@ extends CanvasLayer
 @onready var playAgainButton : Button = $MainScreen/GameOverPanel/PlayAgain
 @onready var mainMenuButton : Button = $MainScreen/GameOverPanel/MainMenu
 
-
-
-
+# Main menu scene
 @export_file("*.tscn") var mMainMenuScene : String
 
-# func set_station(msg: String) -> void:
-# 	station_label.text = msg
+# Progress bar colour
+@export var mStartingFillColour : Color
+@export var mStartingBorderColour : Color
+@export var mEndingFillColour : Color
+@export var mEndingBorderColour : Color
 
+
+
+var mRoundTimer : float = 0 
+
+# Next station Button
 func NextStation() -> void:
 	if GameManager.sInstance.mCurrStationIdx < LevelMgr.mLevelData.mStations.size() - 1:
 		EventMgr.OnNextStationPressed.emit()
 		AudioManager.sInstance.mClickSound.play()
 
+func DisableButton(_value : bool):
+	mNextStationButton.disabled = _value
 
-func SetHappinessLevel(value: int) -> void:
-	happiness_label.text = "Happiness: %d" % value
+
+func SetHappiness(_value: int):
+	mHappinessLabel.text = "{0}".format([_value])
 
 
-func DisableButton(val : bool):
-	nextStationButton.disabled = val
+func SetTarget(_value : int):
+	mTargetLabel.text = "{0}".format([_value])
+
+
+func SetRemainingStations(_value : int):
+	if _value == 0:
+		mRemainingStationsLabel.text = "Terminus station"
+	elif _value == 1:
+		mRemainingStationsLabel.text = "1 station left"
+	else:
+		mRemainingStationsLabel.text = "{0} stations left".format([_value])
+
+
+func SetTimeAvailableThisStation(_value : float):
+	mTimerProgBar.max_value = _value
+
+
+func _process(_showdelta: float) -> void:
+	if GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION:
+		mTimerLabel.text = "%.1fs" % GameManager.sInstance.mTimer.time_left
+		mTimerProgBar.set_value_no_signal(GameManager.sInstance.mTimer.time_left)
+		mTimerProgBar.get_theme_stylebox("fill").bg_color = lerp(mEndingFillColour, mStartingFillColour, mTimerProgBar.value / mTimerProgBar.max_value)
+		mTimerProgBar.get_theme_stylebox("fill").border_color = lerp(mEndingBorderColour, mStartingBorderColour, mTimerProgBar.value / mTimerProgBar.max_value)
+
 
 
 func ShowGameOverPanel(_show : bool):
 	if _show:
-		gameover_happiness.text = happiness_label.text
+		gameover_happiness.text = "Happiness: {0}".format(GameManager.sInstance.mOverallHappiness)
 		gameover_stations.text = "Stations Travelled: %d" % GameManager.sInstance.mCurrStationIdx
 		gameover_score.text = "Score: %d" % GameManager.sInstance.mScore
-		
-		nextStationButton.hide()
+		mNextStationButton.hide()
 		gameover_panel.show()
 		GameManager.sInstance.mTimer.stop()
 		
@@ -57,6 +90,3 @@ func OnMainMenuButtonPressed() -> void:
 	AudioManager.sInstance.mClickSound.play()
 	get_tree().change_scene_to_file(mMainMenuScene)
 	
-func _process(_showdelta: float) -> void:
-	if GameManager.sInstance.mCurrLevelState == GameManager.LevelState.AT_STATION:
-		timerDisplay.text = "Time: %.1f" % GameManager.sInstance.mTimer.time_left

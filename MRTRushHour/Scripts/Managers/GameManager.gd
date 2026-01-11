@@ -65,8 +65,11 @@ func _exit_tree():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
-	# UpdateStationDisplay()
 	SetHappinessLevel(0)
+	mGameUI.SetTarget(LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore)		# Target happiness
+	mGameUI.SetRemainingStations(len(LevelMgr.mLevelData.mStations) - mCurrStationIdx - 1)		# Remaining stations
+	mGameUI.SetTimeAvailableThisStation(1)														# How much time available for this station
+	
 	mPassengerTooltip.hide()
 
 	# Spawn as many score Popup and passenger Prefabs as there are max passengers
@@ -83,8 +86,6 @@ func _ready():
 	PassengerManager.sInstance.SpawnPassengers()
 
 
-func _process(delta):
-	print(mCurrStationIdx)
 
 func _input(event): 
 	if event.is_action_pressed("ui_cancel"): 
@@ -120,8 +121,17 @@ func FinishedBoardingPassengers():
 		return
 
 	mCurrLevelState = LevelState.AT_STATION
-	mGameUI.DisableButton(false)
-	mTimer.start(Constant.AT_STATION_BASE_TIMER + mNumberOfNewPassengersSpawned * Constant.AT_STATION_TIME_PER_PASSENGER)
+	var availableTime = Constant.AT_STATION_BASE_TIMER + mNumberOfNewPassengersSpawned * Constant.AT_STATION_TIME_PER_PASSENGER
+	
+	# Set UI stuff
+	mGameUI.SetTarget(LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore)		# Target happiness
+	mGameUI.SetRemainingStations(len(LevelMgr.mLevelData.mStations) - mCurrStationIdx - 1)		# Remaining stations
+	mGameUI.SetTimeAvailableThisStation(availableTime)											# How much time available for this station
+	mGameUI.DisableButton(false)																# Reenable button
+
+	# Start timer
+	mTimer.start(availableTime)
+
 	EventMgr.OnNextstationReached.emit()
 
 
@@ -150,7 +160,7 @@ func OnTimerTimeout():
 
 func SetHappinessLevel(value: int) -> void:
 	mOverallHappiness = value
-	mGameUI.SetHappinessLevel(mOverallHappiness)
+	mGameUI.SetHappiness(mOverallHappiness)
 
 	if GameManager.sInstance.mCurrStationIdx > 0 and mOverallHappiness < LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mTargetScore:
 		mGameUI.ShowGameOverPanel(true)
