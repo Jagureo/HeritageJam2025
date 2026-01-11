@@ -36,8 +36,8 @@ func NextStationReaching():
 	mIsEntry = 1
 	mPositionScalar = 0
 	mAnimationPlayer.play("EnteringStation")
-	mStationNameSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx].mName
-	mStationCodeSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx].mCode
+	mStationNameSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx + 1].mName
+	mStationCodeSign.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx + 1].mCode
 
 func StationLeaving():
 	mIsEntry = -1

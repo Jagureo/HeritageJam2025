@@ -122,6 +122,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sign2" type="Panel" parent="MainScreen"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -153,6 +154,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sign3" type="Panel" parent="MainScreen"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -344,6 +346,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_lolt2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
 text = "Main Menu"
 
-[connection signal="pressed" from="MainScreen/NextStationButton" to="." method="next_station"]
+[connection signal="pressed" from="MainScreen/NextStationButton" to="." method="NextStation"]
 [connection signal="pressed" from="MainScreen/GameOverPanel/PlayAgain" to="." method="OnPlayAgainButtonPressed"]
 [connection signal="pressed" from="MainScreen/GameOverPanel/MainMenu" to="." method="OnMainMenuButtonPressed"]

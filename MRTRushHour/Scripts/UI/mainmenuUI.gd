@@ -9,7 +9,7 @@ extends Control
 
 func OnPlayButtonPressed():
 	AudioManager.sInstance.mClickSound.play()
-	LevelMgr.SetLevel(LevelManager.MRTLine.EWL)
+	LevelMgr.SetLevel(LevelManager.MRTLine.DEV)
 	get_tree().change_scene_to_file(mGameScene)
 
 

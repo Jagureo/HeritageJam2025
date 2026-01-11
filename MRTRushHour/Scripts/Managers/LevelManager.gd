@@ -11,6 +11,7 @@ enum MRTLine {
 	CCL,
 	DTL,
 	TEL,
+	DEV,
 }
 
 var mSelectedLine : MRTLine
@@ -34,10 +35,11 @@ func SetLevel(_line : MRTLine):
 	
 	match(_line):
 		MRTLine.EWL:
-			LoadLevel("res://Data/DevLine.json")
-			# LoadLevel("res://Data/EWL.json")
+			LoadLevel("res://Data/EWL.json")
 		MRTLine.NSL:
 			LoadLevel("res://Data/NSL.json")
+		MRTLine.DEV:
+			LoadLevel("res://Data/DevLine.json")
 		_:
 			printerr("Unknown Line Level loaded: ", str(_line))
 

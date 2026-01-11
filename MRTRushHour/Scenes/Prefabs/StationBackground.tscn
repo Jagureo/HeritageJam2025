@@ -19,7 +19,7 @@ corner_radius_bottom_left = 25
 
 [sub_resource type="Animation" id="Animation_tuksv"]
 resource_name = "EnteringStation"
-length = 1.7
+length = 2.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -27,7 +27,7 @@ tracks/0/path = NodePath(".:mPositionScalar")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(1, 2.5),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [0.0, 1.0]

@@ -1,10 +1,12 @@
 extends CanvasLayer
 
+# UI at the bottom
 # @onready var station_label = $MainScreen/Sign/Station_Label
 @onready var happiness_label = $MainScreen/Sign2/Happniess_Level
-@onready var nextStationButton = $MainScreen/NextStationButton
 @onready var timerDisplay = $MainScreen/Sign3/Time_Left
+@onready var nextStationButton = $MainScreen/NextStationButton
 
+# Game over panel
 @onready var gameover_panel = $MainScreen/GameOverPanel
 @onready var gameover_happiness = $MainScreen/GameOverPanel/Happniess_Level
 @onready var gameover_stations = $MainScreen/GameOverPanel/StationCount_Label
@@ -12,12 +14,15 @@ extends CanvasLayer
 @onready var playAgainButton : Button = $MainScreen/GameOverPanel/PlayAgain
 @onready var mainMenuButton : Button = $MainScreen/GameOverPanel/MainMenu
 
+
+
+
 @export_file("*.tscn") var mMainMenuScene : String
 
 # func set_station(msg: String) -> void:
 # 	station_label.text = msg
 
-func next_station() -> void:
+func NextStation() -> void:
 	if GameManager.sInstance.mCurrStationIdx < LevelMgr.mLevelData.mStations.size() - 1:
 		EventMgr.OnNextStationPressed.emit()
 		AudioManager.sInstance.mClickSound.play()

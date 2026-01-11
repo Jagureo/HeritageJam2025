@@ -83,6 +83,9 @@ func _ready():
 	PassengerManager.sInstance.SpawnPassengers()
 
 
+func _process(delta):
+	print(mCurrStationIdx)
+
 func _input(event): 
 	if event.is_action_pressed("ui_cancel"): 
 		mGameUI.ShowGameOverPanel(true)
@@ -98,6 +101,7 @@ func NextStation():
 
 
 func ReachedStation():
+	mCurrStationIdx += 1
 	mCurrLevelState = LevelState.ALIGHT_PASSENGER
 	EventMgr.OnPassengerAlighting.emit()
 
@@ -139,7 +143,7 @@ func OnTimerTimeout():
 			EventMgr.OnStationLeft.emit()
 
 		LevelState.REACHING_NEXT:
-			mCurrStationIdx += 1
+			# mCurrStationIdx += 1
 			# mTimer.start(Constant.REACHING_STATE_TIMER)
 			EventMgr.OnNextStationReaching.emit()
 

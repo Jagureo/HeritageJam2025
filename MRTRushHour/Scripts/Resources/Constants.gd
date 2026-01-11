@@ -9,11 +9,7 @@ static var RIGHT_DRAG_LIMIT : int = 1920 - 100
 # Defines passenger constants
 static var MAX_PASSENGERS_IN_TRAIN : int = 30
 static var MIN_NUMBER_OF_STATIONS_TO_STAY : int = 1
-static var MAX_NUMBER_OF_STATIONS_TO_STAY : int = 4
-
-# Defines station constants
-static var TIME_TO_NEXT_STATION : float = 5
-static var EVALUATE_SCORE_BEFORE_REACHING_NEXT_STATION : float = 1.5
+static var MAX_NUMBER_OF_STATIONS_TO_STAY : int = 10
 
 
 # Scoring - [0] is Standing Score, [1] is Sitting Score, [2+] are additional modifiers
@@ -38,7 +34,7 @@ static var WHEELCHAIR_BOUND_SCORE := [0, 5, -5]			# -5 per standing passenger
 static var AT_STATION_BASE_TIMER := 5.0
 static var AT_STATION_TIME_PER_PASSENGER := 2.0
 static var LEAVING_STATE_TIMER := 2.5
-static var MOVING_STATE_TIMER := 4.0
+static var MOVING_STATE_TIMER := 3.0
 # static var REACHING_STATE_TIMER := 3.0
 static var ALIGHT_PASSENGER_TIMER := 0.5
 static var BOARD_PASSENGER_TIMER := 0.5

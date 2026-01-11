@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3ga1d2i553dn"]
 
-[ext_resource type="Texture2D" uid="uid://baciw3p5lc2ry" path="res://Sprites/UI/Credits/icon.svg" id="1_h13bv"]
 [ext_resource type="Script" uid="uid://cxpucjgn1hc3d" path="res://Scripts/UI/PassengerTooltip.gd" id="1_usj5b"]
+[ext_resource type="Texture2D" uid="uid://qguc65lrawq4" path="res://Sprites/UI/MaleIcon.png" id="2_bf5jp"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="2_usj5b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq863"]
@@ -52,7 +52,7 @@ offset_bottom = -93.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_h13bv")
+texture = ExtResource("2_bf5jp")
 expand_mode = 1
 
 [node name="PassengerType" type="Label" parent="."]

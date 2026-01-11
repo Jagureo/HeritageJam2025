@@ -183,13 +183,13 @@ func OnHoverEnd():
 
 
 
-func UpdateNumberOfStationsLeft():
-	mAlightingIn -= 1
+# func UpdateNumberOfStationsLeft():
+# 	mAlightingIn -= 1
 
 
-func _enter_tree():
-	EventMgr.OnNextStationReaching.connect(UpdateNumberOfStationsLeft)
+# func _enter_tree():
+# 	EventMgr.OnPassengerAlighting.connect(UpdateNumberOfStationsLeft)
 
 	
-func _exit_tree():
-	EventMgr.OnNextStationReaching.disconnect(UpdateNumberOfStationsLeft)
+# func _exit_tree():
+# 	EventMgr.OnPassengerAlighting.disconnect(UpdateNumberOfStationsLeft)

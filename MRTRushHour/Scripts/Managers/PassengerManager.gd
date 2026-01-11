@@ -125,6 +125,7 @@ func DespawnPassengers():
 	# Remove all standing passengers that have reached their destination
 	var standingPassengersToRemove : Array[Passenger] = []
 	for passenger in mStandingArea.mCurrentlyStanding:
+		passenger.mAlightingIn -= 1		# Decrease station left by 1
 		if (passenger.mAlightingIn <= 0):
 			standingPassengersToRemove.push_back(passenger)
 
@@ -132,19 +133,25 @@ func DespawnPassengers():
 		mStandingArea.RemovePassenger(passenger)
 		mPassengerPool.push_back(passenger)
 		passenger.visible = false
+		passenger.position = Vector2(-100, -100)
 		passenger.mPassengerScorePopup.Reset()
 		mCurrentPassengerCount[passenger.mPassengerType] -= 1
 		mNumberOfPassengersInUse -= 1
-		
 		await get_tree().create_timer(0.1).timeout
+		
 	
 	# Remove all sitting passengers that have reached their destination
 	for seatRow in mSeatRows:			# For each seat row
 		for seat in seatRow.mSeats:		# For each seat
-			if seat.HasPassenger() and seat.mCurrentlySeatedBy.mAlightingIn <= 0:
+			if not seat.HasPassenger():
+				continue
+
+			seat.mCurrentlySeatedBy.mAlightingIn -= 1		# Decrease station left by 1
+			if seat.mCurrentlySeatedBy.mAlightingIn <= 0:
 				var passenger = seat.mCurrentlySeatedBy
 				mPassengerPool.push_back(passenger)
 				passenger.visible = false
+				passenger.position = Vector2(-100, -100)
 				passenger.mPassengerScorePopup.Reset()
 				mCurrentPassengerCount[passenger.mPassengerType] -= 1
 				mNumberOfPassengersInUse -= 1
