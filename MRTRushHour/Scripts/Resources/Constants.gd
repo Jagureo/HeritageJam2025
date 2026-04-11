@@ -10,7 +10,8 @@ static var RIGHT_DRAG_LIMIT : int = 1920 - 100
 static var MAX_PASSENGERS_IN_TRAIN : int = 30
 static var MIN_NUMBER_OF_STATIONS_TO_STAY : int = 1
 static var MAX_NUMBER_OF_STATIONS_TO_STAY : int = 10
-
+static var PASSENGER_BOTTOM_SPAWN_PADDING : int = 100
+static var PASSENGER_TOP_SPAWN_PADDING : int = 100
 
 # Scoring - [0] is Standing Score, [1] is Sitting Score, [2+] are additional modifiers
 static var CHILD_SCORE := [0, 5]

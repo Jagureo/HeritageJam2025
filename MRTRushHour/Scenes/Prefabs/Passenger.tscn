@@ -40,5 +40,7 @@ anchors_preset = 0
 offset_top = -88.0
 offset_right = 40.0
 offset_bottom = -48.0
+mouse_filter = 2
 
 [node name="ScorePopup" parent="ScorePopupPos" instance=ExtResource("4_6cpje")]
+mouse_filter = 2

@@ -72,7 +72,7 @@ func _process(_showdelta: float) -> void:
 
 func ShowGameOverPanel(_show : bool):
 	if _show:
-		gameover_happiness.text = "Happiness: {0}".format(GameManager.sInstance.mOverallHappiness)
+		gameover_happiness.text = "Happiness: {0}".format([GameManager.sInstance.mOverallHappiness])
 		gameover_stations.text = "Stations Travelled: %d" % GameManager.sInstance.mCurrStationIdx
 		gameover_score.text = "Score: %d" % GameManager.sInstance.mScore
 		mNextStationButton.hide()
