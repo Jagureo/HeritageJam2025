@@ -64,10 +64,10 @@ func _exit_tree():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
-	SetHappinessLevel(0)
+	mOverallHappiness = 0
+	mGameUI.SetHappiness(mOverallHappiness)
 	mGameUI.SetTarget(LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore)		# Target happiness
-	mGameUI.SetRemainingStations(len(LevelMgr.mLevelData.mStations) - mCurrStationIdx - 1)		# Remaining stations
+	mGameUI.SetRemainingStations()																# Remaining stations
 	mGameUI.SetTimeAvailableThisStation(1)														# How much time available for this station
 	
 	mPassengerTooltip.hide()
@@ -89,7 +89,7 @@ func _ready():
 
 func _input(event): 
 	if event.is_action_pressed("ui_cancel"): 
-		mGameUI.ShowGameOverPanel(true)
+		mGameUI.ShowGameOverPanel(true, false)
 
 
 # Can be triggered by pressing button
@@ -103,6 +103,16 @@ func NextStation():
 
 func ReachedStation():
 	mCurrStationIdx += 1
+
+	# Reached last station and did not lose
+	if mCurrStationIdx == len(LevelMgr.mLevelData.mStations) - 1 and not mGameOver:
+		
+		mGameUI.ShowGameOverPanel(true, true)
+		print("Win!")
+		mGameOver = true
+		mPassengerTooltip.hide()
+
+	mGameUI.SetRemainingStations()
 	mCurrLevelState = LevelState.ALIGHT_PASSENGER
 	EventMgr.OnPassengerAlighting.emit()
 
@@ -117,7 +127,7 @@ func StartBoardingPassengers():
 
 func FinishedBoardingPassengers():
 	# Don't count down on the first station
-	if mCurrStationIdx == 0 or mCurrStationIdx == len(LevelMgr.mLevelData.mStations) - 1:
+	if mCurrStationIdx == 0:
 		return
 
 	mCurrLevelState = LevelState.AT_STATION
@@ -125,7 +135,6 @@ func FinishedBoardingPassengers():
 	
 	# Set UI stuff
 	mGameUI.SetTarget(LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore)		# Target happiness
-	mGameUI.SetRemainingStations(len(LevelMgr.mLevelData.mStations) - mCurrStationIdx - 1)		# Remaining stations
 	mGameUI.SetTimeAvailableThisStation(availableTime)											# How much time available for this station
 	mGameUI.DisableButton(false)																# Reenable button
 
@@ -162,8 +171,9 @@ func SetHappinessLevel(value: int) -> void:
 	mOverallHappiness = value
 	mGameUI.SetHappiness(mOverallHappiness)
 
-	if GameManager.sInstance.mCurrStationIdx > 0 and mOverallHappiness < LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mTargetScore:
+	if GameManager.sInstance.mCurrStationIdx < len(LevelMgr.mLevelData.mStations) and mOverallHappiness < LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mTargetScore:
 		mGameUI.ShowGameOverPanel(true)
+		print("Lost!")
 		mGameOver = true
 		mPassengerTooltip.hide()
 

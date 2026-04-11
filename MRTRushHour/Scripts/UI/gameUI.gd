@@ -7,13 +7,13 @@ extends CanvasLayer
 @onready var mHappinessLabel : Label = $MainScreen/HappinessIcon/HappinessPanel/HappinessLabel
 @onready var mTargetLabel : Label = $MainScreen/TargetIcon/TargetPanel/TargetLabel
 @onready var mRemainingStationsLabel : Label = $MainScreen/RemainingIcon/RemainingPanel/RemainingLabel
-
+@onready var mNextStationLabel : Label = $MainScreen/NextStationIcon/NextStationPanel/NextStationLabel
 
 # Game over panel
 @onready var gameover_panel = $MainScreen/GameOverPanel
-@onready var gameover_happiness = $MainScreen/GameOverPanel/Happniess_Level
-@onready var gameover_stations = $MainScreen/GameOverPanel/StationCount_Label
-@onready var gameover_score = $MainScreen/GameOverPanel/Score_Label
+@onready var gameover_title : Label = $MainScreen/GameOverPanel/GameOverText
+@onready var gameover_happiness : Label = $MainScreen/GameOverPanel/HappinessLabel
+@onready var gameover_stations : Label = $MainScreen/GameOverPanel/StationCountLabel
 @onready var playAgainButton : Button = $MainScreen/GameOverPanel/PlayAgain
 @onready var mainMenuButton : Button = $MainScreen/GameOverPanel/MainMenu
 
@@ -48,13 +48,13 @@ func SetTarget(_value : int):
 	mTargetLabel.text = "{0}".format([_value])
 
 
-func SetRemainingStations(_value : int):
-	if _value == 0:
-		mRemainingStationsLabel.text = "Terminus station"
-	elif _value == 1:
-		mRemainingStationsLabel.text = "1 station left"
+func SetRemainingStations():
+	mRemainingStationsLabel.text = "{0}/{1}".format([GameManager.sInstance.mCurrStationIdx + 1, len(LevelMgr.mLevelData.mStations)])
+	if GameManager.sInstance.mCurrStationIdx == len(LevelMgr.mLevelData.mStations) - 1:
+		mNextStationLabel.text = "Last Station"
 	else:
-		mRemainingStationsLabel.text = "{0} stations left".format([_value])
+		mNextStationLabel.text = LevelMgr.mLevelData.mStations[GameManager.sInstance.mCurrStationIdx + 1].mName
+
 
 
 func SetTimeAvailableThisStation(_value : float):
@@ -70,21 +70,28 @@ func _process(_showdelta: float) -> void:
 
 
 
-func ShowGameOverPanel(_show : bool):
+func ShowGameOverPanel(_show : bool, _isVictory : bool = false):
 	if _show:
-		gameover_happiness.text = "Happiness: {0}".format([GameManager.sInstance.mOverallHappiness])
-		gameover_stations.text = "Stations Travelled: %d" % GameManager.sInstance.mCurrStationIdx
-		gameover_score.text = "Score: %d" % GameManager.sInstance.mScore
-		mNextStationButton.hide()
+		if _isVictory:
+			gameover_title.text = "Victory!"
+			gameover_title.add_theme_color_override("font_color", Color(0.73, 1, 0, 1))
+		else:
+			gameover_title.text = "Game Over!"
+			gameover_title.add_theme_color_override("font_color", Color(1, 0.89, 0, 1))
+
+		gameover_stations.text = "Stations Travelled: {0}".format([GameManager.sInstance.mCurrStationIdx + 1])
+		gameover_happiness.text = "Overall Happiness: {0}".format([GameManager.sInstance.mOverallHappiness])
+		mNextStationButton.disabled = true
 		gameover_panel.show()
 		GameManager.sInstance.mTimer.stop()
-		
 	else:
 		gameover_panel.hide()
+
 
 func OnPlayAgainButtonPressed() -> void:
 	AudioManager.sInstance.mClickSound.play()
 	get_tree().reload_current_scene()
+
 
 func OnMainMenuButtonPressed() -> void:
 	AudioManager.sInstance.mClickSound.play()

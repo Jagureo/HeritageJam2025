@@ -16,11 +16,11 @@
 	],
 	"stationDetails": [
 		{ "targetScore": -100,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
-		{ "targetScore": -100,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
-		{ "targetScore": -100,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
-		{ "targetScore": -100,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
-		{ "targetScore": -100,  "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
-		{ "targetScore": -100,  "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 }
+		{ "targetScore": 9999,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": -80,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": -70,   "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": -60,  "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": 0,  "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 }
 	],
 	"passengersSpawn": [
 		{ "type": "Child", "weight": 15, "max": 99 },

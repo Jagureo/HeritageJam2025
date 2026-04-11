@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://5ln5jieeyw4b"]
+[gd_scene load_steps=17 format=3 uid="uid://5ln5jieeyw4b"]
 
 [ext_resource type="Script" uid="uid://bj1d6mvillccq" path="res://Scripts/UI/GameUI.gd" id="1_vo2tu"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="2_vo2tu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bqvvcfxt0o7c4" path="res://Sprites/UI/Gameplay/HappinessIcon.png" id="4_tig4k"]
 [ext_resource type="Texture2D" uid="uid://dvk8g0rk1o8k0" path="res://Sprites/UI/Gameplay/TargetIcon.png" id="5_tig4k"]
 [ext_resource type="Texture2D" uid="uid://dwka5jdk3vj56" path="res://Sprites/UI/Gameplay/StationIcon.png" id="6_plf53"]
+[ext_resource type="Texture2D" uid="uid://b0m5dfitmo5qg" path="res://Sprites/UI/Gameplay/NextIcon.png" id="7_plf53"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vo2tu"]
 
@@ -88,32 +89,16 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo2tu"]
-bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plf53"]
+bg_color = Color(0.105882, 0.286275, 0.337255, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-corner_radius_top_left = 100
-corner_radius_bottom_right = 100
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plf53"]
-bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 100
-corner_radius_bottom_right = 100
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8jce"]
-bg_color = Color(0.00784314, 0.286275, 0.309804, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 100
-corner_radius_bottom_right = 100
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="GameUi" type="CanvasLayer"]
 script = ExtResource("1_vo2tu")
@@ -139,9 +124,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -915.0
+offset_left = -913.0
 offset_top = -89.0
-offset_right = -615.0
+offset_right = -737.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -156,7 +141,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_5b8pf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6w80a")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_lolt2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
-text = "Next Station"
+text = "Next"
 
 [node name="TimeIcon" type="TextureRect" parent="MainScreen"]
 layout_mode = 1
@@ -165,9 +150,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -585.0
+offset_left = -721.0
 offset_top = -89.0
-offset_right = -512.0
+offset_right = -648.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -181,9 +166,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 47.0
-offset_top = -30.0
+offset_top = -29.5
 offset_right = 397.0
-offset_bottom = 30.0
+offset_bottom = 30.5
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_mnd0w")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bhxso")
@@ -215,9 +200,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -160.0
+offset_left = -308.0
 offset_top = -89.0
-offset_right = -87.0
+offset_right = -235.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -231,9 +216,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 59.0
-offset_top = -30.0
-offset_right = 284.0
-offset_bottom = 30.0
+offset_top = -29.5
+offset_right = 234.0
+offset_bottom = 30.5
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0pgsb")
 
@@ -252,7 +237,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
 theme_override_font_sizes/font_size = 35
-text = "000000"
+text = "00000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -263,9 +248,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 152.0
+offset_left = -58.0
 offset_top = -89.0
-offset_right = 225.0
+offset_right = 15.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -280,7 +265,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 59.0
 offset_top = -30.0
-offset_right = 284.0
+offset_right = 234.0
 offset_bottom = 30.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0pgsb")
@@ -300,7 +285,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
 theme_override_font_sizes/font_size = 35
-text = "000000"
+text = "00000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -311,9 +296,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 462.0
+offset_left = 192.0
 offset_top = -89.0
-offset_right = 535.0
+offset_right = 265.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -327,9 +312,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 59.0
-offset_top = -30.0
-offset_right = 457.0
-offset_bottom = 30.0
+offset_top = -29.5
+offset_right = 236.0
+offset_bottom = 30.5
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0pgsb")
 
@@ -340,111 +325,63 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -219.0
-offset_top = -33.5
-offset_right = 219.0
-offset_bottom = 29.5
+offset_left = -53.5
+offset_top = -33.0
+offset_right = 53.5
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
 theme_override_font_sizes/font_size = 35
-text = "30 stations left"
+text = "99/99"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sign" type="Panel" parent="MainScreen"]
-visible = false
+[node name="NextStationIcon" type="TextureRect" parent="MainScreen"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 360.0
-offset_top = -80.0
-offset_right = 660.0
-offset_bottom = -30.0
+offset_left = 445.0
+offset_top = -89.0
+offset_right = 518.0
+offset_bottom = -16.0
+grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vo2tu")
+texture = ExtResource("7_plf53")
+expand_mode = 1
 
-[node name="Station_Label" type="Label" parent="MainScreen/Sign"]
+[node name="NextStationPanel" type="Panel" parent="MainScreen/NextStationIcon"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 59.0
+offset_top = -29.5
+offset_right = 469.0
+offset_bottom = 30.5
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0pgsb")
+
+[node name="NextStationLabel" type="Label" parent="MainScreen/NextStationIcon/NextStationPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -106.0
-offset_top = -21.0
-offset_right = 106.0
-offset_bottom = 21.0
+offset_left = -154.0
+offset_top = -33.0
+offset_right = 155.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
-theme_override_font_sizes/font_size = 32
-text = "Station Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Sign2" type="Panel" parent="MainScreen"]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 660.0
-offset_top = -80.0
-offset_right = 960.0
-offset_bottom = -30.0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_plf53")
-
-[node name="Happniess_Level" type="Label" parent="MainScreen/Sign2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -106.0
-offset_top = -21.0
-offset_right = 106.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_vo2tu")
-theme_override_font_sizes/font_size = 32
-text = "Happiness: 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Sign3" type="Panel" parent="MainScreen"]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 960.0
-offset_top = -80.0
-offset_right = 1260.0
-offset_bottom = -30.0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_plf53")
-
-[node name="Time_Left" type="Label" parent="MainScreen/Sign3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -106.0
-offset_top = -21.0
-offset_right = 106.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_vo2tu")
-theme_override_font_sizes/font_size = 32
-text = "Time: 0"
+theme_override_font_sizes/font_size = 35
+text = "Marina South Pier"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -462,7 +399,7 @@ offset_right = 300.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_p8jce")
+theme_override_styles/panel = SubResource("StyleBoxFlat_plf53")
 
 [node name="GameOverText" type="Label" parent="MainScreen/GameOverPanel"]
 layout_mode = 1
@@ -477,66 +414,48 @@ offset_right = 300.0
 offset_bottom = -158.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.890625, 0, 1)
 theme_override_fonts/font = ExtResource("2_vo2tu")
 theme_override_font_sizes/font_size = 90
-text = "Game Over"
+text = "Game Over!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Happniess_Level" type="Label" parent="MainScreen/GameOverPanel"]
+[node name="HappinessLabel" type="Label" parent="MainScreen/GameOverPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -155.0
-offset_right = 300.0
-offset_bottom = -100.0
+offset_left = -234.5
+offset_top = -127.0
+offset_right = 234.5
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
 theme_override_font_sizes/font_size = 40
-text = "Happiness Level: 1234"
+text = "Overall Happiness: 1234"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StationCount_Label" type="Label" parent="MainScreen/GameOverPanel"]
+[node name="StationCountLabel" type="Label" parent="MainScreen/GameOverPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -110.0
-offset_right = 300.0
-offset_bottom = -55.0
+offset_left = -215.5
+offset_top = -54.0
+offset_right = 215.5
+offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
 theme_override_font_sizes/font_size = 40
 text = "Stations Travelled: 20"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Score_Label" type="Label" parent="MainScreen/GameOverPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -44.0
-offset_right = 300.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_vo2tu")
-theme_override_font_sizes/font_size = 60
-text = "Score: 12345"
 horizontal_alignment = 1
 vertical_alignment = 1
 

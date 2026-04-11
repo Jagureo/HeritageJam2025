@@ -91,6 +91,11 @@ func _ready():
 
 func InitPassenger():
 	mAlightingIn = randi_range(Constant.MIN_NUMBER_OF_STATIONS_TO_STAY, Constant.MAX_NUMBER_OF_STATIONS_TO_STAY)
+
+	# If passenger is going to alight beyond the last station, set it to last station
+	if GameManager.sInstance.mCurrStationIdx + mAlightingIn >= len(LevelMgr.mLevelData.mStations):
+		mAlightingIn = len(LevelMgr.mLevelData.mStations) - GameManager.sInstance.mCurrStationIdx - 1
+
 	mPassengerType = PassengerManager.sInstance.GetRandomSpawnablePassenger()
 
 	# Only female can be pregnant
