@@ -75,9 +75,10 @@ static func GetPassengerStandingDesc(_passengerType : Passenger.PassengerType) -
 		Passenger.PassengerType.ADULT:
 			return ColourScore(Constant.ADULT_SCORE[0]) + "."
 		Passenger.PassengerType.ADULT_WITH_BAGS:
-			return "{0}. {1} per {2}.".format([ColourScore(Constant.ADULT_WITH_BAG_SCORE[0]), 
-											   ColourScore(Constant.ADULT_WITH_BAG_SCORE[2], true), 
-											   ColourKeyword("Standing Passenger", "orange")])
+			return "{0}. {1} if there are more than {2} other {3}.".format([ColourScore(Constant.ADULT_WITH_BAG_SCORE[0]), 
+											   ColourScore(Constant.ADULT_WITH_BAG_SCORE[2]), 
+											   ColourKeyword(str(Constant.ADULT_WITH_BAG_SCORE[3]), "orange") ,
+											   ColourKeyword("Standing Passengers", "orange")])
 		Passenger.PassengerType.ADULT_WITH_BABY:
 			return ColourScore(Constant.ADULT_WITH_BABY_SCORE[0]) + "."
 		Passenger.PassengerType.PREGNANT:

@@ -34,7 +34,11 @@ func EvaluateHappiness() -> int:
 				passenger.mScore = Constant.ADULT_SCORE[0]
 			
 			Passenger.PassengerType.ADULT_WITH_BAGS:
-				passenger.mScore = Constant.ADULT_WITH_BAG_SCORE[0] + (len(mCurrentlyStanding) - 1) * Constant.ADULT_WITH_BAG_SCORE[2]
+				if len(mCurrentlyStanding) - 1 > Constant.ADULT_WITH_BAG_SCORE[3]:
+					passenger.mScore = Constant.ADULT_WITH_BAG_SCORE[2]
+				else:
+					passenger.mScore = Constant.ADULT_WITH_BAG_SCORE[0]
+				# passenger.mScore = Constant.ADULT_WITH_BAG_SCORE[0] + (len(mCurrentlyStanding) - 1) * Constant.ADULT_WITH_BAG_SCORE[2]
 			
 			Passenger.PassengerType.ADULT_WITH_BABY:
 				passenger.mScore = Constant.ADULT_WITH_BABY_SCORE[0]

@@ -73,8 +73,8 @@
 		{ "targetScore": 1350, "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
 		{ "targetScore": 1400, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 2 },
 		{ "targetScore": 1450, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 2 },
-		{ "targetScore": 1475, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 2 },
-		{ "targetScore": 1500, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 2 }
+		{ "targetScore": 1500, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 2 },
+		{ "targetScore": 1500, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 0 }
 	],
 	"passengersSpawn": [
 		{ "type": "Child", "weight": 15, "max": 99 },

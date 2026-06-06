@@ -14,10 +14,10 @@ static var PASSENGER_BOTTOM_SPAWN_PADDING : int = 100
 static var PASSENGER_TOP_SPAWN_PADDING : int = 100
 
 # Scoring - [0] is Standing Score, [1] is Sitting Score, [2+] are additional modifiers
-static var CHILD_SCORE := [0, 5]
-static var TEENAGER_SCORE := [0, 5, -4]					# -4 if sitting adjacent to opposite gender
-static var ADULT_SCORE := [0, 3]	
-static var ADULT_WITH_BAG_SCORE := [0, 3, -1]			# -1 score per standing passenger
+static var CHILD_SCORE := [1, 5]
+static var TEENAGER_SCORE := [1, 5, 2]					# only +2 if sitting adjacent to opposite gender
+static var ADULT_SCORE := [1, 3]	
+static var ADULT_WITH_BAG_SCORE := [0, 5, -3, 5]		# -3 score if there are more than 5 other standing passengers
 static var ADULT_WITH_BABY_SCORE := [0, 5, 3]			# +3 if sitting on priority seat
 static var PREGNANT_SCORE := [0, 5, 3]					# +3 if sitting on priority seat
 static var ELDERLY_SCORE := [-5, 5, 3]					# +3 if sitting on priority seat
