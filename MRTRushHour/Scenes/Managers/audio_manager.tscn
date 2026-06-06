@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://tgxe2fwhl2m1" path="res://Audio/Doors are Closing.mp3" id="4_dm4xc"]
 
 [node name="AudioManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_x8tha")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]

@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var mTargetLabel : Label = $MainScreen/TargetIcon/TargetPanel/TargetLabel
 @onready var mRemainingStationsLabel : Label = $MainScreen/RemainingIcon/RemainingPanel/RemainingLabel
 @onready var mNextStationLabel : Label = $MainScreen/NextStationIcon/NextStationPanel/NextStationLabel
+@onready var mPauseButton : Button = $MainScreen/PauseButton
 
 # Game over panel
 @onready var gameover_panel = $MainScreen/GameOverPanel
@@ -16,6 +17,9 @@ extends CanvasLayer
 @onready var gameover_stations : Label = $MainScreen/GameOverPanel/StationCountLabel
 @onready var playAgainButton : Button = $MainScreen/GameOverPanel/PlayAgain
 @onready var mainMenuButton : Button = $MainScreen/GameOverPanel/MainMenu
+
+# Pause panel
+@onready var pause_panel : Panel = $MainScreen/PausePanel
 
 # Main menu scene
 @export_file("*.tscn") var mMainMenuScene : String
@@ -43,6 +47,7 @@ func NextStation() -> void:
 
 func DisableButton(_value : bool):
 	mNextStationButton.disabled = _value
+	mPauseButton.disabled = _value
 
 
 func SetHappiness(_oldValue : int, _value: int):
@@ -78,22 +83,35 @@ func _process(_showdelta: float) -> void:
 	if mHappinessLabelAnim.is_playing():
 		mHappinessLabel.text = "{0}".format([floori(lerp(mOldHappinessValue, mNewHappinessValue, mLerpPercent))])
 
+
 func ShowGameOverPanel(_show : bool, _isVictory : bool = false):
 	if _show:
 		if _isVictory:
-			gameover_title.text = "Victory!"
+			gameover_title.text = "VICTORY!"
 			gameover_title.add_theme_color_override("font_color", Color(0.73, 1, 0, 1))
 		else:
-			gameover_title.text = "Game Over!"
+			gameover_title.text = "GAME OVER!"
 			gameover_title.add_theme_color_override("font_color", Color(1, 0.89, 0, 1))
 
 		gameover_stations.text = "Stations Travelled: {0}".format([GameManager.sInstance.mCurrStationIdx + 1])
 		gameover_happiness.text = "Overall Happiness: {0}".format([GameManager.sInstance.mOverallHappiness])
-		mNextStationButton.disabled = true
+		DisableButton(true)
 		gameover_panel.show()
 		GameManager.sInstance.mTimer.stop()
 	else:
 		gameover_panel.hide()
+
+
+func ShowPausePanel(_show : bool):
+	AudioManager.sInstance.mClickSound.play()
+	if _show:
+		pause_panel.show()
+		get_tree().paused = true
+		DisableButton(true)
+	else:
+		pause_panel.hide()
+		get_tree().paused = false
+		DisableButton(false)
 
 
 func OnPlayAgainButtonPressed() -> void:
@@ -103,5 +121,5 @@ func OnPlayAgainButtonPressed() -> void:
 
 func OnMainMenuButtonPressed() -> void:
 	AudioManager.sInstance.mClickSound.play()
+	get_tree().paused = false
 	get_tree().change_scene_to_file(mMainMenuScene)
-	

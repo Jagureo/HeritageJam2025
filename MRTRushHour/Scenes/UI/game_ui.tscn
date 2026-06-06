@@ -127,7 +127,7 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plf53"]
-bg_color = Color(0.105882, 0.286275, 0.337255, 1)
+bg_color = Color(0.105882, 0.286275, 0.337255, 0.901961)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -138,6 +138,7 @@ corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
 [node name="GameUi" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_vo2tu")
 mMainMenuScene = "uid://cgsrj1drhnafo"
 mStartingFillColour = Color(0.396078, 0.721569, 0, 1)
@@ -161,9 +162,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -913.0
+offset_left = -914.0
 offset_top = -89.0
-offset_right = -737.0
+offset_right = -754.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -187,9 +188,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -721.0
+offset_left = -743.0
 offset_top = -89.0
-offset_right = -648.0
+offset_right = -670.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -204,7 +205,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 47.0
 offset_top = -29.5
-offset_right = 397.0
+offset_right = 376.0
 offset_bottom = 30.5
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_mnd0w")
@@ -237,9 +238,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -308.0
+offset_left = -358.0
 offset_top = -89.0
-offset_right = -235.0
+offset_right = -285.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -291,9 +292,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -58.0
+offset_left = -115.0
 offset_top = -89.0
-offset_right = 15.0
+offset_right = -42.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -339,9 +340,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 192.0
+offset_left = 128.0
 offset_top = -89.0
-offset_right = 265.0
+offset_right = 201.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -387,9 +388,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 445.0
+offset_left = 373.0
 offset_top = -89.0
-offset_right = 518.0
+offset_right = 446.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -428,6 +429,32 @@ text = "Marina South Pier"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PauseButton" type="Button" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 854.0
+offset_top = -89.0
+offset_right = 929.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
+theme_override_colors/font_color = Color(1, 0.964706, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 0.972549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.964706, 1, 1)
+theme_override_fonts/font = ExtResource("2_vo2tu")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vo2tu")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5b8pf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6w80a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lolt2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
+text = "| |"
+
 [node name="GameOverPanel" type="Panel" parent="MainScreen"]
 visible = false
 layout_mode = 1
@@ -459,8 +486,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.890625, 0, 1)
 theme_override_fonts/font = ExtResource("2_vo2tu")
-theme_override_font_sizes/font_size = 90
-text = "Game Over!"
+theme_override_font_sizes/font_size = 80
+text = "GAME OVER!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -504,13 +531,16 @@ vertical_alignment = 1
 
 [node name="PlayAgain" type="Button" parent="MainScreen/GameOverPanel"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 147.0
-offset_top = -241.0
-offset_right = 447.0
-offset_bottom = -168.0
+offset_left = -150.0
+offset_top = -250.0
+offset_right = 150.0
+offset_bottom = -169.0
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
 theme_override_colors/font_color = Color(1, 0.964706, 1, 1)
@@ -527,13 +557,104 @@ text = "Play Again"
 
 [node name="MainMenu" type="Button" parent="MainScreen/GameOverPanel"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 147.0
-offset_top = -133.0
-offset_right = 447.0
-offset_bottom = -60.0
+offset_left = -150.0
+offset_top = -142.0
+offset_right = 150.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
+theme_override_colors/font_color = Color(1, 0.964706, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 0.972549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.964706, 1, 1)
+theme_override_fonts/font = ExtResource("2_vo2tu")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vo2tu")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5b8pf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6w80a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lolt2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
+text = "Main Menu"
+
+[node name="PausePanel" type="Panel" parent="MainScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -203.0
+offset_right = 300.0
+offset_bottom = 203.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_plf53")
+
+[node name="PauseText" type="Label" parent="MainScreen/PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -176.0
+offset_right = 300.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.901611, 0.59375, 1, 1)
+theme_override_fonts/font = ExtResource("2_vo2tu")
+theme_override_font_sizes/font_size = 80
+text = "PAUSED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="MainScreen/PausePanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -243.0
+offset_right = 150.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
+theme_override_colors/font_color = Color(1, 0.964706, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 0.972549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.964706, 1, 1)
+theme_override_fonts/font = ExtResource("2_vo2tu")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vo2tu")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_5b8pf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6w80a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lolt2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="MainScreen/PausePanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -135.0
+offset_right = 150.0
+offset_bottom = -54.0
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(1, 0.968627, 1, 1)
 theme_override_colors/font_color = Color(1, 0.964706, 1, 1)
@@ -549,5 +670,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tig4k")
 text = "Main Menu"
 
 [connection signal="pressed" from="MainScreen/NextStationButton" to="." method="NextStation"]
+[connection signal="pressed" from="MainScreen/PauseButton" to="." method="ShowPausePanel" binds= [true]]
 [connection signal="pressed" from="MainScreen/GameOverPanel/PlayAgain" to="." method="OnPlayAgainButtonPressed"]
 [connection signal="pressed" from="MainScreen/GameOverPanel/MainMenu" to="." method="OnMainMenuButtonPressed"]
+[connection signal="pressed" from="MainScreen/PausePanel/Resume" to="." method="ShowPausePanel" binds= [false]]
+[connection signal="pressed" from="MainScreen/PausePanel/MainMenu" to="." method="OnMainMenuButtonPressed"]

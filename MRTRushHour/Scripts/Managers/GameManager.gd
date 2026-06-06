@@ -9,10 +9,6 @@ class_name GameManager
 @onready var mPassengerContainer : Node2D = %AllPassengers
 var mPassengerPrefab = preload("res://Scenes/Prefabs/Passenger.tscn")
 
-# Score poups refs
-# @onready var mScorePopupContainer : Control = %AllScorePopups
-# var mScorePopupPrefab = preload("res://Scenes/UI/score_popup_panel.tscn")
-
 # Timer refs
 @onready var mTimer : Timer = $Timer
 
@@ -21,12 +17,6 @@ var mGameOver := false
 var mScore : int = 0
 var mCurrStationIdx : int = 0
 var mOverallHappiness : int = 0
-	# get:
-	# 	return mOverallHappiness
-	# set(newValue):
-	# 	mOverallHappiness = newValue
-		
-		
 var mNumberOfNewPassengersSpawned := 0
 
 static var sInstance : GameManager = null
@@ -90,6 +80,8 @@ func _ready():
 func _input(event): 
 	if event.is_action_pressed("ui_cancel"): 
 		mGameUI.ShowGameOverPanel(true, false)
+		mGameOver = true
+		mPassengerTooltip.hide()
 
 
 # Can be triggered by pressing button
@@ -106,7 +98,6 @@ func ReachedStation():
 
 	# Reached last station and did not lose
 	if mCurrStationIdx == len(LevelMgr.mLevelData.mStations) - 1 and not mGameOver:
-		
 		mGameUI.ShowGameOverPanel(true, true)
 		print("Win!")
 		mGameOver = true
