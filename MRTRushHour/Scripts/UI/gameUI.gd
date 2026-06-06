@@ -26,6 +26,11 @@ extends CanvasLayer
 @export var mEndingFillColour : Color
 @export var mEndingBorderColour : Color
 
+# Happiness label animation
+@onready var mHappinessLabelAnim : AnimationPlayer = $MainScreen/HappinessIcon/HappinessPanel/HappinessLabel/HappinessLabelAnim
+var mOldHappinessValue : int = 0
+var mNewHappinessValue : int = 0
+@export var mLerpPercent : float = 0
 
 
 var mRoundTimer : float = 0 
@@ -40,15 +45,17 @@ func DisableButton(_value : bool):
 	mNextStationButton.disabled = _value
 
 
-func SetHappiness(_value: int):
-	mHappinessLabel.text = "{0}".format([_value])
+func SetHappiness(_oldValue : int, _value: int):
+	mOldHappinessValue = _oldValue
+	mNewHappinessValue = _value
+	mHappinessLabelAnim.play("AnimateScore")
 
 
 func SetTarget(_value : int):
 	mTargetLabel.text = "{0}".format([_value])
 
 
-func SetRemainingStations():
+func SetNextStation():
 	mRemainingStationsLabel.text = "{0}/{1}".format([GameManager.sInstance.mCurrStationIdx + 1, len(LevelMgr.mLevelData.mStations)])
 	if GameManager.sInstance.mCurrStationIdx == len(LevelMgr.mLevelData.mStations) - 1:
 		mNextStationLabel.text = "Last Station"
@@ -68,7 +75,8 @@ func _process(_showdelta: float) -> void:
 		mTimerProgBar.get_theme_stylebox("fill").bg_color = lerp(mEndingFillColour, mStartingFillColour, mTimerProgBar.value / mTimerProgBar.max_value)
 		mTimerProgBar.get_theme_stylebox("fill").border_color = lerp(mEndingBorderColour, mStartingBorderColour, mTimerProgBar.value / mTimerProgBar.max_value)
 
-
+	if mHappinessLabelAnim.is_playing():
+		mHappinessLabel.text = "{0}".format([floori(lerp(mOldHappinessValue, mNewHappinessValue, mLerpPercent))])
 
 func ShowGameOverPanel(_show : bool, _isVictory : bool = false):
 	if _show:

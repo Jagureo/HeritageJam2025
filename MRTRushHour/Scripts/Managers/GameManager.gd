@@ -65,9 +65,9 @@ func _exit_tree():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mOverallHappiness = 0
-	mGameUI.SetHappiness(mOverallHappiness)
+	mGameUI.SetHappiness(0, mOverallHappiness)
 	mGameUI.SetTarget(LevelMgr.mLevelData.mStationDetails[mCurrStationIdx].mTargetScore)		# Target happiness
-	mGameUI.SetRemainingStations()																# Remaining stations
+	mGameUI.SetNextStation()																# Remaining stations
 	mGameUI.SetTimeAvailableThisStation(1)														# How much time available for this station
 	
 	mPassengerTooltip.hide()
@@ -112,7 +112,7 @@ func ReachedStation():
 		mGameOver = true
 		mPassengerTooltip.hide()
 
-	mGameUI.SetRemainingStations()
+	mGameUI.SetNextStation()
 	mCurrLevelState = LevelState.ALIGHT_PASSENGER
 	EventMgr.OnPassengerAlighting.emit()
 
@@ -168,8 +168,9 @@ func OnTimerTimeout():
 
 
 func SetHappinessLevel(value: int) -> void:
+	var oldVal = mOverallHappiness
 	mOverallHappiness = value
-	mGameUI.SetHappiness(mOverallHappiness)
+	mGameUI.SetHappiness(oldVal, mOverallHappiness)
 
 	if GameManager.sInstance.mCurrStationIdx < len(LevelMgr.mLevelData.mStations) and mOverallHappiness < LevelMgr.mLevelData.mStationDetails[GameManager.sInstance.mCurrStationIdx].mTargetScore:
 		mGameUI.ShowGameOverPanel(true)

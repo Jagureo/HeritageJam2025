@@ -30,7 +30,8 @@ func SetScore(_score : int):
 
 
 func _process(_delta):
-	mScorePopupText.text = ("+" if mSetScore >= 0 else "") + str(floori(lerp(0, mSetScore, mLerpedScoreDisplayScalar)))
+	if mScorePopupAnim.is_playing():
+		mScorePopupText.text = ("+" if mSetScore >= 0 else "") + str(floori(lerp(0, mSetScore, mLerpedScoreDisplayScalar)))
 
 
 

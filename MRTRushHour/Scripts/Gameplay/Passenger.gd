@@ -135,19 +135,50 @@ func OnDragUpdate():
 
 func OnDragEnd():
 	# If the seat is selected, not occupied, and managed to seat the passenger
-	if Seat.sSelectedSeat and not Seat.sSelectedSeat.HasPassenger() and Seat.sSelectedSeat.AddPassenger(self):		
-		global_position = Seat.sSelectedSeat.global_position
-		# If the seat is back facing, then the children and teenager has special seating position
-		if Seat.sSelectedSeat.mIsBackFacing:
-			if mPassengerType == PassengerType.CHILDREN:
-				mPassengerSprite.global_position = Seat.sSelectedSeat.mChildSitPos.global_position + mOriginalSpriteLocalPosition
-			elif mPassengerType == PassengerType.TEENAGER:
-				mPassengerSprite.global_position = Seat.sSelectedSeat.mTeenSitPos.global_position + mOriginalSpriteLocalPosition
-			
-		mSittingOn = Seat.sSelectedSeat
-		PassengerManager.sInstance.mStandingArea.RemovePassenger(self)
+	if Seat.sSelectedSeat and not Seat.sSelectedSeat.HasPassenger():
+		
+		if Seat.sSelectedSeat.AddPassenger(self):		
+			global_position = Seat.sSelectedSeat.global_position
+			# If the seat is back facing, then the children and teenager has special seating position
+			if Seat.sSelectedSeat.mIsBackFacing:
+				if mPassengerType == PassengerType.CHILDREN:
+					mPassengerSprite.global_position = Seat.sSelectedSeat.mChildSitPos.global_position + mOriginalSpriteLocalPosition
+				elif mPassengerType == PassengerType.TEENAGER:
+					mPassengerSprite.global_position = Seat.sSelectedSeat.mTeenSitPos.global_position + mOriginalSpriteLocalPosition
+				
+			mSittingOn = Seat.sSelectedSeat
+			PassengerManager.sInstance.mStandingArea.RemovePassenger(self)
+			return
+
+	# If the seat is selected but occupied, swap out the seat with that passenger
+	elif Seat.sSelectedSeat and Seat.sSelectedSeat.HasPassenger():
+		# Get who is currently sitting
+		var tempPassenger : Passenger = Seat.sSelectedSeat.mCurrentlySeatedBy
+		
+		# Check if able to swap out the passenger
+		if Seat.sSelectedSeat.AddPassenger(self):	
+			# Add the new passenger to the seat
+			global_position = Seat.sSelectedSeat.global_position
+			# If the seat is back facing, then the children and teenager has special seating position
+			if Seat.sSelectedSeat.mIsBackFacing:
+				if mPassengerType == PassengerType.CHILDREN:
+					mPassengerSprite.global_position = Seat.sSelectedSeat.mChildSitPos.global_position + mOriginalSpriteLocalPosition
+				elif mPassengerType == PassengerType.TEENAGER:
+					mPassengerSprite.global_position = Seat.sSelectedSeat.mTeenSitPos.global_position + mOriginalSpriteLocalPosition
+				
+			mSittingOn = Seat.sSelectedSeat
+			PassengerManager.sInstance.mStandingArea.RemovePassenger(self)
+
+			# Add the old passenger to the standing area			
+			tempPassenger.mSittingOn = null
+			PassengerManager.sInstance.mStandingArea.AddPassenger(tempPassenger)
+			if tempPassenger.global_position.y > Constant.BOTTOM_DRAG_LIMIT - Constant.PASSENGER_BOTTOM_SPAWN_PADDING or tempPassenger.global_position.y < Constant.TOP_DRAG_LIMIT + Constant.PASSENGER_TOP_SPAWN_PADDING:
+				tempPassenger.global_position.y = clamp(tempPassenger.global_position.y, Constant.TOP_DRAG_LIMIT + Constant.PASSENGER_TOP_SPAWN_PADDING, Constant.BOTTOM_DRAG_LIMIT - Constant.PASSENGER_BOTTOM_SPAWN_PADDING)
+
+			return
+
 	# If did not manage to seat the passenger, snap the passenger position back so it doesn't occupy the seat places
-	elif global_position.y > Constant.BOTTOM_DRAG_LIMIT - Constant.PASSENGER_BOTTOM_SPAWN_PADDING or global_position.y < Constant.TOP_DRAG_LIMIT + Constant.PASSENGER_TOP_SPAWN_PADDING:
+	if global_position.y > Constant.BOTTOM_DRAG_LIMIT - Constant.PASSENGER_BOTTOM_SPAWN_PADDING or global_position.y < Constant.TOP_DRAG_LIMIT + Constant.PASSENGER_TOP_SPAWN_PADDING:
 		global_position.y = clamp(global_position.y, Constant.TOP_DRAG_LIMIT + Constant.PASSENGER_TOP_SPAWN_PADDING, Constant.BOTTOM_DRAG_LIMIT - Constant.PASSENGER_BOTTOM_SPAWN_PADDING)
 
 

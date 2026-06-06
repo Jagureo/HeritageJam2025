@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://5ln5jieeyw4b"]
+[gd_scene load_steps=20 format=3 uid="uid://5ln5jieeyw4b"]
 
 [ext_resource type="Script" uid="uid://bj1d6mvillccq" path="res://Scripts/UI/GameUI.gd" id="1_vo2tu"]
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="2_vo2tu"]
@@ -88,6 +88,43 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
+
+[sub_resource type="Animation" id="Animation_plf53"]
+resource_name = "AnimateScore"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:mLerpPercent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_p8jce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:lerpPercent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mnd0w"]
+_data = {
+&"AnimateScore": SubResource("Animation_plf53"),
+&"RESET": SubResource("Animation_p8jce")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plf53"]
 bg_color = Color(0.105882, 0.286275, 0.337255, 1)
@@ -237,9 +274,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
 theme_override_font_sizes/font_size = 35
-text = "00000"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HappinessLabelAnim" type="AnimationPlayer" parent="MainScreen/HappinessIcon/HappinessPanel/HappinessLabel"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_mnd0w")
+}
 
 [node name="TargetIcon" type="TextureRect" parent="MainScreen"]
 layout_mode = 1
@@ -285,7 +328,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vo2tu")
 theme_override_font_sizes/font_size = 35
-text = "00000"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
