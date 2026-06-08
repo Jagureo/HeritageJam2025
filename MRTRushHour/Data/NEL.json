@@ -1,0 +1,57 @@
+{
+	"lineName": "North East Line",
+	"lineColour": {
+		"r": 143,
+		"g": 65,
+		"b": 153
+	},
+	"lineTextColour": "white",
+	"stations": [
+		{ "code": "NE1",  "name": "HarbourFront", "isUnderground": true },
+		{ "code": "NE3",  "name": "Outram Park", "isUnderground": true },
+		{ "code": "NE4",  "name": "Chinatown", "isUnderground": true },
+		{ "code": "NE5",  "name": "Clarke Quay", "isUnderground": true },
+		{ "code": "NE6",  "name": "Dhoby Ghaut", "isUnderground": true },
+		{ "code": "NE7",  "name": "Little India", "isUnderground": true },
+		{ "code": "NE8",  "name": "Farrer Park", "isUnderground": true },
+		{ "code": "NE9",  "name": "Boon Keng", "isUnderground": true },
+		{ "code": "NE10", "name": "Potong Pasir", "isUnderground": true },
+		{ "code": "NE11", "name": "Woodleigh", "isUnderground": true },
+		{ "code": "NE12", "name": "Serangoon", "isUnderground": true },
+		{ "code": "NE13", "name": "Kovan", "isUnderground": true },
+		{ "code": "NE14", "name": "Hougang", "isUnderground": true },
+		{ "code": "NE15", "name": "Buangkok", "isUnderground": true },
+		{ "code": "NE16", "name": "Sengkang", "isUnderground": true },
+		{ "code": "NE17", "name": "Punggol", "isUnderground": true }
+	],
+	"stationDetails": [
+		{ "targetScore": 0  , "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": 15 , "minPassengersToSpawn": 4, "maxPassengersToSpawn": 6 },
+		{ "targetScore": 30 , "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": 45 , "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": 75 , "minPassengersToSpawn": 4, "maxPassengersToSpawn": 6 },
+		{ "targetScore": 90 , "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": 110, "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": 125, "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
+		{ "targetScore": 150, "minPassengersToSpawn": 2, "maxPassengersToSpawn": 4 },
+		{ "targetScore": 175, "minPassengersToSpawn": 2, "maxPassengersToSpawn": 4 },
+		{ "targetScore": 200, "minPassengersToSpawn": 2, "maxPassengersToSpawn": 4 },
+		{ "targetScore": 225, "minPassengersToSpawn": 2, "maxPassengersToSpawn": 4 },
+		{ "targetScore": 260, "minPassengersToSpawn": 3, "maxPassengersToSpawn": 4 },
+		{ "targetScore": 300, "minPassengersToSpawn": 3, "maxPassengersToSpawn": 4 },
+		{ "targetScore": 350, "minPassengersToSpawn": 3, "maxPassengersToSpawn": 4 },
+		{ "targetScore": 350, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 0 }
+	],
+	"passengersSpawn": [
+		{ "type": "Child", "weight": 20, "max": 99 },
+		{ "type": "Teenager", "weight": 20, "max": 99 },
+		{ "type": "Adult", "weight": 30, "max": 99 },
+		{ "type": "AdultWithBag", "weight": 10, "max": 2 },
+		{ "type": "AdultWithBaby", "weight": 10, "max": 99 },
+		{ "type": "Elderly", "weight": 10, "max": 99 },
+		{ "type": "Injured", "weight": 10, "max": 99 },
+		{ "type": "Pregnant", "weight": 10, "max": 99 },
+		{ "type": "Hemorrhoid", "weight": 5, "max": 99 },
+		{ "type": "Wheelchair", "weight": 10, "max": 1 }
+	]
+}

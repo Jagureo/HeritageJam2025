@@ -33,18 +33,12 @@
 		{ "code": "EW24", "name": "Jurong East", "isUnderground": false },
 		{ "code": "EW25", "name": "Chinese Garden", "isUnderground": false },
 		{ "code": "EW26", "name": "Lakeside", "isUnderground": false },
-		{ "code": "EW27", "name": "Boon Lay", "isUnderground": false },
-		{ "code": "EW28", "name": "Pioneer", "isUnderground": false },
-		{ "code": "EW29", "name": "Joo Koon", "isUnderground": false },
-		{ "code": "EW30", "name": "Gul Circle", "isUnderground": false },
-		{ "code": "EW31", "name": "Tuas Crescent", "isUnderground": false },
-		{ "code": "EW32", "name": "Tuas West Road", "isUnderground": false },
-		{ "code": "EW33", "name": "Tuas Link", "isUnderground": false }
+		{ "code": "EW27", "name": "Boon Lay", "isUnderground": false }
 	],
 	"stationDetails": [
-		{ "targetScore": 0   , "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
-		{ "targetScore": 5   , "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
+		{ "targetScore": 5   , "minPassengersToSpawn": 2, "maxPassengersToSpawn": 3 },
 		{ "targetScore": 10  , "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
+		{ "targetScore": 15  , "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
 		{ "targetScore": 20  , "minPassengersToSpawn": 3, "maxPassengersToSpawn": 5 },
 		{ "targetScore": 30  , "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
 		{ "targetScore": 40  , "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
@@ -68,13 +62,7 @@
 		{ "targetScore": 1050, "minPassengersToSpawn": 6, "maxPassengersToSpawn": 10 },
 		{ "targetScore": 1150, "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
 		{ "targetScore": 1200, "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
-		{ "targetScore": 1250, "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
-		{ "targetScore": 1300, "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
-		{ "targetScore": 1350, "minPassengersToSpawn": 1, "maxPassengersToSpawn": 2 },
-		{ "targetScore": 1400, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 2 },
-		{ "targetScore": 1450, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 2 },
-		{ "targetScore": 1500, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 2 },
-		{ "targetScore": 1500, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 0 }
+		{ "targetScore": 1200, "minPassengersToSpawn": 0, "maxPassengersToSpawn": 0 }
 	],
 	"passengersSpawn": [
 		{ "type": "Child", "weight": 15, "max": 99 },

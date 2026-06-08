@@ -8,9 +8,9 @@ enum MRTLine {
 	EWL = 0,
 	NSL,
 	NEL,
-	CCL,
-	DTL,
-	TEL,
+	# CCL,
+	# DTL,
+	# TEL,
 	DEV,
 }
 
@@ -38,6 +38,8 @@ func SetLevel(_line : MRTLine):
 			LoadLevel("res://Data/EWL.json")
 		MRTLine.NSL:
 			LoadLevel("res://Data/NSL.json")
+		MRTLine.NEL:
+			LoadLevel("res://Data/NEL.json")
 		MRTLine.DEV:
 			LoadLevel("res://Data/DevLine.json")
 		_:
