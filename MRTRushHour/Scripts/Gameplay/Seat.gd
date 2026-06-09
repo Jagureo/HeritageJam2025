@@ -6,7 +6,7 @@ class_name Seat
 # Seat type
 enum SeatType {
 	NORMAL,
-	PRIORITY,
+	RESERVED,
 	WHEELCHAIR,
 }
 

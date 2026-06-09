@@ -18,10 +18,10 @@ static var CHILD_SCORE := [1, 5]
 static var TEENAGER_SCORE := [1, 5, 2]					# only +2 if sitting adjacent to opposite gender
 static var ADULT_SCORE := [1, 3]	
 static var ADULT_WITH_BAG_SCORE := [0, 5, -3, 5]		# -3 score if there are more than 5 other standing passengers
-static var ADULT_WITH_BABY_SCORE := [0, 5, 3]			# +3 if sitting on priority seat
-static var PREGNANT_SCORE := [0, 5, 3]					# +3 if sitting on priority seat
-static var ELDERLY_SCORE := [-5, 5, 3]					# +3 if sitting on priority seat
-static var INJURIED_SCORE := [-5, 5, 3]					# +3 if sitting on priority seat
+static var ADULT_WITH_BABY_SCORE := [0, 5, 3]			# +3 if sitting on Reserved seat
+static var PREGNANT_SCORE := [0, 5, 3]					# +3 if sitting on Reserved seat
+static var ELDERLY_SCORE := [-5, 5, 3]					# +3 if sitting on Reserved seat
+static var INJURIED_SCORE := [-5, 5, 3]					# +3 if sitting on Reserved seat
 static var HEMORRHOID_SCORE := [5, -10]
 static var WHEELCHAIR_BOUND_SCORE := [0, 5, -5]			# -5 per standing passenger
 # DLC passengers

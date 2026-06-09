@@ -6,10 +6,10 @@ enum PassengerType {
 	TEENAGER,				# Does not want to sit with someone opposite gender
 	ADULT,					# Prefers to sit down
 	ADULT_WITH_BAGS,		# Prefers to sit down, if standing, makes standing passengers angry
-	ADULT_WITH_BABY,		# Prefers to sit down, bonus if sit on priority seat	
-	PREGNANT,				# Prefers to sit down, bonus if sit on priority seat
-	ELDERLY,				# Must sit down, bonus if sit on priority seat
-	INJURED,				# Must sit down, bonus if sit on priority seat
+	ADULT_WITH_BABY,		# Prefers to sit down, bonus if sit on Reserved seat	
+	PREGNANT,				# Prefers to sit down, bonus if sit on Reserved seat
+	ELDERLY,				# Must sit down, bonus if sit on Reserved seat
+	INJURED,				# Must sit down, bonus if sit on Reserved seat
 	HEMORRHOID,				# Must stand up
 	WHEELCHAIR_BOUND,		# Must use wheelchair slot, otherwise makes standing passengers angry
 	LAST,

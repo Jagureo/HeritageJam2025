@@ -5,6 +5,7 @@ extends Control
 @onready var mEWLGlow : TextureRect = $LevelSelectScreen/TextWrapper/MapBackground/EWLGlow
 @onready var mNSLGlow : TextureRect = $LevelSelectScreen/TextWrapper/MapBackground/NSLGlow
 @onready var mNELGlow : TextureRect = $LevelSelectScreen/TextWrapper/MapBackground/NELGlow
+@onready var mLineDescription : RichTextLabel = $LevelSelectScreen/TextWrapper/LineInfoPanel/LineInfo
 
 @export_file("*.tscn") var mGameScene : String
 
@@ -14,6 +15,7 @@ extends Control
 
 func _ready():
 	mScreenAnimation.play("RESET")
+	mLineDescription.text = ""
 
 
 func OnPlayButtonPressed():
@@ -73,10 +75,13 @@ func OnLevelButtonHovered(_line : LevelManager.MRTLine):
 	match _line:
 		LevelManager.MRTLine.EWL:
 			mEWLGlow.visible = true
+			mLineDescription.text = "[color=#28ca74]Length:[/color] Long\n[color=#28ca74]Difficulty:[/color] Normal"
 		LevelManager.MRTLine.NSL:
 			mNSLGlow.visible = true
+			mLineDescription.text = "[color=#e64c3b]Length:[/color] Long\n[color=#e64c3b]Difficulty:[/color] Hard"
 		LevelManager.MRTLine.NEL:
 			mNELGlow.visible = true
+			mLineDescription.text = "[color=#c140c5]Length:[/color] Short\n[color=#c140c5]Difficulty:[/color] Easy"
 
 	# Todo: Set line description
 
@@ -91,5 +96,5 @@ func OnLevelButtonUnhovered(_line : LevelManager.MRTLine):
 		LevelManager.MRTLine.NEL:
 			mNELGlow.visible = false
 
-	# Todo: clear line description
+	mLineDescription.text = ""
 

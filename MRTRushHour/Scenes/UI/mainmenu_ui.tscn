@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cgsrj1drhnafo"]
+[gd_scene load_steps=66 format=3 uid="uid://cgsrj1drhnafo"]
 
 [ext_resource type="Script" uid="uid://c7d1tiyq1gj1e" path="res://Scripts/UI/MainmenuUI.gd" id="1_nelyp"]
 [ext_resource type="PackedScene" uid="uid://bvyt75alno37d" path="res://Scenes/Prefabs/MainMenuBackground.tscn" id="2_6r04x"]
@@ -6,14 +6,20 @@
 [ext_resource type="FontFile" uid="uid://d1x0h7mgv7hdj" path="res://Fonts/Mtir-Medium.ttf" id="4_wfx2n"]
 [ext_resource type="Script" uid="uid://cign7xud1xsnv" path="res://Scripts/UI/VersionNumber.gd" id="5_mcpc0"]
 [ext_resource type="Texture2D" uid="uid://syd6cyagis07" path="res://Sprites/UI/Credits/DE Round Rect.png" id="5_wfx2n"]
+[ext_resource type="SpriteFrames" uid="uid://dea6twoqm57mw" path="res://Animations/MaleAdultBag.tres" id="6_8wq1i"]
 [ext_resource type="Texture2D" uid="uid://cpdtyjfbr8hrw" path="res://Sprites/UI/Credits/credits_jagureo.png" id="6_egq24"]
 [ext_resource type="Texture2D" uid="uid://cfvi2s0bd42ec" path="res://Sprites/UI/MainMenu/SliderKnobNormal.png" id="6_yuoe8"]
 [ext_resource type="Texture2D" uid="uid://6twf1rmgrl6j" path="res://Sprites/UI/Credits/credits_wendy.png" id="7_2cvb7"]
+[ext_resource type="SpriteFrames" uid="uid://c7y75n2vkmcpu" path="res://Animations/FemalePregnant.tres" id="7_ls8k0"]
 [ext_resource type="Texture2D" uid="uid://c2vhhia72pu2w" path="res://Sprites/UI/MainMenu/SliderKnobHover.png" id="7_u2yph"]
+[ext_resource type="Texture2D" uid="uid://ccbpdw0prsr8q" path="res://Sprites/TrainProps/SeatPriority.png" id="8_53iay"]
 [ext_resource type="Texture2D" uid="uid://ct0t6a35sudbh" path="res://Sprites/UI/Credits/credits_cyanv.png" id="8_mcpc0"]
 [ext_resource type="Script" uid="uid://i6enpgxcmdkk" path="res://Scripts/UI/VolumeSlider.gd" id="8_u2yph"]
 [ext_resource type="Texture2D" uid="uid://bei73fah1uc7t" path="res://Sprites/UI/Credits/credits_vaughn.png" id="9_2cvb7"]
+[ext_resource type="Texture2D" uid="uid://ceku1crjlrs25" path="res://Sprites/TrainProps/SeatNormal.png" id="9_8wq1i"]
+[ext_resource type="Texture2D" uid="uid://bqvvcfxt0o7c4" path="res://Sprites/UI/Gameplay/HappinessIcon.png" id="10_8wq1i"]
 [ext_resource type="Texture2D" uid="uid://baciw3p5lc2ry" path="res://Sprites/UI/Credits/icon.svg" id="10_v5c52"]
+[ext_resource type="Texture2D" uid="uid://dvk8g0rk1o8k0" path="res://Sprites/UI/Gameplay/TargetIcon.png" id="11_av81a"]
 [ext_resource type="Texture2D" uid="uid://bmarsrk2rkw6w" path="res://Sprites/UI/MapComponents/MapBackground.png" id="12_wqgbw"]
 [ext_resource type="Texture2D" uid="uid://bn84gme8h6onp" path="res://Sprites/UI/MapComponents/nsl_glow.png" id="13_bw246"]
 [ext_resource type="Texture2D" uid="uid://bp4xfilre6mg" path="res://Sprites/UI/MapComponents/ewl_glow.png" id="14_520w2"]
@@ -173,7 +179,7 @@ events = [SubResource("InputEventKey_jw33x")]
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bw246"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bw246"]
-bg_color = Color(0.67451, 0.188235, 0.690196, 1)
+bg_color = Color(0.757104, 0.250763, 0.773438, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
@@ -184,7 +190,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_520w2"]
-bg_color = Color(0.673465, 0.189056, 0.691406, 1)
+bg_color = Color(0.756863, 0.25098, 0.772549, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
@@ -273,6 +279,18 @@ border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mgi1"]
+draw_center = false
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -1391,6 +1409,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
 shortcut = SubResource("Shortcut_wqgbw")
+shortcut_in_tooltip = false
 text = "Back"
 
 [node name="TextWrapper1" type="Panel" parent="HowToPlayScreen"]
@@ -1406,32 +1425,67 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
 
 [node name="Instructions" type="RichTextLabel" parent="HowToPlayScreen/TextWrapper1"]
-visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 40.0
+offset_left = 50.0
 offset_top = 16.0
-offset_right = -45.0
+offset_right = -385.0
 offset_bottom = 786.0
 grow_horizontal = 2
 theme_override_constants/line_separation = -8
 theme_override_fonts/normal_font = ExtResource("4_wfx2n")
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[color=yellow]> GAMEPLAY <[/color]
-Travel back to the 90's and promote some gracious travelling in Singapore's MRT.
+text = "[color=gold]Travel back to the early 2000's and promote some gracious travelling in Singapore's MRT.[/color]
 
-Every traveler has their own preferences, can you ensure has the most pleasant ride, but also extend that courtesy to other travelers.
+Every passenger has their own preferences, ensure that they have the most pleasant ride, but also extend that courtesy to other passengers.
 
-Hover over the passengers to uncover their traits and preferences and help them find their optimal seating.
+Hover over the passengers to uncover their preferences and help them find their optimal seating. There are [color=aqua]\"Reserved Seats\"[/color] for passengers that need them the most.
 
-Simply hold [color=orange][Left click][/color] to drag the passengers and make sure you seat everyone before the doors close!
+Simply hold [color=orange][Left click][/color] to drag the passengers and seat them before the door closes!
 
-After the doors close your happiness score will be calculated for the round based on how well you were able to seat everyone, but beware, if your happiness drops below (-25) the train will ignite and derail spontaneously simultaneously."
+After the doors close, the [color=green]Happiness Score[/color] will be calculated based on how well you were able to seat everyone. 
+
+But beware, if the [color=green]Happiness Score[/color] drops below the station's target, [color=red]the train will ignite and derail spontaneously simultaneously[/color]!!!"
 autowrap_mode = 2
 vertical_alignment = 1
 justification_flags = 160
+
+[node name="Passenger1" type="AnimatedSprite2D" parent="HowToPlayScreen/TextWrapper1"]
+position = Vector2(1535.25, 172.25)
+scale = Vector2(0.360026, 0.360026)
+sprite_frames = ExtResource("6_8wq1i")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Passenger2" type="AnimatedSprite2D" parent="HowToPlayScreen/TextWrapper1"]
+position = Vector2(1703.25, 172.25)
+scale = Vector2(0.360026, 0.360026)
+sprite_frames = ExtResource("7_ls8k0")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.0279056
+
+[node name="seat1" type="Sprite2D" parent="HowToPlayScreen/TextWrapper1"]
+position = Vector2(1700.25, 418.042)
+scale = Vector2(0.992513, 0.992513)
+texture = ExtResource("8_53iay")
+
+[node name="seat2" type="Sprite2D" parent="HowToPlayScreen/TextWrapper1"]
+position = Vector2(1535.25, 418.042)
+scale = Vector2(0.992513, 0.992513)
+texture = ExtResource("9_8wq1i")
+
+[node name="happinessicon1" type="Sprite2D" parent="HowToPlayScreen/TextWrapper1"]
+position = Vector2(1540, 635.521)
+scale = Vector2(0.992513, 0.992513)
+texture = ExtResource("10_8wq1i")
+
+[node name="happinessicon2" type="Sprite2D" parent="HowToPlayScreen/TextWrapper1"]
+position = Vector2(1699, 635.521)
+scale = Vector2(0.992513, 0.992513)
+texture = ExtResource("11_av81a")
 
 [node name="SettingsScreen" type="Control" parent="."]
 visible = false
@@ -1488,6 +1542,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
 shortcut = SubResource("Shortcut_wqgbw")
+shortcut_in_tooltip = false
 text = "Back"
 
 [node name="TextWrapper" type="Panel" parent="SettingsScreen"]
@@ -1633,6 +1688,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
 shortcut = SubResource("Shortcut_nsp82")
+shortcut_in_tooltip = false
 text = "Back"
 
 [node name="TextWrapper1" type="Panel" parent="CreditsScreen"]
@@ -2005,6 +2061,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
 shortcut = SubResource("Shortcut_nsp82")
+shortcut_in_tooltip = false
 text = "Back"
 
 [node name="TextWrapper" type="Panel" parent="LevelSelectScreen"]
@@ -2033,6 +2090,33 @@ offset_bottom = 325.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("12_wqgbw")
+
+[node name="NSLNoGlow" type="TextureRect" parent="LevelSelectScreen/TextWrapper/MapBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_u2yph")
+
+[node name="EWLNoGlow" type="TextureRect" parent="LevelSelectScreen/TextWrapper/MapBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_04pbb")
+
+[node name="NELNoGlow" type="TextureRect" parent="LevelSelectScreen/TextWrapper/MapBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_eoynv")
 
 [node name="NSLGlow" type="TextureRect" parent="LevelSelectScreen/TextWrapper/MapBackground"]
 visible = false
@@ -2064,39 +2148,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_yuoe8")
 
-[node name="NSLNoGlow" type="TextureRect" parent="LevelSelectScreen/TextWrapper/MapBackground"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("16_u2yph")
-
-[node name="EWLNoGlow" type="TextureRect" parent="LevelSelectScreen/TextWrapper/MapBackground"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("17_04pbb")
-
-[node name="NELNoGlow" type="TextureRect" parent="LevelSelectScreen/TextWrapper/MapBackground"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("18_eoynv")
-
 [node name="NELButton" type="Button" parent="LevelSelectScreen/TextWrapper"]
 layout_mode = 1
-offset_left = 73.0
-offset_top = 62.0
-offset_right = 712.0
-offset_bottom = 157.0
+offset_left = 38.0
+offset_top = 51.0
+offset_right = 748.0
+offset_bottom = 146.0
 theme_override_fonts/font = ExtResource("4_wfx2n")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bw246")
@@ -2107,10 +2164,10 @@ text = "North East Line"
 
 [node name="EWLButton" type="Button" parent="LevelSelectScreen/TextWrapper"]
 layout_mode = 1
-offset_left = 73.0
-offset_top = 182.0
-offset_right = 712.0
-offset_bottom = 277.0
+offset_left = 38.0
+offset_top = 171.0
+offset_right = 748.0
+offset_bottom = 266.0
 theme_override_fonts/font = ExtResource("4_wfx2n")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_520w2")
@@ -2121,10 +2178,10 @@ text = "East West Line"
 
 [node name="NSLButton" type="Button" parent="LevelSelectScreen/TextWrapper"]
 layout_mode = 1
-offset_left = 73.0
-offset_top = 302.0
-offset_right = 712.0
-offset_bottom = 397.0
+offset_left = 38.0
+offset_top = 291.0
+offset_right = 748.0
+offset_bottom = 386.0
 theme_override_fonts/font = ExtResource("4_wfx2n")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ls8k0")
@@ -2132,6 +2189,35 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_eoynv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ls8k0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_av81a")
 text = "North South Line"
+
+[node name="LineInfoPanel" type="Panel" parent="LevelSelectScreen/TextWrapper"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = -370.0
+offset_right = 748.0
+offset_bottom = -38.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7mgi1")
+
+[node name="LineInfo" type="RichTextLabel" parent="LevelSelectScreen/TextWrapper/LineInfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -20.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_wfx2n")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScreenAnimations" type="AnimationPlayer" parent="."]
 root_node = NodePath("../CreditsScreen")

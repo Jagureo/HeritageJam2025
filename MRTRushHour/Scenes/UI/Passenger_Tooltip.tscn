@@ -112,7 +112,7 @@ theme_override_constants/line_separation = -5
 theme_override_fonts/normal_font = ExtResource("2_usj5b")
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "[color=green]+10 Happiness[/color]. [color=red]-10 Happiness[/color]. [color=aqua]Priority Seat[/color]. [color=deepskyblue]Wheelchair[/color]. [color=orange]Standing[/color]. [color=hotpink]Adjacent[/color]."
+text = "[color=green]+10 Happiness[/color]. [color=red]-10 Happiness[/color]. [color=aqua]Reserved Seat[/color]. [color=deepskyblue]Wheelchair[/color]. [color=orange]Standing[/color]. [color=hotpink]Adjacent[/color]."
 fit_content = true
 
 [node name="SittingTitle" type="RichTextLabel" parent="."]

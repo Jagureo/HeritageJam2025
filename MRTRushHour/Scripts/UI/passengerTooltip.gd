@@ -135,19 +135,19 @@ static func GetPassengerSittingDesc(_passengerType : Passenger.PassengerType, _g
 		Passenger.PassengerType.ADULT_WITH_BABY:
 			return "{0}. {1} if sitting on {2}.".format([ColourScore(Constant.ADULT_WITH_BABY_SCORE[1]),
 													  	 ColourScore(Constant.ADULT_WITH_BABY_SCORE[2], true),
-													  	 ColourKeyword("Priority Seat", "aqua")]) 
+													  	 ColourKeyword("Reserved Seat", "aqua")]) 
 		Passenger.PassengerType.PREGNANT:
 			return "{0}. {1} if sitting on {2}.".format([ColourScore(Constant.PREGNANT_SCORE[1]),
 													  	 ColourScore(Constant.PREGNANT_SCORE[2], true),
-													  	 ColourKeyword("Priority Seat", "aqua")]) 
+													  	 ColourKeyword("Reserved Seat", "aqua")]) 
 		Passenger.PassengerType.ELDERLY:
 			return "{0}. {1} if sitting on {2}.".format([ColourScore(Constant.ELDERLY_SCORE[1]),
 													  	 ColourScore(Constant.ELDERLY_SCORE[2], true),
-													  	 ColourKeyword("Priority Seat", "aqua")]) 
+													  	 ColourKeyword("Reserved Seat", "aqua")]) 
 		Passenger.PassengerType.INJURED:
 			return "{0}. {1} if sitting on {2}.".format([ColourScore(Constant.INJURIED_SCORE[1]),
 													  	 ColourScore(Constant.INJURIED_SCORE[2], true),
-													  	 ColourKeyword("Priority Seat", "aqua")]) 
+													  	 ColourKeyword("Reserved Seat", "aqua")]) 
 		Passenger.PassengerType.HEMORRHOID:
 			return ColourScore(Constant.HEMORRHOID_SCORE[1]) + "."
 		Passenger.PassengerType.WHEELCHAIR_BOUND:
