@@ -21,6 +21,9 @@ extends CanvasLayer
 # Pause panel
 @onready var pause_panel : Panel = $MainScreen/PausePanel
 
+# Panel animation
+@onready var mPanelAnimation : AnimationPlayer = $MainScreen/PanelAnimation
+
 # Main menu scene
 @export_file("*.tscn") var mMainMenuScene : String
 
@@ -98,20 +101,20 @@ func ShowGameOverPanel(_show : bool, _isVictory : bool = false):
 		gameover_stations.text = "Stations Travelled: {0}".format([GameManager.sInstance.mCurrStationIdx + 1])
 		gameover_happiness.text = "Overall Happiness: {0}".format([GameManager.sInstance.mOverallHappiness])
 		DisableButton(true)
-		gameover_panel.show()
+		mPanelAnimation.play("ShowGameoverPanel")
 		GameManager.sInstance.mTimer.stop()
 	else:
-		gameover_panel.hide()
+		mPanelAnimation.play("HideGameoverPanel")
 
 
 func ShowPausePanel(_show : bool):
 	AudioManager.sInstance.mClickSound.play()
 	if _show:
-		pause_panel.show()
+		mPanelAnimation.play("ShowPausePanel")
 		get_tree().paused = true
 		DisableButton(true)
 	else:
-		pause_panel.hide()
+		mPanelAnimation.play("HidePausePanel")
 		get_tree().paused = false
 		DisableButton(false)
 
