@@ -148,6 +148,7 @@ func OnDragEnd():
 				
 			mSittingOn = Seat.sSelectedSeat
 			PassengerManager.sInstance.mStandingArea.RemovePassenger(self)
+			AudioMgr.sInstance.mPlaceSound.play()
 			return
 
 	# If the seat is selected but occupied, swap out the seat with that passenger
@@ -174,7 +175,7 @@ func OnDragEnd():
 			PassengerManager.sInstance.mStandingArea.AddPassenger(tempPassenger)
 			if tempPassenger.global_position.y > Constant.BOTTOM_DRAG_LIMIT - Constant.PASSENGER_BOTTOM_SPAWN_PADDING or tempPassenger.global_position.y < Constant.TOP_DRAG_LIMIT + Constant.PASSENGER_TOP_SPAWN_PADDING:
 				tempPassenger.global_position.y = clamp(tempPassenger.global_position.y, Constant.TOP_DRAG_LIMIT + Constant.PASSENGER_TOP_SPAWN_PADDING, Constant.BOTTOM_DRAG_LIMIT - Constant.PASSENGER_BOTTOM_SPAWN_PADDING)
-
+			AudioMgr.sInstance.mPlaceSound.play()
 			return
 
 	# If did not manage to seat the passenger, snap the passenger position back so it doesn't occupy the seat places

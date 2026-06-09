@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cgsrj1drhnafo"]
+[gd_scene load_steps=59 format=3 uid="uid://cgsrj1drhnafo"]
 
 [ext_resource type="Script" uid="uid://c7d1tiyq1gj1e" path="res://Scripts/UI/MainmenuUI.gd" id="1_nelyp"]
 [ext_resource type="PackedScene" uid="uid://bvyt75alno37d" path="res://Scenes/Prefabs/MainMenuBackground.tscn" id="2_6r04x"]
@@ -7,8 +7,11 @@
 [ext_resource type="Script" uid="uid://cign7xud1xsnv" path="res://Scripts/UI/VersionNumber.gd" id="5_mcpc0"]
 [ext_resource type="Texture2D" uid="uid://syd6cyagis07" path="res://Sprites/UI/Credits/DE Round Rect.png" id="5_wfx2n"]
 [ext_resource type="Texture2D" uid="uid://cpdtyjfbr8hrw" path="res://Sprites/UI/Credits/credits_jagureo.png" id="6_egq24"]
+[ext_resource type="Texture2D" uid="uid://cfvi2s0bd42ec" path="res://Sprites/UI/MainMenu/SliderKnobNormal.png" id="6_yuoe8"]
 [ext_resource type="Texture2D" uid="uid://6twf1rmgrl6j" path="res://Sprites/UI/Credits/credits_wendy.png" id="7_2cvb7"]
+[ext_resource type="Texture2D" uid="uid://c2vhhia72pu2w" path="res://Sprites/UI/MainMenu/SliderKnobHover.png" id="7_u2yph"]
 [ext_resource type="Texture2D" uid="uid://ct0t6a35sudbh" path="res://Sprites/UI/Credits/credits_cyanv.png" id="8_mcpc0"]
+[ext_resource type="Script" uid="uid://i6enpgxcmdkk" path="res://Scripts/UI/VolumeSlider.gd" id="8_u2yph"]
 [ext_resource type="Texture2D" uid="uid://bei73fah1uc7t" path="res://Sprites/UI/Credits/credits_vaughn.png" id="9_2cvb7"]
 [ext_resource type="Texture2D" uid="uid://baciw3p5lc2ry" path="res://Sprites/UI/Credits/icon.svg" id="10_v5c52"]
 [ext_resource type="Texture2D" uid="uid://bmarsrk2rkw6w" path="res://Sprites/UI/MapComponents/MapBackground.png" id="12_wqgbw"]
@@ -122,30 +125,71 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_wqgbw"]
 events = [SubResource("InputEventKey_jw33x")]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53iay"]
+bg_color = Color(0.699219, 0.696487, 0.696487, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.015625, 0.015625, 0.015625, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_top = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wq1i"]
+bg_color = Color(0.65625, 1, 0.943604, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.427246, 0.4375, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_top = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sk5gj"]
+bg_color = Color(0.957031, 1, 0.65625, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.317647, 0.321569, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_top = 12.0
+expand_margin_bottom = 12.0
+
 [sub_resource type="Shortcut" id="Shortcut_nsp82"]
 events = [SubResource("InputEventKey_jw33x")]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bw246"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bw246"]
-bg_color = Color(0.52549, 0.101961, 0.541176, 1)
+bg_color = Color(0.67451, 0.188235, 0.690196, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
-border_color = Color(0.992157, 1, 0.0627451, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_520w2"]
-bg_color = Color(0.52549, 0.101961, 0.541176, 1)
+bg_color = Color(0.673465, 0.189056, 0.691406, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
-border_color = Color(0.647059, 1, 0.384314, 1)
+border_color = Color(0.992157, 1, 0.0627451, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -165,24 +209,23 @@ corner_radius_bottom_left = 40
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_520w2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuoe8"]
-bg_color = Color(0.0352941, 0.603922, 0.301961, 1)
+bg_color = Color(0.157974, 0.792969, 0.455765, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
-border_color = Color(0.992157, 1, 0.0627451, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04pbb"]
-bg_color = Color(0.0352941, 0.603922, 0.301961, 1)
+bg_color = Color(0.156863, 0.792157, 0.454902, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
-border_color = Color(0.647059, 1, 0.384314, 1)
+border_color = Color(0.992157, 1, 0.0627451, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -202,24 +245,23 @@ corner_radius_bottom_left = 40
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ls8k0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoynv"]
-bg_color = Color(0.788235, 0.133333, 0.0627451, 1)
+bg_color = Color(0.901961, 0.298039, 0.231373, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
-border_color = Color(0.992157, 1, 0.0627451, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ls8k0"]
-bg_color = Color(0.788235, 0.133333, 0.0627451, 1)
+bg_color = Color(0.902344, 0.297796, 0.232635, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
-border_color = Color(0.64801, 1, 0.382813, 1)
+border_color = Color(0.992157, 1, 0.0627451, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -337,7 +379,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 200)]
+"values": [Vector2(0, 0), Vector2(200, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -373,7 +415,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -200), Vector2(0, 0)]
+"values": [Vector2(-200, 0), Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -409,7 +451,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(960, 540), Vector2(960, 590)]
+"values": [Vector2(960, 540), Vector2(1210, 540)]
 }
 
 [sub_resource type="Animation" id="Animation_bw246"]
@@ -601,7 +643,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 200), Vector2(0, 0)]
+"values": [Vector2(200, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -637,7 +679,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -200)]
+"values": [Vector2(0, 0), Vector2(-200, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -673,7 +715,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(960, 590), Vector2(960, 540)]
+"values": [Vector2(1210, 540), Vector2(960, 540)]
 }
 
 [sub_resource type="Animation" id="Animation_520w2"]
@@ -922,15 +964,229 @@ tracks/12/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../SettingsScreen:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../SettingsScreen:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../SettingsScreen:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yuoe8"]
+resource_name = "FadeInSettings"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MainMenuBackground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(960, 540), Vector2(710, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MainScreen:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-200, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MainScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MainScreen:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SettingsScreen:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(200, 0), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SettingsScreen:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../SettingsScreen:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u2yph"]
+resource_name = "FadeOutSettings"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MainMenuBackground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(710, 540), Vector2(960, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MainScreen:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-200, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MainScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MainScreen:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SettingsScreen:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SettingsScreen:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(200, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../SettingsScreen:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cahux"]
 _data = {
 &"FadeInCredits": SubResource("Animation_nsp82"),
 &"FadeInH2P": SubResource("Animation_18lx3"),
 &"FadeInLevelSelect": SubResource("Animation_bw246"),
+&"FadeInSettings": SubResource("Animation_yuoe8"),
 &"FadeOutCredits": SubResource("Animation_cahux"),
 &"FadeOutH2P": SubResource("Animation_mx8e6"),
 &"FadeOutLevelSelect": SubResource("Animation_520w2"),
+&"FadeOutSettings": SubResource("Animation_u2yph"),
 &"RESET": SubResource("Animation_n8tau")
 }
 
@@ -980,15 +1236,16 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -268.0
-offset_top = -76.0
-offset_right = -35.0
-offset_bottom = -31.0
+offset_left = -483.0
+offset_top = -63.0
+offset_right = -20.0
+offset_bottom = -15.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_wfx2n")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "Version 1.0.0"
+horizontal_alignment = 2
 script = ExtResource("5_mcpc0")
 
 [node name="PlayButton" type="Button" parent="MainScreen"]
@@ -998,14 +1255,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -790.0
+offset_left = -831.0
 offset_top = -217.0
-offset_right = -290.0
+offset_right = -431.0
 offset_bottom = -99.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_wfx2n")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
@@ -1020,20 +1277,42 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -250.0
+offset_left = -409.0
 offset_top = -217.0
-offset_right = 250.0
+offset_right = -9.0
 offset_bottom = -99.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_wfx2n")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
 text = "How to play"
+
+[node name="SettingsButton" type="Button" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -217.0
+offset_right = 413.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_wfx2n")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
+text = "Settings"
 
 [node name="CreditsButton" type="Button" parent="MainScreen"]
 layout_mode = 1
@@ -1042,14 +1321,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 290.0
+offset_left = 435.0
 offset_top = -217.0
-offset_right = 790.0
+offset_right = 835.0
 offset_bottom = -99.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_wfx2n")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
@@ -1127,6 +1406,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
 
 [node name="Instructions" type="RichTextLabel" parent="HowToPlayScreen/TextWrapper1"]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -1152,6 +1432,151 @@ After the doors close your happiness score will be calculated for the round base
 autowrap_mode = 2
 vertical_alignment = 1
 justification_flags = 160
+
+[node name="SettingsScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelWrapper" type="Panel" parent="SettingsScreen"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 47.0
+offset_right = 885.0
+offset_bottom = 215.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
+
+[node name="SettingsText" type="Label" parent="SettingsScreen/LabelWrapper"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.5
+offset_top = -81.5
+offset_right = 367.5
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.886275, 0.14902, 1)
+theme_override_fonts/font = ExtResource("4_wfx2n")
+theme_override_font_sizes/font_size = 91
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="SettingsScreen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 60.0
+offset_right = -50.0
+offset_bottom = 178.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("4_wfx2n")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7yd6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n37xh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mwn8o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdx6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pwy36")
+shortcut = SubResource("Shortcut_wqgbw")
+text = "Back"
+
+[node name="TextWrapper" type="Panel" parent="SettingsScreen"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 43.0
+offset_top = -309.0
+offset_right = 1878.0
+offset_bottom = 491.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2rf1k")
+
+[node name="BGMLabel" type="Label" parent="SettingsScreen/TextWrapper"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 338.0
+offset_top = -141.0
+offset_right = 514.0
+offset_bottom = -40.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.874451, 1, 0.527344, 1)
+theme_override_fonts/font = ExtResource("4_wfx2n")
+theme_override_font_sizes/font_size = 64
+text = "Music"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SFXLabel" type="Label" parent="SettingsScreen/TextWrapper"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 324.0
+offset_top = -17.0
+offset_right = 518.0
+offset_bottom = 84.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.874451, 1, 0.527344, 1)
+theme_override_fonts/font = ExtResource("4_wfx2n")
+theme_override_font_sizes/font_size = 64
+text = "Sound"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BGMSlider" type="HSlider" parent="SettingsScreen/TextWrapper"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 558.0
+offset_top = -108.5
+offset_right = 1457.0
+offset_bottom = -60.5
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("6_yuoe8")
+theme_override_icons/grabber_highlight = ExtResource("7_u2yph")
+theme_override_styles/slider = SubResource("StyleBoxFlat_53iay")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_8wq1i")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_8wq1i")
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("8_u2yph")
+mAudioBusName = "BGM"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsScreen/TextWrapper"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 558.0
+offset_top = 16.0
+offset_right = 1457.0
+offset_bottom = 64.0
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("6_yuoe8")
+theme_override_icons/grabber_highlight = ExtResource("7_u2yph")
+theme_override_styles/slider = SubResource("StyleBoxFlat_53iay")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_sk5gj")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_sk5gj")
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("8_u2yph")
+mAudioBusName = "SFX"
 
 [node name="CreditsScreen" type="Control" parent="."]
 visible = false
@@ -1493,16 +1918,32 @@ vertical_alignment = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="CreditsScreen/TextWrapper2"]
 layout_mode = 0
 offset_left = 44.0
-offset_top = 282.0
-offset_right = 1125.0
+offset_top = 255.0
+offset_right = 903.0
 offset_bottom = 760.0
 theme_override_fonts/normal_font = ExtResource("4_wfx2n")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[color=pink]> SOUND <[/color]
 - Button Click 1 by Mellau. 
-   https://freesound.org/s/506054/
    License: Attribution NonCommercial 4.0
+   https://freesound.org/s/506054/
+
+- Game Sound InCorrect Organic Violin by Bertrof
+   License: Attribution 3.0
+   https://freesound.org/s/351565/
+
+- Game Sound Correct Organic Violin by Bertrof
+   License: Attribution 3.0
+   https://freesound.org/s/351566/
+
+- Error by Kastenfrosch
+   License: Creative Commons 0
+   https://freesound.org/s/521973/
+
+- VS Pop_2 by Vilkas_Sound 
+   License: Attribution 4.0
+   https://freesound.org/s/463390/
 
 [color=pink]> FONT <[/color]
 - Mitr
@@ -1700,8 +2141,14 @@ libraries = {
 
 [connection signal="pressed" from="MainScreen/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="MainScreen/H2PButton" to="." method="OnHowToPlayButtonPressed"]
+[connection signal="pressed" from="MainScreen/SettingsButton" to="." method="OnSettingsButtonPressed"]
 [connection signal="pressed" from="MainScreen/CreditsButton" to="." method="OnCreditsButtonPressed"]
 [connection signal="pressed" from="HowToPlayScreen/BackButton" to="." method="OnBackButtonPressed" binds= ["howtoplay"]]
+[connection signal="pressed" from="SettingsScreen/BackButton" to="." method="OnBackButtonPressed" binds= ["settings"]]
+[connection signal="value_changed" from="SettingsScreen/TextWrapper/BGMSlider" to="SettingsScreen/TextWrapper/BGMSlider" method="OnValueChanged"]
+[connection signal="drag_ended" from="SettingsScreen/TextWrapper/SFXSlider" to="SettingsScreen/TextWrapper/SFXSlider" method="OnDragEnded"]
+[connection signal="drag_started" from="SettingsScreen/TextWrapper/SFXSlider" to="SettingsScreen/TextWrapper/SFXSlider" method="OnDragStarted"]
+[connection signal="value_changed" from="SettingsScreen/TextWrapper/SFXSlider" to="SettingsScreen/TextWrapper/SFXSlider" method="OnValueChanged"]
 [connection signal="pressed" from="CreditsScreen/BackButton" to="." method="OnBackButtonPressed" binds= ["credits"]]
 [connection signal="pressed" from="LevelSelectScreen/BackButton" to="." method="OnBackButtonPressed" binds= ["levelselect"]]
 [connection signal="mouse_entered" from="LevelSelectScreen/TextWrapper/NELButton" to="." method="OnLevelButtonHovered" binds= [2]]

@@ -168,6 +168,8 @@ func SetHappinessLevel(value: int) -> void:
 		print("Lost!")
 		mGameOver = true
 		mPassengerTooltip.hide()
+	else:
+		AudioMgr.sInstance.mWinSound.play()
 
 
 func ShowPassengerTooltip(_passenger : Passenger):

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0g5tqwvj7ti1"]
+[gd_scene load_steps=9 format=3 uid="uid://b0g5tqwvj7ti1"]
 
 [ext_resource type="Script" uid="uid://dexaoxlytuoh6" path="res://Scripts/Managers/AudioManager.gd" id="1_x8tha"]
 [ext_resource type="AudioStream" uid="uid://c1pn7302wq2i6" path="res://Audio/Emartee Jamboree.mp3" id="2_fjpqp"]
 [ext_resource type="AudioStream" uid="uid://b837e6lfshgyc" path="res://Audio/Click.mp3" id="2_kpiw8"]
+[ext_resource type="AudioStream" uid="uid://d2lc3dtr4uwxo" path="res://Audio/Correct.wav" id="4_brptx"]
 [ext_resource type="AudioStream" uid="uid://tgxe2fwhl2m1" path="res://Audio/Doors are Closing.mp3" id="4_dm4xc"]
+[ext_resource type="AudioStream" uid="uid://c0mryc1b2dsqh" path="res://Audio/Incorrect.wav" id="5_kd5to"]
+[ext_resource type="AudioStream" uid="uid://dhy6jsl7v11bc" path="res://Audio/Invalid.wav" id="6_kd5to"]
+[ext_resource type="AudioStream" uid="uid://c04ijs803613l" path="res://Audio/Pop.mp3" id="7_uwgts"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3
@@ -13,13 +17,37 @@ script = ExtResource("1_x8tha")
 stream = ExtResource("2_fjpqp")
 volume_db = -15.0
 autoplay = true
+bus = &"BGM"
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_kpiw8")
 volume_db = -5.0
+bus = &"SFX"
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_brptx")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kd5to")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="InvalidSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kd5to")
+volume_db = -5.0
+bus = &"SFX"
 
 [node name="PickupSound" type="AudioStreamPlayer" parent="."]
+volume_db = -3.0
+bus = &"SFX"
+
+[node name="PlaceSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_uwgts")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="DoorClosingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_dm4xc")
+bus = &"SFX"

@@ -7,6 +7,10 @@ static var sInstance : AudioManager = null
 @onready var mClickSound : AudioStreamPlayer = $ClickSound
 @onready var mDoorClosingSound : AudioStreamPlayer = $DoorClosingSound
 @onready var mPickupSound: AudioStreamPlayer = $PickupSound
+@onready var mWinSound : AudioStreamPlayer = $WinSound
+@onready var mLoseSound : AudioStreamPlayer = $LoseSound
+@onready var mInvalidSound : AudioStreamPlayer = $InvalidSound
+@onready var mPlaceSound : AudioStreamPlayer = $PlaceSound
 
 var sPassengerPickupSounds : Array[AudioStream] = [
 	preload("res://Audio/Pickup/pickup1.mp3") as AudioStream,

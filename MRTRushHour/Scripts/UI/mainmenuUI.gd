@@ -25,6 +25,12 @@ func OnHowToPlayButtonPressed():
 	AudioManager.sInstance.mClickSound.play()
 	mScreenAnimation.play("FadeInH2P")
 
+
+func OnSettingsButtonPressed():
+	AudioManager.sInstance.mClickSound.play()
+	mScreenAnimation.play("FadeInSettings")
+
+
 	
 func OnCreditsButtonPressed():
 	AudioManager.sInstance.mClickSound.play()
@@ -42,6 +48,8 @@ func OnBackButtonPressed(_lastScreen : String):
 			mScreenAnimation.play("FadeOutH2P")
 		"levelselect":
 			mScreenAnimation.play("FadeOutLevelSelect")
+		"settings":
+			mScreenAnimation.play("FadeOutSettings")
 		_:
 			assert(false, "Unknown screen animation being played")
 
@@ -84,3 +92,4 @@ func OnLevelButtonUnhovered(_line : LevelManager.MRTLine):
 			mNELGlow.visible = false
 
 	# Todo: clear line description
+

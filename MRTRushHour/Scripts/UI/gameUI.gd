@@ -89,10 +89,12 @@ func ShowGameOverPanel(_show : bool, _isVictory : bool = false):
 		if _isVictory:
 			gameover_title.text = "VICTORY!"
 			gameover_title.add_theme_color_override("font_color", Color(0.73, 1, 0, 1))
+			AudioMgr.sInstance.mWinSound.play()
 		else:
 			gameover_title.text = "GAME OVER!"
 			gameover_title.add_theme_color_override("font_color", Color(1, 0.89, 0, 1))
-
+			AudioMgr.sInstance.mLoseSound.play()
+			
 		gameover_stations.text = "Stations Travelled: {0}".format([GameManager.sInstance.mCurrStationIdx + 1])
 		gameover_happiness.text = "Overall Happiness: {0}".format([GameManager.sInstance.mOverallHappiness])
 		DisableButton(true)

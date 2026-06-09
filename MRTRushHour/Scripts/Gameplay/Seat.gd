@@ -34,6 +34,7 @@ func _ready():
 func AddPassenger(_passenger : Passenger) -> bool:
 	if _passenger.mPassengerType == Passenger.PassengerType.WHEELCHAIR_BOUND:
 		if mSeatType != SeatType.WHEELCHAIR:
+			AudioMgr.sInstance.mInvalidSound.play()
 			return false
 	mCurrentlySeatedBy = _passenger
 	# Lighter glow to indicate seat is occupied

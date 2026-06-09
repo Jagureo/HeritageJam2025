@@ -65,15 +65,14 @@ _data = {
 z_index = -1
 
 [node name="SkySection1" type="Sprite2D" parent="."]
-position = Vector2(-1920, -65)
+position = Vector2(-1920, 0)
 texture = ExtResource("2_6jqsr")
 
 [node name="SkySection2" type="Sprite2D" parent="."]
-position = Vector2(0, -65)
 texture = ExtResource("2_6jqsr")
 
 [node name="SkySection3" type="Sprite2D" parent="."]
-position = Vector2(1920, -65)
+position = Vector2(1920, 0)
 texture = ExtResource("2_6jqsr")
 
 [node name="HDBSection" type="Sprite2D" parent="."]
