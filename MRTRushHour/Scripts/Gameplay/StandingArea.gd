@@ -56,7 +56,7 @@ func EvaluateHappiness() -> int:
 				passenger.mScore = Constant.HEMORRHOID_SCORE[0]
 			
 			Passenger.PassengerType.WHEELCHAIR_BOUND:
-				passenger.mScore = Constant.WHEELCHAIR_BOUND_SCORE[0] + (len(mCurrentlyStanding) - 1) * Constant.WHEELCHAIR_BOUND_SCORE[2]
+				passenger.mScore = Constant.WHEELCHAIR_BOUND_SCORE[0]
 
 		sectionScore += passenger.mScore
 		passenger.mPassengerScorePopup.SetScore(passenger.mScore)

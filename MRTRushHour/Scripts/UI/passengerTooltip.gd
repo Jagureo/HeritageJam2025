@@ -90,9 +90,7 @@ static func GetPassengerStandingDesc(_passengerType : Passenger.PassengerType) -
 		Passenger.PassengerType.HEMORRHOID:
 			return ColourScore(Constant.HEMORRHOID_SCORE[0]) + "."
 		Passenger.PassengerType.WHEELCHAIR_BOUND:
-			return "{0}. {1} per {2}.".format([ColourScore(Constant.WHEELCHAIR_BOUND_SCORE[0]), 
-											   ColourScore(Constant.WHEELCHAIR_BOUND_SCORE[2], true), 
-											   ColourKeyword("Standing Passenger", "orange")])
+			return ColourScore(Constant.WHEELCHAIR_BOUND_SCORE[0]) + "."
 		# DLC Passengers
 		# Passenger.PassengerType.DURIAN_LOVER:
 		# 	return "{0}. {1} per onboard passenger (Except another Durian Lover).".format([ColourScore(Constant.DURIAN_LOVER_SCORE[0]), 

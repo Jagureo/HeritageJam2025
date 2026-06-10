@@ -69,7 +69,7 @@
 		{ "type": "Elderly", "weight": 15, "max": 99 },
 		{ "type": "Injured", "weight": 10, "max": 99 },
 		{ "type": "Pregnant", "weight": 10, "max": 99 },
-		{ "type": "Hemorrhoid", "weight": 5, "max": 99 },
+		{ "type": "Hemorrhoid", "weight": 10, "max": 99 },
 		{ "type": "Wheelchair", "weight": 10, "max": 1 }
 	]
 }
